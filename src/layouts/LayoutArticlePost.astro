@@ -1,0 +1,48 @@
+---
+import { type CollectionEntry } from 'astro:content'
+import { twJoin } from 'tailwind-merge'
+import LayoutArticle from './LayoutArticle.astro'
+import { proseBase, proseHeadings } from './baseStyles'
+
+export type Props = CollectionEntry<'posts'>['data']
+
+const { title, noindex, language, pubDate, updatedDate, author } = Astro.props
+---
+
+<LayoutArticle title={title} noindex={noindex}>
+  <!-- {% if page.showToc %}prose-h1:mt-10 {% endif %} -->
+
+  <article
+    class={twJoin(proseBase, 'max-w-prose', proseHeadings)}
+    lang={language}
+    itemscope
+    itemtype="http://schema.org/BlogPosting"
+  >
+    <header class="mb-14">
+      <h1 itemprop="name headline">{title}</h1>
+      <p class="text-gray-400">
+        <time datetime={pubDate.toISOString()} itemprop="datePublished">
+          {pubDate.toLocaleDateString()}
+        </time>
+        {
+          updatedDate && (
+            <>
+              {' '}
+              &bull;{' '}
+              <time datetime={updatedDate.toISOString()} itemprop="dateModified">
+                {updatedDate.toLocaleDateString()}
+              </time>
+            </>
+          )
+        }
+        &bull;
+        <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <span itemprop="name">{author}</span>
+        </span>
+      </p>
+    </header>
+    <div itemprop="articleBody">
+      <slot />
+    </div>
+  </article>
+</LayoutArticle>

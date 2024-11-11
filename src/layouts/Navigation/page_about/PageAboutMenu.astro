@@ -1,0 +1,17 @@
+---
+import MenuItem from '../MenuItem/MenuItem.astro'
+import MenuItemWrapper from '../MenuItem/MenuItemWrapper.astro'
+---
+
+<MenuItemWrapper>
+  <MenuItem href="/" highlightExactMatch>Übersicht</MenuItem>
+</MenuItemWrapper>
+
+<!-- <MenuItemHeadline>Projekte</MenuItemHeadline> -->
+<!-- <MenuItemWrapper>
+  {
+    showcaseProjects.map((project) => {
+      return <MenuItem href={getRootUrl(project)}>{project.name.name}</MenuItem>
+    })
+  }
+</MenuItemWrapper> -->

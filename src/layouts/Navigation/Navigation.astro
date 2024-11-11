@@ -1,0 +1,38 @@
+---
+import { twJoin } from 'tailwind-merge'
+import NavigationFooter from './NavigationFooter.astro'
+import { NavigationMobile } from './NavigationMobile.tsx'
+import NavigationPosts from './NavigationPosts.astro'
+import PageAboutHeader from './page_about/PageAboutHeader.astro'
+import PageAboutMenu from './page_about/PageAboutMenu.astro'
+
+export interface Props {
+  /** @desc switches the navigation to scroll in itself ("app") vs. with the "article" */
+  layoutType: 'article' | 'app'
+}
+
+const { layoutType } = Astro.props
+---
+
+<nav
+  class={twJoin(
+    layoutType === 'app' ? 'bg-white' : 'mb-10 lg:mb-0',
+    'z-[1001] flex w-full flex-none justify-between px-3 py-3 shadow-xl lg:relative lg:z-auto lg:block lg:w-64 lg:py-6 lg:shadow-none',
+    'group/navi',
+  )}
+  lang="de"
+>
+  <PageAboutHeader />
+
+  <NavigationMobile client:load>
+    <PageAboutMenu />
+    <NavigationPosts />
+    <NavigationFooter />
+  </NavigationMobile>
+
+  <div class="z-[2000] hidden transition-all duration-150 lg:block">
+    <PageAboutMenu />
+    <NavigationPosts />
+    <NavigationFooter />
+  </div>
+</nav>

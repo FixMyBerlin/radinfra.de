@@ -1,0 +1,48 @@
+---
+import ArrowTopRightOnSquare from 'astro-heroicons/outline/ArrowTopRightOnSquare.astro'
+import { Image } from 'astro:assets'
+import { twJoin } from 'tailwind-merge'
+
+export type CardProps = {
+  href: string
+  external?: boolean
+  text?: string
+  alt?: string | undefined | null
+  image?: ImageMetadata | undefined
+  variant: 'iconGrid' | 'iconImageGrid'
+}
+
+const { href, external, text, alt, image, variant } = Astro.props
+---
+
+<a
+  href={href}
+  class="flex grow flex-col items-center justify-center rounded bg-gray-100 hover:bg-green-100"
+  title={alt}
+  target={external ? '_blank' : undefined}
+>
+  {
+    image ? (
+      <Image
+        src={image}
+        height={160}
+        densities={[1.5, 2]}
+        class="m-0 max-h-40 w-full overflow-clip rounded-t border border-gray-100 object-cover"
+        alt=""
+      />
+    ) : (
+      <div
+        class={twJoin(
+          variant === 'iconImageGrid' ? 'h-40 w-full border-b border-gray-50' : 'pb-2 pt-5',
+          'm-0 flex items-center justify-center',
+        )}
+      >
+        <slot />
+      </div>
+    )
+  }
+  <h2 class="justify-left not-prose mb-3 mt-1 flex items-center gap-1 py-0 text-center">
+    {text ? text : 'Mehr erfahren…'}
+    {external ? <ArrowTopRightOnSquare class="size-5" /> : ''}
+  </h2>
+</a>
