@@ -7,13 +7,13 @@ export default config({
     // https://keystatic.com/docs/github-mode#setting-up-git-hub-mode
     kind: import.meta.env.PUBLIC_ASTRO_STORAGE_KIND,
     repo: {
-      owner: 'osmberlin',
-      name: 'www.osm-verkehrswende.org',
+      owner: 'FixMyBerlin',
+      name: 'radinfra.de',
     },
   },
   ui: {
     brand: {
-      name: 'OSM',
+      name: 'radinfra.de',
       // mark: () => <img src="/logo.png" height={27} />,
     },
     navigation: {
