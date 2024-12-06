@@ -1,52 +1,19 @@
 import { collection, fields } from '@keystatic/core'
-import { languages } from '@layouts/languages'
-import { defineCollection, z } from 'astro:content'
-import { mdxComponentsKeystatic } from './mdxComponents'
+import { mdxComponentsKeystatic } from './components/mdxComponentsKeystatic'
 import { authorsSelect } from './utils/authorsSelect'
 import { languagesSelect } from './utils/languagesSelect'
 
-export const astroPostsDefinition = defineCollection({
-  type: 'content',
-  schema: ({ image }) =>
-    z.object({
-      title: z.string(),
-      menuTitle: z.string(),
-      // project: z.enum(extractedProjectKeys),
-      pubDate: z
-        .string()
-        .or(z.date())
-        .transform((val) => new Date(val)),
-      updatedDate: z
-        .string()
-        .or(z.date())
-        .transform((val) => new Date(val))
-        .optional(), // Note: implemented but unused ATM
-      author: z.string(),
-      inMenu: z.boolean(),
-      noindex: z.boolean().optional(),
-      language: z.enum(languages).optional(),
-      image: image().nullish(),
-      imageAlt: z.string().optional(),
-      showToc: z.boolean().optional(), // TODO Do we need this?
-      canonicalUrl: z.string().url().optional(),
-    }),
-})
-
+export const contentBase = 'src/content/posts'
 export const keystaticPostsConfig = collection({
   label: 'Blog',
   slugField: 'menuTitle',
-  path: 'src/content/posts/*/',
+  path: `${contentBase}/*/`,
   format: { contentField: 'content' },
   entryLayout: 'content',
   columns: ['title', 'pubDate'],
   schema: {
     title: fields.text({ label: 'Title', validation: { isRequired: true } }),
     menuTitle: fields.slug({ name: { label: 'Menu title', validation: { isRequired: true } } }),
-    // project: fields.select({
-    //   label: 'Project',
-    //   options: projectsSelect,
-    //   defaultValue: projectsSelect.at(0)!.value,
-    // }),
     pubDate: fields.datetime({ label: 'Publish Date/Time', validation: { isRequired: true } }),
     updatedDatae: fields.datetime({ label: 'Date/Time of last relevant update' }),
     author: fields.select({

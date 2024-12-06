@@ -20,7 +20,7 @@ const relevantPosts = sortedPosts.filter((post) => post.data.inMenu === true)
       </MenuItemHeadline>
       <MenuItemWrapper>
         {relevantPosts.map((post) => (
-          <MenuItem href={`/posts/${post.slug}`}>
+          <MenuItem href={`/posts/${post.id}`}>
             <span class="-ml-1.5 mr-1 inline-flex rounded-full bg-gray-100 px-1.5 py-0.5 text-xs text-gray-500">
               {[
                 new Date(post.data.pubDate).getFullYear(),
