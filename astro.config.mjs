@@ -12,8 +12,8 @@ import { defineConfig, envField } from 'astro/config'
 //
 // USAGE:
 // `npm run dev` uses hybrid mode and keystatic()
-// `npm run build` (server) is based on .env and has different settings for Netlify (CMS/Keystatic) vs. IONOS (Static site)
-// `npm run build:local && npm run serve` overwrites the .env settings to have a local test case for what is on IONOS
+// `npm run build` (server) is based on `.env` and has different settings for Netlify (CMS/Keystatic) vs. IONOS (Static site)
+// `npm run build:local && npm run serve` overwrites the `.env` settings to have a local test case for what is on IONOS
 import { loadEnv } from 'vite'
 const { ASTRO_OUTPUT_MODE, ASTRO_USE_NETLIFY_ADAPTER } = loadEnv(
   process.env.NODE_ENV,
@@ -37,8 +37,8 @@ export default defineConfig({
       filter: (page) => !page.endsWith('README/'),
     }),
   ],
-  // On Netlify and during development we use `hybrid`, on Github Pages we usd `static`.
-  // Using static makes sure features like Astros redirecting work as expected.
+  // On Netlify and during development we use `hybrid`, on GitHub Pages we use `static`.
+  // Using static makes sure features like Astro's redirecting work as expected.
   // Docs https://docs.astro.build/en/basics/rendering-modes/
   output: ASTRO_OUTPUT_MODE,
   adapter: ASTRO_USE_NETLIFY_ADAPTER === 'true' ? netlify() : undefined,
