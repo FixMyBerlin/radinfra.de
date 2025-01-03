@@ -6,6 +6,7 @@ import Map from 'astro-heroicons/outline/Map.astro'
 import RectangleStack from 'astro-heroicons/outline/RectangleStack.astro'
 import QueueList from 'astro-heroicons/outline/QueueList.astro'
 import CalendarDays from 'astro-heroicons/solid/CalendarDays.astro'
+import { ShieldCheckIcon } from '@heroicons/react/24/solid'
 ---
 
 <LayoutArticlePageAstro title="Radinfrastruktur für Deutschland">
@@ -19,7 +20,12 @@ import CalendarDays from 'astro-heroicons/solid/CalendarDays.astro'
   </header>
 
   <section class="notice prose-lg mt-16 gap-5 bg-pink-100 text-pink-800">
-    <h2 class="text-pink-900">Diese Seite ist im Aufbau</h2>
+    <h2 class="text-pink-900">
+      <div class="flex items-center gap-3">
+        <ShieldCheckIcon className="size-9" />
+        Diese Seite ist im Aufbau
+      </div>
+    </h2>
     <p>
       Diese Seite ist im Aufbau. Wir haben sie als Platzhalter veröffentlicht, da wir einen FOSSGIS
       Vortrag für die FOSSGIS Konferenz 2025 eingereicht haben, in dem wir das Projekt vorstellen
