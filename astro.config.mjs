@@ -42,7 +42,9 @@ export default defineConfig({
   // Docs https://docs.astro.build/en/basics/rendering-modes/
   output: ASTRO_OUTPUT_MODE,
   adapter: ASTRO_USE_NETLIFY_ADAPTER === 'true' ? netlify() : undefined,
-  redirects: {},
+  redirects: {
+    '/contact': '/legal',
+  },
   env: {
     schema: {
       ASTRO_OUTPUT_MODE: envField.enum({

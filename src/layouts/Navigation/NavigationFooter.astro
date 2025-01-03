@@ -13,14 +13,14 @@ const { pathname: currentPathname } = Astro.url
   <li>
     <a
       class={twJoin(
-        currentPathname === '/contact'
+        currentPathname === '/legal'
           ? 'font-bold text-black no-underline'
           : 'underline hover:text-gray-500',
       )}
-      href="/contact"
+      href="/legal"
       lang="de"
     >
-      Kontakt & <br />Datenschutz & <br />Impressum
+      Datenschutz & Impressum
     </a>
   </li>
 </ul>

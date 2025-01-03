@@ -2,23 +2,44 @@
 import { twJoin } from 'tailwind-merge'
 import LayoutArticle from './LayoutArticle.astro'
 import { proseBase, proseHeadings } from './baseStyles'
+import Notice from '../components/Notice.astro'
 
 type Props = {
   frontmatter: {
     title: string
     noindex?: boolean | undefined
     language?: 'en' | 'de' | undefined
-  }
+  } & (
+    | { category?: string; headline?: string; intro?: string }
+    | { category?: undefined; headline?: never; intro?: never }
+  )
 }
 export type LayoutArticleProps = Props
 
 const {
-  frontmatter: { title, noindex, language },
+  frontmatter: { title, category, headline, intro, noindex, language },
 } = Astro.props
 ---
 
 <LayoutArticle title={title} noindex={noindex}>
   <article class={twJoin(proseBase, 'max-w-prose', proseHeadings)} lang={language}>
+    {
+      headline && (
+        <Notice className="!mb-12">
+          <h1 class="!m-0 text-sky-700">
+            {category && <span class="block text-base font-normal uppercase">{category}</span>}
+            {headline}
+          </h1>
+
+          {intro && (
+            <>
+              <hr class="!my-6 !border-white" />
+              <p class="lead">{intro}</p>
+            </>
+          )}
+        </Notice>
+      )
+    }
     <slot />
   </article>
 </LayoutArticle>

@@ -1,12 +1,13 @@
 ---
-import Card from '@components/text/Card.astro'
-import CardWrapper from '@components/text/CardWrapper.astro'
+import GridCard from '@components/cards/GridCard.astro'
+import GridCardWrapper from '@components/cards/GridCardWrapper.astro'
 import LayoutArticlePageAstro from '@layouts/LayoutArticlePageAstro.astro'
-import Map from 'astro-heroicons/outline/Map.astro'
 import RectangleStack from 'astro-heroicons/outline/RectangleStack.astro'
 import QueueList from 'astro-heroicons/outline/QueueList.astro'
 import CalendarDays from 'astro-heroicons/solid/CalendarDays.astro'
-import { ShieldCheckIcon } from '@heroicons/react/24/solid'
+import { ShieldCheckIcon, MapIcon } from '@heroicons/react/24/solid'
+import Notice from '@components/Notice.astro'
+import CardsMitmachen from '@components/page_mitmachen/CardsMitmachen.astro'
 ---
 
 <LayoutArticlePageAstro title="Radinfrastruktur für Deutschland">
@@ -19,24 +20,71 @@ import { ShieldCheckIcon } from '@heroicons/react/24/solid'
     <p class="-mt-2 text-3xl font-bold text-sky-700">Flächendeckend, Einheitlich, Aktuell</p>
   </header>
 
-  <section class="notice prose-lg mt-16 gap-5 bg-pink-100 text-pink-800">
-    <h2 class="text-pink-900">
-      <div class="flex items-center gap-3">
-        <ShieldCheckIcon className="size-9" />
-        Diese Seite ist im Aufbau
-      </div>
-    </h2>
-    <p>
-      Diese Seite ist im Aufbau. Wir haben sie als Platzhalter veröffentlicht, da wir einen FOSSGIS
-      Vortrag für die FOSSGIS Konferenz 2025 eingereicht haben, in dem wir das Projekt vorstellen
-      wollen. Und in diesem Vortrag wird die Domain erwähnt. Wir planen die Seite bis Ende 2024
-      fertigzustellen.
+  <Notice className="mb-8 mt-10">
+    <p class="lead">
+      radinfra.de liefert detaillierte und aufbereitete Daten zur Radinfrastruktur für ganz
+      Deutschland – täglich aktualisiert durch Beiträge aus der Verwaltung und von Ehrenamtlichen in
+      OpenStreetMap.
     </p>
-    <p class="!mt-4">
-      Für das Projekt sind zu Beginn drei Bestandteile geplant: Eine Karte der Radinfrastruktur in
-      Deutschland aus der Kooperation mit dem Radverkehrsatlas. Kampagnen zur Verbesserung der Daten
-      in OpenStreetMap. Online-Meetups zum Austausch für Interessierte der Fahrrad-, OSM- und
-      Mapillary-/Panoramax-Community sowie der Verwaltung.
+  </Notice>
+
+  <Notice colorClass="bg-pink-100 text-pink-800 prose-pink" className="mb-8 mt-8">
+    <div class="flex items-center gap-3">
+      <ShieldCheckIcon className="size-9" />
+      <div>
+        <h2 class="!mb-0 text-lg text-pink-900">Diese Seite ist im Aufbau.</h2>
+        <p class="!m-0">
+          Sie wird <a
+            href="https://pretalx.com/fossgis2025/talk/review/98VFKNSGRX8DWKHBH8KUDD8ZZST7WCX9"
+            target="_blank">auf dem FOSSIGS Vortrag am 28.3.2025</a
+          > offiziell vorgestellt.
+        </p>
+      </div>
+    </div>
+  </Notice>
+
+  <section>
+    <h2 class="sr-only">Einführung</h2>
+    <p>
+      OpenStreetMap bietet die einzigen flächendeckend verfügbaren und standardisierten
+      Radinfrastrukturdaten in Deutschland. Um diese Daten für die Öffentlichkeit sowie für die
+      planende Verwaltung zugänglich zu machen und systematisch zu verbessern, wurde radinfra.de
+      entwickelt.
+    </p>
+
+    <p>
+      Daten zur Radinfrastruktur liegen in Deutschland sehr fragmentiert vor. Amtliche Daten sind
+      nicht standardisiert, veraltet, ungenau oder gar nicht vorhanden. OSM bietet systematische
+      Daten zur Radinfrastruktur, die fortlaufend aktuell gehalten werden können. Bisher wird dieses
+      Potenzial nur ansatzweise genutzt, denn die Daten in OSM sind nicht einfach zugänglich und
+      bedürfen weiterer Pflege und Detaillierung.
+    </p>
+
+    <p>
+      Unter radinfra.de ist jetzt ein neuer Anlaufpunkt für alle entstanden, die sich für offene
+      Radinfrastrukturdaten interessieren und mithelfen wollen, diese zu verbessern.
+    </p>
+
+    <h3>Einheitliche Daten für ganz Deutschland:</h3>
+    <p>
+      Dank OpenStreetMap können für ganz Deutschland einheitliche Daten produziert werden, die
+      sowohl beschilderte als auch unbeschilderte Radinfrastruktur abbilden. Dabei werden die
+      Rohdaten aus OpenStreetMap aufbereitet, vereinheitlicht und nach Führungsform klassifiziert,
+      um eine einfache Nutzung für Planungszwecke zu ermöglichen.
+    </p>
+
+    <h3>Täglich aktuelle Daten:</h3>
+    <p>
+      Eine Stärke von OpenStreetMap ist ihr schneller Aktualisierungszyklus. Änderungen sind schon
+      am nächsten Tag in den Daten zu sehen.
+    </p>
+
+    <h3>Kampagnen zur Datenpflege:</h3>
+    <p>
+      Neben dem einfachen Zugang zu Radinfrastruktur-Daten ist die Datenpflege ein zweites Ziel des
+      Projekts. Dafür werden aus den Daten verschiedene Kampagnen zur Aktualität, Vollständigkeit
+      und Richtigkeit der Daten abgeleitet. Ziel ist es, die Daten immer weiter zu verbessern und
+      Attribute wie Breiten und Oberflächen systematisch zu erfassen.
     </p>
   </section>
 
@@ -58,25 +106,27 @@ import { ShieldCheckIcon } from '@heroicons/react/24/solid'
     </div>
   </section> -->
 
-  <CardWrapper sectionClasses="mt-16">
-    <Card
+  <CardsMitmachen headline="Mitmachen" />
+
+  <GridCardWrapper sectionClasses="mt-16">
+    <GridCard
       external
       href="https://wiki.openstreetmap.org/wiki/Verkehrswende-Meetup"
       text="Karte (BETA)"
       alt="Karte im Radverkehrsatlas öffnen…"
       variant="iconGrid"
     >
-      <Map class="size-10" />
-    </Card>
-    <Card
+      <MapIcon className="size-10" />
+    </GridCard>
+    <GridCard
       href="#kampagnen"
       text="Kampagnen (IN ARBEIT)"
       alt="Zur Kampagnen-Übersicht…"
       variant="iconGrid"
     >
       <RectangleStack class="size-10" />
-    </Card>
-    <Card
+    </GridCard>
+    <GridCard
       external
       href="https://wiki.openstreetmap.org/wiki/Verkehrswende-Meetup#Meetups"
       text="Online Meetup (GEPLANT)"
@@ -84,20 +134,20 @@ import { ShieldCheckIcon } from '@heroicons/react/24/solid'
       variant="iconGrid"
     >
       <CalendarDays class="size-10" />
-    </Card>
-  </CardWrapper>
+    </GridCard>
+  </GridCardWrapper>
 
-  <CardWrapper classes="mt-8">
+  <GridCardWrapper classes="mt-8">
     <p class="my-0 sm:col-span-2">
       Die Projekte der OSM Verkehrswende Gruppe könnten euch auch interessieren:
     </p>
-    <Card
+    <GridCard
       external
       href="https://www.osm-verkehrswende.org"
       text="OSM Verkehrswende Projekte"
       variant="iconGrid"
     >
       <QueueList class="size-10" />
-    </Card>
-  </CardWrapper>
+    </GridCard>
+  </GridCardWrapper>
 </LayoutArticlePageAstro>

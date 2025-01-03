@@ -1,10 +1,41 @@
 ---
 import MenuItem from '../MenuItem/MenuItem.astro'
 import MenuItemWrapper from '../MenuItem/MenuItemWrapper.astro'
+
+const { pathname: currentPathname } = Astro.url
+const isMitmachen = currentPathname.startsWith('/mitmachen')
 ---
 
 <MenuItemWrapper>
   <MenuItem href="/" highlightExactMatch>Übersicht</MenuItem>
+</MenuItemWrapper>
+
+<MenuItemWrapper>
+  <MenuItem href="/mitmachen">Mitmachen</MenuItem>
+  {
+    isMitmachen && (
+      <>
+        <MenuItem href="/mitmachen/hinweise" highlightExactMatch indentation={2}>
+          Hinweise
+        </MenuItem>
+        <MenuItem href="/mitmachen/fotos" highlightExactMatch indentation={2}>
+          Fotos
+        </MenuItem>
+        <MenuItem href="/mitmachen/mappen" highlightExactMatch indentation={2}>
+          Mappen
+        </MenuItem>
+      </>
+    )
+  }
+
+  <MenuItem href="/karte">Karte</MenuItem>
+  <MenuItem href="/statistik">Statistik</MenuItem>
+  <MenuItem href="/kampagnen">Kampagnen</MenuItem>
+</MenuItemWrapper>
+
+<MenuItemWrapper>
+  <MenuItem href="/beratung">Beratung</MenuItem>
+  <MenuItem href="/kontakt">Meetup & Kontakt</MenuItem>
 </MenuItemWrapper>
 
 <!-- <MenuItemHeadline>Projekte</MenuItemHeadline> -->

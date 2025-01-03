@@ -1,0 +1,34 @@
+---
+import StackedCard from '@components/cards/StackedCard.astro'
+import StackedCardWrapper from '@components/cards/StackedCardWrapper.astro'
+import { ChatBubbleBottomCenterIcon, CameraIcon, PencilSquareIcon } from '@heroicons/react/24/solid'
+
+const { headline } = Astro.props
+---
+
+<StackedCardWrapper sectionClasses="mt-16" headline={headline}>
+  <StackedCard
+    href="/mitmachen/hinweise"
+    title="Hinweise liefern"
+    text="Helft die Daten zu verbessern, in dem ihr Hinweise liefert, wo sie aktualisiert werden müssen."
+    label="Empfohlen für Verwaltungsmitarbeiter:innen"
+  >
+    <ChatBubbleBottomCenterIcon className="size-10" />
+  </StackedCard>
+  <StackedCard
+    href="/mitmachen/fotos"
+    title="Fotos machen"
+    text="Helft die Daten zu verbessern, in dem ihr Fotos der Infrastruktur liefert."
+    label="Empfohlen für Radfahrer:innen"
+  >
+    <CameraIcon className="size-10" />
+  </StackedCard>
+  <StackedCard
+    href="/mitmachen/mappen"
+    title="Daten eintragen"
+    text="Verbessert die Daten auf der Radtour oder von zu Hause."
+    label="Empfohlen für Mapper:innen"
+  >
+    <PencilSquareIcon className="size-10" />
+  </StackedCard>
+</StackedCardWrapper>
