@@ -3,14 +3,15 @@ import ArrowTopRightOnSquare from 'astro-heroicons/outline/ArrowTopRightOnSquare
 
 export type CardProps = {
   href: string
-  external?: boolean
   title?: string
   text?: string
   label?: string
   alt?: string | undefined | null
 }
 
-const { href, external, title, text, label, alt } = Astro.props
+const { href, title, text, label, alt } = Astro.props
+
+const external = href.startsWith('http')
 ---
 
 <a

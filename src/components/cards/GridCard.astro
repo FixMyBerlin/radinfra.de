@@ -5,14 +5,15 @@ import { twJoin } from 'tailwind-merge'
 
 export type CardProps = {
   href: string
-  external?: boolean
   text?: string
   alt?: string | undefined | null
   image?: ImageMetadata | undefined
   variant: 'iconGrid' | 'iconImageGrid'
 }
 
-const { href, external, text, alt, image, variant } = Astro.props
+const { href, text, alt, image, variant } = Astro.props
+
+const external = href.startsWith('http')
 ---
 
 <a
