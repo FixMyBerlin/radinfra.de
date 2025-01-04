@@ -1,6 +1,7 @@
 import { collection, fields } from '@keystatic/core'
 import { mdxComponentsKeystatic } from './components/mdxComponentsKeystatic'
 import { authorsSelect } from './utils/authorsSelect'
+import { campaignCategorySelect } from './utils/campaignCategorySelect'
 import { languagesSelect } from './utils/languagesSelect'
 
 export const contentBase = 'src/content/campaigns'
@@ -10,11 +11,16 @@ export const keystaticCampaignsConfig = collection({
   path: `${contentBase}/*/`,
   format: { data: 'json' },
   entryLayout: 'form',
-  columns: ['name', 'pubDate'],
+  columns: ['name', 'pubDate', 'category'],
   schema: {
     name: fields.text({ label: 'Title', validation: { isRequired: true } }),
     menuTitle: fields.slug({ name: { label: 'Menu title', validation: { isRequired: true } } }),
     pubDate: fields.datetime({ label: 'Publish Date/Time', validation: { isRequired: true } }),
+    category: fields.select({
+      label: 'Category',
+      options: campaignCategorySelect,
+      defaultValue: campaignCategorySelect.at(0)!.value,
+    }),
     author: fields.select({
       label: 'Author',
       options: authorsSelect,

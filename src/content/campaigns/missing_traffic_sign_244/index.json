@@ -1,8 +1,8 @@
 {
   "name": "Fahrradstraßen ohne Verkehrszeichen",
   "menuTitle": "Fahrradstraßen ohne Verkehrszeichen",
-  "project": "traffic-signs",
   "pubDate": "2024-09-20T15:00",
+  "category": "traffic_signs",
   "author": "Tobias Jordans @tordans",
   "inMenu": true,
   "language": "de",

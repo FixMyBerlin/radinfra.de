@@ -1,6 +1,7 @@
 import { languages } from '@layouts/languages'
 import { defineCollection, z } from 'astro:content'
 import { contentBase } from './campaignsKeystatic'
+import { campaignCategories } from './utils/campaignCategorySelect'
 import { loader } from './utils/loader'
 
 export const AstroCampaignSchema = z.object({
@@ -10,6 +11,7 @@ export const AstroCampaignSchema = z.object({
     .string()
     .or(z.date())
     .transform((val) => new Date(val)),
+  category: z.enum(campaignCategories),
   author: z.string(),
   inMenu: z.boolean(),
   language: z.enum(languages).optional(),
@@ -21,6 +23,7 @@ export const AstroCampaignSchema = z.object({
     checkinComment: z.string(),
     checkinSource: z.string(),
   }),
+  content: z.string(),
 })
 
 export type AstroCampaignType = z.infer<typeof AstroCampaignSchema> & { content: string }

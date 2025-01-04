@@ -1,0 +1,36 @@
+---
+import Notice from '@components/Notice.astro'
+import { micromark } from 'micromark'
+
+export type PageHeadlineProps = {
+  headline: string
+  category?: string | undefined
+  intro?: string | undefined
+}
+type Props = PageHeadlineProps
+
+const { headline, category, intro } = Astro.props
+
+const headlineHtml = micromark(headline).replaceAll('<p>', '').replaceAll('</p>', '')
+const introHtml = intro
+  ? micromark(intro).replaceAll('</p><p>', '<br />').replaceAll('<p>', '').replaceAll('</p>', '')
+  : undefined
+---
+
+<header>
+  <Notice className="!mb-12">
+    <h1 class="!m-0 text-sky-700">
+      {category && <span class="block text-base font-normal uppercase">{category}</span>}
+      <Fragment set:html={headlineHtml} />
+    </h1>
+
+    {
+      intro && (
+        <>
+          <hr class="!my-6 !border-white" />
+          <p class="lead" set:html={introHtml} />
+        </>
+      )
+    }
+  </Notice>
+</header>

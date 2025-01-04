@@ -3,7 +3,8 @@ export const prerender = true
 //
 import { maprouletteChallengeUrl } from '@components/campaigns/maprouletteChallengeUrl'
 import MegaButton from '@components/Link/MegaButton.astro'
-import LayoutArticlePost from '@layouts/LayoutArticlePost.astro'
+import PageHeadline from '@components/text/PageHeadline.astro'
+import LayoutArticlePageAstro from '@layouts/LayoutArticlePageAstro.astro'
 import { type CollectionEntry, getCollection } from 'astro:content'
 
 export async function getStaticPaths() {
@@ -22,11 +23,13 @@ const page = Astro.props
 const url = maprouletteChallengeUrl(page.data.maprouletteChallenge.id)
 ---
 
-<LayoutArticlePost
+<LayoutArticlePageAstro
   title={page.data.name}
   {...page.data}
   noindex={!url || !page.data.maprouletteChallenge.enabled}
 >
+  <PageHeadline category="Kampagnen" headline={page.data.name} intro={page.data.content} />
+
   <MegaButton
     href={url || '#wip'}
     iconKey="maproulette"
@@ -34,18 +37,14 @@ const url = maprouletteChallengeUrl(page.data.maprouletteChallenge.id)
     subline="Zur MapRoulette Challenge"
   />
 
-  <div class="my-10">
-    <!-- <Content components={mdxComponentsAstro} /> -->
-  </div>
-
-  <div class="mt-6 border-t border-gray-100">
-    <dl class="divide-y divide-gray-100">
-      <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+  <div class="mt-12 border-y border-gray-100">
+    <dl class="my-0 divide-y divide-gray-100">
+      <!-- <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
         <dt class="m-0 text-sm font-medium leading-6 text-gray-900">Name der Kampagne</dt>
         <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
           {page.data.maprouletteChallenge.name}
         </dd>
-      </div>
+      </div> -->
       <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
         <dt class="m-0 text-sm font-medium leading-6 text-gray-900">Quelle</dt>
         <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
@@ -87,4 +86,4 @@ const url = maprouletteChallengeUrl(page.data.maprouletteChallenge.id)
       </div>
     </dl>
   </div>
-</LayoutArticlePost>
+</LayoutArticlePageAstro>

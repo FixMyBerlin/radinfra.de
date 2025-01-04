@@ -14,7 +14,7 @@ const { title, noindex, language } = Astro.props
 ---
 
 <LayoutArticle title={title} noindex={noindex}>
-  <article class={twJoin(proseBase, 'max-w-prose', proseHeadings)} lang={language}>
+  <article class={twJoin(proseBase, 'max-w-prose pb-16', proseHeadings)} lang={language}>
     <slot />
   </article>
 </LayoutArticle>

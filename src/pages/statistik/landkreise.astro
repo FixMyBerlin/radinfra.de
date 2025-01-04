@@ -2,8 +2,9 @@
 import Debug from '@components/page_statistik/Debug.astro'
 import { RadialBars } from '@components/page_statistik/graphs/RadialBars'
 import Intro from '@components/page_statistik/Intro.astro'
+import PageHeadline from '@components/text/PageHeadline.astro'
 import ProseSection from '@components/text/ProseSection.astro'
-import LayoutApp from '@layouts/LayoutApp.astro'
+import LayoutArticle from '@layouts/LayoutArticle.astro'
 import { getCollection } from 'astro:content'
 
 const statistics = await getCollection('statistics')
@@ -12,9 +13,14 @@ const bund = statistics
   .sort((a, b) => a.data.properties.name.localeCompare(b.data.properties.name))
 ---
 
-<LayoutApp title="Karte der Radinfrastruktur in Deutschland">
-  <ProseSection classes="mt-6">
-    <h1>Statistik zu Radinfrastrukturdaten in Deutschland – LANDKREISE</h1>
+<LayoutArticle title="Karte der Radinfrastruktur in Deutschland">
+  <PageHeadline
+    category="Statistik"
+    headline="Statistik Landkreise"
+    intro="Statistiken pro Landkreis. Basierend auf den aufbereiteten Radinfrastrukturdaten aus OpenStreetMap."
+  />
+
+  <ProseSection>
     <p>
       <code>TODO</code>: Diese Ansicht soll später gefiltert werden könne nach Bundesland. Dafür
       müssen aber die Quelldaten eine Hierarchie bekommen.
@@ -45,4 +51,4 @@ const bund = statistics
   </div>
 
   <Debug data={bund} />
-</LayoutApp>
+</LayoutArticle>

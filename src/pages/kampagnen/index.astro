@@ -1,7 +1,72 @@
 ---
+import GridCard from '@components/cards/GridCard.astro'
+import GridCardWrapper from '@components/cards/GridCardWrapper.astro'
+import PageHeadline from '@components/text/PageHeadline.astro'
+import ProseSection from '@components/text/ProseSection.astro'
 import LayoutArticlePageAstro from '@layouts/LayoutArticlePageAstro.astro'
+import RectangleStack from 'astro-heroicons/solid/RectangleStack.astro'
+import { getCollection } from 'astro:content'
+import { campaignCategorySelect } from 'cms/utils/campaignCategorySelect'
+
+const allCampaigns = await getCollection('campaigns')
+const sortedCampaigns = allCampaigns
+  .filter((c) => c.data.maprouletteChallenge.id)
+  .sort((postA, postB) => {
+    return new Date(postB.data.pubDate).valueOf() - new Date(postA.data.pubDate).valueOf()
+  })
+
+type Campaign = (typeof allCampaigns)[number]
+
+// The order in `campaignCategorySelect` specifies the order that we display the results in
+const groupedCampaigns = new Map<Campaign['data']['category'], Campaign[]>()
+campaignCategorySelect.forEach(({ value: key }) => {
+  const value = sortedCampaigns.filter((c) => c.data.category === key)
+  groupedCampaigns.set(key as Campaign['data']['category'], value)
+})
+// sortedCampaigns.forEach((campaign) => {
+//   const key = campaign.data.category
+//   const value = [...(groupedCampaigns.get(key) || []), campaign.data]
+//   groupedCampaigns.set(key, value)
+// })
 ---
 
-<LayoutArticlePageAstro title="Kampagnen für hervorragende Radinfrastrukturdaten in Deutschland">
-  <pre>TODO Kampagnen</pre>
+<LayoutArticlePageAstro title="Kampagnen zur Verbesserung der Radinfrastrukturdaten">
+  <PageHeadline
+    category={undefined}
+    headline="Kampagnen"
+    intro="Überall in Deutschland können wir die Daten noch besser machen. Diese Kampagnen helfen euch Verbesserungspotential zu finden."
+  />
+
+  <ProseSection>
+    <p>
+      Diese Daten stammen aus dem <a href="https://radverkehrsatlas.de/" target="_blank">
+        Projekt Radverkehrsatlas
+      </a> von FixMyCity.
+    </p>
+  </ProseSection>
+
+  {
+    groupedCampaigns.entries().map(([categoryKey, categoryCampaigns]) => {
+      const label = campaignCategorySelect.find((c) => c.value === categoryKey)?.label
+      return (
+        <GridCardWrapper headline={`Kampagnen zu »${label || 'UNKOWN'}«`} sectionClasses="mt-16">
+          {categoryCampaigns.length === 0 && (
+            <p class="col-span-2">
+              <code>TODO</code> Kampagnen für diese Kategorie sind geplant.
+            </p>
+          )}
+
+          {categoryCampaigns.map((campaign) => (
+            <GridCard
+              href={`/kampagnen/${campaign.id.replace('/index', '')}`}
+              text={campaign.data.name}
+              variant="iconGrid"
+            >
+              <RectangleStack class="size-14" />
+            </GridCard>
+          ))}
+        </GridCardWrapper>
+      )
+    })
+  }
 </LayoutArticlePageAstro>
