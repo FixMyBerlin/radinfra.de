@@ -2,10 +2,12 @@
 import GridCard from '@components/cards/GridCard.astro'
 import GridCardWrapper from '@components/cards/GridCardWrapper.astro'
 import LayoutArticlePageAstro from '@layouts/LayoutArticlePageAstro.astro'
-import RectangleStack from 'astro-heroicons/outline/RectangleStack.astro'
-import QueueList from 'astro-heroicons/outline/QueueList.astro'
-import CalendarDays from 'astro-heroicons/solid/CalendarDays.astro'
-import { ShieldCheckIcon, MapIcon } from '@heroicons/react/24/solid'
+import {
+  ShieldCheckIcon,
+  MapIcon,
+  CalendarDaysIcon,
+  RectangleStackIcon,
+} from '@heroicons/react/24/solid'
 import Notice from '@components/Notice.astro'
 import CardsMitmachen from '@components/page_mitmachen/CardsMitmachen.astro'
 ---
@@ -82,9 +84,9 @@ import CardsMitmachen from '@components/page_mitmachen/CardsMitmachen.astro'
     <h3>Kampagnen zur Datenpflege:</h3>
     <p>
       Neben dem einfachen Zugang zu Radinfrastruktur-Daten ist die Datenpflege ein zweites Ziel des
-      Projekts. Dafür werden aus den Daten verschiedene Kampagnen zur Aktualität, Vollständigkeit
-      und Richtigkeit der Daten abgeleitet. Ziel ist es, die Daten immer weiter zu verbessern und
-      Attribute wie Breiten und Oberflächen systematisch zu erfassen.
+      Projekts. Dafür werden aus den Daten <a href="/kampagnen">verschiedene Kampagnen</a> zur Aktualität,
+      Vollständigkeit und Richtigkeit der Daten abgeleitet. Ziel ist es, die Daten immer weiter zu verbessern
+      und Attribute wie Breiten und Oberflächen systematisch zu erfassen.
     </p>
   </section>
 
@@ -106,48 +108,41 @@ import CardsMitmachen from '@components/page_mitmachen/CardsMitmachen.astro'
     </div>
   </section> -->
 
-  <CardsMitmachen headline="Mitmachen" />
-
-  <GridCardWrapper sectionClasses="mt-16">
-    <GridCard
-      external
-      href="https://wiki.openstreetmap.org/wiki/Verkehrswende-Meetup"
-      text="Karte (BETA)"
-      alt="Karte im Radverkehrsatlas öffnen…"
-      variant="iconGrid"
-    >
+  <GridCardWrapper headline="Angebote" sectionClasses="mt-16">
+    <GridCard href="/karte" text="Karte" alt="Karte im Radverkehrsatlas öffnen…" variant="iconGrid">
       <MapIcon className="size-10" />
     </GridCard>
-    <GridCard
-      href="#kampagnen"
-      text="Kampagnen (IN ARBEIT)"
-      alt="Zur Kampagnen-Übersicht…"
-      variant="iconGrid"
-    >
-      <RectangleStack class="size-10" />
-    </GridCard>
-    <GridCard
-      external
-      href="https://wiki.openstreetmap.org/wiki/Verkehrswende-Meetup#Meetups"
-      text="Online Meetup (GEPLANT)"
-      alt="Termine anzeigen…"
-      variant="iconGrid"
-    >
-      <CalendarDays class="size-10" />
+    <GridCard href="/kampagnen" text="Kampagnen" alt="Zur Kampagnen-Übersicht…" variant="iconGrid">
+      <RectangleStackIcon className="size-10" />
     </GridCard>
   </GridCardWrapper>
 
-  <GridCardWrapper classes="mt-8">
+  <!-- <GridCardWrapper classes="mt-8">
     <p class="my-0 sm:col-span-2">
       Die Projekte der OSM Verkehrswende Gruppe könnten euch auch interessieren:
     </p>
     <GridCard
-      external
       href="https://www.osm-verkehrswende.org"
       text="OSM Verkehrswende Projekte"
       variant="iconGrid"
     >
-      <QueueList class="size-10" />
+      <QueueListIcon className="size-10" />
+    </GridCard>
+  </GridCardWrapper> -->
+
+  <CardsMitmachen headline="Mitmachen" />
+
+  <GridCardWrapper headline="Kontakt" sectionClasses="mt-16">
+    <GridCard
+      href="/kontakt"
+      text="Monatliche Meetups"
+      alt="Kontakt zur Community…"
+      variant="iconGrid"
+    >
+      <CalendarDaysIcon className="size-10" />
+    </GridCard>
+    <GridCard href="/beratung" text="Beratung" alt="Angebote für Verwaltungen…" variant="iconGrid">
+      <RectangleStackIcon className="size-10" />
     </GridCard>
   </GridCardWrapper>
 </LayoutArticlePageAstro>
