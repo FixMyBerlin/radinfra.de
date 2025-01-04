@@ -1,7 +1,23 @@
 ---
-import LayoutArticlePageAstro from '@layouts/LayoutArticlePageAstro.astro'
+import { processingDates } from '@components/fetch/processingDates'
+import { KarteMap } from '@components/page_karte/KarteMap'
+import LayoutApp from '@layouts/LayoutApp.astro'
+import * as turf from '@turf/turf'
+import type { LngLatBoundsLike } from 'react-map-gl/maplibre'
+
+const berlinInnenstadtBbox = [13.08, 52.336, 13.76, 52.676] satisfies ReturnType<typeof turf.bbox>
+const maxBounds = turf.bbox(
+  turf.buffer(turf.bboxPolygon(berlinInnenstadtBbox), 250, { units: 'meters' })!,
+) as LngLatBoundsLike
+
+const minZoom = 10
+
+const { osm_data_from } = await processingDates()
 ---
 
-<LayoutArticlePageAstro title="Karte der Radinfrastruktur in Deutschland">
-  <pre>TODO Karte</pre>
-</LayoutArticlePageAstro>
+<LayoutApp title="Karte der Radinfrastruktur in Deutschland">
+  <KarteMap client:load maxBounds={maxBounds} minZoom={minZoom} />
+  <div class="absolute bottom-3 left-3 rounded bg-white/80 px-1 py-0.5 text-xs">
+    Datenstand: {osm_data_from.toLocaleDateString()}
+  </div>
+</LayoutApp>
