@@ -1,0 +1,16 @@
+---
+import { statisticUrl } from 'cms/statisticsAstro'
+
+const { data } = Astro.props
+---
+
+<div class="prose prose-sm prose-slate my-20 text-neutral-400 hover:text-neutral-700">
+  <hr />
+  <details>
+    <summary class="cursor-pointer hover:underline"
+      >Rohdaten {Array.isArray(data) ? <>({data.length})</> : ''}</summary
+    >
+    <a href={statisticUrl}><pre>{statisticUrl}</pre></a>
+    <pre>{JSON.stringify(data, undefined,2)}</pre>
+  </details>
+</div>

@@ -44,6 +44,7 @@
     "@total-typescript/ts-reset": "^0.6.1",
     "@turf/turf": "^7.2.0",
     "@types/geojson": "^7946.0.15",
+    "@visx/visx": "^3.12.0",
     "astro": "^5.1.2",
     "astro-heroicons": "^2.1.5-1",
     "date-fns": "^4.1.0",

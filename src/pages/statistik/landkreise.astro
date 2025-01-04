@@ -8,15 +8,18 @@ import { getCollection } from 'astro:content'
 
 const statistics = await getCollection('statistics')
 const bund = statistics
-  .filter((stat) => stat.data.properties.level === '4')
+  .filter((stat) => stat.data.properties.level === '6')
   .sort((a, b) => a.data.properties.name.localeCompare(b.data.properties.name))
 ---
 
 <LayoutApp title="Karte der Radinfrastruktur in Deutschland">
   <ProseSection classes="mt-6">
-    <h1>Statistik zu Radinfrastrukturdaten in Deutschland</h1>
+    <h1>Statistik zu Radinfrastrukturdaten in Deutschland – LANDKREISE</h1>
+    <p>
+      <code>TODO</code>: Diese Ansicht soll später gefiltert werden könne nach Bundesland. Dafür
+      müssen aber die Quelldaten eine Hierarchie bekommen.
+    </p>
     <Intro />
-    <a href="/statistik/landkreise">Landkreise Alpha</a>
   </ProseSection>
 
   <!-- <div class="my-10 mr-6">
