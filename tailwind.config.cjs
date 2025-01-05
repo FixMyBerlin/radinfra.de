@@ -7,17 +7,19 @@ module.exports = {
     './public/javascript/*.{js,ts}',
   ],
   theme: {
-    colors: {
+    extend: {
+      // Styleguide:
       // Interaction Color: Cyan
       // Highlight Color: Sky
-      ...colors,
-      // Disable other gray tones so we only use `gray`
-      // Reasign gray to our custom gray color
-      slate: false,
-      gray: colors.stone,
-      zinc: false,
-      neutral: false,
-      stone: false,
+      colors: {
+        // Reasign gray to our custom gray color
+        // Disable other gray tones so we only use `gray`
+        gray: colors.stone,
+        slate: null,
+        zinc: null,
+        neutral: null,
+        stone: null,
+      },
     },
   },
   corePlugins: {
