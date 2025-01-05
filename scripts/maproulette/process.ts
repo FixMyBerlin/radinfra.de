@@ -1,4 +1,4 @@
-import { maprouletteChallengeUrl } from '@components/campaigns/maprouletteChallengeUrl'
+import { maprouletteChallengeUrl } from '@components/Link/maprouletteChallengeUrl'
 import { z } from 'astro/zod'
 import { Glob } from 'bun'
 import type { AstroCampaignType } from 'cms/campaignsAstro'
