@@ -46,7 +46,7 @@ campaignCategorySelect.forEach(({ value: key }) => {
   </ProseSection>
 
   {
-    groupedCampaigns.entries().map(([categoryKey, categoryCampaigns]) => {
+    Array.from(groupedCampaigns.entries()).map(([categoryKey, categoryCampaigns]) => {
       const label = campaignCategorySelect.find((c) => c.value === categoryKey)?.label
       return (
         <GridCardWrapper headline={`Kampagnen zu »${label || 'UNKOWN'}«`} sectionClasses="mt-16">
