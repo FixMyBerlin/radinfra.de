@@ -1,3 +1,5 @@
+const colors = require('tailwindcss/colors')
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
@@ -5,10 +7,17 @@ module.exports = {
     './public/javascript/*.{js,ts}',
   ],
   theme: {
-    extend: {
-      zIndex: {
-        1000: '1000',
-      },
+    colors: {
+      // Interaction Color: Cyan
+      // Highlight Color: Sky
+      ...colors,
+      // Disable other gray tones so we only use `gray`
+      // Reasign gray to our custom gray color
+      slate: false,
+      gray: colors.stone,
+      zinc: false,
+      neutral: false,
+      stone: false,
     },
   },
   corePlugins: {

@@ -16,7 +16,7 @@ const external = href.startsWith('http')
 
 <a
   href={href}
-  class="group/card flex items-start justify-center gap-4 rounded bg-gray-100 p-4 no-underline hover:bg-green-100"
+  class="group/card flex items-start justify-center gap-4 rounded bg-gray-100 p-4 no-underline ring-sky-100 hover:bg-cyan-50 hover:ring-1"
   title={alt}
   target={external ? '_blank' : undefined}
 >
@@ -32,12 +32,12 @@ const external = href.startsWith('http')
       </h2>
       {
         label && (
-          <span class="inline-flex items-center rounded-full bg-green-100 px-1.5 py-0.5 text-xs font-medium text-green-700 group-hover/card:bg-white/80">
+          <span class="inline-flex items-center rounded-full bg-sky-100 px-1.5 py-0.5 text-xs font-medium text-cyan-700 group-hover/card:bg-white/80">
             {label}
           </span>
         )
       }
     </div>
-    {text && <p class="!mt-1 text-sm leading-tight text-neutral-600">{text}</p>}
+    {text && <p class="!mt-1 text-sm leading-tight text-gray-600">{text}</p>}
   </div>
 </a>
