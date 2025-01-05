@@ -18,6 +18,7 @@
     "format:all": "prettier --ignore-path .gitignore '{src,keystatic}/**/*.+(ts|js|tsx|astro|mdx)' --write",
     "check": "npm run type-check && npm run format && npm run lint",
     "campaigns:create": "bun run --env-file=scripts/maproulette/.env scripts/maproulette/process.ts",
+    "statistics:update": "bun run scripts/statistic/process.ts",
     "updatePackages:major": "npx taze major --includeLocked --write --exclude /react/ && npm run updatePackages:minor && npm install",
     "updatePackages:minor": "npx taze minor --includeLocked --write && npm install",
     "bleach": "rm -rf node_modules/.astro && rm -rf node_modules/.bin && rm -rf node_modules/.vite && rm -rf .astro/ && rm -rf .netlify/ && rm -rf dist/ && npm install && npm run bleach:info",
