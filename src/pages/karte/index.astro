@@ -1,23 +1,40 @@
 ---
-import { processingDates } from '@components/fetch/processingDates'
-import { KarteMap } from '@components/page_karte/KarteMap'
-import LayoutApp from '@layouts/LayoutApp.astro'
-import * as turf from '@turf/turf'
-import type { LngLatBoundsLike } from 'react-map-gl/maplibre'
-
-const berlinInnenstadtBbox = [13.08, 52.336, 13.76, 52.676] satisfies ReturnType<typeof turf.bbox>
-const maxBounds = turf.bbox(
-  turf.buffer(turf.bboxPolygon(berlinInnenstadtBbox), 250, { units: 'meters' })!,
-) as LngLatBoundsLike
-
-const minZoom = 10
-
-const { osm_data_from } = await processingDates()
+import MegaButton from '@components/Link/MegaButton.astro'
+import PageHeadline from '@components/text/PageHeadline.astro'
+import ProseSection from '@components/text/ProseSection.astro'
+import LayoutArticlePageAstro from '@layouts/LayoutArticlePageAstro.astro'
 ---
 
-<LayoutApp title="Karte der Radinfrastruktur in Deutschland">
-  <KarteMap client:load maxBounds={maxBounds} minZoom={minZoom} />
-  <div class="absolute bottom-3 left-3 rounded bg-white/80 px-1 py-0.5 text-xs">
-    Datenstand: {osm_data_from.toLocaleDateString()}
-  </div>
-</LayoutApp>
+<LayoutArticlePageAstro title="Karten der Radinfrastruktur in Deutschland" noindex={true}>
+  <PageHeadline
+    category={undefined}
+    headline="Karten"
+    intro="Die Daten zur Radinfrasturktur in OpenStreetMap sind vielfältig. Diese Karten beleuchten verschiedene Aspekte."
+  />
+
+  <ProseSection>
+    <p>
+      Die Daten aus diesem Projekt stammen aus einer <strong
+        >Kooperation mit dem Radverkehrsatlas</strong
+      >. Dort werden die Daten aus OpenStreetMap täglich prozessiert und aufbereitet. Wir verlinken
+      von hier aus in eine spezielle Ansicht des Radverkehrsatlas wo die Daten in einem WebGIS
+      angeschaut werden können.
+    </p>
+  </ProseSection>
+
+  <MegaButton
+    href="https://radverkehrsatlas.de/regionen/radinfra"
+    iconKey="map"
+    label="Zur Karte"
+    subline="Radinfrastrukturdaten für ganz Deutschland"
+  />
+
+  <h2>Spezialkarten zu Kampagnen</h2>
+
+  <ProseSection>
+    <p>
+      <a href="/kampagnen">Jede Kampagnenseite</a> verlinkt auf eine Spezialkarten, die die Daten der
+      Kampagne visualisiert.
+    </p>
+  </ProseSection>
+</LayoutArticlePageAstro>

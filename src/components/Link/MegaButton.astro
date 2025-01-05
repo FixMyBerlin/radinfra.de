@@ -19,7 +19,7 @@ const { href, iconKey, label, subline } = Astro.props
     href={href}
     target="_blank"
     rel="noopener noreferrer"
-    class="group flex flex-row items-center gap-4 rounded bg-gradient-to-br from-teal-500 to-emerald-400 p-10 text-center shadow-md transition-all hover:from-teal-500 hover:to-emerald-300 hover:shadow-xl"
+    class="group flex flex-row items-center gap-4 rounded bg-gradient-to-br from-teal-500 to-emerald-400 p-10 text-center text-neutral-900 shadow-md transition-all hover:from-teal-500 hover:to-emerald-300 hover:shadow-xl"
   >
     {
       (() => {
@@ -35,12 +35,12 @@ const { href, iconKey, label, subline } = Astro.props
     }
     <div>
       <h2
-        class="mb-0 flex items-center text-3xl font-bold text-gray-900 decoration-1 underline-offset-4 group-hover:underline"
+        class="mb-0 flex items-center text-3xl font-bold decoration-1 underline-offset-4 group-hover:underline"
       >
         {label}
         <img src={SvgArrowSmall.src} class="h-8 w-8" alt="" />
       </h2>
-      {subline && <p class="mb-1 text-gray-800 no-underline">{subline}</p>}
+      {subline && <p class="mb-1 text-neutral-800 no-underline">{subline}</p>}
     </div>
   </a>
 </div>
