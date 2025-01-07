@@ -35,11 +35,13 @@ const bund = statistics
   <div class="mr-6 grid grid-cols-4 gap-4">
     {
       bund.map((bundesland) => {
-        const data = Object.entries(bundesland.data.properties.road_length).map(([key, value]) => ({
-          label: String(key[0]).toUpperCase(),
-          value,
-          title: key,
-        }))
+        const data = Object.entries(bundesland.data.properties.bikelane_sum || {}).map(
+          ([key, value]) => ({
+            label: String(key[0]).toUpperCase(),
+            value: value ?? 0,
+            title: key,
+          }),
+        )
         return (
           <div>
             <h2 class="mb-2 font-bold text-emerald-700">{bundesland.data.properties.name}</h2>

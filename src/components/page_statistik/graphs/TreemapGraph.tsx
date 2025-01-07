@@ -36,10 +36,10 @@ export const TreemapGraph = ({ rawData, width, height }: Props) => {
   const sumsRoads = new Map<string, number>([])
   rawData.forEach((data) => {
     Object.entries(data.properties.bikelane_length || {}).forEach(([key, value]) => {
-      sumsBikelane.set(key, (sumsBikelane.get(key) || 0) + value)
+      sumsBikelane.set(key, (sumsBikelane.get(key) || 0) + (value ?? 0))
     })
     Object.entries(data.properties.road_length || {}).forEach(([key, value]) => {
-      sumsRoads.set(key, (sumsRoads.get(key) || 0) + value)
+      sumsRoads.set(key, (sumsRoads.get(key) || 0) + (value ?? 0))
     })
   })
   const preparedData: PreparedData[] = [

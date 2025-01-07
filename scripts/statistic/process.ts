@@ -1,5 +1,7 @@
 import { radverkehrsatlasApiUrl } from '@components/fetch/radverkehrsatlasApiUrl.const'
-import { AstroStatisticsSchema } from 'cms/statisticsSchema'
+import { ApiStatisticsSchema } from 'cms/statisticsSchema'
+import { bikelaneSums } from './utils/bikelane_sum'
+import { roadSums } from './utils/road_sum'
 
 async function main() {
   const url = `${radverkehrsatlasApiUrl}/stats`
@@ -8,7 +10,19 @@ async function main() {
 
   console.log('  TRANSFORMING')
   const json = await raw.json()
-  const parsed = AstroStatisticsSchema.parse(json)
+  const parsed = ApiStatisticsSchema.parse(json)
+
+  parsed.features.forEach((f) => {
+    // @ts-expect-error we expand the type here
+    f.properties.road_sum =
+      // (but this method should not be ts-ignored)
+      roadSums(f.properties.road_length)
+    // @ts-expect-error we expand the type here
+    f.properties.bikelane_sum =
+      // (but this method should not be ts-ignored)
+      bikelaneSums(f.properties.bikelane_length)
+  })
+
   const resultLines: string[] = []
   parsed.features
     .sort((f1, f2) => f1.id.localeCompare(f2.id))
