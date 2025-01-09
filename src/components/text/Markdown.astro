@@ -1,0 +1,26 @@
+---
+import { clsx } from 'clsx'
+import { micromark } from 'micromark'
+
+type Props = { markdown: string | undefined; unstyled?: boolean; className?: string }
+
+const { markdown, unstyled, className } = Astro.props
+
+if (!markdown) {
+  return null
+}
+---
+
+{
+  unstyled ? (
+    <Fragment set:html={micromark(markdown)} />
+  ) : (
+    <div
+      set:html={micromark(markdown)}
+      class={clsx(
+        'prose prose-headings:font-serif prose-headings:text-base prose-headings:font-bold',
+        className,
+      )}
+    />
+  )
+}

@@ -13,7 +13,7 @@ const { headline, category, intro } = Astro.props
 
 const headlineHtml = micromark(headline).replaceAll('<p>', '').replaceAll('</p>', '')
 const introHtml = intro
-  ? micromark(intro).replaceAll('</p><p>', '<br />').replaceAll('<p>', '').replaceAll('</p>', '')
+  ? micromark(intro).replaceAll('</p>\n<p>', '<br />').replaceAll('<p>', '').replaceAll('</p>', '')
   : undefined
 ---
 
@@ -26,10 +26,10 @@ const introHtml = intro
 
     {
       intro && (
-        <>
+        <p>
           <hr class="!my-6 !border-white" />
-          <p class="lead" set:html={introHtml} />
-        </>
+          <p class="lead prose-strong:text-sky-800" set:html={introHtml} />
+        </p>
       )
     }
   </Notice>

@@ -4,7 +4,7 @@ export const prerender = true
 import { maprouletteChallengeUrl } from '@components/Link/maprouletteChallengeUrl'
 import MegaButton from '@components/Link/MegaButton.astro'
 import CampaignCards from '@components/page_kampagne/CampaignCards.astro'
-import { Markdown } from '@components/text/Markdown'
+import Markdown from '@components/text/Markdown.astro'
 import PageHeadline from '@components/text/PageHeadline.astro'
 import ProseSection from '@components/text/ProseSection.astro'
 import LayoutArticlePageAstro from '@layouts/LayoutArticlePageAstro.astro'
@@ -39,9 +39,10 @@ const maprouletteUrl = maprouletteChallengeUrl(page.data.maprouletteChallenge.id
 >
   <PageHeadline category="Kampagnen" headline={page.data.name} intro={page.data.description} />
 
-  <Markdown markdown={`**Aufgabe:** ${page.data.task}`} />
-
   <ProseSection>
+    <h2>Aufgabe</h2>
+    <Markdown markdown={page.data.task} unstyled={true} />
+
     <h2>Mitmachen</h2>
     <p class="!mb-0">Es gibt zwei Einstiege zu den Aufgaben:</p>
 
@@ -81,56 +82,6 @@ const maprouletteUrl = maprouletteChallengeUrl(page.data.maprouletteChallenge.id
     </div>
   </ProseSection>
 
-  <div class="mt-12 border-y border-gray-100">
-    <dl class="my-0 divide-y divide-gray-100">
-      <!-- <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-        <dt class="m-0 text-sm font-medium leading-6 text-gray-900">Name der Kampagne</dt>
-        <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
-          {page.data.maprouletteChallenge.name}
-        </dd>
-      </div> -->
-      <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-        <dt class="m-0 text-sm font-medium leading-6 text-gray-900">Quelle</dt>
-        <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
-          <a href={page.data.maprouletteChallenge.remoteGeoJson} target="_blank">GeoJson</a>
-          {
-            page.data.maprouletteChallenge.remoteGeoJson.includes('radverkehrsatlas') ? (
-              <div>
-                Diese Kampagne basiert auf Prozessierung im Projekt{' '}
-                <a target="_blank" href="https://radverkehrsatlas.de">
-                  radverkehrsatlas.de
-                </a>
-                .{' '}
-                <a
-                  target="_blank"
-                  href="https://github.com/FixMyBerlin/atlas-app/blob/develop/processing/topics/roads_bikelanes/bikelanes/BikelaneTodos.lua"
-                >
-                  Der Quellcode ist auf Github
-                </a>
-                .
-              </div>
-            ) : null
-          }
-        </dd>
-      </div>
-      <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-        <dt class="m-0 text-sm font-medium leading-6 text-gray-900">
-          <span style="color:#448ee4">OSM</span>Cha
-        </dt>
-        <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
-          <a
-            href={`https://osmcha.org/?filters={"date__gte":[{"label":"2024-09-01","value":"2024-09-01"}],"source":[{"label":"${page.data.maprouletteChallenge.checkinSource}","value":"${page.data.maprouletteChallenge.checkinSource}"}]}`}
-            target="_blank"
-          >
-            Changesets dieser Kampagne mit der Quelle
-            <code>{page.data.maprouletteChallenge.checkinSource}</code>
-            in OSMCha öffnen
-          </a>
-        </dd>
-      </div>
-    </dl>
-  </div>
-
   {
     relatedCampaigns.length > 0 && (
       <footer>
@@ -142,4 +93,38 @@ const maprouletteUrl = maprouletteChallengeUrl(page.data.maprouletteChallenge.id
       </footer>
     )
   }
+
+  <ProseSection classes="prose-sm">
+    <h2>Metadaten</h2>
+    <ul>
+      <li>
+        Diese Kampagne basiert auf Prozessierung im Projekt{' '}
+        <a target="_blank" href="https://radverkehrsatlas.de"> radverkehrsatlas.de </a>
+        .
+      </li>
+      <li>
+        <a
+          target="_blank"
+          href="https://github.com/FixMyBerlin/atlas-app/blob/develop/processing/topics/roads_bikelanes/bikelanes/BikelaneTodos.lua"
+        >
+          Der Quellcode ist auf Github
+        </a>
+        .
+      </li>
+      <li>
+        MapRoulette: <a href={page.data.maprouletteChallenge.remoteGeoJson} target="_blank"
+          >GeoJson-Datei</a
+        >
+      </li>
+      <li>
+        OSMCha: <a
+          href={`https://osmcha.org/?filters={"date__gte":[{"label":"2024-09-01","value":"2024-09-01"}],"source":[{"label":"${page.data.maprouletteChallenge.checkinSource}","value":"${page.data.maprouletteChallenge.checkinSource}"}]}`}
+          target="_blank"
+        >
+          Changesets mit dem Tag
+          <code>{page.data.maprouletteChallenge.checkinSource}</code>
+        </a>
+      </li>
+    </ul>
+  </ProseSection>
 </LayoutArticlePageAstro>
