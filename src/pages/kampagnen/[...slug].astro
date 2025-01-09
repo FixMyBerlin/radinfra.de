@@ -86,4 +86,16 @@ const url = maprouletteChallengeUrl(page.data.maprouletteChallenge.id)
       </div>
     </dl>
   </div>
+
+  {
+    relatedCampaigns.length > 0 && (
+      <footer>
+        <CampaignCards
+          headlineTemplate="Weitere Kampagnen zu »CATEGORY«"
+          campaigns={relatedCampaigns}
+          showEmptyCategories={false}
+        />
+      </footer>
+    )
+  }
 </LayoutArticlePageAstro>
