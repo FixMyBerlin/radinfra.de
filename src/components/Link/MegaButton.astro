@@ -1,46 +1,54 @@
 ---
-import SvgArrowSmall from '@assets/icons/ArrowSmall.svg'
-import Map from 'astro-heroicons/outline/Map.astro'
-import RectangleStack from 'astro-heroicons/solid/RectangleStack.astro'
+import { ArrowRightIcon } from '@heroicons/react/20/solid'
+import { MapIcon } from '@heroicons/react/24/outline'
+import { RectangleStackIcon } from '@heroicons/react/24/outline'
 import MapRouletteLogo from './assets/MapRouletteLogo.svg'
+import { twMerge } from 'tailwind-merge'
 
 type Props = {
   href: string
   iconKey: 'map' | 'stack' | 'maproulette'
   label: string
   subline?: string | undefined
+  className?: string | undefined
 }
 
-const { href, iconKey, label, subline } = Astro.props
+const { href, iconKey, label, subline, className } = Astro.props
 ---
 
-<div class="not-prose mt-12">
+<div class={twMerge('not-prose @container mt-12', className)}>
   <a
     href={href}
     target="_blank"
     rel="noopener noreferrer"
-    class="group flex flex-row items-center gap-4 rounded bg-gradient-to-br from-teal-500 to-emerald-400 p-10 text-center text-gray-900 shadow-md transition-all hover:from-teal-500 hover:to-emerald-300 hover:shadow-xl"
+    class="@lg:px-10 @lg:py-8 group flex flex-row items-center gap-4 rounded bg-gradient-to-br from-cyan-500 to-cyan-400 p-4 text-gray-900 shadow-md transition-all hover:from-sky-400 hover:to-sky-300 hover:shadow-xl"
   >
     {
       (() => {
         switch (iconKey) {
           case 'map':
-            return <Map class="size-20" />
+            return <MapIcon className="@lg:size-20 size-14" />
           case 'stack':
-            return <RectangleStack class="size-20" />
+            return <RectangleStackIcon className="@lg:size-20 size-16" />
           case 'maproulette':
-            return <img src={MapRouletteLogo.src} class="size-16" alt="" />
+            return <img src={MapRouletteLogo.src} class="@lg:size-16 size-14" alt="" />
         }
       })()
     }
     <div>
       <h2
-        class="mb-0 flex items-center text-3xl font-bold decoration-1 underline-offset-4 group-hover:underline"
+        class="@lg:text-3xl mb-0 flex items-center gap-1 text-2xl font-bold decoration-cyan-600 decoration-2 underline-offset-4 group-hover:underline"
       >
         {label}
-        <img src={SvgArrowSmall.src} class="h-8 w-8" alt="" />
+        <ArrowRightIcon className="size-8" />
       </h2>
-      {subline && <p class="mb-1 text-gray-800 no-underline">{subline}</p>}
+      {
+        subline && (
+          <p class="@lg:text-base mb-1 mt-1 text-sm leading-tight text-gray-800 no-underline">
+            {subline}
+          </p>
+        )
+      }
     </div>
   </a>
 </div>
