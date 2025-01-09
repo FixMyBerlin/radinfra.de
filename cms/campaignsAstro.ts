@@ -15,6 +15,7 @@ export const AstroCampaignSchema = z.object({
   author: z.string(),
   inMenu: z.boolean(),
   language: z.enum(languages).optional(),
+  mapUrl: z.string().url().optional(),
   maprouletteChallenge: z.object({
     id: z.number().nullable(),
     enabled: z.boolean(),
@@ -23,7 +24,8 @@ export const AstroCampaignSchema = z.object({
     checkinComment: z.string(),
     checkinSource: z.string(),
   }),
-  content: z.string(),
+  description: z.string(),
+  task: z.string(),
 })
 
 export type AstroCampaignType = z.infer<typeof AstroCampaignSchema> & { content: string }

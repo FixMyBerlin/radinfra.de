@@ -6,7 +6,9 @@
   "author": "Tobias Jordans @tordans",
   "inMenu": true,
   "language": "de",
-  "content": "Diese Kampagne enthält Wege, die [im Radverkehrsatlas](https://radverkehrsatlas.de/) als Fahrradstraße kategorisiert wurden, jedoch fehlt das zugehörige Verkehrszeichen.",
+  "description": "Diese Kampagne enthält Wege, die [im Radverkehrsatlas](https://radverkehrsatlas.de/) als Fahrradstraße kategorisiert wurden, jedoch fehlt das zugehörige Verkehrszeichen.",
+  "task": "**Bitte ergänze fehlende Verkehrszeichen oder ein explizites `traffic_sign=none`.** Weitere Hinweise findet Du in der Aufgabenbeschreibung.",
+  "mapUrl": "https://radverkehrsatlas.de/regionen/radinfra",
   "maprouletteChallenge": {
     "id": 49357,
     "name": "Fahrradstraßen ohne Verkehrszeichen",

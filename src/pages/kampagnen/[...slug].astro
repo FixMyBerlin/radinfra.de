@@ -3,7 +3,10 @@ export const prerender = true
 //
 import { maprouletteChallengeUrl } from '@components/Link/maprouletteChallengeUrl'
 import MegaButton from '@components/Link/MegaButton.astro'
+import CampaignCards from '@components/page_kampagne/CampaignCards.astro'
+import { Markdown } from '@components/text/Markdown'
 import PageHeadline from '@components/text/PageHeadline.astro'
+import ProseSection from '@components/text/ProseSection.astro'
 import LayoutArticlePageAstro from '@layouts/LayoutArticlePageAstro.astro'
 import { type CollectionEntry, getCollection } from 'astro:content'
 
@@ -17,25 +20,66 @@ export async function getStaticPaths() {
 type Props = CollectionEntry<'campaigns'>
 
 const page = Astro.props
-// TODO, see https://github.com/Thinkmill/keystatic/discussions/1318
-// const { Content } = await render(page)
+// NOTE:
+//   We cannot use the Keystatic<>Astro content integration
+//   https://github.com/Thinkmill/keystatic/discussions/1318
+//   ~`const { Content } = await render(page)`~
 
-const url = maprouletteChallengeUrl(page.data.maprouletteChallenge.id)
+const relatedCampaigns = await getCollection('campaigns', ({ data }) => {
+  return data.category === page.data.category
+})
+
+const maprouletteUrl = maprouletteChallengeUrl(page.data.maprouletteChallenge.id)
 ---
 
 <LayoutArticlePageAstro
   title={page.data.name}
   {...page.data}
-  noindex={!url || !page.data.maprouletteChallenge.enabled}
+  noindex={!maprouletteUrl || !page.data.maprouletteChallenge.enabled}
 >
-  <PageHeadline category="Kampagnen" headline={page.data.name} intro={page.data.content} />
+  <PageHeadline category="Kampagnen" headline={page.data.name} intro={page.data.description} />
 
-  <MegaButton
-    href={url || '#wip'}
-    iconKey="maproulette"
-    label={url ? 'Mitmachen' : 'MapRoulette Challenge noch nicht verfügbar'}
-    subline="Zur MapRoulette Challenge"
-  />
+  <Markdown markdown={`**Aufgabe:** ${page.data.task}`} />
+
+  <ProseSection>
+    <h2>Mitmachen</h2>
+    <p class="!mb-0">Es gibt zwei Einstiege zu den Aufgaben:</p>
+
+    <div class="grid gap-4 sm:grid-cols-2">
+      <article>
+        <h3 class="sr-only">Einstieg über MapRoulette</h3>
+        {
+          maprouletteUrl ? (
+            <MegaButton
+              href={maprouletteUrl}
+              iconKey="maproulette"
+              label="MapRoulette"
+              subline="Fokussiert Aufgabe für Aufgabe bearbeiten."
+              className="mt-6"
+            />
+          ) : (
+            <p>
+              <small>Diese Kampagne ist noch nicht aktiv, daher gibt es noch keine Links.</small>
+            </p>
+          )
+        }
+      </article>
+      <article>
+        <h3 class="sr-only">Einstieg über Karte</h3>
+        {
+          page.data.mapUrl ? (
+            <MegaButton
+              href={page.data.mapUrl}
+              iconKey="map"
+              label="Karte"
+              subline="Aufgaben aus dem Kontext heraus finden."
+              className="mt-6"
+            />
+          ) : null
+        }
+      </article>
+    </div>
+  </ProseSection>
 
   <div class="mt-12 border-y border-gray-100">
     <dl class="my-0 divide-y divide-gray-100">

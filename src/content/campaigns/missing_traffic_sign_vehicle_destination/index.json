@@ -6,7 +6,8 @@
   "author": "Tobias Jordans @tordans",
   "inMenu": true,
   "language": "de",
-  "content": "Diese Kampagne enthält Wege, die [im Radverkehrsatlas](https://radverkehrsatlas.de/) als Fahrradstraße mit 'Anlieger frei'-Freigabe für Kfz kategorisiert wurden, jedoch fehlt das zugehörige Zusatzzeichen.\n\n",
+  "description": "Diese Kampagne enthält Wege, die [im Radverkehrsatlas](https://radverkehrsatlas.de/) als Fahrradstraße mit 'Anlieger frei'-Freigabe für Kfz kategorisiert wurden, jedoch fehlt das zugehörige Zusatzzeichen.",
+  "task": "**Bitte ergänze fehlende Verkehrszeichen oder ein explizites `traffic_sign=none`.** Weitere Hinweise findet Du in der Aufgabenbeschreibung.",
   "maprouletteChallenge": {
     "id": 49363,
     "enabled": true,

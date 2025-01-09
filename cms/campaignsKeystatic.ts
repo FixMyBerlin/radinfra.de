@@ -1,5 +1,4 @@
 import { collection, fields } from '@keystatic/core'
-import { mdxComponentsKeystatic } from './components/mdxComponentsKeystatic'
 import { authorsSelect } from './utils/authorsSelect'
 import { campaignCategorySelect } from './utils/campaignCategorySelect'
 import { languagesSelect } from './utils/languagesSelect'
@@ -32,10 +31,17 @@ export const keystaticCampaignsConfig = collection({
       options: languagesSelect,
       defaultValue: languagesSelect.at(0)!.value,
     }),
-    content: fields.mdx.inline({
-      label: 'Content',
-      components: mdxComponentsKeystatic,
+    description: fields.mdx.inline({
+      label: 'Description',
+      components: {}, // disallow Image components due to custom, simplistic markdown pipeline
+      options: { image: false },
     }),
+    task: fields.mdx.inline({
+      label: 'Task',
+      components: {}, // disallow Image components due to custom, simplistic markdown pipeline
+      options: { image: false },
+    }),
+    mapUrl: fields.url({ label: 'Radverkehrsatlas URL', validation: { isRequired: false } }),
     maprouletteChallenge: fields.object(
       {
         id: fields.number({
