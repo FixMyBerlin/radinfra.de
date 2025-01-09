@@ -11,6 +11,11 @@ const isMitmachen = currentPathname.startsWith('/mitmachen')
 </MenuItemWrapper>
 
 <MenuItemWrapper>
+  <MenuItem href="/karte">Karte</MenuItem>
+  <MenuItem href="/statistik">Statistik</MenuItem>
+</MenuItemWrapper>
+
+<MenuItemWrapper>
   <MenuItem href="/mitmachen">Mitmachen</MenuItem>
   {
     isMitmachen && (
@@ -27,22 +32,11 @@ const isMitmachen = currentPathname.startsWith('/mitmachen')
       </>
     )
   }
-
-  <MenuItem href="/karte">Karte</MenuItem>
-  <MenuItem href="/statistik">Statistik</MenuItem>
   <MenuItem href="/kampagnen">Kampagnen</MenuItem>
 </MenuItemWrapper>
 
+<!-- <MenuItemHeadline>Kontakt</MenuItemHeadline> -->
 <MenuItemWrapper>
-  <MenuItem href="/beratung">Beratung</MenuItem>
   <MenuItem href="/kontakt">Meetup & Kontakt</MenuItem>
+  <MenuItem href="/beratung">Beratung</MenuItem>
 </MenuItemWrapper>
-
-<!-- <MenuItemHeadline>Projekte</MenuItemHeadline> -->
-<!-- <MenuItemWrapper>
-  {
-    showcaseProjects.map((project) => {
-      return <MenuItem href={getRootUrl(project)}>{project.name.name}</MenuItem>
-    })
-  }
-</MenuItemWrapper> -->
