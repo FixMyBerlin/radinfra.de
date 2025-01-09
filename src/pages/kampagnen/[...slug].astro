@@ -1,5 +1,6 @@
 ---
 export const prerender = true
+import { linkStyles } from '@components/Link/Link'
 //
 import { maprouletteChallengeUrl } from '@components/Link/maprouletteChallengeUrl'
 import MegaButton from '@components/Link/MegaButton.astro'
@@ -9,6 +10,7 @@ import PageHeadline from '@components/text/PageHeadline.astro'
 import ProseSection from '@components/text/ProseSection.astro'
 import LayoutArticlePageAstro from '@layouts/LayoutArticlePageAstro.astro'
 import { type CollectionEntry, getCollection } from 'astro:content'
+import { twJoin } from 'tailwind-merge'
 
 export async function getStaticPaths() {
   const campaigns = await getCollection('campaigns')
@@ -51,13 +53,33 @@ const maprouletteUrl = maprouletteChallengeUrl(page.data.maprouletteChallenge.id
         <h3 class="sr-only">Einstieg über MapRoulette</h3>
         {
           maprouletteUrl ? (
-            <MegaButton
-              href={maprouletteUrl}
-              iconKey="maproulette"
-              label="MapRoulette"
-              subline="Fokussiert Aufgabe für Aufgabe bearbeiten."
-              className="mt-6"
-            />
+            <>
+              <MegaButton
+                href={maprouletteUrl}
+                iconKey="maproulette"
+                label="MapRoulette"
+                subline="Fokussiert Aufgabe für Aufgabe bearbeiten."
+                className="mt-2"
+              />
+              <details class="prose-sm mt-2">
+                <summary class={twJoin('cursor-pointer font-bold', linkStyles)}>
+                  Kurzanleitung
+                </summary>
+                <ol>
+                  <li>Bei MapRoulette mit OSM anmelden</li>
+                  <li>Eine konkrete Aufgabe auswählen oder "Start" klicken</li>
+                  <li>
+                    Tipp: Die Aufgabenbeschreibung enthält hilfreiche Links zu Mapillary und Co
+                  </li>
+                  <li>
+                    Die Aufgabe im iD Editor oder JOSM bearbeiten und Änderungen in OSM speichern
+                  </li>
+                  <li>
+                    Zum Abschluss die Aufgabe als erledigt (oder eine andere Option) speichern
+                  </li>
+                </ol>
+              </details>
+            </>
           ) : (
             <p>
               <small>Diese Kampagne ist noch nicht aktiv, daher gibt es noch keine Links.</small>
@@ -65,17 +87,39 @@ const maprouletteUrl = maprouletteChallengeUrl(page.data.maprouletteChallenge.id
           )
         }
       </article>
+
       <article>
         <h3 class="sr-only">Einstieg über Karte</h3>
         {
           page.data.mapUrl ? (
-            <MegaButton
-              href={page.data.mapUrl}
-              iconKey="map"
-              label="Karte"
-              subline="Aufgaben aus dem Kontext heraus finden."
-              className="mt-6"
-            />
+            <>
+              <MegaButton
+                href={page.data.mapUrl}
+                iconKey="map"
+                label="Karte"
+                subline="Aufgaben aus dem Kontext heraus finden."
+                className="mt-2"
+              />
+
+              <details class="prose-sm mt-2">
+                <summary class={twJoin('cursor-pointer font-bold', linkStyles)}>
+                  Kurzanleitung
+                </summary>
+                <ol>
+                  <li>
+                    In der Karte einen Streckenabschnitt <strong>auswählen</strong>
+                  </li>
+                  <li>Rechts die "Aufgabe zur Datenverbesserung" ausklappen</li>
+                  <li>
+                    Tipp: Die Aufgabenbeschreibung enthält hilfreiche Links zu Mapillary und Co
+                  </li>
+                  <li>
+                    Die Aufgabe über "Bearbeiten (iD)" bearbeiten und Änderungen in OSM speichern
+                  </li>
+                  <li>Änderungen sind am nächsten Tag in den Daten zu sehen.</li>
+                </ol>
+              </details>
+            </>
           ) : null
         }
       </article>
@@ -84,13 +128,11 @@ const maprouletteUrl = maprouletteChallengeUrl(page.data.maprouletteChallenge.id
 
   {
     relatedCampaigns.length > 0 && (
-      <footer>
-        <CampaignCards
-          headlineTemplate="Weitere Kampagnen zu »CATEGORY«"
-          campaigns={relatedCampaigns}
-          showEmptyCategories={false}
-        />
-      </footer>
+      <CampaignCards
+        headlineTemplate="Weitere Kampagnen zu »CATEGORY«"
+        campaigns={relatedCampaigns}
+        showEmptyCategories={false}
+      />
     )
   }
 
