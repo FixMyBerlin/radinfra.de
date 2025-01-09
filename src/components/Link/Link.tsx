@@ -1,8 +1,11 @@
-import { twMerge } from 'tailwind-merge'
+import { twJoin, twMerge } from 'tailwind-merge'
 
-const baseStyles = 'text-cyan-600'
-export const linkStyles = `${baseStyles} underline`
-export const buttonStyles = `${baseStyles} rounded-full border border-cyan-600 px-6 pt-4 pb-3`
+const baseStyles = twJoin('text-cyan-600')
+export const linkStyles = twJoin(
+  baseStyles,
+  'underline-cyan-700 underline decoration-cyan-300 decoration-1 underline-offset-4',
+)
+export const buttonStyles = twJoin(baseStyles, 'rounded-full border border-cyan-600 px-6 pb-3 pt-4')
 
 type Props = {
   to: string

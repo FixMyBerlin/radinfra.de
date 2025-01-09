@@ -10,6 +10,8 @@ export const proseBase = twJoin(
   'prose-blockquote:bg-gray-100 prose-blockquote:p-4 prose-blockquote:pb-2',
   // .lead
   'prose-lead:text-sky-800',
+  // <a>
+  'prose-a:decoration-cyan-300 prose-a:decoration-1 prose-a:underline-offset-4',
 )
 
 export const proseHeadings = twJoin(

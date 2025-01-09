@@ -80,7 +80,7 @@ export const MapInspector = () => {
                                 <a
                                   href={`https://osm.org/${value}`}
                                   target="_blank"
-                                  className="underline hover:decoration-2"
+                                  className="underline hover:decoration-1"
                                 >
                                   OSM
                                 </a>

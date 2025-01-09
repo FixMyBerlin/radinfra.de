@@ -26,7 +26,9 @@ const external = href.startsWith('http')
 
   <div class="grow">
     <div class="flex items-center justify-between">
-      <h2 class="justify-left not-prose mt-1 flex items-center gap-1 py-0 text-center underline">
+      <h2
+        class="justify-left not-prose mt-1 flex items-center gap-1 py-0 text-center underline decoration-cyan-300 decoration-1 underline-offset-4"
+      >
         {title ? title : 'Mehr erfahren…'}
         {external ? <ArrowTopRightOnSquare class="size-5" /> : ''}
       </h2>

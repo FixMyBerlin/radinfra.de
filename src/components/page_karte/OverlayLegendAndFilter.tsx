@@ -72,14 +72,12 @@ export const OverlayLegendAndFilter = () => {
               Legende
             </DisclosureButton>
             {!noUserFilter && (
-              <>
-                <button
-                  onClick={resetFilter}
-                  className="mr-1 underline decoration-yellow-500 underline-offset-2 hover:decoration-2"
-                >
-                  Filter löschen
-                </button>
-              </>
+              <button
+                onClick={resetFilter}
+                className="mr-1 underline decoration-yellow-500 underline-offset-4 hover:decoration-1"
+              >
+                Filter löschen
+              </button>
             )}
           </div>
           <DisclosurePanel>
