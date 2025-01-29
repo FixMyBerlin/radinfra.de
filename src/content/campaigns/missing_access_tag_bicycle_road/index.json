@@ -7,14 +7,14 @@
   "inMenu": true,
   "language": "de",
   "description": "Diese Kampagne enthält Wege, die [im Radverkehrsatlas](https://radverkehrsatlas.de/) als Fahrradstraße klassifiziert sind, bei denen jedoch das `bicycle=designated` fehlt.",
-  "task": "**Bitte ergänze fehlende Verkehrszeichen oder ein explizites `traffic_sign=none`.** Weitere Hinweise findet Du in der Aufgabenbeschreibung.",
+  "task": "**Bitte prüfe die Situation und ergänze den fehlenden Zugangs-Tag `bicycle=designated`.** Weitere Hinweise findet Du in der Aufgabenbeschreibung.",
   "mapUrl": "https://radverkehrsatlas.de/regionen/radinfra",
   "maprouletteChallenge": {
     "id": 49368,
     "name": "Fahrradstraßen mit fehlendem `bicycle=designated`",
     "enabled": true,
-    "remoteGeoJson": "https://radverkehrsatlas.de/api/maproulette/missing_acccess_tag_bicycle_road?ids=51477",
-    "checkinComment": "Fahrradstraßen ohne bicycle=designated #missing_acccess_tag_bicycle_road #traffic_signs #maproulette",
+    "remoteGeoJson": "https://radverkehrsatlas.de/api/maproulette/missing_access_tag_bicycle_road?ids=51477",
+    "checkinComment": "Fahrradstraßen ohne bicycle=designated #missing_access_tag_bicycle_road #traffic_signs #maproulette",
     "checkinSource": "osm_traffic_signs_project"
   }
 }
