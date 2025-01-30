@@ -1,0 +1,34 @@
+---
+import { twMerge } from 'tailwind-merge'
+import Link from 'astro-heroicons/solid/Link.astro'
+
+type Props = {
+  id?: string | undefined
+  classes?: string | undefined
+}
+
+const { id, classes } = Astro.props
+---
+
+<section
+  id={id}
+  class={twMerge(
+    id
+      ? 'group relative target:rounded-sm target:bg-purple-100 target:ring-8 target:ring-purple-100'
+      : '',
+    classes,
+  )}
+>
+  <slot />
+  {
+    id && (
+      <a
+        href={`#${id}`}
+        title="Link zu diesem Absatz"
+        class="opacity-0 transition-opacity hover:text-cyan-950 group-hover:opacity-70"
+      >
+        <Link class="absolute right-1 top-1 size-4" />
+      </a>
+    )
+  }
+</section>

@@ -1,6 +1,6 @@
 ---
 import { twMerge } from 'tailwind-merge'
-import Link from 'astro-heroicons/solid/Link.astro'
+import AnchorSection from './AnchorSection.astro'
 
 type Props = {
   id?: string | undefined
@@ -11,30 +11,18 @@ type Props = {
 const { id, highlight, classes } = Astro.props
 ---
 
-<section
+<AnchorSection
   id={id}
-  class={twMerge(
-    'group relative mb-20 rounded leading-normal',
+  classes={twMerge(
+    'mb-20 rounded leading-normal',
     'prose prose-cyan max-w-prose',
     classes?.includes('prose-') ? '' : 'prose-lg',
     'prose-headings:mb-5 prose-headings:text-sky-700 prose-headings:first:mt-0',
     'prose-a:decoration-cyan-300 prose-a:decoration-1 prose-a:underline-offset-4',
     'prose-p:m-0',
     highlight ? 'bg-emerald-100 p-4' : '',
-    id ? 'target:bg-purple-100' : '',
     classes,
   )}
 >
   <slot />
-  {
-    id && (
-      <a
-        href={`#${id}`}
-        title="Link zu diesem Absatz"
-        class="opacity-0 transition-opacity hover:text-cyan-950 group-hover:opacity-70"
-      >
-        <Link class="absolute right-1 top-1 size-4" />
-      </a>
-    )
-  }
-</section>
+</AnchorSection>
