@@ -1,3 +1,5 @@
+import { maprouletteProjectId } from './maprouletteProjectId.const'
+
 export const defaultChallenge = {
   defaultBasemap: -1,
   defaultBasemapId: '',
@@ -9,7 +11,7 @@ export const defaultChallenge = {
   lowPriorityRule: '{}', // they are strings in the example request copied from the website; will need to investigate how to provide data
   mediumPriorityRule: '{}', // they are strings in the example request copied from the website; will need to investigate how to provide data
   overpassTargetType: null,
-  parent: Number(process.env.MAPROULETTE_PROJECT_ID),
+  parent: maprouletteProjectId,
   tags: 'highway',
   presets: [],
   taskStyles: [],
