@@ -1,6 +1,7 @@
 import { config } from '@keystatic/core'
 import { KEYSTATIC_STORAGE_KIND } from 'astro:env/client'
 import { keystaticCampaignsConfig } from 'cms/campaignsKeystatic'
+import { keystaticPartnersConfig } from 'cms/partnersKeystatic'
 import { keystaticPostsConfig } from 'cms/postsKeystatic'
 
 export default config({
@@ -20,11 +21,13 @@ export default config({
     navigation: {
       Blog: ['posts'],
       Kampagnen: ['campaigns'],
+      Partner: ['partners'],
     },
   },
   collections: {
     posts: keystaticPostsConfig,
     campaigns: keystaticCampaignsConfig,
+    partners: keystaticPartnersConfig,
   },
   singletons: {},
 })

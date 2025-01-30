@@ -23,27 +23,28 @@ const external = href.startsWith('http')
   target={external ? '_blank' : undefined}
 >
   {
-    image ? (
+    image && (
       <Picture
         src={image}
         height={160}
         densities={[1.5, 2]}
         formats={['png', 'avif']}
-        class="m-0 max-h-40 w-full overflow-clip rounded-t border border-gray-100 object-cover"
-        pictureAttributes={{ class: 'not-prose w-full' }}
+        class="m-0 max-h-40 w-full max-w-40 overflow-clip rounded-t border border-gray-100 object-cover"
+        pictureAttributes={{
+          class: 'not-prose w-full flex items-center justify-center m-3 mb-0 min-h-20',
+        }}
         alt=""
       />
-    ) : (
-      <div
-        class={twJoin(
-          variant === 'iconImageGrid' ? 'h-40 w-full border-b border-gray-50' : 'pt-5',
-          'm-0 flex items-center justify-center',
-        )}
-      >
-        <slot />
-      </div>
     )
   }
+  <div
+    class={twJoin(
+      variant === 'iconImageGrid' ? 'h-40 w-full border-b border-gray-50' : 'pt-5',
+      'm-0 flex items-center justify-center',
+    )}
+  >
+    <slot />
+  </div>
   <h2 class="justify-left not-prose mb-3 mt-1 flex items-center gap-1 py-0 text-center">
     {text ? text : 'Mehr erfahren…'}
     {external ? <ArrowTopRightOnSquareIcon className="size-5" /> : ''}
