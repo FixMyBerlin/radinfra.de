@@ -16,7 +16,7 @@ function dataCreateChallenge({ slug, ...astroCampaignData }: { slug: string } & 
   const challengeData: CreateMapRouletteChallengeType = {
     ...defaultChallenge,
     name: astroCampaignData.name,
-    infoLink: `https://www.osm-verkehrswende.org/traffic-signs/campaigns/${slug}`,
+    infoLink: `https://radinfra.de/kampagnen/${slug}/`,
     remoteGeoJson: astroCampaignData.maprouletteChallenge.remoteGeoJson,
     enabled: astroCampaignData.maprouletteChallenge.enabled,
     description: astroCampaignData.content,
