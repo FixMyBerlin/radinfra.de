@@ -11,10 +11,10 @@ type Props = {
 const { sectionClasses, headline } = Astro.props
 ---
 
-<ProseSection classes={twMerge('mb-0 mt-0', sectionClasses)}>
+<ProseSection classes={twMerge('mt-0 mb-0', sectionClasses)}>
   {headline ? <h2 class="!mt-0">{headline}</h2> : ''}
 
-  <div class="space-y-3">
+  <div class="flex flex-col gap-3">
     <slot />
   </div>
 </ProseSection>
