@@ -1,15 +1,12 @@
 ---
 import GridCard from '@components/cards/GridCard.astro'
 import GridCardWrapper from '@components/cards/GridCardWrapper.astro'
-import LayoutArticlePageAstro from '@layouts/LayoutArticlePageAstro.astro'
-import {
-  ShieldCheckIcon,
-  MapIcon,
-  CalendarDaysIcon,
-  RectangleStackIcon,
-} from '@heroicons/react/24/solid'
 import Notice from '@components/Notice.astro'
 import CardsMitmachen from '@components/page_mitmachen/CardsMitmachen.astro'
+import { CalendarDaysIcon, RectangleStackIcon } from '@heroicons/react/24/solid'
+import LayoutArticlePageAstro from '@layouts/LayoutArticlePageAstro.astro'
+import { Picture } from 'astro:assets'
+import pngKarte from '../assets/homepage/karte-deutschland.png'
 ---
 
 <LayoutArticlePageAstro title="Radinfrastruktur für Deutschland">
@@ -17,76 +14,101 @@ import CardsMitmachen from '@components/page_mitmachen/CardsMitmachen.astro'
     <h1
       class="bg-gradient-to-br from-cyan-500 to-sky-600 bg-clip-text pb-2 text-4xl font-extrabold leading-8 text-transparent md:text-6xl md:leading-[3.25rem]"
     >
-      Radinfrastrukturdaten für Deutschland
+      Radinfrastrukturdaten für das Fahrradland Deutschland
     </h1>
-    <p class="-mt-2 text-3xl font-bold text-sky-600">Flächendeckend, Einheitlich, Aktuell</p>
+    <p class="-mt-2 text-3xl font-bold text-sky-600">
+      Flächendeckend&hairsp;・&hairsp;Standardisiert&hairsp;・&hairsp;Aktuell
+    </p>
   </header>
 
   <Notice className="mb-8 mt-10">
     <p class="lead">
       radinfra.de liefert detaillierte und aufbereitete Daten zur Radinfrastruktur für ganz
-      Deutschland – täglich aktualisiert durch Beiträge aus der Verwaltung und von Ehrenamtlichen in
-      OpenStreetMap.
+      Deutschland – täglich aktualisiert und fortlaufend verbessert in OpenStreetMap.
     </p>
-  </Notice>
-
-  <Notice colorClass="bg-pink-100 text-pink-800 prose-pink" className="mb-8 mt-8">
-    <div class="flex items-center gap-3">
-      <ShieldCheckIcon className="size-9" />
-      <div>
-        <h2 class="!mb-0 text-lg text-pink-900">Diese Seite ist im Aufbau.</h2>
-        <p class="!m-0">
-          Sie wird <a
-            href="https://pretalx.com/fossgis2025/talk/review/98VFKNSGRX8DWKHBH8KUDD8ZZST7WCX9"
-            target="_blank">auf dem FOSSIGS Vortrag am 28.3.2025</a
-          > offiziell vorgestellt.
-        </p>
-      </div>
-    </div>
   </Notice>
 
   <section>
-    <h2 class="sr-only">Einführung</h2>
+    <a href="/karte" class="group">
+      <Picture
+        src={pngKarte}
+        width={655}
+        densities={[1.5, 2]}
+        formats={['png', 'avif']}
+        class="my-5 w-full overflow-clip rounded border border-gray-100 object-cover group-hover:border-cyan-300"
+        pictureAttributes={{ class: 'not-prose w-full' }}
+        alt=""
+      />
+    </a>
+
+    <h2 class="sr-only">Einleitung</h2>
     <p>
-      OpenStreetMap bietet die einzigen flächendeckend verfügbaren und standardisierten
-      Radinfrastrukturdaten in Deutschland. Um diese Daten für die Öffentlichkeit sowie für die
-      planende Verwaltung zugänglich zu machen und systematisch zu verbessern, wurde radinfra.de
-      entwickelt.
+      Radinfra.de bietet erstmals einen Überblick zur Radinfrastruktur für ganz Deutschland. Die
+      aufbereiteten OpenStreetMap Daten zeigen standardisiert nach Führungsformen, wie es um den
+      Ausbau von Radwegen steht. Über verschiedene Ansichten analysiert die Seite außerdem, wie gut
+      die Daten in welcher Region vorliegen und wo sie verbessert werden können.
     </p>
 
     <p>
-      Daten zur Radinfrastruktur liegen in Deutschland sehr fragmentiert vor. Amtliche Daten sind
-      nicht standardisiert, veraltet, ungenau oder gar nicht vorhanden. OSM bietet systematische
-      Daten zur Radinfrastruktur, die fortlaufend aktuell gehalten werden können. Bisher wird dieses
-      Potenzial nur ansatzweise genutzt, denn die Daten in OSM sind nicht einfach zugänglich und
-      bedürfen weiterer Pflege und Detaillierung.
+      Radinfra.de macht die Daten für die Öffentlichkeit sowie die planende Verwaltung zugänglich
+      und hilft, diese systematisch zu verbessern. Die Nutzung der freien Geodatenbank OpenStreetMap
+      bietet den großen Vorteil standardisierter und routingfähiger Daten, die fortlaufend
+      verbessert und aktualisiert werden können. Um diese Potentiale insbesondere für die Planung
+      von Radinfrastruktur zu heben, bietet diese Seite die Möglichkeit, die Daten systematisch zu
+      verbessern und Ihre Qualität einzusehen. Für Verwaltungen und Planungsbüros <a
+        href="/angebote">bietet FixMyCity</a
+      >
+      außerdem die Möglichkeit, Daten professionell zu verifizieren und für die Nutzung in GIS-Anwendungen
+      fortlaufend aktuell zu halten.
+    </p>
+
+    <h2>Für wen ist diese Seite?</h2>
+
+    <h3>OpenStreetMap-Aktive und Radfahrende</h3>
+    <p>
+      Wenn du mithelfen möchtest, die Daten zur Radinfrastruktur zu vervollständigen, kannst du auf
+      der Karte sehen, wie gut Radwege und ihre Details bereits in deiner Region erfasst sind. Über
+      die Darstellungen zu Vollständigkeit und Aktualität kannst du sehen, wo die Daten noch
+      verbessert werden können. Über die <a href="/kampagnen">verschiedenen Kampagnen</a> kannst du direkt
+      daran mitwirken, die Daten zu verbessern. Du hilfst damit den Planenden schneller und gezielter
+      neue Radwege zu bauen.
+    </p>
+
+    <h3>Verwaltungsmitarbeitende und Planer:innen</h3>
+    <p>
+      Amtliche Daten zu Radinfrastruktur sind oft veraltet, ungenau, veraltet oder gar nicht
+      vorhanden. Über Radinfra.de finden jetzt alle Verwaltungen in Deutschland leicht zugänglich
+      standardisierte und für Aufgaben der Verkehrsplanung aufbereitete Daten zur vorhandenen
+      Radinfrastruktur. Sollten Daten fehlen oder nicht aktuell sein, gibt es eine einfache
+      Möglichkeit, <a href="/mitmachen/hinweise">Hinweise an die OSM-Community zu erstellen</a>,
+      damit die Daten verbessert werden können. Wollen Sie als Verwaltung die Daten professionell
+      und dauerhaft nutzen, finden Sie unter <a href="/angebote">Angebote für Kommunen</a> weitere Informationen.
+    </p>
+
+    <h3>Forschende</h3>
+    <p>
+      Für diverse Forschungsaufgaben werden bereits jetzt OpenStreetMap-Daten genutzt. Mit
+      radinfra.de wird es für Forschende jetzt deutlich einfacher Daten zu beschaffen und damit
+      Analysen durchzuführen. Die Daten sind offen und frei nutzbar. Wollen Sie als Forschende die
+      Daten nutzen, finden Sie unter <a href="/angebote#forschung">Angebote für die Forschung</a> weitere
+      Informationen.
+    </p>
+
+    <h2>Wie entstehen die Daten?</h2>
+
+    <p>
+      Dank OpenStreetMap (OSM) können für ganz Deutschland einheitliche Daten produziert werden, die
+      sowohl beschilderte als auch unbeschilderte Radinfrastruktur abbilden. Die Systematik von OSM
+      ist aber kompliziert und wird teilweise unterschiedlich verwendet. Deswegen werden die
+      Rohdaten aus OpenStreetMap aufbereitet, vereinheitlicht, teilweise geometrisch transformiert
+      und nach Führungsform klassifiziert, um eine einfache Nutzung für Planungszwecke zu
+      ermöglichen.
     </p>
 
     <p>
-      Unter radinfra.de ist jetzt ein neuer Anlaufpunkt für alle entstanden, die sich für offene
-      Radinfrastrukturdaten interessieren und mithelfen wollen, diese zu verbessern.
-    </p>
-
-    <h3>Einheitliche Daten für ganz Deutschland:</h3>
-    <p>
-      Dank OpenStreetMap können für ganz Deutschland einheitliche Daten produziert werden, die
-      sowohl beschilderte als auch unbeschilderte Radinfrastruktur abbilden. Dabei werden die
-      Rohdaten aus OpenStreetMap aufbereitet, vereinheitlicht und nach Führungsform klassifiziert,
-      um eine einfache Nutzung für Planungszwecke zu ermöglichen.
-    </p>
-
-    <h3>Täglich aktuelle Daten:</h3>
-    <p>
-      Eine Stärke von OpenStreetMap ist ihr schneller Aktualisierungszyklus. Änderungen sind schon
-      am nächsten Tag in den Daten zu sehen.
-    </p>
-
-    <h3>Kampagnen zur Datenpflege:</h3>
-    <p>
-      Neben dem einfachen Zugang zu Radinfrastruktur-Daten ist die Datenpflege ein zweites Ziel des
-      Projekts. Dafür werden aus den Daten <a href="/kampagnen">verschiedene Kampagnen</a> zur Aktualität,
-      Vollständigkeit und Richtigkeit der Daten abgeleitet. Ziel ist es, die Daten immer weiter zu verbessern
-      und Attribute wie Breiten und Oberflächen systematisch zu erfassen.
+      <strong>Täglich aktuelle Daten: </strong> Eine Stärke von OpenStreetMap ist ihr schneller Aktualisierungszyklus.
+      Die hier zusehenden Daten werden jede Nacht aktualisiert. Das heißt, in OSM gemachte Änderungen
+      sind schon am nächsten Tag auf radinfra.de zu sehen.
     </p>
   </section>
 
@@ -108,25 +130,12 @@ import CardsMitmachen from '@components/page_mitmachen/CardsMitmachen.astro'
     </div>
   </section> -->
 
-  <GridCardWrapper headline="Angebote" sectionClasses="mt-16">
+  <!-- <GridCardWrapper headline="Angebote" sectionClasses="mt-16">
     <GridCard href="/karte" text="Karte" alt="Karte im Radverkehrsatlas öffnen…" variant="iconGrid">
       <MapIcon className="size-10" />
     </GridCard>
     <GridCard href="/kampagnen" text="Kampagnen" alt="Zur Kampagnen-Übersicht…" variant="iconGrid">
       <RectangleStackIcon className="size-10" />
-    </GridCard>
-  </GridCardWrapper>
-
-  <!-- <GridCardWrapper classes="mt-8">
-    <p class="my-0 sm:col-span-2">
-      Die Projekte der OSM Verkehrswende Gruppe könnten euch auch interessieren:
-    </p>
-    <GridCard
-      href="https://www.osm-verkehrswende.org"
-      text="OSM Verkehrswende Projekte"
-      variant="iconGrid"
-    >
-      <QueueListIcon className="size-10" />
     </GridCard>
   </GridCardWrapper> -->
 
@@ -144,5 +153,9 @@ import CardsMitmachen from '@components/page_mitmachen/CardsMitmachen.astro'
     <GridCard href="/beratung" text="Beratung" alt="Angebote für Verwaltungen…" variant="iconGrid">
       <RectangleStackIcon className="size-10" />
     </GridCard>
+  </GridCardWrapper>
+
+  <GridCardWrapper headline="Partner" sectionClasses="mt-16">
+    <code>TODO</code>
   </GridCardWrapper>
 </LayoutArticlePageAstro>
