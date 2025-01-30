@@ -1,6 +1,13 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+@config "../../tailwind.config.cjs";
+
+
+@theme {
+  --color-slate-*: initial;
+  --color-zinc-*: initial;
+  --color-neutral-*: initial;
+  --color-stone-*: initial;
+}
 
 @layer components {
   /* https://css-tricks.com/the-trick-to-viewport-units-on-mobile/
@@ -13,7 +20,7 @@
   .img-thumbnail {
     @apply p-0.5;
     @apply border border-gray-200;
-    @apply rounded-sm;
+    @apply rounded-xs;
   }
 
   .notice {

@@ -25,11 +25,11 @@ export const MapInspectorPrimaryInformation = ({ properties }: Props) => {
 
     return (
       <div
-        className="my-2 flex items-center justify-center gap-1 rounded py-2 text-gray-950"
+        className="my-2 flex items-center justify-center gap-1 rounded-sm py-2 text-gray-950"
         style={{ backgroundColor: color }}
       >
         {properties.index != 1 && <>1…</>}
-        <span className="text-2xl font-bold leading-tight">{String(properties.index)}</span>
+        <span className="text-2xl leading-tight font-bold">{String(properties.index)}</span>
         {properties.index != 100 && <>…100</>}
       </div>
     )
@@ -49,7 +49,7 @@ export const MapInspectorPrimaryInformation = ({ properties }: Props) => {
             <div
               key={displayLevel}
               className={twJoin(
-                'flex min-h-12 min-w-12 items-center justify-center rounded-full border-2 leading-tight',
+                'flex min-h-12 min-w-12 items-center justify-center rounded-full border-2 border-gray-200 leading-tight',
                 current
                   ? 'bg-gray-500 text-2xl font-bold text-gray-950'
                   : 'bg-gray-900 text-xl text-gray-200',
@@ -69,7 +69,7 @@ export const MapInspectorPrimaryInformation = ({ properties }: Props) => {
 
   if (params.anzeige === 'incompleteness') {
     return (
-      <div className="my-1 flex rounded bg-gray-950 p-2 text-base">
+      <div className="my-1 flex rounded-sm bg-gray-950 p-2 text-base">
         {!properties.data_missing && <>Keine</>}
         {properties.data_missing && (
           <MapInspectorValueAsList

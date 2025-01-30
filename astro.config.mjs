@@ -2,8 +2,8 @@ import mdx from '@astrojs/mdx'
 import netlify from '@astrojs/netlify'
 import react from '@astrojs/react'
 import sitemap from '@astrojs/sitemap'
-import tailwind from '@astrojs/tailwind'
 import keystatic from '@keystatic/astro'
+import tailwindcss from '@tailwindcss/vite'
 import { defineConfig, envField } from 'astro/config'
 
 // ABOUT:
@@ -27,16 +27,15 @@ export default defineConfig({
   site: 'https://www.radinfra.de/',
   integrations: [
     ASTRO_OUTPUT_MODE === 'static' ? undefined : keystatic(),
-    tailwind({
-      // https://github.com/withastro/astro/tree/main/packages/integrations/tailwind#applybasestyles
-      applyBaseStyles: false,
-    }),
     react(),
     mdx(),
     sitemap({
       filter: (page) => !page.endsWith('README/'),
     }),
   ],
+  vite: {
+    plugins: [tailwindcss()],
+  },
   // On Netlify and during development we use `hybrid`, on GitHub Pages we use `static`.
   // Using static makes sure features like Astro's redirecting work as expected.
   // Docs https://docs.astro.build/en/basics/rendering-modes/

@@ -14,7 +14,7 @@ const { id, classes } = Astro.props
   id={id}
   class={twMerge(
     id
-      ? 'group relative target:rounded-sm target:bg-purple-100 target:ring-8 target:ring-purple-100'
+      ? 'group relative target:rounded-xs target:bg-purple-100 target:ring-8 target:ring-purple-100'
       : '',
     classes,
   )}
@@ -25,9 +25,9 @@ const { id, classes } = Astro.props
       <a
         href={`#${id}`}
         title="Link zu diesem Absatz"
-        class="opacity-0 transition-opacity hover:text-cyan-950 group-hover:opacity-70"
+        class="opacity-0 transition-opacity group-hover:opacity-70 hover:text-cyan-950"
       >
-        <Link class="absolute right-1 top-1 size-4" />
+        <Link class="absolute top-1 right-1 size-4" />
       </a>
     )
   }
