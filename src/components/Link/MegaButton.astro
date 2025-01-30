@@ -16,35 +16,35 @@ type Props = {
 const { href, iconKey, label, subline, className } = Astro.props
 ---
 
-<div class={twMerge('not-prose @container mt-12', className)}>
+<div class={twMerge('not-prose mt-12 @container', className)}>
   <a
     href={href}
     target="_blank"
     rel="noopener noreferrer"
-    class="group/button @lg:px-10 @lg:py-8 flex flex-row items-center gap-4 rounded bg-gradient-to-br from-cyan-300 to-cyan-200 p-4 text-gray-950 shadow-md transition-all hover:from-sky-400 hover:to-sky-300 hover:shadow-xl"
+    class="group/button flex flex-row items-center gap-4 rounded bg-gradient-to-br from-cyan-300 to-cyan-200 p-4 text-gray-950 shadow-md transition-all hover:from-sky-400 hover:to-sky-300 hover:shadow-xl @lg:px-10 @lg:py-8"
   >
     {
       (() => {
         switch (iconKey) {
           case 'map':
-            return <MapIcon className="@lg:size-20 size-14" />
+            return <MapIcon className="size-14 @lg:size-20" />
           case 'stack':
-            return <RectangleStackIcon className="@lg:size-20 size-16" />
+            return <RectangleStackIcon className="size-16 @lg:size-20" />
           case 'maproulette':
-            return <img src={MapRouletteLogo.src} class="@lg:size-16 size-14" alt="" />
+            return <img src={MapRouletteLogo.src} class="size-14 @lg:size-16" alt="" />
         }
       })()
     }
     <div>
       <h2
-        class="@lg:text-3xl mb-0 flex items-center gap-1 text-2xl font-bold decoration-sky-600 decoration-1 underline-offset-4 group-hover/button:underline"
+        class="mb-0 flex items-center gap-1 text-2xl font-bold decoration-sky-600 decoration-1 underline-offset-4 group-hover/button:underline @lg:text-3xl"
       >
         {label}
         <ArrowRightIcon className="size-8" />
       </h2>
       {
         subline && (
-          <p class="@lg:text-base mb-1 mt-1 text-sm leading-tight text-gray-800 no-underline">
+          <p class="mb-1 mt-1 text-sm leading-tight text-gray-800 no-underline @lg:text-base">
             {subline}
           </p>
         )

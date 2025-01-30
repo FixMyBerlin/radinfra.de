@@ -24,7 +24,7 @@ const active = highlightExactMatch === true ? exactMatch : currentPathname.start
     active
       ? twJoin('bg-sky-50 font-semibold hover:bg-sky-50', exactMatch ? 'cursor-text' : '')
       : 'hover:bg-cyan-50',
-    'group/item flex items-center justify-between border-b border-gray-200 py-2.5 pl-4 pr-2 leading-tight',
+    'group/item flex items-center justify-between border-b border-gray-200 py-2.5 pr-2 pl-4 leading-tight',
   )}
   data-item-active-debugger={active}
   {...{ rel: external ? 'noopener noreferrer' : undefined }}
