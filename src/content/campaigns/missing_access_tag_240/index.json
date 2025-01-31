@@ -1,0 +1,20 @@
+{
+  "name": "Ergänze das Zugangs-Tagging für Geh-/Radwege",
+  "menuTitle": "Zugangs-Tagging fehlt (Geh-/Radweg)",
+  "pubDate": "2025-01-01T15:00",
+  "category": "radinfra",
+  "author": "Tobias Jordans @tordans",
+  "inMenu": true,
+  "language": "de",
+  "description": "Diese Kampagne enthält Wege die mit dem Verkehrszeichen `240` (Gem. Geh- und Radweg) oder `241` (Getr. Rad- und Gehweg) markiert sind aber das dazu passende Zugangs-Tagging fehlt.",
+  "task": "**Bitte prüfe die Radinfrastruktur und ergänze die Zugangs-Tags.** Weitere Hinweise findet Du in der Aufgabenbeschreibung.",
+  "mapUrl": "https://radverkehrsatlas.de/regionen/radinfra#todo",
+  "maprouletteChallenge": {
+    "id": null,
+    "name": "Geh-/Radweg: Zugangs-Tagging fehlt?",
+    "enabled": true,
+    "remoteGeoJson": "https://radverkehrsatlas.de/api/maproulette/missing_access_tag_240?ids=51477",
+    "checkinComment": "Zugangs-Tags für beschilderten Geh-/Radweg ergänzt. #missing_access_tag_240 #traffic_signs #radinfra_de #maproulette",
+    "checkinSource": "osm_traffic_signs_project"
+  }
+}

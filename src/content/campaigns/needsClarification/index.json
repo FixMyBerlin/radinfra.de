@@ -1,0 +1,20 @@
+{
+  "name": "Die Radinfrastruktur konnte nicht kategorisiert werden",
+  "menuTitle": "Führungsform unklar",
+  "pubDate": "2025-01-01T15:00",
+  "category": "radinfra",
+  "author": "Tobias Jordans @tordans",
+  "inMenu": true,
+  "language": "de",
+  "description": "Diese Kampagne enthält Radinfrastruktur die nicht kategorisiert werden konnte.",
+  "task": "**Bitte prüfe das Tagging und ergänze weitere Attribute, die bei der Kategorisierung helfen.** Weitere Hinweise findet Du in der Aufgabenbeschreibung.",
+  "mapUrl": "https://radverkehrsatlas.de/regionen/radinfra#todo",
+  "maprouletteChallenge": {
+    "id": null,
+    "name": "Führungsform der Radinfrastruktur unklar",
+    "enabled": true,
+    "remoteGeoJson": "https://radverkehrsatlas.de/api/maproulette/needsClarification?ids=51477",
+    "checkinComment": "Angabe zur Führungsform ergänzt. #needsClarification #radinfra_de #maproulette",
+    "checkinSource": "radinfra_de"
+  }
+}
