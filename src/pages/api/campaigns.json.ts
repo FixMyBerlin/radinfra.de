@@ -7,9 +7,9 @@ export const prerender = true
 export async function GET() {
   const allCampaigns = await getCollection('campaigns')
   const sortedCampaigns = allCampaigns
-    .filter((c) => c.data.maprouletteChallenge.id)
-    .toSorted((postA, postB) => {
-      return new Date(postB.data.pubDate).valueOf() - new Date(postA.data.pubDate).valueOf()
+    // .filter((c) => c.data.maprouletteChallenge.id)
+    .toSorted((c1, c2) => {
+      return c1.data.name.localeCompare(c2.data.name)
     })
 
   const data = sortedCampaigns.map(({ id, data }) => {
