@@ -1,0 +1,50 @@
+---
+layout: '@layouts/LayoutArticlePageMdx.astro'
+title: 'Dokumentation "Führungsform"'
+headline: Dokumentation der Prozessierung zur Führungsform
+intro: Der Radverkehrsatlas prozessiert die Daten aus OpenStreetMap und kategorisiert sie nach Führungsform.
+---
+
+## Übersicht
+
+| `category` | Titel | Kurzbeschreibung | Link |
+|---|---|---|---|
+| `bicycleRoad_vehicleDestination` | Fahrradstraße mit Anlieger frei |  |  |
+| `bicycleRoad` | Fahrradstraße |  |  |
+| `crossing` | Straßenquerung | (Keine weitere Unterteilung, bisher) |  |
+| `cycleway_adjoining` | Radweg (baulich von der Fahrbahn abgesetzt aber straßenbegleitend) |  |  |
+| `cycleway_isolated` | Radweg, selbstständig geführt | Beispielweise Wege durch Wald und Feld. |  |
+| `cycleway_isolatedOrIdjoining` | Radweg (Straßenbegleitend oder selbstständig geführt; Kategorisierung unklar) | Fallback-Kategorie wenn Angabe `is_sidepath=yes\|no` fehlt. |  |
+| `cyclewayLink` | Radweg-Verbindungsstück. Häufig in OpenStreetMap verwendet um Routenfähiges Netz zu erzeugen; repräsentiert nur selten physische Infrastruktur. | In Sonderfällen nötig um das Routing in OSM sicherzustellen. |  |
+| `cyclewayOnHighway_advisory` | Schutzstreifen |  |  |
+| `cyclewayOnHighway_exclusive` | Radfahrstreifen |  |  |
+| `cyclewayOnHighway_advisoryOrExclusive` | Radfahrstreifen oder Schutzstreifen (Kategorisierung unklar) | Fallback-Kategorie wenn Angabe `cycleway:SIDE:lane=advisory\|exclusive` fehlt. |  |
+| `cyclewayOnHighwayBetweenLanes` | Radfahrstreifen in Mittellage (Fahrradweiche) | Umgangssprachlich "Angstweiche". Kategorisiert anhand `cycleway:lanes` oder `bicycle:lanes` |  |
+| `footAndCyclewaySegregated_adjoining` | Getrennter Rad- und Gehweg, straßenbegleitend |  |  |
+| `footAndCyclewaySegregated_isolated` | Getrennter Rad- und Gehweg, selbstständig geführt | Beispielweise Wege durch Wald und Feld. |  |
+| `footAndCyclewaySegregated_adjoiningOrIsolated` | Getrennter Rad- und Gehweg (Straßenbegleitend oder selbstständig geführt; Kategorisierung unklar) | Fallback-Kategorie wenn Angabe `is_sidepath=yes\|no` fehlt. |  |
+| `footAndCyclewayShared_adjoining` | Gemeinsamer Geh- und Radweg, straßenbegleitend |  |  |
+| `footAndCyclewayShared_isolated` | Gemeinsamer Geh- und Radweg, selbstständig geführt | Beispielweise Wege durch Wald und Feld. |  |
+| `footAndCyclewayShared_adjoiningOrIsolated` | Gemeinsamer Geh- und Radweg (Straßenbegleitend oder selbstständig geführt; Kategorisierung unklar) | Fallback-Kategorie wenn Angabe `is_sidepath=yes\|no` fehlt. |  |
+| `footwayBicycleYes_adjoining` | Gehweg mit Radwegfreigabe, straßenbegleitend |  |  |
+| `footwayBicycleYes_isolated` | Gehweg mit Radwegfreigabe, selbstständig geführt |  |  |
+| `footwayBicycleYes_adjoiningOrIsolated` | Gehweg mit Radwegfreigabe (Straßenbegleitend oder selbstständig geführt; Kategorisierung unklar) | Fallback-Kategorie wenn Angabe `is_sidepath=yes\|no` fehlt. |  |
+| `livingStreet` | Verkehrsberuhigter Bereich (Spielstraße) |  |  |
+| `pedestrianAreaBicycleYes` | Fußgängerzone, Fahrrad frei | Fußgängerzonen ohne Fahrradfreigabe werden nicht berücksichtigt |  |
+| `protectedCyclewayOnHighway` | Geschützter Radfahrstreifen (Protected Bike Lane / PBL) | Erfordert detailliertes Tagging mit dem [`separation`-Schema](https://wiki.openstreetmap.org/wiki/Proposal:Separation). |  |
+| `sharedBusLaneBikeWithBus` | Radfahrstreifen mit Freigabe Busverkehr | Erlaubt wohl höhere Busgelder bei Falschparkern. |  |
+| `sharedBusLaneBusWithBike` | Bussonderfahrstreifen mit Fahrrad frei |  |  |
+| `sharedMotorVehicleLane` | Gemeinsamer Fahrstreifen | Durch Piktogramme auf der Fahrbahn ausgezeichnet | [Wiki](https://wiki.openstreetmap.org/wiki/Tag:cycleway%3Dshared_lane) |
+| `needsClarification` | Führungsform unklar. Die Attribute in OpenStreetMap sind nicht ausreichend, um die Führungsform zu kategorisieren. Das deutet darauf hin, dass zusätzlich Attribute in OSM ergänzt werden müssen. |  |  |
+
+## Open Source
+
+Die Prozessierung und Website des Radverkehrsatlas ist OpenSource. Die Kategorisierung findet beim Import der OpenStreetMap-Daten durch osm2pgsql statt und ist in LUA programmiert:
+* [`BikelaneCategories.lua`](https://github.com/FixMyBerlin/atlas-app/blob/develop/processing/topics/roads_bikelanes/bikelanes/BikelaneCategories.lua) beschreibt die Führungsform `category=*`
+* [`BikelaneTodos.lua`](https://github.com/FixMyBerlin/atlas-app/blob/develop/processing/topics/roads_bikelanes/bikelanes/BikelaneTodos.lua) beschreibt die Kampagnen
+
+## Hinweise
+
+### Erkennen, ob ein Weg straßenbegleitend ist
+
+Aktuell basiert die Kategorisierung der Infrastruktur vollstänig auf Tags. Es werden keine geometrische analysen hinzugezogen. Es ist denkbar, dass zukünftige Versionen der Prozessierung die Erkennung von frei geführten Wegen (vs. straßenbegleitenden Wegen) erweitern, in dem nach parallelen Wegen in der Nähe gesucht wird. Diese Form der Prozessierung ist aber aufwändig und fehleranfällig (Edge Cases). Aus diesem Grund setzen wir bis auf weiteres auf eine explizite Angabe von `is_sidepath=yes|no`.

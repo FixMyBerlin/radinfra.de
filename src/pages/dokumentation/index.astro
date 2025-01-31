@@ -1,0 +1,39 @@
+---
+import GridCard from '@components/cards/GridCard.astro'
+import GridCardWrapper from '@components/cards/GridCardWrapper.astro'
+import PageHeadline from '@components/text/PageHeadline.astro'
+import ProseSection from '@components/text/ProseSection.astro'
+import { DocumentTextIcon, TableCellsIcon } from '@heroicons/react/24/solid'
+import LayoutArticlePageAstro from '@layouts/LayoutArticlePageAstro.astro'
+---
+
+<LayoutArticlePageAstro title="Dokumentation">
+  <PageHeadline
+    category={undefined}
+    headline="Dokumentation"
+    intro="Der Radverkehrsatlas ist ein OpenSource Projekt das Daten aus OpenStreetMap aufbereitet."
+  />
+
+  <GridCardWrapper headline="Dokumentation" sectionClasses="mt-16">
+    <GridCard
+      href="/dokumentation/fuehrungsform"
+      text="Dokumentation Führungsform Radverkehrsanlagen"
+      variant="iconGrid"
+    >
+      <TableCellsIcon className="size-14" />
+    </GridCard>
+
+    <GridCard href="/dokumentation/open-source" text="OpenSource & OpenData" variant="iconGrid">
+      <DocumentTextIcon className="size-14" />
+    </GridCard>
+  </GridCardWrapper>
+  <p><code>TODO: Weitere Doku ergänzen</code></p>
+
+  <ProseSection classes="mt-18">
+    <p>
+      <a href="https://radverkehrsatlas.de/regionen/radinfra" target="_blank">
+        Der Radverkehrsatlas
+      </a> ist ein Angebot von FixMyCity.
+    </p>
+  </ProseSection>
+</LayoutArticlePageAstro>
