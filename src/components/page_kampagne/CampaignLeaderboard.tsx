@@ -1,7 +1,9 @@
+import { linkStyles } from '@components/Link/Link'
 import { queryClient } from '@components/store/tanstackQuery'
 import { useQuery } from '@tanstack/react-query'
 import { z } from 'astro/zod'
 import { maprouletteProjectId } from 'scripts/maproulette/maprouletteProjectId.const'
+import { twJoin } from 'tailwind-merge'
 
 const leaderboardSchema = z.array(
   z.object({
@@ -69,12 +71,14 @@ export const CampaignLeaderboard = () => {
         ))}
       </div>
 
-      <p className="text-xs">
-        Source:{' '}
+      <details className="text-xs">
+        <summary className={twJoin('cursor-pointer font-bold', linkStyles)}>Source</summary>
+        MapRoulette API:{' '}
         <a href={url} target="_blank">
           <code>{url}</code>
         </a>
-      </p>
+        <pre>{JSON.stringify(leaderboard, undefined, 2)}</pre>
+      </details>
     </>
   )
 }

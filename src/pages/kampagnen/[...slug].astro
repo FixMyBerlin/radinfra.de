@@ -5,6 +5,7 @@ import { linkStyles } from '@components/Link/Link'
 import { maprouletteChallengeUrl } from '@components/Link/maprouletteChallengeUrl'
 import MegaButton from '@components/Link/MegaButton.astro'
 import CampaignCards from '@components/page_kampagne/CampaignCards.astro'
+import { CampaignStatistic } from '@components/page_kampagne/CampaignStatistic'
 import Markdown from '@components/text/Markdown.astro'
 import PageHeadline from '@components/text/PageHeadline.astro'
 import ProseSection from '@components/text/ProseSection.astro'
@@ -127,6 +128,14 @@ const maprouletteUrl = maprouletteChallengeUrl(page.data.maprouletteChallenge.id
   </ProseSection>
 
   {
+    page.data.maprouletteChallenge.id && (
+      <ProseSection classes="mt-18">
+        <CampaignStatistic challengeId={page.data.maprouletteChallenge.id} client:idle />
+      </ProseSection>
+    )
+  }
+
+  {
     relatedCampaigns.length > 0 && (
       <CampaignCards
         headlineTemplate="Weitere Kampagnen zu »CATEGORY«"
@@ -136,7 +145,7 @@ const maprouletteUrl = maprouletteChallengeUrl(page.data.maprouletteChallenge.id
     )
   }
 
-  <ProseSection classes="prose-sm">
+  <ProseSection classes="prose-sm mt-18">
     <h2>Metadaten</h2>
     <ul>
       <li>
