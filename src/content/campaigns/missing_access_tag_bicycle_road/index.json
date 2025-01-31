@@ -13,7 +13,7 @@
     "id": 49368,
     "name": "Fahrradstraßen mit fehlendem `bicycle=designated`",
     "enabled": true,
-    "remoteGeoJson": "https://radverkehrsatlas.de/api/maproulette/missing_access_tag_bicycle_road?ids=51477",
+    "remoteGeoJson": "https://staging.radverkehrsatlas.de/api/maproulette/missing_access_tag_bicycle_road?ids=51477",
     "checkinComment": "Fahrradstraßen ohne bicycle=designated #missing_access_tag_bicycle_road #traffic_signs #radinfra_de #maproulette",
     "checkinSource": "osm_traffic_signs_project"
   }

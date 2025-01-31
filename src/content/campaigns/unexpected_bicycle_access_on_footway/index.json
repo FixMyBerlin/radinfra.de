@@ -13,7 +13,7 @@
     "id": 50883,
     "name": "Straßenklasse 'Fußweg' unklar",
     "enabled": true,
-    "remoteGeoJson": "https://radverkehrsatlas.de/api/maproulette/unexpected_bicycle_access_on_footway?ids=51477",
+    "remoteGeoJson": "https://staging.radverkehrsatlas.de/api/maproulette/unexpected_bicycle_access_on_footway?ids=51477",
     "checkinComment": "Straßenklasse Fußweg in Kombination mit Radinfrastruktur verbessert. #unexpected_bicycle_access_on_footway #radinfra_de #maproulette",
     "checkinSource": "radinfra_de"
   }

@@ -13,7 +13,7 @@
     "id": 50886,
     "name": "Radinfrastruktur ohne Verkehrszeichen",
     "enabled": true,
-    "remoteGeoJson": "https://radverkehrsatlas.de/api/maproulette/missing_traffic_sign?ids=51477",
+    "remoteGeoJson": "https://staging.radverkehrsatlas.de/api/maproulette/missing_traffic_sign?ids=51477",
     "checkinComment": "Verkehrszeichen ergänzt #missing_traffic_sign #traffic_signs #radinfra_de #maproulette",
     "checkinSource": "osm_traffic_signs_project"
   }

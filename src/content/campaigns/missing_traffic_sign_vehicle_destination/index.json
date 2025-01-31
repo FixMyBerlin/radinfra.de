@@ -13,7 +13,7 @@
     "id": 49363,
     "enabled": true,
     "name": "Fahrradstraßen ohne Zusatzzeichen »Anlieger frei«",
-    "remoteGeoJson": "https://radverkehrsatlas.de/api/maproulette/missing_traffic_sign_vehicle_destination?ids=51477",
+    "remoteGeoJson": "https://staging.radverkehrsatlas.de/api/maproulette/missing_traffic_sign_vehicle_destination?ids=51477",
     "checkinComment": "Fahrradstraßen ohne Zusatzzeichen #missing_traffic_sign_vehicle_destination #traffic_signs #radinfra_de #maproulette",
     "checkinSource": "osm_traffic_signs_project"
   }
