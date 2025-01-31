@@ -17,7 +17,7 @@ export const AstroCampaignSchema = z.object({
   language: z.enum(languages).optional(),
   mapUrl: z.string().url().optional(),
   maprouletteChallenge: z.object({
-    id: z.number().nullable(),
+    id: z.number().nullable().optional(),
     enabled: z.boolean(),
     name: z.string(),
     remoteGeoJson: z.string().url(),
