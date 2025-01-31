@@ -19,7 +19,7 @@ function dataCreateChallenge({ slug, ...astroCampaignData }: { slug: string } & 
     infoLink: `https://radinfra.de/kampagnen/${slug}/`,
     remoteGeoJson: astroCampaignData.maprouletteChallenge.remoteGeoJson,
     enabled: astroCampaignData.maprouletteChallenge.enabled,
-    description: astroCampaignData.content,
+    description: astroCampaignData.description,
     checkinComment: astroCampaignData.maprouletteChallenge.checkinComment,
     checkinSource: astroCampaignData.maprouletteChallenge.checkinSource,
     dataOriginDate: startOfDay(new Date()).toISOString(), // Atlas data is always fresh
