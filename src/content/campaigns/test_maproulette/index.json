@@ -1,0 +1,20 @@
+{
+  "name": "Test Kampagne um MapRoulette Funktionen zu test",
+  "menuTitle": "Test MapRoulette Updates",
+  "pubDate": "2025-01-01T15:00",
+  "category": "radinfra",
+  "author": "Tobias Jordans @tordans",
+  "inMenu": false,
+  "language": "de",
+  "description": "Mit dieser Kampagne test ich, wie sich MapRoulette verhält, wenn sich Daten extern ändern.",
+  "task": "Hier gibt es nihts zu tun.",
+  "mapUrl": "https://radverkehrsatlas.de/regionen/radinfra#todo",
+  "maprouletteChallenge": {
+    "id": null,
+    "name": "Test MapRoulette Updates",
+    "enabled": false,
+    "remoteGeoJson": "https://radverkehrsatlas.de/api/maproulette/test_maproulette_updates",
+    "checkinComment": "#radinfra_de #maproulette",
+    "checkinSource": "radinfra_de"
+  }
+}
