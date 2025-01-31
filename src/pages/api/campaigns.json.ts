@@ -9,7 +9,7 @@ export async function GET() {
   const sortedCampaigns = allCampaigns
     // .filter((c) => c.data.maprouletteChallenge.id)
     .toSorted((c1, c2) => {
-      return c1.data.name.localeCompare(c2.data.name)
+      return c1.id.localeCompare(c2.id)
     })
 
   const data = sortedCampaigns.map(({ id, data }) => {
