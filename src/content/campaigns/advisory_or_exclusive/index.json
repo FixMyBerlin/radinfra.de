@@ -13,8 +13,8 @@
     "id": 50888,
     "name": "Schutzstreifen oder Angebotsstreifen?",
     "enabled": true,
-    "remoteGeoJson": "https://staging.radverkehrsatlas.de/api/maproulette/advisoryOrExclusive?ids=51477",
-    "checkinComment": "Angabe zur Führungsform ergänzt (Schutzstreifen oder Angebotsstreifen). #advisoryOrExclusive #radinfra_de #maproulette",
+    "remoteGeoJson": "https://staging.radverkehrsatlas.de/api/maproulette/advisory_or_exclusive?ids=51477",
+    "checkinComment": "Angabe zur Führungsform ergänzt (Schutzstreifen oder Angebotsstreifen). #advisory_or_exclusive #radinfra_de #maproulette",
     "checkinSource": "radinfra_de"
   }
 }
