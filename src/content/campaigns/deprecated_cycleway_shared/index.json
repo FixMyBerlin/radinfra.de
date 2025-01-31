@@ -10,7 +10,7 @@
   "task": "**Bitte ändere das Tagging. In vielen Fällen kann es ersatzlos gestrichen werden. Es ist aber wichtig, die Infrastruktur in diesem Zuge zu prüfen.** Weitere Hinweise findet Du in der Aufgabenbeschreibung.",
   "mapUrl": "https://radverkehrsatlas.de/regionen/radinfra#todo",
   "maprouletteChallenge": {
-    "id": null,
+    "id": 50889,
     "name": "Veraltetes Tagging (`cycleway=shared`)",
     "enabled": true,
     "remoteGeoJson": "https://radverkehrsatlas.de/api/maproulette/deprecated_cycleway_shared?ids=51477",

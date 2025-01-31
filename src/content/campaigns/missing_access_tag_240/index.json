@@ -10,7 +10,7 @@
   "task": "**Bitte prüfe die Radinfrastruktur und ergänze die Zugangs-Tags.** Weitere Hinweise findet Du in der Aufgabenbeschreibung.",
   "mapUrl": "https://radverkehrsatlas.de/regionen/radinfra#todo",
   "maprouletteChallenge": {
-    "id": null,
+    "id": 50890,
     "name": "Geh-/Radweg: Zugangs-Tagging fehlt?",
     "enabled": true,
     "remoteGeoJson": "https://radverkehrsatlas.de/api/maproulette/missing_access_tag_240?ids=51477",

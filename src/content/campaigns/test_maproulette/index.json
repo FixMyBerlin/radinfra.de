@@ -10,7 +10,7 @@
   "task": "Hier gibt es nihts zu tun.",
   "mapUrl": "https://radverkehrsatlas.de/regionen/radinfra#todo",
   "maprouletteChallenge": {
-    "id": null,
+    "id": 50884,
     "name": "Test MapRoulette Updates",
     "enabled": false,
     "remoteGeoJson": "https://radverkehrsatlas.de/api/maproulette/test_maproulette_updates",

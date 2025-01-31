@@ -10,7 +10,7 @@
   "task": "**Bitte ergänze die Angabe `segregated=yes` oder `no`.** Weitere Hinweise findet Du in der Aufgabenbeschreibung.",
   "mapUrl": "https://radverkehrsatlas.de/regionen/radinfra#todo",
   "maprouletteChallenge": {
-    "id": null,
+    "id": 50887,
     "name": "Geh-/Radweg: Gemeinsame oder getrennte Führung?",
     "enabled": true,
     "remoteGeoJson": "https://radverkehrsatlas.de/api/maproulette/missing_segregated?ids=51477",

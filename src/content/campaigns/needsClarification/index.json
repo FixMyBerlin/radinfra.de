@@ -10,7 +10,7 @@
   "task": "**Bitte prüfe das Tagging und ergänze weitere Attribute, die bei der Kategorisierung helfen.** Weitere Hinweise findet Du in der Aufgabenbeschreibung.",
   "mapUrl": "https://radverkehrsatlas.de/regionen/radinfra#todo",
   "maprouletteChallenge": {
-    "id": null,
+    "id": 50891,
     "name": "Führungsform der Radinfrastruktur unklar",
     "enabled": true,
     "remoteGeoJson": "https://radverkehrsatlas.de/api/maproulette/needsClarification?ids=51477",

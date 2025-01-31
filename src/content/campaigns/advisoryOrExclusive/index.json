@@ -10,7 +10,7 @@
   "task": "**Bitte prüfe die Radinfrastruktur und ergänze die nötigen Attribute.** Weitere Hinweise findet Du in der Aufgabenbeschreibung.",
   "mapUrl": "https://radverkehrsatlas.de/regionen/radinfra#todo",
   "maprouletteChallenge": {
-    "id": null,
+    "id": 50888,
     "name": "Schutzstreifen oder Angebotsstreifen?",
     "enabled": true,
     "remoteGeoJson": "https://radverkehrsatlas.de/api/maproulette/advisoryOrExclusive?ids=51477",
