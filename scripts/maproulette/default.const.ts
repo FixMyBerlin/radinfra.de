@@ -1,4 +1,5 @@
 import { maprouletteProjectId } from './maprouletteProjectId.const'
+import type { CreateMapRouletteChallengeType } from './schema'
 
 export const defaultChallenge = {
   defaultBasemap: -1,
@@ -7,12 +8,22 @@ export const defaultChallenge = {
     '{{task_markdown}}\n \n \n \n . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ',
   difficulty: 2,
   // instruction:'',
-  highPriorityRule: '{}', // they are strings in the example request copied from the website; will need to investigate how to provide data
-  lowPriorityRule: '{}', // they are strings in the example request copied from the website; will need to investigate how to provide data
-  mediumPriorityRule: '{}', // they are strings in the example request copied from the website; will need to investigate how to provide data
+  defaultPriority: 0,
+  highPriorityRule: {
+    condition: 'AND',
+    rules: [{ type: 'string', operator: 'equal', value: 'priority.prio1' }],
+  },
+  mediumPriorityRule: {
+    condition: 'AND',
+    rules: [{ type: 'string', operator: 'equal', value: 'priority.prio2' }],
+  },
+  lowPriorityRule: {
+    condition: 'AND',
+    rules: [{ type: 'string', operator: 'equal', value: 'priority.prio3' }],
+  },
   overpassTargetType: null,
   parent: maprouletteProjectId,
   tags: 'highway',
   presets: [],
   taskStyles: [],
-} as const satisfies Record<string, string | number | object | string[] | null>
+} satisfies Partial<CreateMapRouletteChallengeType>

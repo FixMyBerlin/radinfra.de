@@ -1,5 +1,12 @@
 import { z } from 'astro/zod'
 
+const prioritySchema = z.object({
+  condition: z.literal('AND'),
+  rules: z.array(
+    z.object({ type: z.literal('string'), operator: z.literal('equal'), value: z.string() }),
+  ),
+})
+
 export const CreateMapRouletteChallengeSchema = z.strictObject({
   enabled: z.boolean(),
   checkinComment: z.string(), // "Verkehrszeichen ergänzet #osm_traffic_signs_project #missing_traffic_sign_244 #maproulette",
@@ -9,10 +16,10 @@ export const CreateMapRouletteChallengeSchema = z.strictObject({
   description: z.string(), // "{task_markdown}\\n\\n\\n\\n. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ",
   difficulty: z.z.union([z.literal(1), z.literal(2), z.literal(3)]), // 2,
   instruction: z.string(), // "Diese Kampagne enthält Wege, die [im Radverkehrsatlas](https://radverkehrsatlas.de/) als Fahrradstraße kategorisiert wurden, jedoch fehlt das zugehörige Verkehrszeichen.",
-  // defaultPriority: z.number(),
-  highPriorityRule: z.literal('{}'), // z.object({}), // "{}",
-  mediumPriorityRule: z.literal('{}'), // z.object({}), // "{}",
-  lowPriorityRule: z.literal('{}'), // z.object({}), // "{}",
+  defaultPriority: z.number(),
+  highPriorityRule: prioritySchema,
+  mediumPriorityRule: prioritySchema,
+  lowPriorityRule: prioritySchema,
   name: z.string(), // "test",
   overpassTargetType: z.null(), // null,
   parent: z.number(), // 57664,
