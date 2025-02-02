@@ -4,6 +4,7 @@ import { Glob } from 'bun'
 import type { AstroCampaignType } from 'cms/campaignsAstro'
 import { startOfDay } from 'date-fns'
 import invariant from 'tiny-invariant'
+import { parseArgs } from 'util'
 import { defaultChallenge } from './default.const'
 import {
   CreateMapRouletteChallengeSchema,
@@ -11,6 +12,16 @@ import {
   type CreateMapRouletteChallengeType,
   type UpdateMapRouletteChallengeType,
 } from './schema'
+
+// https://bun.sh/guides/process/argv
+const { values } = parseArgs({
+  args: Bun.argv,
+  options: {
+    filter: { type: 'string' },
+  },
+  strict: true,
+  allowPositionals: true,
+})
 
 function dataCreateChallenge({ slug, ...astroCampaignData }: { slug: string } & AstroCampaignType) {
   const challengeData: CreateMapRouletteChallengeType = {
@@ -84,13 +95,16 @@ async function createChallenge(challenge: CreateMapRouletteChallengeType) {
   return data
 }
 
-async function main() {
+async function main(filter: string | undefined) {
   const campaignsFolder = './src/content/campaigns'
   const glob = new Glob('**/*/index.json')
   const campaignPaths = glob.scan(campaignsFolder)
 
   for await (const campaignPath of campaignPaths) {
-    console.log('  HANDLE', campaignPath)
+    const skip = filter ? campaignPath.includes(filter) : false
+    const logPrefix = skip ? '\x1b[33m↷ SKIPPING\x1b[0m' : '\x1b[32m✎ PROCESS\x1b[0m'
+    console.log('   ', logPrefix, campaignPath)
+
     const [slug] = campaignPath.split('/')
     const filePath = `${campaignsFolder}/${campaignPath}`
     const json = await Bun.file(filePath).json()
@@ -115,5 +129,5 @@ async function main() {
   }
 }
 
-console.log('STARTING maproulette/process')
-main()
+console.log('STARTING maproulette/process', `– \x1b[33musing filter \"${values.filter}\"`)
+main(values.filter)
