@@ -5,6 +5,7 @@
     "jsxImportSource": "react",
     "baseUrl": ".",
     "strictNullChecks": true, // https://docs.astro.build/de/guides/content-collections/#setting-up-typescript
+    "noErrorTruncation": true, // https://stackoverflow.com/a/53131824
     "paths": {
       "@data/*": ["data/*"],
       "@assets/*": ["src/assets/*"],
