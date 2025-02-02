@@ -1,0 +1,20 @@
+{
+  "name": "Ergänze Angaben Oberfläche",
+  "menuTitle": "Wie ist die Oberfläche?",
+  "pubDate": "2025-01-01T15:00",
+  "category": "surface",
+  "author": "Tobias Jordans @tordans",
+  "inMenu": true,
+  "language": "de",
+  "description": "Diese Kampagne enthält Wege, bei denen die Angabe zur Oberfläche fehlt.",
+  "task": "**Bitte ergänze die Oberfläche `surface` und gerne auch die Oberflächenqualität `smoothness`.** Weitere Hinweise findet Du in der Aufgabenbeschreibung.",
+  "mapUrl": "https://radverkehrsatlas.de/regionen/radinfra#todo",
+  "maprouletteChallenge": {
+    "id": null,
+    "name": "Wie ist die Oberfläche?",
+    "enabled": true,
+    "remoteGeoJson": "https://staging.radverkehrsatlas.de/api/maproulette/missing_surface",
+    "checkinComment": "Angabe Oberfläche ergänzt. #missing_surface #radinfra_de #maproulette",
+    "checkinSource": "radinfra_de"
+  }
+}
