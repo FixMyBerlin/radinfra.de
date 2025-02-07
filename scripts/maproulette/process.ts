@@ -31,7 +31,7 @@ function dataCreateChallenge({ slug, ...astroCampaignData }: { slug: string } & 
     remoteGeoJson: astroCampaignData.maprouletteChallenge.remoteGeoJson,
     enabled: astroCampaignData.maprouletteChallenge.enabled,
     description: astroCampaignData.description,
-    checkinComment: astroCampaignData.maprouletteChallenge.checkinComment,
+    checkinComment: astroCampaignData.maprouletteChallenge.checkinComment.replaceAll(' ', '%20'), // MR will interpret spaces as `+`
     checkinSource: astroCampaignData.maprouletteChallenge.checkinSource,
     dataOriginDate: startOfDay(new Date()).toISOString(), // Atlas data is always fresh
   }
