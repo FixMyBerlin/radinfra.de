@@ -13,7 +13,7 @@
     "id": null,
     "name": "Wie ist die Breite",
     "enabled": true,
-    "remoteGeoJson": "https://staging.radverkehrsatlas.de/api/maproulette/missing_width",
+    "remoteGeoJson": "https://radverkehrsatlas.de/api/maproulette/missing_width",
     "checkinComment": "Angabe Breite der Radinfrastruktur ergänzt. #missing_width #radinfra_de #maproulette",
     "checkinSource": "radinfra_de"
   }

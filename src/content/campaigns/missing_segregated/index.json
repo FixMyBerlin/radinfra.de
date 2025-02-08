@@ -13,7 +13,7 @@
     "id": 50887,
     "name": "Geh-/Radweg: Gemeinsame oder getrennte Führung?",
     "enabled": true,
-    "remoteGeoJson": "https://staging.radverkehrsatlas.de/api/maproulette/missing_segregated?ids=51477",
+    "remoteGeoJson": "https://radverkehrsatlas.de/api/maproulette/missing_segregated?ids=51477",
     "checkinComment": "Angabe zu `segregated` ergänzt. #missing_segregated #traffic_signs #radinfra_de #maproulette",
     "checkinSource": "radinfra_de"
   }

@@ -13,7 +13,7 @@
     "id": 50891,
     "name": "Führungsform der Radinfrastruktur unklar",
     "enabled": true,
-    "remoteGeoJson": "https://staging.radverkehrsatlas.de/api/maproulette/needs_clarification?ids=51477",
+    "remoteGeoJson": "https://radverkehrsatlas.de/api/maproulette/needs_clarification?ids=51477",
     "checkinComment": "Angabe zur Führungsform ergänzt. #needs_clarification #radinfra_de #maproulette",
     "checkinSource": "radinfra_de"
   }

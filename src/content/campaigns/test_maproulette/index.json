@@ -13,7 +13,7 @@
     "id": 50884,
     "name": "Test MapRoulette Updates",
     "enabled": false,
-    "remoteGeoJson": "https://staging.radverkehrsatlas.de/api/maproulette/test_maproulette_updates",
+    "remoteGeoJson": "https://radverkehrsatlas.de/api/maproulette/test_maproulette_updates",
     "checkinComment": "#radinfra_de #maproulette",
     "checkinSource": "radinfra_de"
   }

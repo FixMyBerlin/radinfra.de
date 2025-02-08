@@ -13,7 +13,7 @@
     "id": 50890,
     "name": "Geh-/Radweg: Zugangs-Tagging fehlt?",
     "enabled": true,
-    "remoteGeoJson": "https://staging.radverkehrsatlas.de/api/maproulette/missing_access_tag_240?ids=51477",
+    "remoteGeoJson": "https://radverkehrsatlas.de/api/maproulette/missing_access_tag_240?ids=51477",
     "checkinComment": "Zugangs-Tags für beschilderten Geh-/Radweg ergänzt. #missing_access_tag_240 #traffic_signs #radinfra_de #maproulette",
     "checkinSource": "osm_traffic_signs_project"
   }

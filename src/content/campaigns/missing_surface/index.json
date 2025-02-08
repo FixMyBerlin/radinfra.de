@@ -13,7 +13,7 @@
     "id": null,
     "name": "Wie ist die Oberfläche?",
     "enabled": true,
-    "remoteGeoJson": "https://staging.radverkehrsatlas.de/api/maproulette/missing_surface",
+    "remoteGeoJson": "https://radverkehrsatlas.de/api/maproulette/missing_surface",
     "checkinComment": "Angabe Oberfläche ergänzt. #missing_surface #radinfra_de #maproulette",
     "checkinSource": "radinfra_de"
   }
