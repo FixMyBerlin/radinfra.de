@@ -13,7 +13,7 @@
     "id": 50885,
     "enabled": true,
     "name": "Fahrradinfrastruktur straßenbegleitend oder selbstständig geführt?",
-    "remoteGeoJson": "https://radverkehrsatlas.de/api/maproulette/adjoining_or_isolated?ids=51477",
+    "remoteGeoJson": "https://radverkehrsatlas.de/api/maproulette/adjoining_or_isolated",
     "checkinComment": "Angabe zur Führung der Fahrradinfrastruktur (straßenbegleitend bzw. selbstständig geführt) ergänzt. #adjoining_or_isolated #radinfra_de #maproulette",
     "checkinSource": "radinfra_de"
   }

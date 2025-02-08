@@ -22,7 +22,7 @@
   "overpassQL": "",
   "overpassTargetType": null,
   "parent": 57664,
-  "remoteGeoJson": "https://radverkehrsatlas.de/api/maproulette/missing_traffic_sign_244?ids=51477",
+  "remoteGeoJson": "https://radverkehrsatlas.de/api/maproulette/missing_traffic_sign_244",
   "status": 3,
   "tags": "highway,Verkehrswende",
   "updateTasks": false,

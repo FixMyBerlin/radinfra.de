@@ -13,7 +13,7 @@
     "id": 49357,
     "name": "Fahrradstraßen ohne Verkehrszeichen",
     "enabled": true,
-    "remoteGeoJson": "https://radverkehrsatlas.de/api/maproulette/missing_traffic_sign_244?ids=51477",
+    "remoteGeoJson": "https://radverkehrsatlas.de/api/maproulette/missing_traffic_sign_244",
     "checkinComment": "Fahrradstraßen ohne Verkehrszeichen #missing_traffic_sign_244 #traffic_signs #radinfra_de #maproulette",
     "checkinSource": "osm_traffic_signs_project"
   }

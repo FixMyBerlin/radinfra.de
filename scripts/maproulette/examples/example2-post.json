@@ -12,7 +12,7 @@
   "name": "test",
   "overpassTargetType": null,
   "parent": 57664,
-  "remoteGeoJson": "https://radverkehrsatlas.de/api/maproulette/missing_traffic_sign_244?ids=51477",
+  "remoteGeoJson": "https://radverkehrsatlas.de/api/maproulette/missing_traffic_sign_244",
   "tags": "highway",
   "dataOriginDate": "2024-09-29T22:00:00.000Z",
   "presets": [],

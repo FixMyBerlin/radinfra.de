@@ -20,7 +20,7 @@
   "virtualParents": [],
   "requiresLocal": false,
   "overpassQL": "",
-  "remoteGeoJson": "https://radverkehrsatlas.de/api/maproulette/missing_traffic_sign_244?ids=51477",
+  "remoteGeoJson": "https://radverkehrsatlas.de/api/maproulette/missing_traffic_sign_244",
   "overpassTargetType": "",
   "defaultPriority": 0,
   "highPriorityRule": {},
