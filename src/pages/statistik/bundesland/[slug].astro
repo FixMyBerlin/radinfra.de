@@ -1,30 +1,43 @@
 ---
+export const prerender = true
+import { bundeslandLandkreis } from '@components/page_statistik/bundeslandLandkreis.const'
+//
 import Debug from '@components/page_statistik/Debug.astro'
 import { RadialBars } from '@components/page_statistik/graphs/RadialBars'
 import Intro from '@components/page_statistik/Intro.astro'
 import PageHeadline from '@components/text/PageHeadline.astro'
 import ProseSection from '@components/text/ProseSection.astro'
+import { slugify } from '@components/utils/slugify'
 import LayoutArticle from '@layouts/LayoutArticle.astro'
-import { getCollection } from 'astro:content'
+import { getCollection, type CollectionEntry } from 'astro:content'
 
-const statistics = await getCollection('statistics')
-const bund = statistics
-  .filter((stat) => stat.data.properties.level === '6')
-  .sort((a, b) => a.data.properties.name.localeCompare(b.data.properties.name))
+export async function getStaticPaths() {
+  const bundeslaender = await getCollection('statistics', ({ data }) => {
+    return data.properties.level === '4'
+  })
+  return bundeslaender.map((bundesland) => ({
+    params: { slug: slugify(bundesland.data.properties.name) },
+    props: bundesland,
+  }))
+}
+type Props = CollectionEntry<'statistics'>
+
+const bundesland = Astro.props
+
+const landkreisOsmIds = bundeslandLandkreis.get(bundesland.id)
+const landkreise = await getCollection('statistics', ({ data }) => {
+  return landkreisOsmIds?.includes(data.id)
+})
 ---
 
 <LayoutArticle title="Karte der Radinfrastruktur in Deutschland">
   <PageHeadline
     category="Statistik"
-    headline="Statistik Landkreise"
+    headline={`Statistik für die Landkreise in ${bundesland.data.properties.name}`}
     intro="Statistiken pro Landkreis. Basierend auf den aufbereiteten Radinfrastrukturdaten aus OpenStreetMap."
   />
 
   <ProseSection>
-    <p>
-      <code>TODO</code>: Diese Ansicht soll später gefiltert werden könne nach Bundesland. Dafür
-      müssen aber die Quelldaten eine Hierarchie bekommen.
-    </p>
     <Intro />
   </ProseSection>
 
@@ -34,8 +47,8 @@ const bund = statistics
 
   <div class="mr-6 grid grid-cols-4 gap-4">
     {
-      bund.map((bundesland) => {
-        const data = Object.entries(bundesland.data.properties.bikelane_sum || {}).map(
+      landkreise.map((landkreis) => {
+        const data = Object.entries(landkreis.data.properties.bikelane_sum || {}).map(
           ([key, value]) => ({
             label: String(key[0]).toUpperCase(),
             value: value ?? 0,
@@ -44,7 +57,7 @@ const bund = statistics
         )
         return (
           <div>
-            <h2 class="mb-2 font-bold text-emerald-700">{bundesland.data.properties.name}</h2>
+            <h2 class="mb-2 font-bold text-emerald-700">{landkreis.data.properties.name}</h2>
             <RadialBars client:visible data={data} width={300} height={300} />
           </div>
         )
@@ -52,5 +65,5 @@ const bund = statistics
     }
   </div>
 
-  <Debug data={bund} />
+  <Debug data={{ bundesland, landkreise }} />
 </LayoutArticle>

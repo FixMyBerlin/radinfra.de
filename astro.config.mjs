@@ -43,6 +43,7 @@ export default defineConfig({
   adapter: ASTRO_USE_NETLIFY_ADAPTER === 'true' ? netlify() : undefined,
   redirects: {
     '/contact': '/legal',
+    '/statistik/bundesland': '/statistik',
   },
   env: {
     schema: {

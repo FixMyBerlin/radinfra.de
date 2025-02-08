@@ -4,6 +4,7 @@ import { RadialBars } from '@components/page_statistik/graphs/RadialBars'
 import Intro from '@components/page_statistik/Intro.astro'
 import PageHeadline from '@components/text/PageHeadline.astro'
 import ProseSection from '@components/text/ProseSection.astro'
+import { slugify } from '@components/utils/slugify'
 import LayoutArticle from '@layouts/LayoutArticle.astro'
 import { getCollection } from 'astro:content'
 
@@ -22,7 +23,6 @@ const bund = statistics
 
   <ProseSection>
     <Intro />
-    <a href="/statistik/landkreise">Landkreise Alpha</a>
   </ProseSection>
 
   <!-- <div class="my-10 mr-6">
@@ -46,7 +46,11 @@ const bund = statistics
         // })
         return (
           <div>
-            <h2 class="mb-2 font-bold text-emerald-700">{bundesland.data.properties.name}</h2>
+            <h2 class="mb-2 font-bold text-emerald-700">
+              <a href={`/statistik/bundesland/${slugify(bundesland.data.properties.name)}`}>
+                {bundesland.data.properties.name}
+              </a>
+            </h2>
             <RadialBars client:visible data={data} width={300} height={300} />
           </div>
         )
