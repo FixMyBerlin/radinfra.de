@@ -3,9 +3,13 @@ import { z } from 'astro/zod'
 const position = z.tuple([z.number(), z.number()])
 const linearRing = z.array(position)
 const polygon = z.array(linearRing)
-const multiPolygon = z.object({
+const geometryMultiPolygon = z.object({
   type: z.literal('MultiPolygon'),
   coordinates: z.array(polygon),
+})
+const geometryPolygon = z.object({
+  type: z.literal('Polygon'),
+  coordinates: polygon,
 })
 const properties = z.object({
   id: z.string(),
@@ -80,7 +84,7 @@ export const ApiStatisticFeaturesSchema = z.strictObject({
   type: z.literal('Feature'),
   id: z.string(),
   properties: properties,
-  geometry: multiPolygon,
+  geometry: geometryMultiPolygon.or(geometryPolygon),
 })
 export type ApiStatisticFeatureType = z.infer<typeof ApiStatisticFeaturesSchema>
 export const ApiStatisticsSchema = z.object({
@@ -109,7 +113,7 @@ export const AstroStatisticFeaturesSchema = z.strictObject({
   type: z.literal('Feature'),
   id: z.string(),
   properties: properties.merge(addedProperties),
-  geometry: multiPolygon,
+  geometry: geometryMultiPolygon.or(geometryPolygon),
 })
 
 export type RoadCategory = keyof ApiStatisticFeatureType['properties']['road_length']
