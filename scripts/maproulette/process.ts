@@ -101,9 +101,10 @@ async function main(filter: string | undefined) {
   const campaignPaths = glob.scan(campaignsFolder)
 
   for await (const campaignPath of campaignPaths) {
-    const skip = filter ? campaignPath.includes(filter) : false
+    const skip = filter ? !campaignPath.includes(filter) : false
     const logPrefix = skip ? '\x1b[33m↷ SKIPPING\x1b[0m' : '\x1b[32m✎ PROCESS\x1b[0m'
     console.log('   ', logPrefix, campaignPath)
+    if (skip) continue
 
     const [slug] = campaignPath.split('/')
     const filePath = `${campaignsFolder}/${campaignPath}`
