@@ -98,7 +98,6 @@ export const bundeslandLandkreis = new Map([
       'relation/62657',
       'relation/62356',
       'relation/2168232',
-      'relation/2145268',
     ],
   ],
   [
@@ -148,10 +147,9 @@ export const bundeslandLandkreis = new Map([
       'relation/62495',
       'relation/62412',
       'relation/62708',
-      'relation/62611',
     ],
   ],
-  ['relation/62718', ['relation/62658', 'relation/62559', 'relation/62718']],
+  ['relation/62718', ['relation/62658', 'relation/62559']],
   [
     'relation/62761',
     [
@@ -208,10 +206,12 @@ export const bundeslandLandkreis = new Map([
       'relation/62455',
       'relation/1800297',
       'relation/62373',
-      'relation/62761',
     ],
   ],
-  ['relation/62782', ['relation/62782']],
+  [
+    'relation/62782', // Hamburg
+    ['relation/62782'], // TODO Hamburg
+  ],
   [
     'relation/62372',
     [
@@ -221,7 +221,6 @@ export const bundeslandLandkreis = new Map([
       'relation/62651',
       'relation/62466',
       'relation/62474',
-      'relation/62372',
     ],
   ],
   [
@@ -272,7 +271,6 @@ export const bundeslandLandkreis = new Map([
       'relation/62397',
       'relation/62731',
       'relation/62355',
-      'relation/62771',
     ],
   ],
   [
@@ -314,7 +312,6 @@ export const bundeslandLandkreis = new Map([
       'relation/62357',
       'relation/62653',
       'relation/62443',
-      'relation/62341',
     ],
   ],
   [
@@ -346,7 +343,6 @@ export const bundeslandLandkreis = new Map([
       'relation/62585',
       'relation/62643',
       'relation/62563',
-      'relation/62650',
     ],
   ],
   [
@@ -366,7 +362,6 @@ export const bundeslandLandkreis = new Map([
       'relation/62747',
       'relation/62638',
       'relation/62473',
-      'relation/62607',
     ],
   ],
   [
@@ -385,13 +380,12 @@ export const bundeslandLandkreis = new Map([
       'relation/62434',
       'relation/62427',
       'relation/62547',
-      'relation/62467',
     ],
   ],
   [
-    'relation/62504', // Brandenburg
+    'relation/62504',
     [
-      'relation/62369', // Potsdam
+      'relation/62369',
       'relation/62364',
       'relation/62553',
       'relation/62537',
@@ -409,10 +403,12 @@ export const bundeslandLandkreis = new Map([
       'relation/318248',
       'relation/62488',
       'relation/62523',
-      'relation/62504',
     ],
   ],
-  ['relation/62422', ['relation/62422']],
+  [
+    'relation/62422', // Berlin
+    ['relation/62422'], // TODO => Berlin
+  ],
   [
     'relation/62366',
     [
@@ -438,7 +434,6 @@ export const bundeslandLandkreis = new Map([
       'relation/62552',
       'relation/62618',
       'relation/62419',
-      'relation/62366',
     ],
   ],
   [
@@ -459,7 +454,6 @@ export const bundeslandLandkreis = new Map([
       'relation/27019',
       'relation/27028',
       'relation/27014',
-      'relation/51529',
     ],
   ],
   [
@@ -473,7 +467,6 @@ export const bundeslandLandkreis = new Map([
       'relation/1739380',
       'relation/62685',
       'relation/1739381',
-      'relation/28322',
     ],
   ],
 ])
