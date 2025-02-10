@@ -163,11 +163,14 @@ const maprouletteUrl = maprouletteChallengeUrl(page.data.maprouletteChallenge.id
         .
       </li>
       <li>
-        MapRoulette: <a href={page.data.maprouletteChallenge.remoteGeoJson} target="_blank"
-          >GeoJson-Datei</a
-        >
+        MapRoulette Daten: <a
+          href={`${page.data.maprouletteChallenge.remoteGeoJson}?download=true`}
+          download
+          target="_blank">GeoJsonL-Datei</a
+        > (Newline-delimited GeoJSON)
       </li>
       <li>
+        <!-- TODO: Change this link to use the tags, not the source. Or change the source per campaign to be unique. -->
         OSMCha: <a
           href={`https://osmcha.org/?filters={"date__gte":[{"label":"2024-09-01","value":"2024-09-01"}],"source":[{"label":"${page.data.maprouletteChallenge.checkinSource}","value":"${page.data.maprouletteChallenge.checkinSource}"}]}`}
           target="_blank"
