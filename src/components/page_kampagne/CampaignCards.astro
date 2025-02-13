@@ -1,6 +1,7 @@
 ---
-import GridCard from '@components/cards/GridCard.astro'
-import GridCardWrapper from '@components/cards/GridCardWrapper.astro'
+import StackedCard from '@components/cards/StackedCard.astro'
+import StackedCardWrapper from '@components/cards/StackedCardWrapper.astro'
+import { LinkExternal } from '@components/Link/LinkExternal'
 import RectangleStack from 'astro-heroicons/solid/RectangleStack.astro'
 import { campaignCategorySelect } from 'cms/utils/campaignCategorySelect'
 import type { Campaign } from './types'
@@ -36,23 +37,66 @@ campaignCategorySelect.forEach(({ value: key }) => {
     }
 
     return (
-      <GridCardWrapper headline={headline} sectionClasses="mt-16">
-        {categoryCampaigns.length === 0 && (
-          <p class="col-span-2">
-            <code>TODO</code> Kampagnen für diese Kategorie sind geplant.
-          </p>
-        )}
+      <>
+        <StackedCardWrapper headline={headline} sectionClasses="mt-16">
+          {categoryCampaigns.length === 0 && (
+            <p class="col-span-2">
+              <code>TODO</code> Kampagnen für diese Kategorie sind geplant.
+            </p>
+          )}
 
-        {categoryCampaigns.map((campaign) => (
-          <GridCard
-            href={`/kampagnen/${campaign.id.replace('/index', '')}`}
-            text={campaign.data.name}
-            variant="iconGrid"
-          >
-            <RectangleStack class="size-14" />
-          </GridCard>
-        ))}
-      </GridCardWrapper>
+          {categoryCampaigns
+            .filter((campaign) => campaign.data.visibility === 'promote')
+            .map((campaign) => {
+              return (
+                <StackedCard
+                  href={`/kampagnen/${campaign.id.replace('/index', '')}`}
+                  title={campaign.data.name}
+                  variant="iconGrid"
+                >
+                  <RectangleStack class="size-14" />
+                </StackedCard>
+              )
+            })}
+        </StackedCardWrapper>
+
+        <ul>
+          {categoryCampaigns
+            .filter(
+              (campaign) =>
+                campaign.data.visibility !== 'promote' &&
+                campaign.data.maprouletteChallenge.discriminant === true,
+            )
+            .map((campaign) => {
+              return (
+                <li>
+                  <LinkExternal href={`/kampagnen/${campaign.id.replace('/index', '')}`}>
+                    {campaign.data.name}
+                  </LinkExternal>
+                </li>
+              )
+            })}
+          {categoryCampaigns
+            .filter(
+              (campaign) =>
+                campaign.data.visibility !== 'promote' &&
+                campaign.data.maprouletteChallenge.discriminant === false,
+            )
+            .map((campaign) => {
+              return (
+                <li class="text-gray-400">
+                  <LinkExternal
+                    href={`/kampagnen/${campaign.id.replace('/index', '')}`}
+                    className="text-gray-400"
+                  >
+                    {campaign.data.name}
+                  </LinkExternal>{' '}
+                  (reine Karten-Darstellung)
+                </li>
+              )
+            })}
+        </ul>
+      </>
     )
   })
 }

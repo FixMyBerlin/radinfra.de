@@ -16,7 +16,7 @@ const external = href.startsWith('http')
 
 <a
   href={href}
-  class="group/card flex items-start justify-center gap-4 rounded-sm bg-gray-100 p-4 no-underline ring-sky-100 hover:bg-cyan-50 hover:ring-1"
+  class="group/card justify-left flex items-center gap-4 rounded-sm bg-gray-100 p-4 no-underline ring-sky-100 hover:bg-cyan-50 hover:ring-1"
   title={alt}
   target={external ? '_blank' : undefined}
 >
@@ -27,7 +27,7 @@ const external = href.startsWith('http')
   <div class="grow">
     <div class="flex items-center justify-between">
       <h2
-        class="justify-left not-prose mt-1 flex items-center gap-1 py-0 text-center underline decoration-cyan-300 decoration-1 underline-offset-4"
+        class="justify-left not-prose mt-1 flex items-center gap-1 py-0 text-left underline decoration-cyan-300 decoration-1 underline-offset-4"
       >
         {title ? title : 'Mehr erfahren…'}
         {external ? <ArrowTopRightOnSquare class="size-5" /> : ''}
