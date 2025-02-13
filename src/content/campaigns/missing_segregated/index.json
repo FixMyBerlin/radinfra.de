@@ -2,13 +2,13 @@
   "name": "Ergänze Angaben zur Trennung von Fahrrad- und Fußverkehr auf Geh-/Radwegen (Alpha-Version)",
   "menuTitle": "Gemeinsame oder getrennte Führung?",
   "pubDate": "2024-09-20T15:00",
-  "category": "traffic_signs",
+  "category": "radinfra",
   "author": "Tobias Jordans @tordans",
   "visibility": "secondary",
   "language": "de",
   "description": "Diese Kampagne enthält Wege, die sowohl von Fahrrad- als auch Fußverkehr genutzt werden. Es fehlt aber die Angabe, ob eine Trennung der Verkehrsformen vorliegt.",
   "task": "**Bitte ergänze die Angabe `segregated=yes` oder `no`.** Weitere Hinweise findet Du in der Aufgabenbeschreibung.",
-  "mapUrl": "https://radverkehrsatlas.de/regionen/radinfra#todo",
+  "mapUrl": "https://radverkehrsatlas.de/regionen/radinfra?config=ife2uk.1a3pg.f6&v=2",
   "maprouletteChallenge": {
     "discriminant": true,
     "value": {

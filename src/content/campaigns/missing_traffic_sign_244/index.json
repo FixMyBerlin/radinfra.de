@@ -8,7 +8,7 @@
   "language": "de",
   "description": "Diese Kampagne enthält Wege, die [im Radverkehrsatlas](https://radverkehrsatlas.de/) als Fahrradstraße kategorisiert wurden, jedoch fehlt das zugehörige Verkehrszeichen.",
   "task": "**Bitte ergänze fehlende Verkehrszeichen oder ein explizites `traffic_sign=none`.** Weitere Hinweise findet Du in der Aufgabenbeschreibung.",
-  "mapUrl": "https://radverkehrsatlas.de/regionen/radinfra#todo",
+  "mapUrl": "https://radverkehrsatlas.de/regionen/radinfra?config=config=ife2uk.nmmc.f6&v=2",
   "maprouletteChallenge": {
     "discriminant": true,
     "value": {

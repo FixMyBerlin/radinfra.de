@@ -8,7 +8,7 @@
   "language": "de",
   "description": "Diese Kampagne enthält Radinfrastruktur auf der Fahrbahn bei denen die Angabe fehlt, ob es sich um einen Schutzstreifen oder Angebotsstreifen handelt.",
   "task": "**Bitte prüfe die Radinfrastruktur und ergänze die nötigen Attribute.** Weitere Hinweise findet Du in der Aufgabenbeschreibung.",
-  "mapUrl": "https://radverkehrsatlas.de/regionen/radinfra#todo",
+  "mapUrl": "https://radverkehrsatlas.de/regionen/radinfra?config=ife2uk.6rt0.f6&v=2",
   "maprouletteChallenge": {
     "discriminant": true,
     "value": {

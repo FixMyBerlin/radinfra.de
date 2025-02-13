@@ -8,7 +8,7 @@
   "language": "de",
   "description": "Mit dieser Kampagne test ich, wie sich MapRoulette verhält, wenn sich Daten extern ändern.",
   "task": "Hier gibt es nihts zu tun.",
-  "mapUrl": "https://radverkehrsatlas.de/regionen/radinfra#todo",
+  "mapUrl": "https://radverkehrsatlas.de/regionen/radinfra?config=",
   "maprouletteChallenge": {
     "discriminant": true,
     "value": {

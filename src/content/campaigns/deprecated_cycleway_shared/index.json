@@ -8,7 +8,7 @@
   "language": "de",
   "description": "Diese Kampagne enthält Wege, die die veraltete Angabe `cycleway=shared` verwenden.",
   "task": "**Bitte ändere das Tagging. In vielen Fällen kann es ersatzlos gestrichen werden. Es ist aber wichtig, die Infrastruktur in diesem Zuge zu prüfen.** Weitere Hinweise findet Du in der Aufgabenbeschreibung.",
-  "mapUrl": "https://radverkehrsatlas.de/regionen/radinfra#todo",
+  "mapUrl": "https://radverkehrsatlas.de/regionen/radinfra?config=config=ife2uk.hrb610.f6&v=2",
   "maprouletteChallenge": {
     "discriminant": true,
     "value": {

@@ -8,7 +8,7 @@
   "language": "de",
   "description": "Diese Kampagne enthält Wege, bei denen die Angabe zur Breite der Radinfrastruktur fehlt.",
   "task": "**Bitte ergänze die Breite der Radinfrastruktur `surface` und gerne auch die Breite der Radinfrastrukturnqualität `smoothness`.** Weitere Hinweise findet Du in der Aufgabenbeschreibung.",
-  "mapUrl": "https://radverkehrsatlas.de/regionen/radinfra#todo",
+  "mapUrl": "https://radverkehrsatlas.de/regionen/radinfra?config=config=ife2uk.8vo5z8.f6&v=2",
   "maprouletteChallenge": {
     "discriminant": false
   }

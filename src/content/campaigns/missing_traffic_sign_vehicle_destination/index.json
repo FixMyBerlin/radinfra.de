@@ -8,7 +8,7 @@
   "language": "de",
   "description": "Diese Kampagne enthält Wege, die [im Radverkehrsatlas](https://radverkehrsatlas.de/) als Fahrradstraße mit 'Anlieger frei'-Freigabe für Kfz kategorisiert wurden, jedoch fehlt das zugehörige Zusatzzeichen.",
   "task": "**Bitte ergänze fehlende Verkehrszeichen oder ein explizites `traffic_sign=none`.** Weitere Hinweise findet Du in der Aufgabenbeschreibung.",
-  "mapUrl": "https://radverkehrsatlas.de/regionen/radinfra#todo",
+  "mapUrl": "https://radverkehrsatlas.de/regionen/radinfra?config=ife2uk.4funno.f6&v=2",
   "maprouletteChallenge": {
     "discriminant": true,
     "value": {
