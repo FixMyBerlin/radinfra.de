@@ -1,7 +1,7 @@
 import { maprouletteChallengeUrl } from '@components/Link/maprouletteChallengeUrl'
 import { z } from 'astro/zod'
 import { Glob } from 'bun'
-import type { AstroCampaignType } from 'cms/campaignsAstro'
+import { AstroCampaignSchema, MaprouletteCampaignCreationSchema } from 'cms/campaignsAstro'
 import { startOfDay } from 'date-fns'
 import invariant from 'tiny-invariant'
 import { parseArgs } from 'util'
@@ -23,30 +23,35 @@ const { values } = parseArgs({
   allowPositionals: true,
 })
 
-function dataCreateChallenge({ slug, ...astroCampaignData }: { slug: string } & AstroCampaignType) {
+type ActionData = { slug: string } & z.infer<typeof MaprouletteCampaignCreationSchema>
+
+function dataCreateChallenge({ slug, ...astroCampaignData }: ActionData) {
   const challengeData: CreateMapRouletteChallengeType = {
     ...defaultChallenge,
     name: astroCampaignData.name,
     infoLink: `https://radinfra.de/kampagnen/${slug}/`,
-    remoteGeoJson: astroCampaignData.maprouletteChallenge.remoteGeoJson,
-    enabled: astroCampaignData.maprouletteChallenge.enabled,
+    remoteGeoJson: astroCampaignData.maprouletteChallenge.value.remoteGeoJson,
+    enabled: astroCampaignData.maprouletteChallenge.value.enabled,
     description: astroCampaignData.description,
-    checkinComment: astroCampaignData.maprouletteChallenge.checkinComment.replaceAll(' ', '%20'), // MR will interpret spaces as `+`
-    checkinSource: astroCampaignData.maprouletteChallenge.checkinSource,
+    checkinComment: astroCampaignData.maprouletteChallenge.value.checkinComment.replaceAll(
+      ' ',
+      '%20',
+    ), // MR will interpret spaces as `+`
+    checkinSource: astroCampaignData.maprouletteChallenge.value.checkinSource,
     dataOriginDate: startOfDay(new Date()).toISOString(), // Atlas data is always fresh
   }
   return CreateMapRouletteChallengeSchema.parse(challengeData)
 }
 
-function dataUpdateChallenge({ slug, ...astroCampaignData }: { slug: string } & AstroCampaignType) {
+function dataUpdateChallenge({ slug, ...astroCampaignData }: ActionData) {
   invariant(
-    astroCampaignData.maprouletteChallenge.id,
+    astroCampaignData.maprouletteChallenge.value.id,
     'challenge.id is required dataUpdateChallenge',
   )
 
   const challengeData: UpdateMapRouletteChallengeType = {
     ...dataCreateChallenge({ slug, ...astroCampaignData }),
-    id: astroCampaignData.maprouletteChallenge.id,
+    id: astroCampaignData.maprouletteChallenge.value.id,
   }
   return UpdateMapRouletteChallengeSchema.parse(challengeData)
 }
@@ -101,23 +106,35 @@ async function main(filter: string | undefined) {
   const campaignPaths = glob.scan(campaignsFolder)
 
   for await (const campaignPath of campaignPaths) {
+    // SKIP BY FILTER PARAM
     const skip = filter ? !campaignPath.includes(filter) : false
     const logPrefix = skip ? '\x1b[33m↷ SKIPPING\x1b[0m' : '\x1b[32m✎ PROCESS\x1b[0m'
     console.log('   ', logPrefix, campaignPath)
     if (skip) continue
 
+    // LOAD JSON
     const [slug] = campaignPath.split('/')
     const filePath = `${campaignsFolder}/${campaignPath}`
     const json = await Bun.file(filePath).json()
-    const action = json.maprouletteChallenge.id ? 'UPDATE' : 'CREATE'
+    const parsed = AstroCampaignSchema.parse(json)
 
+    // SKIP WHEN MR OFF
+    if (parsed.maprouletteChallenge.discriminant === false) {
+      console.log('   ', '\x1b[37m↷ SKIPPING\x1b[0m', campaignPath)
+      continue
+    }
+
+    // ACTION
+    const saveParsed = MaprouletteCampaignCreationSchema.parse(parsed) // A second time to mak TS happy
+    const action = parsed.maprouletteChallenge.value.id ? 'UPDATE' : 'CREATE'
+    invariant(slug)
     switch (action) {
       case 'CREATE':
-        const createData = dataCreateChallenge({ slug, ...json })
+        const createData = dataCreateChallenge({ slug, ...saveParsed })
         const challenge = await createChallenge(createData)
         // Write back the ID into the given Keystatic Content file
         const { id } = z.object({ id: z.number() }).parse(challenge)
-        json.maprouletteChallenge.id = id
+        json.maprouletteChallenge.value.id = id
         await Bun.write(filePath, JSON.stringify(json, undefined, 2))
         console.log('    CREATED campaing', maprouletteChallengeUrl(id))
         break
