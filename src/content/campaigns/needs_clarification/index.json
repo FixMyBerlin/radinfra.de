@@ -4,17 +4,21 @@
   "pubDate": "2025-01-01T15:00",
   "category": "radinfra",
   "author": "Tobias Jordans @tordans",
-  "inMenu": true,
+  "visibility": "promote",
   "language": "de",
   "description": "Diese Kampagne enthält Radinfrastruktur die nicht kategorisiert werden konnte.",
   "task": "**Bitte prüfe das Tagging und ergänze weitere Attribute, die bei der Kategorisierung helfen.** Weitere Hinweise findet Du in der Aufgabenbeschreibung.",
   "mapUrl": "https://radverkehrsatlas.de/regionen/radinfra#todo",
   "maprouletteChallenge": {
-    "id": 50891,
-    "name": "Führungsform der Radinfrastruktur unklar",
-    "enabled": true,
-    "remoteGeoJson": "https://radverkehrsatlas.de/api/maproulette/needs_clarification",
-    "checkinComment": "Angabe zur Führungsform ergänzt. #needs_clarification #radinfra_de #maproulette",
-    "checkinSource": "radinfra_de"
+    "discriminant": true,
+    "value": {
+      "id": 50891,
+      "name": "Führungsform der Radinfrastruktur unklar",
+      "enabled": true,
+      "remoteGeoJson": "https://radverkehrsatlas.de/api/maproulette/needs_clarification",
+      "checkinComment": "Angabe zur Führungsform ergänzt. #needs_clarification #radinfra_de #maproulette",
+      "checkinSource": "radinfra_de",
+      "resultsLimited": false
+    }
   }
 }

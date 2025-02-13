@@ -4,17 +4,21 @@
   "pubDate": "2025-01-01T15:00",
   "category": "radinfra",
   "author": "Tobias Jordans @tordans",
-  "inMenu": true,
+  "visibility": "secondary",
   "language": "de",
   "description": "Diese Kampagne enthält Wege, die die veraltete Angabe `cycleway=shared` verwenden.",
   "task": "**Bitte ändere das Tagging. In vielen Fällen kann es ersatzlos gestrichen werden. Es ist aber wichtig, die Infrastruktur in diesem Zuge zu prüfen.** Weitere Hinweise findet Du in der Aufgabenbeschreibung.",
   "mapUrl": "https://radverkehrsatlas.de/regionen/radinfra#todo",
   "maprouletteChallenge": {
-    "id": 50889,
-    "name": "Veraltetes Tagging (`cycleway=shared`)",
-    "enabled": true,
-    "remoteGeoJson": "https://radverkehrsatlas.de/api/maproulette/deprecated_cycleway_shared",
-    "checkinComment": "Deprecated cycleway=shared. #deprecated_cycleway_shared #radinfra_de #maproulette",
-    "checkinSource": "radinfra_de"
+    "discriminant": true,
+    "value": {
+      "id": 50889,
+      "name": "Veraltetes Tagging (`cycleway=shared`)",
+      "enabled": true,
+      "remoteGeoJson": "https://radverkehrsatlas.de/api/maproulette/deprecated_cycleway_shared",
+      "checkinComment": "Deprecated cycleway=shared. #deprecated_cycleway_shared #radinfra_de #maproulette",
+      "checkinSource": "radinfra_de",
+      "resultsLimited": false
+    }
   }
 }

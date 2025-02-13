@@ -2,6 +2,7 @@
 export const prerender = true
 //
 import { linkStyles } from '@components/Link/Link'
+import { LinkExternal } from '@components/Link/LinkExternal'
 import { maprouletteChallengeUrl } from '@components/Link/maprouletteChallengeUrl'
 import MegaButton from '@components/Link/MegaButton.astro'
 import CampaignCards from '@components/page_kampagne/CampaignCards.astro'
@@ -32,14 +33,19 @@ const relatedCampaigns = await getCollection('campaigns', ({ data }) => {
   return data.category === page.data.category
 })
 
-const maprouletteUrl = maprouletteChallengeUrl(page.data.maprouletteChallenge.id)
+const maprouletteUrl =
+  page.data.maprouletteChallenge.discriminant === true
+    ? maprouletteChallengeUrl(page.data.maprouletteChallenge.value.id)
+    : undefined
+
+const noindex =
+  maprouletteUrl === undefined ||
+  page.data.visibility == 'hidden' ||
+  (page.data.maprouletteChallenge.discriminant === true &&
+    page.data.maprouletteChallenge?.value?.enabled === false)
 ---
 
-<LayoutArticlePageAstro
-  title={page.data.name}
-  {...page.data}
-  noindex={!maprouletteUrl || !page.data.maprouletteChallenge.enabled}
->
+<LayoutArticlePageAstro title={page.data.name} {...page.data} noindex={noindex}>
   <PageHeadline category="Kampagnen" headline={page.data.name} intro={page.data.description} />
 
   <ProseSection>
@@ -47,28 +53,32 @@ const maprouletteUrl = maprouletteChallengeUrl(page.data.maprouletteChallenge.id
     <Markdown markdown={page.data.task} unstyled={true} />
 
     <h2>Mitmachen</h2>
-    <p class="!mb-0">Es gibt zwei Einstiege zu den Aufgaben:</p>
+    <p class="!mb-0">
+      Es gibt verschiedne Einstiege zu den Aufgaben. Wir empfehlen den Weg über die Karte.
+    </p>
 
-    <div class="grid gap-4 sm:grid-cols-2">
-      <article>
-        <h3 class="sr-only">Einstieg über MapRoulette</h3>
-        {
-          maprouletteUrl ? (
-            <>
-              <MegaButton
-                href={maprouletteUrl}
-                iconKey="maproulette"
-                label="MapRoulette"
-                subline="Fokussiert Aufgabe für Aufgabe bearbeiten."
-                className="mt-2"
-              />
-              <details class="prose-sm mt-2">
-                <summary class={twJoin('cursor-pointer font-bold', linkStyles)}>
-                  Kurzanleitung
-                </summary>
+    <div class="mt-2">
+      {
+        page.data.mapUrl ? (
+          <>
+            <MegaButton
+              href={page.data.mapUrl}
+              iconKey="map"
+              label="Karte"
+              subline="Aufgaben aus dem Kontext heraus finden."
+            />
+
+            <details class="prose-sm mt-2">
+              <summary class={twJoin('cursor-pointer font-bold', linkStyles)}>
+                Kurzanleitung
+              </summary>
+              {page.data.maprouletteChallenge.discriminant === true ? (
                 <ol>
-                  <li>Bei MapRoulette mit OSM anmelden</li>
-                  <li>Eine konkrete Aufgabe auswählen oder "Start" klicken</li>
+                  <li>
+                    In der Karte einen Streckenabschnitt <strong>auswählen</strong>
+                  </li>
+                  <li>Rechts die "Aufgabe zur Datenverbesserung" ausklappen</li>
+                  <li>Die Karte führt dich in eine Ansicht von MapRoulette</li>
                   <li>
                     Tipp: Die Aufgabenbeschreibung enthält hilfreiche Links zu Mapillary und Co
                   </li>
@@ -78,61 +88,46 @@ const maprouletteUrl = maprouletteChallengeUrl(page.data.maprouletteChallenge.id
                   <li>
                     Zum Abschluss die Aufgabe als erledigt (oder eine andere Option) speichern
                   </li>
+                  <li>Änderungen sind am nächsten Tag in den Daten zu sehen</li>
                 </ol>
-              </details>
-            </>
-          ) : (
-            <p>
-              <small>Diese Kampagne ist noch nicht aktiv, daher gibt es noch keine Links.</small>
-            </p>
-          )
-        }
-      </article>
-
-      <article>
-        <h3 class="sr-only">Einstieg über Karte</h3>
-        {
-          page.data.mapUrl ? (
-            <>
-              <MegaButton
-                href={page.data.mapUrl}
-                iconKey="map"
-                label="Karte"
-                subline="Aufgaben aus dem Kontext heraus finden."
-                className="mt-2"
-              />
-
-              <details class="prose-sm mt-2">
-                <summary class={twJoin('cursor-pointer font-bold', linkStyles)}>
-                  Kurzanleitung
-                </summary>
+              ) : (
                 <ol>
-                  <li>
-                    In der Karte einen Streckenabschnitt <strong>auswählen</strong>
-                  </li>
-                  <li>Rechts die "Aufgabe zur Datenverbesserung" ausklappen</li>
-                  <li>
-                    Tipp: Die Aufgabenbeschreibung enthält hilfreiche Links zu Mapillary und Co
-                  </li>
-                  <li>
-                    Die Aufgabe über "Bearbeiten (iD)" bearbeiten und Änderungen in OSM speichern
-                  </li>
-                  <li>Änderungen sind am nächsten Tag in den Daten zu sehen.</li>
+                  <li />
                 </ol>
-              </details>
-            </>
-          ) : null
-        }
-      </article>
+              )}
+            </details>
+          </>
+        ) : null
+      }
     </div>
+    {
+      maprouletteUrl && (
+        <ProseSection>
+          Alternativ kannst du
+          <LinkExternal href={maprouletteUrl}>die Kampagne über MapRoulette.com</LinkExternal>{' '}
+          bearbeiten.
+          <details class="prose-sm mt-2">
+            <summary class={twJoin('cursor-pointer font-bold', linkStyles)}>Kurzanleitung</summary>
+            <ol>
+              <li>Bei MapRoulette mit OSM anmelden</li>
+              <li>Eine konkrete Aufgabe auswählen oder "Start" klicken</li>
+              <li>Tipp: Die Aufgabenbeschreibung enthält hilfreiche Links zu Mapillary und Co</li>
+              <li>Die Aufgabe im iD Editor oder JOSM bearbeiten und Änderungen in OSM speichern</li>
+              <li>Zum Abschluss die Aufgabe als erledigt (oder eine andere Option) speichern</li>
+            </ol>
+          </details>
+        </ProseSection>
+      )
+    }
   </ProseSection>
 
   {
-    page.data.maprouletteChallenge.id && (
-      <ProseSection classes="mt-18">
-        <CampaignStatistic challengeId={page.data.maprouletteChallenge.id} client:idle />
-      </ProseSection>
-    )
+    page.data.maprouletteChallenge.discriminant === true &&
+      page.data.maprouletteChallenge.value.id && (
+        <ProseSection classes="mt-18">
+          <CampaignStatistic challengeId={page.data.maprouletteChallenge.value.id} client:idle />
+        </ProseSection>
+      )
   }
 
   {
@@ -162,23 +157,53 @@ const maprouletteUrl = maprouletteChallengeUrl(page.data.maprouletteChallenge.id
         </a>
         .
       </li>
-      <li>
-        MapRoulette Daten: <a
-          href={`${page.data.maprouletteChallenge.remoteGeoJson}?download=true`}
-          download
-          target="_blank">GeoJsonL-Datei</a
-        > (Newline-delimited GeoJSON)
-      </li>
-      <li>
-        <!-- TODO: Change this link to use the tags, not the source. Or change the source per campaign to be unique. -->
-        OSMCha: <a
-          href={`https://osmcha.org/?filters={"date__gte":[{"label":"2024-09-01","value":"2024-09-01"}],"source":[{"label":"${page.data.maprouletteChallenge.checkinSource}","value":"${page.data.maprouletteChallenge.checkinSource}"}]}`}
-          target="_blank"
-        >
-          Changesets mit dem Tag
-          <code>{page.data.maprouletteChallenge.checkinSource}</code>
-        </a>
-      </li>
+      {
+        page.data.maprouletteChallenge.discriminant === true &&
+          page.data.maprouletteChallenge.value.resultsLimited && (
+            <>
+              <li>
+                <strong>Diese Kampagne ist künstlich limitiert auf 40.000 Aufgaben</strong>, da
+                MapRoulette sonst nicht funktioniert. Das bedeutet, wenn Aufgaben erledigt wurden
+                und die Kampage aktualisiert wird, werden neue Aufgaben nachkommen. Zumindest
+                solange, bis wir uns unter die 40k gearbeitet haben.
+              </li>
+            </>
+          )
+      }
+      {
+        page.data.maprouletteChallenge.discriminant === true &&
+          page.data.maprouletteChallenge.value.remoteGeoJson && (
+            <>
+              <li>
+                MapRoulette Daten:{' '}
+                <a
+                  href={`${page.data.maprouletteChallenge.value.remoteGeoJson}?download=true`}
+                  download
+                  target="_blank"
+                >
+                  GeoJsonL-Datei
+                </a>{' '}
+                (Newline-delimited GeoJSON)
+              </li>
+            </>
+          )
+      }
+      {
+        page.data.maprouletteChallenge.discriminant === true &&
+          page.data.maprouletteChallenge.value.checkinSource && (
+            <li>
+              {/* TODO: Change this link to use the tags, not the source. Or change the source per campaign to be unique. */}
+              OSMCha:{' '}
+              <a
+                href={`https://osmcha.org/?filters={"date__gte":[{"label":"2024-09-01","value":"2024-09-01"}],"source":[{"label":"${page.data.maprouletteChallenge.value.checkinSource}","value":"${page.data.maprouletteChallenge.value.checkinSource}"}]}`}
+                target="_blank"
+              >
+                Changesets mit dem Tag
+                <code>{page.data.maprouletteChallenge.value.checkinSource}</code>
+              </a>
+            </li>
+          )
+      }
     </ul>
   </ProseSection>
 </LayoutArticlePageAstro>

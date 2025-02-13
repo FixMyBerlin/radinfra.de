@@ -4,17 +4,12 @@
   "pubDate": "2025-01-01T15:00",
   "category": "traffic_signs",
   "author": "Tobias Jordans @tordans",
-  "inMenu": true,
+  "visibility": "secondary",
   "language": "de",
   "description": "Diese Kampagne enthält Wege, die [im Radverkehrsatlas](https://radverkehrsatlas.de/) als Radinfrastruktur kategorisiert wurden, jedoch fehlt das zugehörige Verkehrszeichen.",
   "task": "**Bitte ergänze fehlende Verkehrszeichen oder ein explizites `traffic_sign=none`.** Weitere Hinweise findet Du in der Aufgabenbeschreibung.",
   "mapUrl": "https://radverkehrsatlas.de/regionen/radinfra#todo",
   "maprouletteChallenge": {
-    "id": 50886,
-    "name": "Radinfrastruktur ohne Verkehrszeichen",
-    "enabled": true,
-    "remoteGeoJson": "https://radverkehrsatlas.de/api/maproulette/missing_traffic_sign",
-    "checkinComment": "Verkehrszeichen ergänzt #missing_traffic_sign #traffic_signs #radinfra_de #maproulette",
-    "checkinSource": "osm_traffic_signs_project"
+    "discriminant": false
   }
 }

@@ -4,17 +4,21 @@
   "pubDate": "2024-09-20T15:00",
   "category": "traffic_signs",
   "author": "Tobias Jordans @tordans",
-  "inMenu": true,
+  "visibility": "secondary",
   "language": "de",
   "description": "Diese Kampagne enthält Wege, die sowohl von Fahrrad- als auch Fußverkehr genutzt werden. Es fehlt aber die Angabe, ob eine Trennung der Verkehrsformen vorliegt.",
   "task": "**Bitte ergänze die Angabe `segregated=yes` oder `no`.** Weitere Hinweise findet Du in der Aufgabenbeschreibung.",
   "mapUrl": "https://radverkehrsatlas.de/regionen/radinfra#todo",
   "maprouletteChallenge": {
-    "id": 50887,
-    "name": "Geh-/Radweg: Gemeinsame oder getrennte Führung?",
-    "enabled": true,
-    "remoteGeoJson": "https://radverkehrsatlas.de/api/maproulette/missing_segregated",
-    "checkinComment": "Angabe zu `segregated` ergänzt. #missing_segregated #traffic_signs #radinfra_de #maproulette",
-    "checkinSource": "radinfra_de"
+    "discriminant": true,
+    "value": {
+      "id": 50887,
+      "name": "Geh-/Radweg: Gemeinsame oder getrennte Führung?",
+      "enabled": true,
+      "remoteGeoJson": "https://radverkehrsatlas.de/api/maproulette/missing_segregated",
+      "checkinComment": "Angabe zu `segregated` ergänzt. #missing_segregated #traffic_signs #radinfra_de #maproulette",
+      "checkinSource": "radinfra_de",
+      "resultsLimited": false
+    }
   }
 }

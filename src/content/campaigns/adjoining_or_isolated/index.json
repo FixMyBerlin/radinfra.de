@@ -4,17 +4,21 @@
   "pubDate": "2025-01-01T15:00",
   "category": "radinfra",
   "author": "Tobias Jordans @tordans",
-  "inMenu": true,
+  "visibility": "secondary",
   "language": "de",
   "description": "Diese Kampagne enthält Wege, deren Führungsform [im Radverkehrsatlas](https://radverkehrsatlas.de/) nicht präzise angegeben werden kann.\n",
   "task": "**Bitte prüfe ob die Radinfrastruktur straßenbegleitend ist und ergänze den fehlenden Zugangs-Tag `is_sidepath=yes` oder `no`.** Weitere Hinweise findet Du in der Aufgabenbeschreibung.\n",
   "mapUrl": "https://radverkehrsatlas.de/regionen/radinfra#todo",
   "maprouletteChallenge": {
-    "id": 50885,
-    "enabled": true,
-    "name": "Fahrradinfrastruktur straßenbegleitend oder selbstständig geführt?",
-    "remoteGeoJson": "https://radverkehrsatlas.de/api/maproulette/adjoining_or_isolated",
-    "checkinComment": "Angabe zur Führung der Fahrradinfrastruktur (straßenbegleitend bzw. selbstständig geführt) ergänzt. #adjoining_or_isolated #radinfra_de #maproulette",
-    "checkinSource": "radinfra_de"
+    "discriminant": true,
+    "value": {
+      "id": 50885,
+      "enabled": true,
+      "name": "Fahrradinfrastruktur straßenbegleitend oder selbstständig geführt?",
+      "remoteGeoJson": "https://radverkehrsatlas.de/api/maproulette/adjoining_or_isolated",
+      "checkinComment": "Angabe zur Führung der Fahrradinfrastruktur (straßenbegleitend bzw. selbstständig geführt) ergänzt. #adjoining_or_isolated #radinfra_de #maproulette",
+      "checkinSource": "radinfra_de",
+      "resultsLimited": false
+    }
   }
 }

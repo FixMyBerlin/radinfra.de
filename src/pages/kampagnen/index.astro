@@ -8,7 +8,15 @@ import { getCollection } from 'astro:content'
 
 const allCampaigns = await getCollection('campaigns')
 const sortedCampaigns = allCampaigns
-  .filter((c) => c.data.maprouletteChallenge.id)
+  .filter((c) => {
+    if (c.data.visibility === 'hidden') return false
+    if (c.data.maprouletteChallenge.discriminant === false) return true
+    return (
+      c.data.maprouletteChallenge.discriminant === true &&
+      c.data.maprouletteChallenge.value.id &&
+      c.data.maprouletteChallenge.value.enabled === true
+    )
+  })
   .sort((postA, postB) => {
     return new Date(postB.data.pubDate).valueOf() - new Date(postA.data.pubDate).valueOf()
   })

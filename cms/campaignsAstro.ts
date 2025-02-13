@@ -3,7 +3,9 @@ import { defineCollection, z } from 'astro:content'
 import { contentBase } from './campaignsKeystatic'
 import { campaignCategories } from './utils/campaignCategorySelect'
 import { loader } from './utils/loader'
+import { visibilityOptions } from './utils/visibilitySelect'
 
+// REMINDER: Keep in sync with https://github.com/FixMyBerlin/atlas-app/blob/develop/app/src/app/regionen/(index)/_data/radinfraDeCampaignSchema.ts
 export const AstroCampaignSchema = z.object({
   name: z.string(),
   menuTitle: z.string(),
@@ -11,19 +13,28 @@ export const AstroCampaignSchema = z.object({
     .string()
     .or(z.date())
     .transform((val) => new Date(val)),
+  visibility: z.enum(visibilityOptions),
   category: z.enum(campaignCategories),
   author: z.string(),
-  inMenu: z.boolean(),
   language: z.enum(languages).optional(),
   mapUrl: z.string().url().optional(),
-  maprouletteChallenge: z.object({
-    id: z.number().nullable().optional(),
-    enabled: z.boolean(),
-    name: z.string(),
-    remoteGeoJson: z.string().url(),
-    checkinComment: z.string(),
-    checkinSource: z.string(),
-  }),
+  maprouletteChallenge: z.union([
+    z.object({
+      discriminant: z.literal(true),
+      value: z.object({
+        id: z.number().nullable().optional(),
+        enabled: z.boolean(),
+        name: z.string(),
+        remoteGeoJson: z.string().url(),
+        checkinComment: z.string(),
+        checkinSource: z.string(),
+        resultsLimited: z.boolean(),
+      }),
+    }),
+    z.object({
+      discriminant: z.literal(false),
+    }),
+  ]),
   description: z.string(),
   task: z.string(),
 })

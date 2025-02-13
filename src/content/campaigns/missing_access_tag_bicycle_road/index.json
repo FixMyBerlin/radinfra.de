@@ -4,17 +4,21 @@
   "pubDate": "2024-10-01T15:00",
   "category": "traffic_signs",
   "author": "Tobias Jordans @tordans",
-  "inMenu": true,
+  "visibility": "secondary",
   "language": "de",
   "description": "Diese Kampagne enthält Wege, die [im Radverkehrsatlas](https://radverkehrsatlas.de/) als Fahrradstraße klassifiziert sind, bei denen jedoch das `bicycle=designated` fehlt.",
   "task": "**Bitte prüfe die Situation und ergänze den fehlenden Zugangs-Tag `bicycle=designated`.** Weitere Hinweise findet Du in der Aufgabenbeschreibung.",
   "mapUrl": "https://radverkehrsatlas.de/regionen/radinfra#todo",
   "maprouletteChallenge": {
-    "id": 49368,
-    "name": "Fahrradstraßen mit fehlendem `bicycle=designated`",
-    "enabled": true,
-    "remoteGeoJson": "https://radverkehrsatlas.de/api/maproulette/missing_access_tag_bicycle_road",
-    "checkinComment": "Fahrradstraßen ohne bicycle=designated #missing_access_tag_bicycle_road #traffic_signs #radinfra_de #maproulette",
-    "checkinSource": "osm_traffic_signs_project"
+    "discriminant": true,
+    "value": {
+      "id": 49368,
+      "name": "Fahrradstraßen mit fehlendem `bicycle=designated`",
+      "enabled": true,
+      "remoteGeoJson": "https://radverkehrsatlas.de/api/maproulette/missing_access_tag_bicycle_road",
+      "checkinComment": "Fahrradstraßen ohne bicycle=designated #missing_access_tag_bicycle_road #traffic_signs #radinfra_de #maproulette",
+      "checkinSource": "radinfra_de",
+      "resultsLimited": false
+    }
   }
 }

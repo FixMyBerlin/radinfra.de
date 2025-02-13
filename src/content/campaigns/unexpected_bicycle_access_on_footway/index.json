@@ -4,17 +4,21 @@
   "pubDate": "2025-01-01T15:00",
   "category": "radinfra",
   "author": "Tobias Jordans @tordans",
-  "inMenu": true,
+  "visibility": "secondary",
   "language": "de",
   "description": "Diese Kampagne enthält Fußwege, die gleichzeitig Angaben zur Radinfrastruktur haben.",
   "task": "**Bitte prüfe das Tagging; Eventuell ist eine andere Straßenklasse angebracht.** Weitere Hinweise findet Du in der Aufgabenbeschreibung.",
   "mapUrl": "https://radverkehrsatlas.de/regionen/radinfra#todo",
   "maprouletteChallenge": {
-    "id": 50883,
-    "name": "Straßenklasse 'Fußweg' unklar",
-    "enabled": true,
-    "remoteGeoJson": "https://radverkehrsatlas.de/api/maproulette/unexpected_bicycle_access_on_footway",
-    "checkinComment": "Straßenklasse Fußweg in Kombination mit Radinfrastruktur verbessert. #unexpected_bicycle_access_on_footway #radinfra_de #maproulette",
-    "checkinSource": "radinfra_de"
+    "discriminant": true,
+    "value": {
+      "id": 50883,
+      "name": "Straßenklasse 'Fußweg' unklar",
+      "enabled": true,
+      "remoteGeoJson": "https://radverkehrsatlas.de/api/maproulette/unexpected_bicycle_access_on_footway",
+      "checkinComment": "Straßenklasse Fußweg in Kombination mit Radinfrastruktur verbessert. #unexpected_bicycle_access_on_footway #radinfra_de #maproulette",
+      "checkinSource": "radinfra_de",
+      "resultsLimited": false
+    }
   }
 }
