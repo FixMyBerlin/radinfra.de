@@ -1,5 +1,5 @@
 {
-  "name": "Die Angabe `cycleway=shared` soll nicht mehr verwendet werden (Alpha-Version)",
+  "name": "Die Angabe `cycleway=shared` soll nicht mehr verwendet werden (Beta-Version)",
   "menuTitle": "Veraltetes Tagging (`shared`)",
   "pubDate": "2025-01-01T15:00",
   "category": "radinfra",
