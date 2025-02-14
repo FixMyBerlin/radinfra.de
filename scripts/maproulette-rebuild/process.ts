@@ -19,11 +19,7 @@ async function main(filter: string | undefined) {
   const campaignPaths = glob.scan(campaignsFolder)
 
   for await (const campaignPath of campaignPaths) {
-    // SKIP BY FILTER PARAM
-    const skip = filter ? !campaignPath.includes(filter) : false
-    const logPrefix = skip ? '\x1b[33m↷ SKIPPING\x1b[0m' : '\x1b[32m✎ PROCESS\x1b[0m'
-    console.log('  ', logPrefix, campaignPath)
-    if (skip) continue
+    const [slug] = campaignPath.split('/')
 
     // LOAD JSON
     const filePath = `${campaignsFolder}/${campaignPath}`
@@ -32,14 +28,20 @@ async function main(filter: string | undefined) {
 
     // SKIP WHEN MR OFF
     if (parsed.maprouletteChallenge.discriminant === false) {
-      console.log('   ', '\x1b[37m↷ SKIPPING\x1b[0m', campaignPath)
+      console.log('\t', '\x1b[37m↷ SKIPPING\x1b[0m', slug)
       continue
     }
 
-    // ACTION
     const saveParsed = MaprouletteCampaignCreationSchema.parse(parsed) // A second time to mak TS happy
-    const campaignId = saveParsed.maprouletteChallenge.value.id
 
+    // SKIP BY FILTER PARAM
+    const skip = filter ? !campaignPath.includes(filter) : false
+    const logPrefix = skip ? '\x1b[33m↷ SKIPPING\x1b[0m' : '\x1b[32m✎ PROCESS\x1b[0m'
+    console.log('\t', logPrefix, slug, skip ? saveParsed.maprouletteChallenge.value.rebuildAt : '')
+    if (skip) continue
+
+    // ACTION
+    const campaignId = saveParsed.maprouletteChallenge.value.id
     const url = `https://maproulette.org/api/v2/challenge/${campaignId}/rebuild?removeUnmatched=true&skipSnapshot=false`
     const response = await fetch(url, {
       method: 'PUT',
@@ -50,17 +52,16 @@ async function main(filter: string | undefined) {
     })
 
     if (!response.ok) {
-      const error = `Failed to trigger rebuild for challenge: ${response.statusText}`
-      console.error(error, await response.json(), response)
-      throw new Error(error)
+      const error = `\t\tFailed to trigger rebuild for challenge: ${response.statusText}`
+      console.error(error, response, response)
+      continue
     }
 
     // Write back the `rebuildAt` into the given Keystatic Content file
     json.maprouletteChallenge.value.rebuildAt = formatedDateTime()
     await Bun.write(filePath, JSON.stringify(json, undefined, 2))
 
-    console.log('    TRIGGERED REBUILD for campaign', maprouletteChallengeUrl(campaignId))
-    break
+    console.log('\t\tTRIGGERED REBUILD for campaign', maprouletteChallengeUrl(campaignId))
   }
 }
 
