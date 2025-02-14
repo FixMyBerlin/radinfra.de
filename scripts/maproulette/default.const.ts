@@ -9,18 +9,31 @@ export const defaultChallenge = {
   difficulty: 2,
   // instruction:'',
   defaultPriority: 0,
-  highPriorityRule: {
-    condition: 'AND',
-    rules: [{ type: 'string', operator: 'equal', value: 'priority.prio1' }],
-  },
-  mediumPriorityRule: {
-    condition: 'AND',
-    rules: [{ type: 'string', operator: 'equal', value: 'priority.prio2' }],
-  },
-  lowPriorityRule: {
-    condition: 'AND',
-    rules: [{ type: 'string', operator: 'equal', value: 'priority.prio3' }],
-  },
+  // {"condition":"AND","rules":[{"value":"priority.prio1","type":"string","operator":"equal"}]}
+  highPriorityRule: JSON.stringify(
+    {
+      condition: 'AND',
+      rules: [{ type: 'string', operator: 'equal', value: 'priority.prio1' }],
+    },
+    undefined,
+    0,
+  ),
+  mediumPriorityRule: JSON.stringify(
+    {
+      condition: 'AND',
+      rules: [{ type: 'string', operator: 'equal', value: 'priority.prio2' }],
+    },
+    undefined,
+    0,
+  ),
+  lowPriorityRule: JSON.stringify(
+    {
+      condition: 'AND',
+      rules: [{ type: 'string', operator: 'equal', value: 'priority.prio3' }],
+    },
+    undefined,
+    0,
+  ),
   overpassTargetType: null,
   parent: maprouletteProjectId,
   tags: 'highway',

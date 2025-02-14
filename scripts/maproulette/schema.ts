@@ -1,11 +1,12 @@
 import { z } from 'astro/zod'
 
-const prioritySchema = z.object({
-  condition: z.literal('AND'),
-  rules: z.array(
-    z.object({ type: z.literal('string'), operator: z.literal('equal'), value: z.string() }),
-  ),
-})
+// const prioritySchema = z.object({
+//   condition: z.literal('AND'),
+//   rules: z.array(
+//     z.object({ type: z.literal('string'), operator: z.literal('equal'), value: z.string() }),
+//   ),
+// })
+const prioritySchema = z.string()
 
 export const CreateMapRouletteChallengeSchema = z.strictObject({
   enabled: z.boolean(),
