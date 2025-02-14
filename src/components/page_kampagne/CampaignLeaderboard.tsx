@@ -17,12 +17,7 @@ const leaderboardSchema = z.array(
   }),
 )
 
-// NOTE: There is also a API endpoint per Challenge
-// https://maproulette.org/docs/swagger-ui/index.html#/Leaderboard/getChallengeLeaderboard
-// const url = `https://maproulette.org/api/v2/data/user/challengeLeaderboard?challengeId=${challengeId}&monthDuration=6&limit=20&offset=0`
-const url = `https://maproulette.org/api/v2/data/user/projectLeaderboard?projectId=${maprouletteProjectId}&monthDuration=3&limit=10&offset=0`
-
-const getProjectLeaderboard = async () => {
+const getProjectLeaderboard = async (url: string) => {
   const response = await fetch(url)
   const json = await response.json()
 
@@ -34,31 +29,38 @@ const getProjectLeaderboard = async () => {
   return parsed.data.toSorted((a, b) => a.rank - b.rank)
 }
 
-export const CampaignLeaderboard = () => {
+type Props = { challengeId?: number }
+export const CampaignLeaderboard = ({ challengeId }: Props) => {
+  // https://maproulette.org/docs/swagger-ui/index.html#/Leaderboard/getChallengeLeaderboard
+  const url = challengeId
+    ? `https://maproulette.org/api/v2/data/user/challengeLeaderboard?challengeId=${challengeId}&monthDuration=6&limit=10&offset=0`
+    : `https://maproulette.org/api/v2/data/user/projectLeaderboard?projectId=${maprouletteProjectId}&monthDuration=6&limit=10&offset=0`
+
   const {
     data: leaderboard,
     error,
     isLoading,
   } = useQuery(
     {
-      queryKey: ['leaderboard', maprouletteProjectId],
-      queryFn: getProjectLeaderboard,
+      queryKey: ['leaderboard', maprouletteProjectId, challengeId],
+      queryFn: () => getProjectLeaderboard(url),
     },
     queryClient,
   )
 
   return (
     <>
-      <h2>Leaderboard aller Kampagnen</h2>
-      <p>
-        Top 10 Mapper:innen in MapRoulette. Änderungen außerhalb von MapRoulette werden leider nicht
-        gezählt.
+      <h2>{challengeId ? 'Leaderboard' : 'Leaderboard aller Kampagnen'}</h2>
+      <p className="text-xs">
+        Die Top 10 Mapper:innen aus MapRoulette der letzten 6 Monate. Änderungen außerhalb von
+        MapRoulette werden leider nicht gezählt.
       </p>
 
-      {isLoading && <p>Lade Daten …</p>}
-      {error && <p>Fehler beim Laden des Leaderboards</p>}
-
       <div className="my-5 flex flex-col gap-2">
+        {isLoading && <p>Lade Daten …</p>}
+        {error && <p>Fehler beim Laden des Leaderboards.</p>}
+        {leaderboard?.length === 0 && <p>Das Leaderboard ist noch leer.</p>}
+
         {leaderboard?.map((entry) => (
           <p key={entry.userId}>
             <span className="font-base mr-2 inline-flex size-6 items-center justify-center rounded-full bg-pink-100 font-medium tracking-tighter text-pink-800">
@@ -71,8 +73,10 @@ export const CampaignLeaderboard = () => {
         ))}
       </div>
 
-      <details className="text-xs">
-        <summary className={twJoin('cursor-pointer font-bold', linkStyles)}>Source</summary>
+      <details className="text-xs text-gray-400">
+        <summary className={twJoin('cursor-pointer font-bold', linkStyles, 'text-gray-400')}>
+          Source
+        </summary>
         MapRoulette API:{' '}
         <a href={url} target="_blank">
           <code>{url}</code>
