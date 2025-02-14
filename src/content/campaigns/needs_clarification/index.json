@@ -6,7 +6,7 @@
   "author": "Tobias Jordans @tordans",
   "visibility": "promote",
   "language": "de",
-  "description": "Diese Kampagne enthält Radinfrastruktur die nicht kategorisiert werden konnte.",
+  "description": "Diese Kampagne enthält Radinfrastruktur [im Radverkehrsatlas](https://radverkehrsatlas.de/regionen/radinfra?config=ife2uk.2j1vo.f6&v=2) die nicht kategorisiert werden konnte.",
   "task": "**Bitte prüfe das Tagging und ergänze weitere Attribute, die bei der Kategorisierung helfen.** Weitere Hinweise findet Du in der Aufgabenbeschreibung.",
   "mapUrl": "https://radverkehrsatlas.de/regionen/radinfra?config=ife2uk.2j1vo.f6&v=2",
   "maprouletteChallenge": {
