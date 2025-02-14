@@ -12,7 +12,7 @@
   "maprouletteChallenge": {
     "discriminant": true,
     "value": {
-      "id": null,
+      "id": 51041,
       "name": "Sehr lange nicht geprüfte Wege",
       "enabled": true,
       "remoteGeoJson": "https://radverkehrsatlas.de/api/maproulette/currentness_too_old",
