@@ -8,7 +8,7 @@
   "language": "de",
   "description": "Diese Kampagne enthält Wege, die [im Radverkehrsatlas](https://radverkehrsatlas.de/) als Fahrradstraße klassifiziert sind, bei denen jedoch das `bicycle=designated` fehlt.",
   "task": "**Bitte prüfe die Situation und ergänze den fehlenden Zugangs-Tag `bicycle=designated`.** Weitere Hinweise findet Du in der Aufgabenbeschreibung.",
-  "mapUrl": "https://radverkehrsatlas.de/regionen/radinfra?config=config=ife2uk.nmmc.f6&v=2",
+  "mapUrl": "https://radverkehrsatlas.de/regionen/radinfra?config=ife2uk.nmmc.f6&v=2",
   "maprouletteChallenge": {
     "discriminant": true,
     "value": {

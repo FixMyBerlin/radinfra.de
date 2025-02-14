@@ -8,7 +8,7 @@
   "language": "de",
   "description": "Diese Kampagne enthält Wege die mit dem Verkehrszeichen `240` (Gem. Geh- und Radweg) oder `241` (Getr. Rad- und Gehweg) markiert sind aber das dazu passende Zugangs-Tagging fehlt.",
   "task": "**Bitte prüfe die Radinfrastruktur und ergänze die Zugangs-Tags.** Weitere Hinweise findet Du in der Aufgabenbeschreibung.",
-  "mapUrl": "https://radverkehrsatlas.de/regionen/radinfra?config=config=ife2uk.ce2s.f6&v=2",
+  "mapUrl": "https://radverkehrsatlas.de/regionen/radinfra?config=ife2uk.ce2s.f6&v=2",
   "maprouletteChallenge": {
     "discriminant": true,
     "value": {
