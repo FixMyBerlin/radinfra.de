@@ -5,7 +5,6 @@ import { linkStyles } from '@components/Link/Link'
 import { LinkExternal } from '@components/Link/LinkExternal'
 import { maprouletteChallengeUrl } from '@components/Link/maprouletteChallengeUrl'
 import MegaButton from '@components/Link/MegaButton.astro'
-import CampaignCards from '@components/page_kampagne/CampaignCards.astro'
 import { CampaignStatistic } from '@components/page_kampagne/CampaignStatistic'
 import Markdown from '@components/text/Markdown.astro'
 import PageHeadline from '@components/text/PageHeadline.astro'
@@ -29,9 +28,9 @@ const page = Astro.props
 //   https://github.com/Thinkmill/keystatic/discussions/1318
 //   ~`const { Content } = await render(page)`~
 
-const relatedCampaigns = await getCollection('campaigns', ({ data }) => {
-  return data.category === page.data.category
-})
+// const relatedCampaigns = await getCollection('campaigns', ({ data }) => {
+//   return data.category === page.data.category
+// })
 
 const maprouletteUrl =
   page.data.maprouletteChallenge.discriminant === true
@@ -48,16 +47,12 @@ const noindex =
 <LayoutArticlePageAstro title={page.data.name} {...page.data} noindex={noindex}>
   <PageHeadline category="Kampagnen" headline={page.data.name} intro={page.data.description} />
 
-  <ProseSection>
+  <ProseSection classes="mb-0">
     <h2>Aufgabe</h2>
     <Markdown markdown={page.data.task} unstyled={true} />
 
     <h2>Mitmachen</h2>
-    <p class="!mb-0">
-      Es gibt verschiedne Einstiege zu den Aufgaben. Wir empfehlen den Weg über die Karte.
-    </p>
-
-    <div class="mt-2">
+    <div>
       {
         page.data.mapUrl ? (
           <>
@@ -66,27 +61,26 @@ const noindex =
               iconKey="map"
               label="Karte"
               subline="Aufgaben aus dem Kontext heraus finden."
+              className="mt-3"
             />
 
-            <details class="prose-sm mt-2">
+            <details class="prose-sm mt-2" open>
               <summary class={twJoin('cursor-pointer font-bold', linkStyles)}>
                 Kurzanleitung
               </summary>
               {page.data.maprouletteChallenge.discriminant === true ? (
                 <ol>
                   <li>
-                    In der Karte einen Streckenabschnitt <strong>auswählen</strong>
+                    In der Karte einen <strong>Weg auswählen</strong>
                   </li>
-                  <li>Rechts die "Aufgabe zur Datenverbesserung" ausklappen</li>
-                  <li>Die Karte führt dich in eine Ansicht von MapRoulette</li>
+                  <li>Rechts den Button zum Bearbeiten verwenden</li>
                   <li>
                     Tipp: Die Aufgabenbeschreibung enthält hilfreiche Links zu Mapillary und Co
                   </li>
+                  <li>Die Aufgabe im iD Editor bearbeiten und Änderungen in OSM speichern</li>
                   <li>
-                    Die Aufgabe im iD Editor oder JOSM bearbeiten und Änderungen in OSM speichern
-                  </li>
-                  <li>
-                    Zum Abschluss die Aufgabe als erledigt (oder eine andere Option) speichern
+                    In MapRoulette: Zum Abschluss die Aufgabe als erledigt (oder eine andere Option)
+                    markieren
                   </li>
                   <li>Änderungen sind am nächsten Tag in den Daten zu sehen</li>
                 </ol>
@@ -102,7 +96,7 @@ const noindex =
     </div>
     {
       maprouletteUrl && (
-        <ProseSection>
+        <ProseSection classes="mt-12 mb-0">
           Alternativ kannst du
           <LinkExternal href={maprouletteUrl}>die Kampagne über MapRoulette.com</LinkExternal>{' '}
           bearbeiten.
@@ -124,13 +118,14 @@ const noindex =
   {
     page.data.maprouletteChallenge.discriminant === true &&
       page.data.maprouletteChallenge.value.id && (
-        <ProseSection classes="mt-18">
+        <ProseSection classes="mt-12 mb-0">
           <CampaignStatistic challengeId={page.data.maprouletteChallenge.value.id} client:idle />
         </ProseSection>
       )
   }
 
-  {
+  <!-- Disabled for not, this needs a different design first -->
+  <!-- {
     relatedCampaigns.length > 0 && (
       <CampaignCards
         headlineTemplate="Weitere Kampagnen zu »CATEGORY«"
@@ -138,9 +133,9 @@ const noindex =
         showEmptyCategories={false}
       />
     )
-  }
+  } -->
 
-  <ProseSection classes="prose-sm mt-18">
+  <ProseSection classes="prose-sm mt-12">
     <h2>Metadaten</h2>
     <ul>
       <li>
@@ -181,7 +176,7 @@ const noindex =
                   download
                   target="_blank"
                 >
-                  GeoJsonL-Datei
+                  GeoJSON-Datei
                 </a>{' '}
                 (Newline-delimited GeoJSON)
               </li>

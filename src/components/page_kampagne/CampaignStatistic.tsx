@@ -2,7 +2,7 @@ import { linkStyles } from '@components/Link/Link'
 import { queryClient } from '@components/store/tanstackQuery'
 import { useQuery } from '@tanstack/react-query'
 import { z } from 'astro/zod'
-import { twJoin } from 'tailwind-merge'
+import { twMerge } from 'tailwind-merge'
 
 const statisticSchema = z.object({
   total: z.number(),
@@ -51,11 +51,13 @@ export const CampaignStatistic = ({ challengeId }: Props) => {
 
   return (
     <>
-      {isLoading && <p>Lade Statistik …</p>}
-      {error && <p>Fehler beim Laden des Statistics</p>}
+      {isLoading && <p>Kampagnen-Statistik: Lade Daten von MapRoulette …</p>}
+      {error && <p>Kampagnen-Statistik: Fehler beim Laden der Daten</p>}
 
       <details className="text-xs">
-        <summary className={twJoin('cursor-pointer font-bold', linkStyles)}>Source</summary>
+        <summary className={twMerge('cursor-pointer font-bold', linkStyles, 'text-gray-400')}>
+          Source
+        </summary>
         Proxied MapRoulette API:{' '}
         <a href={url} target="_blank">
           <code>{url}</code>
