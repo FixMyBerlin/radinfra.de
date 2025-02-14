@@ -5,7 +5,7 @@ import { linkStyles } from '@components/Link/Link'
 import { LinkExternal } from '@components/Link/LinkExternal'
 import { maprouletteChallengeUrl } from '@components/Link/maprouletteChallengeUrl'
 import MegaButton from '@components/Link/MegaButton.astro'
-import { CampaignStatistic } from '@components/page_kampagne/CampaignStatistic'
+import { CampaignProgress } from '@components/page_kampagne/CampaignProgress'
 import Markdown from '@components/text/Markdown.astro'
 import PageHeadline from '@components/text/PageHeadline.astro'
 import ProseSection from '@components/text/ProseSection.astro'
@@ -52,6 +52,14 @@ const noindex =
     <Markdown markdown={page.data.task} unstyled={true} />
 
     <h2>Mitmachen</h2>
+
+    {
+      page.data.maprouletteChallenge.discriminant === true &&
+        page.data.maprouletteChallenge.value.id && (
+          <CampaignProgress challengeId={page.data.maprouletteChallenge.value.id} client:load />
+        )
+    }
+
     <div>
       {
         page.data.mapUrl ? (
