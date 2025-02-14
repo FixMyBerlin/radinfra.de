@@ -18,7 +18,8 @@
       "remoteGeoJson": "https://radverkehrsatlas.de/api/maproulette/adjoining_or_isolated",
       "checkinComment": "Angabe zur Führung der Fahrradinfrastruktur (straßenbegleitend bzw. selbstständig geführt) ergänzt. #adjoining_or_isolated #radinfra_de #maproulette",
       "checkinSource": "radinfra_de",
-      "resultsLimited": false
+      "resultsLimited": false,
+      "rebuildAt": "2025-02-14T12:50"
     }
   }
 }

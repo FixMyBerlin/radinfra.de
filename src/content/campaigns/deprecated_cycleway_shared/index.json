@@ -18,7 +18,8 @@
       "remoteGeoJson": "https://radverkehrsatlas.de/api/maproulette/deprecated_cycleway_shared",
       "checkinComment": "Deprecated cycleway=shared. #deprecated_cycleway_shared #radinfra_de #maproulette",
       "checkinSource": "radinfra_de",
-      "resultsLimited": false
+      "resultsLimited": false,
+      "rebuildAt": "2025-02-14T13:01"
     }
   }
 }

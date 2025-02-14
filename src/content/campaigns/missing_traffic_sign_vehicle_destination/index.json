@@ -18,7 +18,8 @@
       "remoteGeoJson": "https://radverkehrsatlas.de/api/maproulette/missing_traffic_sign_vehicle_destination",
       "checkinComment": "Fahrradstraßen ohne Zusatzzeichen #missing_traffic_sign_vehicle_destination #traffic_signs #radinfra_de #maproulette",
       "checkinSource": "radinfra_de",
-      "resultsLimited": false
+      "resultsLimited": false,
+      "rebuildAt": "2025-02-14T12:57"
     }
   }
 }

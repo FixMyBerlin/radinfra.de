@@ -18,7 +18,8 @@
       "remoteGeoJson": "https://radverkehrsatlas.de/api/maproulette/advisory_or_exclusive",
       "checkinComment": "Angabe zur Führungsform ergänzt (Schutzstreifen oder Angebotsstreifen). #advisory_or_exclusive #radinfra_de #maproulette",
       "checkinSource": "radinfra_de",
-      "resultsLimited": false
+      "resultsLimited": false,
+      "rebuildAt": "2025-02-14T12:51"
     }
   }
 }
