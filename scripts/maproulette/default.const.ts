@@ -5,11 +5,10 @@ export const defaultChallenge = {
   defaultBasemap: -1,
   defaultBasemapId: '',
   instruction:
-    '{{task_markdown}}\n \n \n \n . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ',
+    ' \n## Kontext {{osmIdentifier}} \n \n{{task_markdown}}\n(Letzte Aktualisierung der Aufgabe: {{task_updated_at}})\n ',
   difficulty: 2,
-  // instruction:'',
   defaultPriority: 0,
-  // {"condition":"AND","rules":[{"value":"priority.prio1","type":"string","operator":"equal"}]}
+  // Format: {"condition":"AND","rules":[{"value":"priority.prio1","type":"string","operator":"equal"}]}
   highPriorityRule: JSON.stringify(
     {
       condition: 'AND',
