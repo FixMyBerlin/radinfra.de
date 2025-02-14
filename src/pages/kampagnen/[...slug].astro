@@ -59,8 +59,8 @@ const noindex =
             <MegaButton
               href={page.data.mapUrl}
               iconKey="map"
-              label="Karte"
-              subline="Aufgaben aus dem Kontext heraus finden."
+              label="Zur Karte"
+              subline="Finde Aufgaben in deiner Region."
               className="mt-3"
             />
 
@@ -69,23 +69,32 @@ const noindex =
                 Kurzanleitung
               </summary>
               {page.data.maprouletteChallenge.discriminant === true ? (
-                <ol>
-                  <li>
-                    In der Karte einen <strong>Weg auswählen</strong>
-                  </li>
-                  <li>Rechts den Button zum Bearbeiten verwenden</li>
-                  <li>
-                    Tipp: Die Aufgabenbeschreibung enthält hilfreiche Links zu Mapillary und Co
-                  </li>
-                  <li>Die Aufgabe im iD Editor bearbeiten und Änderungen in OSM speichern</li>
-                  <li>
-                    In MapRoulette: Zum Abschluss die Aufgabe als erledigt (oder eine andere Option)
-                    markieren
-                  </li>
-                  <li>Änderungen sind am nächsten Tag in den Daten zu sehen</li>
-                </ol>
+                <>
+                  <ol>
+                    <li>
+                      In der Karte einen <strong>Weg auswählen</strong>
+                    </li>
+                    <li>
+                      Rechts den Button zum <strong>Bearbeiten</strong> verwenden
+                    </li>
+                    <li>
+                      Tipp: Die Aufgabenbeschreibung enthält hilfreiche Links zu{' '}
+                      <strong>Straßenfotos</strong> bei Mapillary
+                    </li>
+                    <li>
+                      Die Aufgabe <strong>im iD Editor bearbeiten</strong> und Änderungen in OSM
+                      speichern
+                    </li>
+                    <li>
+                      In <strong>MapRoulette</strong>: Zum Abschluss die Aufgabe als erledigt (oder
+                      eine andere Option) markieren
+                    </li>
+                  </ol>
+                  <p>Deine Änderungen sind am nächsten Tag in der Karte zu sehen.</p>
+                </>
               ) : (
                 <ol>
+                  {/* TODO Anleitung für Nicht-MR-Kampagnen */}
                   <li />
                 </ol>
               )}
