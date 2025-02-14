@@ -18,7 +18,8 @@
       "remoteGeoJson": "https://radverkehrsatlas.de/api/maproulette/missing_traffic_sign_244",
       "checkinComment": "Fahrradstraßen ohne Verkehrszeichen #missing_traffic_sign_244 #traffic_signs #radinfra_de #maproulette",
       "checkinSource": "radinfra_de",
-      "resultsLimited": false
+      "resultsLimited": false,
+      "rebuildAt": "2025-02-14T09:32"
     }
   }
 }

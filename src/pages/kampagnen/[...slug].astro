@@ -190,6 +190,18 @@ const noindex =
       }
       {
         page.data.maprouletteChallenge.discriminant === true &&
+          page.data.maprouletteChallenge.value.rebuildAt && (
+            <>
+              <li>
+                Die Aufgaben in MapRoulette wurden zuletzt am{' '}
+                {page.data.maprouletteChallenge.value.rebuildAt.toLocaleString('de-DE')}{' '}
+                aktualisiert.
+              </li>
+            </>
+          )
+      }
+      {
+        page.data.maprouletteChallenge.discriminant === true &&
           page.data.maprouletteChallenge.value.checkinSource && (
             <li>
               {/* TODO: Change this link to use the tags, not the source. Or change the source per campaign to be unique. */}

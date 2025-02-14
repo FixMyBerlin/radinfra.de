@@ -87,6 +87,11 @@ export const keystaticCampaignsConfig = collection({
               `,
               defaultValue: false,
             }),
+            rebuildAt: fields.datetime({
+              label: 'READONLY: Date/Time of the last rebuild',
+              description: 'This field is managed by the rebuild script.',
+              validation: { isRequired: false },
+            }),
           },
           {
             label: 'MapRoulette',
