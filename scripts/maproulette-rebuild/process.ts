@@ -1,5 +1,5 @@
 import { maprouletteChallengeUrl } from '@components/Link/maprouletteChallengeUrl'
-import { Glob } from 'bun'
+import { $, Glob } from 'bun'
 import { AstroCampaignSchema, MaprouletteCampaignCreationSchema } from 'cms/campaignsSchema'
 import { parseArgs } from 'util'
 
@@ -63,6 +63,9 @@ async function main(filter: string | undefined) {
 
     console.log('\t\tTRIGGERED REBUILD for campaign', maprouletteChallengeUrl(campaignId))
   }
+
+  // FORMATTING
+  $`prettier 'src/content/campaigns/**/*.json' --write`
 }
 
 // Keystatic stores the date in a format that comes from the HTML datetime element

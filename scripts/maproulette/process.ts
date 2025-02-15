@@ -1,6 +1,6 @@
 import { maprouletteChallengeUrl } from '@components/Link/maprouletteChallengeUrl'
 import { z } from 'astro/zod'
-import { Glob } from 'bun'
+import { $, Glob } from 'bun'
 import { AstroCampaignSchema, MaprouletteCampaignCreationSchema } from 'cms/campaignsSchema'
 import { startOfDay } from 'date-fns'
 import invariant from 'tiny-invariant'
@@ -145,6 +145,9 @@ async function main(filter: string | undefined) {
         break
     }
   }
+
+  // FORMATTING
+  $`prettier 'src/content/campaigns/**/*.json' --write`
 }
 
 console.log(
