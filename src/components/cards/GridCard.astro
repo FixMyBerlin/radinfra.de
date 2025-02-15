@@ -45,7 +45,10 @@ const external = href.startsWith('http')
   >
     <slot />
   </div>
-  <h2 class="justify-left not-prose mt-1 mb-3 flex items-center gap-1 py-0 text-center">
+  <h2
+    data-noanchor
+    class="justify-left not-prose mt-1 mb-3 flex items-center gap-1 py-0 text-center"
+  >
     {text ? text : 'Mehr erfahren…'}
     {external ? <ArrowTopRightOnSquareIcon className="size-5" /> : ''}
   </h2>

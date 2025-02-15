@@ -20,6 +20,8 @@
   const linkifyAnchors = function (level, containingElement) {
     const headers = containingElement.getElementsByTagName('h' + level)
     for (const header of headers) {
+      // We can disable auto linking with data-noanchor
+      if ('noanchor' in header.dataset) continue
       if (typeof header.id !== 'string') continue
 
       header.classList.add('group')
