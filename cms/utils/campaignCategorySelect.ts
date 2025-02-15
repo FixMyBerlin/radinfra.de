@@ -12,7 +12,7 @@ export const campaignCategorySelect = [
   { label: 'Radinfrastruktur', value: 'radinfra' },
   { label: 'Aktualität', value: 'currentness' },
   { label: 'Verkehrszeichen', value: 'traffic_signs' },
+  { label: 'Straßenfotos/Mapillary', value: 'pictures' },
   { label: 'Oberfläche', value: 'surface' },
   { label: 'Breite', value: 'width' },
-  { label: 'Straßenfotos/Mapillary', value: 'pictures' },
 ] as const satisfies Array<{ label: string; value: (typeof campaignCategories)[number] }>

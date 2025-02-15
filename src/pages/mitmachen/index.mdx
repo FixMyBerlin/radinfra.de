@@ -7,5 +7,19 @@ intro: Unser Ziel ist es, die Daten zur Radinfrastruktur in Deutschland so volls
 ---
 
 import CardsMitmachen from '../../components/page_mitmachen/CardsMitmachen.astro'
+import GridCardWrapper from '../../components/cards/GridCardWrapper.astro'
+import GridCard from '../../components/cards/GridCard.astro'
+import { CalendarDaysIcon } from '@heroicons/react/24/solid'
 
 <CardsMitmachen />
+
+<GridCardWrapper headline="Kontakt" sectionClasses="mt-16">
+  <GridCard
+    href="/kontakt"
+    text="Monatliche Meetups"
+    alt="Kontakt zur Community…"
+    variant="iconGrid"
+  >
+    <CalendarDaysIcon className="size-10" />
+  </GridCard>
+</GridCardWrapper>

@@ -1,7 +1,12 @@
 ---
 import StackedCard from '@components/cards/StackedCard.astro'
 import StackedCardWrapper from '@components/cards/StackedCardWrapper.astro'
-import { ChatBubbleBottomCenterIcon, CameraIcon, PencilSquareIcon } from '@heroicons/react/24/solid'
+import {
+  ChatBubbleBottomCenterIcon,
+  CameraIcon,
+  PencilSquareIcon,
+  DevicePhoneMobileIcon,
+} from '@heroicons/react/24/solid'
 
 const { headline } = Astro.props
 ---
@@ -10,24 +15,32 @@ const { headline } = Astro.props
   <StackedCard
     href="/mitmachen/hinweise"
     title="Hinweise liefern"
-    text="Helft die Daten zu verbessern, in dem ihr Hinweise liefert, wo sie aktualisiert werden müssen."
-    label="Empfohlen für Verwaltungsmitarbeiter:innen"
+    text="Du kennst dich vor Ort aus? Dann trage Hinweise ein, wenn Daten fehlen…"
+    label="Für alle"
   >
     <ChatBubbleBottomCenterIcon className="size-10" />
   </StackedCard>
   <StackedCard
     href="/mitmachen/fotos"
     title="Fotos machen"
-    text="Helft die Daten zu verbessern, in dem ihr Fotos der Infrastruktur liefert."
-    label="Empfohlen für Radfahrer:innen"
+    text="Du fährst vor Ort Fahrrad? Dann mach Fotos, mit denen die Daten verbessert werden können…"
+    label="Für Radfahrer:innen"
   >
     <CameraIcon className="size-10" />
   </StackedCard>
   <StackedCard
     href="/mitmachen/mappen"
-    title="Daten eintragen"
-    text="Verbessert die Daten auf der Radtour oder von zu Hause."
-    label="Empfohlen für Mapper:innen"
+    title="StreetComplete nutzen"
+    text="StreetComplete stellt dir Fragen und deine Antworten verbessern OSM…"
+    label="Für neue Mapper:innen"
+  >
+    <DevicePhoneMobileIcon className="size-10" />
+  </StackedCard>
+  <StackedCard
+    href="/mitmachen/mappen"
+    title="Kampagnen bearbeiten"
+    text="Auch in deiner Region gibt es bestimmt etwas zu tun…"
+    label="Für geübte Mapper:innen"
   >
     <PencilSquareIcon className="size-10" />
   </StackedCard>

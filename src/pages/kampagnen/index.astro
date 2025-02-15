@@ -3,6 +3,7 @@ import CampaignCards from '@components/page_kampagne/CampaignCards.astro'
 import { CampaignLeaderboard } from '@components/page_kampagne/CampaignLeaderboard'
 import PageHeadline from '@components/text/PageHeadline.astro'
 import ProseSection from '@components/text/ProseSection.astro'
+import { EyeIcon } from '@heroicons/react/24/solid'
 import LayoutArticlePageAstro from '@layouts/LayoutArticlePageAstro.astro'
 import { getCollection } from 'astro:content'
 
@@ -29,12 +30,20 @@ const sortedCampaigns = allCampaigns
     intro="Überall in Deutschland können wir die Daten noch besser machen. Diese Kampagnen helfen euch Verbesserungspotential zu finden."
   />
 
-  <ProseSection>
+  <ProseSection classes="mb-12">
     <p>
       Diese Daten stammen aus dem <a href="https://radverkehrsatlas.de/" target="_blank">
         Projekt Radverkehrsatlas
       </a> von FixMyCity.
     </p>
+  </ProseSection>
+
+  <ProseSection highlight classes="prose-green my-12 flex gap-3">
+    <EyeIcon className="prose-green size-8 text-green-800" />
+    <div>
+      <p>Alle Kampagnen setzen voraus, dass du dich mit OpenStreetMap auskennst.</p>
+      <p><a href="/mitmachen">Es gibt viele Wege, mitzuhelfen…</a></p>
+    </div>
   </ProseSection>
 
   <CampaignCards
