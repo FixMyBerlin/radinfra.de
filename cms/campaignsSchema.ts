@@ -1,6 +1,7 @@
 import { languages } from '@layouts/languages'
 import { z } from 'astro/zod'
 import { campaignCategories } from './utils/campaignCategorySelect'
+import { recommendedActions } from './utils/recommendedActionSelect'
 import { visibilityOptions } from './utils/visibilitySelect'
 
 const InputDateTimeSchema = z
@@ -15,6 +16,7 @@ const AstroCampaignBaseSchema = z.object({
   pubDate: InputDateTimeSchema,
   visibility: z.enum(visibilityOptions),
   category: z.enum(campaignCategories),
+  recommendedAction: z.enum(recommendedActions),
   author: z.string(),
   language: z.enum(languages).optional(),
   mapUrl: z.string().url().optional(),

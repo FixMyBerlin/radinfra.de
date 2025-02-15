@@ -4,7 +4,7 @@ export const campaignCategories = [
   'traffic_signs',
   'surface',
   'width',
-  'mapillary',
+  'pictures',
 ] as const
 
 // This is also the order in which campaigns are displayed on the /kampagnen page
@@ -14,5 +14,5 @@ export const campaignCategorySelect = [
   { label: 'Verkehrszeichen', value: 'traffic_signs' },
   { label: 'Oberfläche', value: 'surface' },
   { label: 'Breite', value: 'width' },
-  { label: 'Straßenfotos/Mapillary', value: 'mapillary' },
+  { label: 'Straßenfotos/Mapillary', value: 'pictures' },
 ] as const satisfies Array<{ label: string; value: (typeof campaignCategories)[number] }>

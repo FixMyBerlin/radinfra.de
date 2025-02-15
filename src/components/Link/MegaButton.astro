@@ -1,13 +1,13 @@
 ---
 import { ArrowRightIcon } from '@heroicons/react/20/solid'
-import { MapIcon } from '@heroicons/react/24/outline'
+import { ArrowDownTrayIcon, DocumentTextIcon, MapIcon } from '@heroicons/react/24/outline'
 import { RectangleStackIcon } from '@heroicons/react/24/outline'
 import MapRouletteLogo from './assets/MapRouletteLogo.svg'
 import { twMerge } from 'tailwind-merge'
 
 type Props = {
   href: string
-  iconKey: 'map' | 'stack' | 'maproulette'
+  iconKey: 'map' | 'stack' | 'maproulette' | 'document' | 'download'
   label: string
   subline?: string | undefined
   className?: string | undefined
@@ -32,6 +32,10 @@ const { href, iconKey, label, subline, className } = Astro.props
             return <RectangleStackIcon className="size-16 @lg:size-20" />
           case 'maproulette':
             return <img src={MapRouletteLogo.src} class="size-14 @lg:size-16" alt="" />
+          case 'document':
+            return <DocumentTextIcon className="size-16 @lg:size-20" />
+          case 'download':
+            return <ArrowDownTrayIcon className="size-16 @lg:size-20" />
         }
       })()
     }

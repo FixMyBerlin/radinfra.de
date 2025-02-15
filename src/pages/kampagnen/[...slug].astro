@@ -1,18 +1,18 @@
 ---
 export const prerender = true
 //
-import { linkStyles } from '@components/Link/Link'
 import { LinkExternal } from '@components/Link/LinkExternal'
 import { maprouletteChallengeUrl } from '@components/Link/maprouletteChallengeUrl'
 import MegaButton from '@components/Link/MegaButton.astro'
 import { CampaignLeaderboard } from '@components/page_kampagne/CampaignLeaderboard'
 import { CampaignProgress } from '@components/page_kampagne/CampaignProgress'
+import Details from '@components/text/Details.astro'
 import Markdown from '@components/text/Markdown.astro'
 import PageHeadline from '@components/text/PageHeadline.astro'
 import ProseSection from '@components/text/ProseSection.astro'
 import LayoutArticlePageAstro from '@layouts/LayoutArticlePageAstro.astro'
 import { type CollectionEntry, getCollection } from 'astro:content'
-import { twJoin } from 'tailwind-merge'
+import { ASTRO_ENV } from 'astro:env/client'
 
 export async function getStaticPaths() {
   const campaigns = await getCollection('campaigns')
@@ -24,123 +24,207 @@ export async function getStaticPaths() {
 type Props = CollectionEntry<'campaigns'>
 
 const page = Astro.props
+const { data } = page
 // NOTE:
 //   We cannot use the Keystatic<>Astro content integration
 //   https://github.com/Thinkmill/keystatic/discussions/1318
 //   ~`const { Content } = await render(page)`~
 
 // const relatedCampaigns = await getCollection('campaigns', ({ data }) => {
-//   return data.category === page.data.category
+//   return data.category === data.category
 // })
 
 const maprouletteUrl =
-  page.data.maprouletteChallenge.discriminant === true
-    ? maprouletteChallengeUrl(page.data.maprouletteChallenge.value.id)
+  data.maprouletteChallenge.discriminant === true
+    ? maprouletteChallengeUrl(data.maprouletteChallenge.value.id)
     : undefined
 
 const noindex =
   maprouletteUrl === undefined ||
-  page.data.visibility == 'hidden' ||
-  (page.data.maprouletteChallenge.discriminant === true &&
-    page.data.maprouletteChallenge?.value?.enabled === false)
+  data.visibility == 'hidden' ||
+  (data.maprouletteChallenge.discriminant === true &&
+    data.maprouletteChallenge?.value?.enabled === false)
 ---
 
-<LayoutArticlePageAstro title={page.data.name} {...page.data} noindex={noindex}>
-  <PageHeadline category="Kampagnen" headline={page.data.name} intro={page.data.description} />
+<LayoutArticlePageAstro title={data.name} {...data} noindex={noindex}>
+  <PageHeadline category="Kampagnen" headline={data.name} intro={data.description} />
 
   <ProseSection classes="mb-0">
     <h2>Aufgabe</h2>
-    <Markdown markdown={page.data.task} unstyled={true} />
+    <Markdown markdown={data.task} unstyled={true} />
 
     <h2>Mitmachen</h2>
 
     {
-      page.data.maprouletteChallenge.discriminant === true &&
-        page.data.maprouletteChallenge.value.id && (
-          <CampaignProgress challengeId={page.data.maprouletteChallenge.value.id} client:load />
-        )
+      data.maprouletteChallenge.discriminant === true && data.maprouletteChallenge.value.id && (
+        <CampaignProgress challengeId={data.maprouletteChallenge.value.id} client:load />
+      )
     }
 
-    <div>
-      {
-        page.data.mapUrl ? (
-          <>
+    {
+      data.recommendedAction === 'mapillary' && (
+        <div>
+          <MegaButton
+            href="/mitmachen/fotos"
+            iconKey="document"
+            label="Zur Anleitung"
+            subline="So kannst du mit Handy oder 360° Kamera Fotos machen…"
+            className="mt-3"
+          />
+          {data.mapUrl && (
+            <>
+              <MegaButton
+                href={data.mapUrl}
+                iconKey="map"
+                label="Karte: Wege wo Fotos fehlen"
+                subline="Sehen, wo in deiner Region Fotos fehlen…"
+                className="my-3"
+              />
+              <p>
+                Die Karte zeigt die Radinfrastruktur (meist blau) und auch Radrouten (transparent).
+                Die flächigen Wege zeigen, wo es recht aktuelle Fotos bei Mapillary gibt. Dort, wo
+                diese Wege fehlen, ist Bedarf…
+              </p>
+            </>
+          )}
+        </div>
+      )
+    }
+
+    {
+      data.recommendedAction === 'streetcomplete' && (
+        <div>
+          <p>
+            Der einfachste Weg diese Daten zu erfassen ist die StreetComplete App (bisher nur für
+            Android).
+          </p>
+          <MegaButton
+            href="/mitmachen/fotos"
+            iconKey="download"
+            label="StreetComplete herunterladen"
+            subline="Für Android-Nutzer:innen der einfachste Weg…"
+            className="mt-3"
+          />
+          {data.mapUrl && (
             <MegaButton
-              href={page.data.mapUrl}
+              href={data.mapUrl}
+              iconKey="map"
+              label="Karte: Wo Angaben fehlen"
+              subline="Wo es in deiner Region etwas zu tun gibt…"
+              className="my-3"
+            />
+          )}
+        </div>
+      )
+    }
+
+    {
+      data.recommendedAction === 'map' && (
+        <div>
+          {data.mapUrl && (
+            <MegaButton
+              href={data.mapUrl}
               iconKey="map"
               label="Zur Karte"
               subline="Finde Aufgaben in deiner Region."
               className="mt-3"
             />
+          )}
 
-            <details class="prose-sm mt-2" open>
-              <summary class={twJoin('cursor-pointer font-bold', linkStyles)}>
-                Kurzanleitung
-              </summary>
-              {page.data.maprouletteChallenge.discriminant === true ? (
-                <>
-                  <ol>
-                    <li>
-                      In der Karte einen <strong>Weg auswählen</strong>
-                    </li>
-                    <li>
-                      Rechts den Button zum <strong>Bearbeiten</strong> verwenden
-                    </li>
-                    <li>
-                      Tipp: Die Aufgabenbeschreibung enthält hilfreiche Links zu{' '}
-                      <strong>Straßenfotos</strong> bei Mapillary
-                    </li>
-                    <li>
-                      Die Aufgabe <strong>im iD Editor bearbeiten</strong> und Änderungen in OSM
-                      speichern
-                    </li>
-                    <li>
-                      In <strong>MapRoulette</strong>: Zum Abschluss die Aufgabe als erledigt (oder
-                      eine andere Option) markieren
-                    </li>
-                  </ol>
-                  <p>Deine Änderungen sind am nächsten Tag in der Karte zu sehen.</p>
-                </>
-              ) : (
-                <ol>
-                  {/* TODO Anleitung für Nicht-MR-Kampagnen */}
-                  <li />
-                </ol>
-              )}
-            </details>
-          </>
-        ) : null
-      }
-    </div>
-    {
-      maprouletteUrl && (
-        <ProseSection classes="mt-12 mb-0">
-          Alternativ kannst du
-          <LinkExternal href={maprouletteUrl}>die Kampagne über MapRoulette.com</LinkExternal>{' '}
-          bearbeiten.
-          <details class="prose-sm mt-2">
-            <summary class={twJoin('cursor-pointer font-bold', linkStyles)}>Kurzanleitung</summary>
+          <Details title="Kurzanleitung" classes="prose-sm mt-2" defaultOpen={true}>
             <ol>
-              <li>Bei MapRoulette mit OSM anmelden</li>
-              <li>Eine konkrete Aufgabe auswählen oder "Start" klicken</li>
-              <li>Tipp: Die Aufgabenbeschreibung enthält hilfreiche Links zu Mapillary und Co</li>
-              <li>Die Aufgabe im iD Editor oder JOSM bearbeiten und Änderungen in OSM speichern</li>
-              <li>Zum Abschluss die Aufgabe als erledigt (oder eine andere Option) speichern</li>
+              <li>
+                In der Karte einen <strong>Weg auswählen</strong>
+              </li>
+              <li>
+                Rechts den Button zum <strong>Bearbeiten</strong> verwenden
+              </li>
+              <li>
+                Tipp: Die Aufgabenbeschreibung enthält hilfreiche Links zu{' '}
+                <strong>Straßenfotos</strong> bei Mapillary
+              </li>
+              <li>
+                Die Aufgabe <strong>im iD Editor bearbeiten</strong> und Änderungen in OSM speichern
+              </li>
             </ol>
-          </details>
-        </ProseSection>
+            <p>Deine Änderungen sind am nächsten Tag in der Karte zu sehen.</p>
+          </Details>
+        </div>
       )
     }
-  </ProseSection>
 
-  {
-    page.data.maprouletteChallenge.discriminant === true &&
-      page.data.maprouletteChallenge.value.id && (
-        <ProseSection classes="mt-12 mb-0">
-          <CampaignLeaderboard challengeId={page.data.maprouletteChallenge.value.id} client:idle />
-        </ProseSection>
-      )
-  }
+    {
+      data.recommendedAction === 'maproulette' &&
+        data.maprouletteChallenge.discriminant === true && (
+          <div>
+            {data.mapUrl && (
+              <MegaButton
+                href={data.mapUrl}
+                iconKey="maproulette"
+                label="Zur Karte"
+                subline="Finde Aufgaben in deiner Region."
+                className="mt-3"
+              />
+            )}
+
+            <Details title="Kurzanleitung" classes="prose-sm mt-2" defaultOpen={true}>
+              <ol>
+                <li>
+                  In der Karte einen <strong>Weg auswählen</strong>
+                </li>
+                <li>
+                  Rechts den Button zum <strong>Bearbeiten</strong> verwenden
+                </li>
+                <li>
+                  Tipp: Die Aufgabenbeschreibung enthält hilfreiche Links zu{' '}
+                  <strong>Straßenfotos</strong> bei Mapillary
+                </li>
+                <li>
+                  Die Aufgabe <strong>im iD Editor bearbeiten</strong> und Änderungen in OSM
+                  speichern
+                </li>
+                <li>
+                  In <strong>MapRoulette</strong>: Zum Abschluss die Aufgabe als erledigt (oder eine
+                  andere Option) markieren
+                </li>
+              </ol>
+              <p>Deine Änderungen sind am nächsten Tag in der Karte zu sehen.</p>
+            </Details>
+
+            {maprouletteUrl && (
+              <div class="mt-12 mb-0">
+                Alternativ kannst du
+                <LinkExternal href={maprouletteUrl}>
+                  die Kampagne über MapRoulette.com
+                </LinkExternal>{' '}
+                bearbeiten.
+                <Details title="Kurzanleitung">
+                  <ol>
+                    <li>Bei MapRoulette mit OSM anmelden</li>
+                    <li>Eine konkrete Aufgabe auswählen oder "Start" klicken</li>
+                    <li>
+                      Tipp: Die Aufgabenbeschreibung enthält hilfreiche Links zu Mapillary und Co
+                    </li>
+                    <li>
+                      Die Aufgabe im iD Editor oder JOSM bearbeiten und Änderungen in OSM speichern
+                    </li>
+                    <li>
+                      Zum Abschluss die Aufgabe als erledigt (oder eine andere Option) speichern
+                    </li>
+                  </ol>
+                </Details>
+              </div>
+            )}
+
+            {data.maprouletteChallenge.value.id && (
+              <div class="mt-12 mb-0">
+                <CampaignLeaderboard challengeId={data.maprouletteChallenge.value.id} client:idle />
+              </div>
+            )}
+          </div>
+        )
+    }
+  </ProseSection>
 
   <!-- Disabled for not, this needs a different design first -->
   <!-- {
@@ -171,64 +255,65 @@ const noindex =
         .
       </li>
       {
-        page.data.maprouletteChallenge.discriminant === true &&
-          page.data.maprouletteChallenge.value.resultsLimited && (
-            <>
-              <li>
-                <strong>Diese Kampagne ist künstlich limitiert auf 40.000 Aufgaben</strong>, da
-                MapRoulette sonst nicht funktioniert. Das bedeutet, wenn Aufgaben erledigt wurden
-                und die Kampage aktualisiert wird, werden neue Aufgaben nachkommen. Zumindest
-                solange, bis wir uns unter die 40k gearbeitet haben.
-              </li>
-            </>
+        data.maprouletteChallenge.discriminant === true &&
+          data.maprouletteChallenge.value.resultsLimited && (
+            <li>
+              <strong>Diese Kampagne ist künstlich limitiert auf 40.000 Aufgaben</strong>, da
+              MapRoulette sonst nicht funktioniert. Das bedeutet, wenn Aufgaben erledigt wurden und
+              die Kampage aktualisiert wird, werden neue Aufgaben nachkommen. Zumindest solange, bis
+              wir uns unter die 40k gearbeitet haben.
+            </li>
           )
       }
       {
-        page.data.maprouletteChallenge.discriminant === true &&
-          page.data.maprouletteChallenge.value.remoteGeoJson && (
-            <>
-              <li>
-                MapRoulette Daten:{' '}
-                <a
-                  href={`${page.data.maprouletteChallenge.value.remoteGeoJson}?download=true`}
-                  download
-                  target="_blank"
-                >
-                  GeoJSON-Datei
-                </a>{' '}
-                (Newline-delimited GeoJSON)
-              </li>
-            </>
+        data.maprouletteChallenge.discriminant === true &&
+          data.maprouletteChallenge.value.remoteGeoJson && (
+            <li>
+              MapRoulette Daten:{' '}
+              <a
+                href={`${data.maprouletteChallenge.value.remoteGeoJson}?download=true`}
+                download
+                target="_blank"
+              >
+                GeoJSON-Datei
+              </a>{' '}
+              (Newline-delimited GeoJSON)
+            </li>
           )
       }
       {
-        page.data.maprouletteChallenge.discriminant === true &&
-          page.data.maprouletteChallenge.value.rebuildAt && (
-            <>
-              <li>
-                Die Aufgaben in MapRoulette wurden zuletzt am{' '}
-                {page.data.maprouletteChallenge.value.rebuildAt.toLocaleString('de-DE')}{' '}
-                aktualisiert.
-              </li>
-            </>
+        data.maprouletteChallenge.discriminant === true &&
+          data.maprouletteChallenge.value.rebuildAt && (
+            <li>
+              Die Aufgaben in MapRoulette wurden zuletzt am{' '}
+              {data.maprouletteChallenge.value.rebuildAt.toLocaleString('de-DE')} aktualisiert.
+            </li>
           )
       }
       {
-        page.data.maprouletteChallenge.discriminant === true &&
-          page.data.maprouletteChallenge.value.checkinSource && (
+        data.maprouletteChallenge.discriminant === true &&
+          data.maprouletteChallenge.value.checkinSource && (
             <li>
               {/* TODO: Change this link to use the tags, not the source. Or change the source per campaign to be unique. */}
               OSMCha:{' '}
               <a
-                href={`https://osmcha.org/?filters={"date__gte":[{"label":"2024-09-01","value":"2024-09-01"}],"source":[{"label":"${page.data.maprouletteChallenge.value.checkinSource}","value":"${page.data.maprouletteChallenge.value.checkinSource}"}]}`}
+                href={`https://osmcha.org/?filters={"date__gte":[{"label":"2024-09-01","value":"2024-09-01"}],"source":[{"label":"${data.maprouletteChallenge.value.checkinSource}","value":"${data.maprouletteChallenge.value.checkinSource}"}]}`}
                 target="_blank"
               >
                 Changesets mit dem Tag
-                <code>{page.data.maprouletteChallenge.value.checkinSource}</code>
+                <code>{data.maprouletteChallenge.value.checkinSource}</code>
               </a>
             </li>
           )
       }
     </ul>
   </ProseSection>
+
+  {
+    ASTRO_ENV === 'development' && (
+      <Details title="DEV: Debugging" secondary>
+        <pre>{JSON.stringify({ page }, undefined, 2)}</pre>
+      </Details>
+    )
+  }
 </LayoutArticlePageAstro>

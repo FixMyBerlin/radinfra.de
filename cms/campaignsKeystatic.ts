@@ -2,6 +2,7 @@ import { collection, fields } from '@keystatic/core'
 import { authorsSelect } from './utils/authorsSelect'
 import { campaignCategorySelect } from './utils/campaignCategorySelect'
 import { languagesSelect } from './utils/languagesSelect'
+import { recommendedActionSelect } from './utils/recommendedActionSelect'
 import { visibilitySelect } from './utils/visibilitySelect'
 
 export const contentBase = 'src/content/campaigns'
@@ -20,6 +21,12 @@ export const keystaticCampaignsConfig = collection({
       label: 'Category',
       options: campaignCategorySelect,
       defaultValue: campaignCategorySelect.at(0)!.value,
+    }),
+    recommendedAction: fields.select({
+      label: 'Recommended action',
+      description: 'The UI of the campaign page will change based on this.',
+      options: recommendedActionSelect,
+      defaultValue: recommendedActionSelect.at(0)!.value,
     }),
     visibility: fields.select({
       label: 'Visibility',

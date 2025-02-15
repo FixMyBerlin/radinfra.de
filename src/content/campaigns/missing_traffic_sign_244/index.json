@@ -3,6 +3,7 @@
   "menuTitle": "Fehlendes Verkehrszeichen (Fahrradstraße)",
   "pubDate": "2024-09-20T15:00",
   "category": "traffic_signs",
+  "recommendedAction": "maproulette",
   "author": "Tobias Jordans @tordans",
   "visibility": "promote",
   "language": "de",

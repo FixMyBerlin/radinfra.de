@@ -3,11 +3,12 @@
   "menuTitle": "Wie ist die Breite",
   "pubDate": "2025-01-01T15:00",
   "category": "width",
+  "recommendedAction": "streetcomplete",
   "author": "Tobias Jordans @tordans",
   "visibility": "secondary",
   "language": "de",
-  "description": "Diese Kampagne enthält Wege, bei denen die Angabe zur Breite der Radinfrastruktur fehlt.",
-  "task": "**Bitte ergänze die Breite der Radinfrastruktur `surface` und gerne auch die Breite der Radinfrastrukturnqualität `smoothness`.** Weitere Hinweise findet Du in der Aufgabenbeschreibung.",
+  "description": "Diese Karte zeigt Wege, bei denen die Angabe zur Breite der Radinfrastruktur fehlt.",
+  "task": "**Bitte ergänze die Breite der Radinfrastruktur `width`.**",
   "mapUrl": "https://radverkehrsatlas.de/regionen/radinfra?config=ife2uk.8vo5z8.f6&v=2",
   "maprouletteChallenge": {
     "discriminant": false

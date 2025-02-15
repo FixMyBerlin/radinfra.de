@@ -1,0 +1,22 @@
+---
+import { linkStyles } from '@components/Link/Link'
+import { twMerge } from 'tailwind-merge'
+
+type Props = {
+  title: string
+  classes?: string
+  secondary?: boolean
+  defaultOpen?: boolean
+}
+
+const { title, classes, secondary, defaultOpen } = Astro.props
+---
+
+<details class={classes} open={defaultOpen}>
+  <summary
+    class={twMerge('cursor-pointer font-bold', linkStyles, secondary ? 'text-gray-400' : '')}
+  >
+    {title}
+  </summary>
+  <slot />
+</details>
