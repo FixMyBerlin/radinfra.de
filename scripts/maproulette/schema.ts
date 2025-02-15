@@ -14,9 +14,11 @@ export const CreateMapRouletteChallengeSchema = z.strictObject({
   checkinSource: z.string(), // "osm_traffic_signs_project",
   defaultBasemap: z.literal(-1), // -1,
   defaultBasemapId: z.literal(''), // "",
-  description: z.string(), // "{task_markdown}\\n\\n\\n\\n. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ",
+  description: z.string(), // Challenge Level
   difficulty: z.z.union([z.literal(1), z.literal(2), z.literal(3)]), // 2,
-  instruction: z.string(), // "Diese Kampagne enthält Wege, die [im Radverkehrsatlas](https://radverkehrsatlas.de/) als Fahrradstraße kategorisiert wurden, jedoch fehlt das zugehörige Verkehrszeichen.",
+  instruction: z.string().refine((val) => val.replace(/\n/g, '').length >= 150, {
+    message: 'Description must be at least 150 characters long',
+  }), // Task Level
   defaultPriority: z.number(),
   highPriorityRule: prioritySchema,
   mediumPriorityRule: prioritySchema,
