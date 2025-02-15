@@ -16,7 +16,7 @@
   "cooperativeType": 0,
   "popularity": 1727726354,
   "checkinComment": "Verkehrszeichen ergänzet #osm_traffic_signs_project #missing_traffic_sign_244 #maproulette",
-  "checkinSource": "osm_traffic_signs_project",
+  "checkinSource": "radinfra_de",
   "virtualParents": [],
   "requiresLocal": false,
   "overpassQL": "",

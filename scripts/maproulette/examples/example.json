@@ -16,7 +16,7 @@
   "cooperativeType": 0,
   "popularity": 1726897209,
   "checkinComment": "Fahrradstraßen ohne Verkehrszeichen #missing_traffic_sign_244 #traffic_signs #maproulette",
-  "checkinSource": "osm_traffic_signs_project",
+  "checkinSource": "radinfra_de",
   "virtualParents": [],
   "requiresLocal": false,
   "overpassQL": "",
