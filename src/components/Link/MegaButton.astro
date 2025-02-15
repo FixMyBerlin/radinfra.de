@@ -14,13 +14,14 @@ type Props = {
 }
 
 const { href, iconKey, label, subline, className } = Astro.props
+const newWindow = href.startsWith('http')
 ---
 
 <div class={twMerge('not-prose @container mt-12', className)}>
   <a
     href={href}
-    target="_blank"
-    rel="noopener noreferrer"
+    target={newWindow ? '_blank' : undefined}
+    rel={newWindow ? 'noopener noreferrer' : undefined}
     class="group/button flex flex-row items-center gap-4 rounded-sm bg-gradient-to-br from-cyan-300 to-cyan-200 p-4 text-gray-950 shadow-md transition-all hover:from-sky-400 hover:to-sky-300 hover:shadow-xl @lg:px-10 @lg:py-8"
   >
     {
