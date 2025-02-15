@@ -32,6 +32,7 @@ export const CreateMapRouletteChallengeSchema = z.strictObject({
   presets: z.array(z.string()), // [],
   taskStyles: z.array(z.string()), // [],
   infoLink: z.string().url(),
+  taskWidgetLayout: z.any(),
 })
 
 export type CreateMapRouletteChallengeType = z.infer<typeof CreateMapRouletteChallengeSchema>

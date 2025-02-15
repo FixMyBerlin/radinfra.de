@@ -38,4 +38,54 @@ export const defaultChallenge = {
   tags: 'highway',
   presets: [],
   taskStyles: [],
+  // This is a custom layout I build and then exported.
+  // It features a long description left and only the task buttons and task map on the right.
+  // I then uploaded it to a test challenge to get this object below.
+  taskWidgetLayout: {
+    meta: {
+      exportName: 'OSM-Verkehrswende',
+      exportTimestamp: '2025-02-15T05:04:43.639Z',
+      targetWorkspace: 'taskCompletion',
+      exportFormatVersion: 1,
+    },
+    workspace: {
+      cols: 12,
+      name: 'taskCompletion',
+      layout: [
+        {
+          h: 29,
+          w: 5,
+          x: 0,
+          y: 0,
+        },
+        {
+          h: 0,
+          w: 8,
+          x: 4,
+          y: 0,
+        },
+        {
+          h: 20,
+          w: 7,
+          x: 5,
+          y: 9,
+        },
+        {
+          h: 9,
+          w: 7,
+          x: 5,
+          y: 0,
+        },
+      ],
+      targets: ['task'],
+      rowHeight: 30,
+      widgetKeys: [
+        'TaskInstructionsWidget',
+        'TagDiffWidget',
+        'TaskMapWidget',
+        'TaskCompletionWidget',
+      ],
+      dataModelVersion: 2,
+    },
+  },
 } satisfies Partial<CreateMapRouletteChallengeType>
