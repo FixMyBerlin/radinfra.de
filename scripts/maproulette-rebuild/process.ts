@@ -28,7 +28,7 @@ async function main(filter: string | undefined) {
 
     // SKIP WHEN MR OFF
     if (parsed.maprouletteChallenge.discriminant === false) {
-      console.log('\t', '\x1b[37m↷ SKIPPING\x1b[0m', slug)
+      console.log('\t', '\x1b[37m↷ SKIP\x1b[0m', slug)
       continue
     }
 
@@ -36,7 +36,7 @@ async function main(filter: string | undefined) {
 
     // SKIP BY FILTER PARAM
     const skip = filter ? !campaignPath.includes(filter) : false
-    const logPrefix = skip ? '\x1b[33m↷ SKIPPING\x1b[0m' : '\x1b[32m✎ PROCESS\x1b[0m'
+    const logPrefix = skip ? '\x1b[33m↷ SKIP\x1b[0m' : '\x1b[32m✎ PROCESS\x1b[0m'
     console.log('\t', logPrefix, slug, skip ? saveParsed.maprouletteChallenge.value.rebuildAt : '')
     if (skip) continue
 
@@ -52,8 +52,8 @@ async function main(filter: string | undefined) {
     })
 
     if (!response.ok) {
-      const error = `\t\tFailed to trigger rebuild for challenge: ${response.statusText}`
-      console.error(error, response, response)
+      const error = `Failed to trigger rebuild for challenge: ${response.statusText}`
+      console.error('\t\t', error, response, response)
       continue
     }
 
@@ -61,7 +61,7 @@ async function main(filter: string | undefined) {
     json.maprouletteChallenge.value.rebuildAt = formatedDateTime()
     await Bun.write(filePath, JSON.stringify(json, undefined, 2))
 
-    console.log('\t\tTRIGGERED REBUILD for campaign', maprouletteChallengeUrl(campaignId))
+    console.log('\t\t', 'TRIGGERED REBUILD for campaign', maprouletteChallengeUrl(campaignId))
   }
 
   // FORMATTING
@@ -83,6 +83,6 @@ function formatedDateTime() {
 
 console.log(
   'STARTING maproulette-rebuild/process',
-  values.filter ? `– \x1b[33musing filter \"${values.filter}\"` : '',
+  values.filter ? `–\x1b[33m using filter \"${values.filter}\"\x1b[0m` : '',
 )
 main(values.filter)

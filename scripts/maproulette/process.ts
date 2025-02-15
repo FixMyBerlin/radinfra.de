@@ -108,8 +108,8 @@ async function main(filter: string | undefined) {
   for await (const campaignPath of campaignPaths) {
     // SKIP BY FILTER PARAM
     const skip = filter ? !campaignPath.includes(filter) : false
-    const logPrefix = skip ? '\x1b[33m↷ SKIPPING\x1b[0m' : '\x1b[32m✎ PROCESS\x1b[0m'
-    console.log('  ', logPrefix, campaignPath)
+    const logPrefix = skip ? '\x1b[33m↷ SKIP\x1b[0m' : '\x1b[32m✎ PROCESS\x1b[0m'
+    console.log('\t', logPrefix, campaignPath)
     if (skip) continue
 
     // LOAD JSON
@@ -120,7 +120,7 @@ async function main(filter: string | undefined) {
 
     // SKIP WHEN MR OFF
     if (parsed.maprouletteChallenge.discriminant === false) {
-      console.log('  ', '\x1b[37m↷ SKIPPING\x1b[0m', campaignPath)
+      console.log('\t', '\x1b[37m↷ SKIP\x1b[0m', slug, '(No MapRoulette)')
       continue
     }
 
@@ -136,12 +136,12 @@ async function main(filter: string | undefined) {
         const { id } = z.object({ id: z.number() }).parse(challenge)
         json.maprouletteChallenge.value.id = id
         await Bun.write(filePath, JSON.stringify(json, undefined, 2))
-        console.log('    CREATED campaign', maprouletteChallengeUrl(id))
+        console.log('\t\t', 'CREATED campaign', maprouletteChallengeUrl(id))
         break
       case 'UPDATE':
         const updateData = dataUpdateChallenge({ slug, ...json })
         await updateChallenge(updateData)
-        console.log('    UPDATED campaign', maprouletteChallengeUrl(updateData.id))
+        console.log('\t\t', 'UPDATED campaign', maprouletteChallengeUrl(updateData.id))
         break
     }
   }
@@ -152,6 +152,6 @@ async function main(filter: string | undefined) {
 
 console.log(
   'STARTING maproulette/process',
-  values.filter ? `– \x1b[33musing filter \"${values.filter}\"` : '',
+  values.filter ? `–\x1b[33m using filter \"${values.filter}\"\x1b[0m` : '',
 )
 main(values.filter)
