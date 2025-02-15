@@ -18,5 +18,5 @@ export default {
     },
   ],
   tailwindFunctions: ['clsx', 'twMerge', 'twJoin'],
-  tailwindAttributes: ['className', 'class:list', 'class', 'sectionClasses'],
+  tailwindAttributes: ['className', 'class:list', 'class', 'sectionClasses', 'classes'],
 }
