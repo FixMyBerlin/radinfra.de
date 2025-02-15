@@ -44,7 +44,7 @@ export const defaultChallenge = {
   taskWidgetLayout: {
     meta: {
       exportName: 'OSM-Verkehrswende',
-      exportTimestamp: '2025-02-15T05:04:43.639Z',
+      exportTimestamp: '2025-02-15T16:15:54.537Z',
       targetWorkspace: 'taskCompletion',
       exportFormatVersion: 1,
     },
@@ -52,38 +52,18 @@ export const defaultChallenge = {
       cols: 12,
       name: 'taskCompletion',
       layout: [
-        {
-          h: 29,
-          w: 5,
-          x: 0,
-          y: 0,
-        },
-        {
-          h: 0,
-          w: 8,
-          x: 4,
-          y: 0,
-        },
-        {
-          h: 20,
-          w: 7,
-          x: 5,
-          y: 9,
-        },
-        {
-          h: 9,
-          w: 7,
-          x: 5,
-          y: 0,
-        },
+        { h: 10, w: 5, x: 0, y: 0 },
+        { h: 0, w: 7, x: 5, y: 0 },
+        { h: 10, w: 7, x: 5, y: 0 },
+        { h: 20, w: 7, x: 5, y: 10 },
       ],
       targets: ['task'],
       rowHeight: 30,
       widgetKeys: [
         'TaskInstructionsWidget',
-        'TagDiffWidget',
-        'TaskMapWidget',
+        'TagDiffWidget', // Only visible for "Fix Tag" challenges
         'TaskCompletionWidget',
+        'TaskMapWidget',
       ],
       dataModelVersion: 2,
     },
