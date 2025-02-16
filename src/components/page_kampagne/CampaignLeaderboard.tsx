@@ -32,9 +32,10 @@ const getProjectLeaderboard = async (url: string) => {
 type Props = { challengeId?: number }
 export const CampaignLeaderboard = ({ challengeId }: Props) => {
   // https://maproulette.org/docs/swagger-ui/index.html#/Leaderboard/getChallengeLeaderboard
+  const month = 6
   const url = challengeId
-    ? `https://maproulette.org/api/v2/data/user/challengeLeaderboard?challengeId=${challengeId}&monthDuration=6&limit=10&offset=0`
-    : `https://maproulette.org/api/v2/data/user/projectLeaderboard?projectId=${maprouletteProjectId}&monthDuration=6&limit=10&offset=0`
+    ? `https://maproulette.org/api/v2/data/user/challengeLeaderboard?challengeId=${challengeId}&monthDuration=${month}&limit=10&offset=0`
+    : `https://maproulette.org/api/v2/data/user/projectLeaderboard?projectId=${maprouletteProjectId}&monthDuration=${month}&limit=10&offset=0`
 
   const {
     data: leaderboard,
@@ -52,7 +53,7 @@ export const CampaignLeaderboard = ({ challengeId }: Props) => {
     <>
       <h2>{challengeId ? 'Leaderboard' : 'Leaderboard aller Kampagnen'}</h2>
       <p className="text-xs">
-        Die Top 10 Mapper:innen aus MapRoulette der letzten 6 Monate. Änderungen außerhalb von
+        Die Top 10 Mapper:innen aus MapRoulette der letzten {month} Monate. Änderungen außerhalb von
         MapRoulette werden leider nicht gezählt.
       </p>
 
