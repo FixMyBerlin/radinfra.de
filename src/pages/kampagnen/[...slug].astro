@@ -218,7 +218,10 @@ const noindex =
 
             {data.maprouletteChallenge.value.id && (
               <div class="mt-12 mb-0">
-                <CampaignLeaderboard challengeId={data.maprouletteChallenge.value.id} client:idle />
+                <CampaignLeaderboard
+                  challengeId={data.maprouletteChallenge.value.id}
+                  client:only="react"
+                />
               </div>
             )}
           </div>
