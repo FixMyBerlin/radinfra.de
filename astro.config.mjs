@@ -33,6 +33,10 @@ export default defineConfig({
       filter: (page) => !page.endsWith('README/'),
     }),
   ],
+  experimental: {
+    // https://docs.astro.build/en/reference/experimental-flags/svg/
+    svg: true,
+  },
   vite: {
     plugins: [tailwindcss()],
   },

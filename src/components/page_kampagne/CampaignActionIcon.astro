@@ -9,23 +9,27 @@ type Props = { action: (typeof recommendedActions)[number]; className?: string }
 const { action, className } = Astro.props
 ---
 
-{action == 'map' && <MapIcon className={twMerge('not-prose size-5', className)} />}
+{
+  action == 'map' && (
+    //
+    <MapIcon className={twMerge('not-prose size-4', className)} />
+  )
+}
 {
   action == 'maproulette' && (
-    <img
-      src={MapRouletteLogo.src}
-      class={twMerge('not-prose size-5 opacity-60', className)}
-      alt=""
-    />
+    //
+    <MapRouletteLogo class={twMerge('not-prose size-4 opacity-70', className)} />
   )
 }
 {
   action == 'streetcomplete' && (
-    <img
-      src={StreetCompleteLogo.src}
-      class={twMerge('not-prose size-5 opacity-90 grayscale', className)}
-      alt=""
-    />
+    //
+    <StreetCompleteLogo class={twMerge('not-prose size-4 opacity-90 grayscale', className)} />
   )
 }
-{action == 'mapillary' && <CameraIcon className={twMerge('size-5', className)} />}
+{
+  action == 'mapillary' && (
+    //
+    <CameraIcon className={twMerge('size-4', className)} />
+  )
+}
