@@ -1,9 +1,9 @@
 ---
 import StackedCard from '@components/cards/StackedCard.astro'
 import StackedCardWrapper from '@components/cards/StackedCardWrapper.astro'
-import { LinkExternal } from '@components/Link/LinkExternal'
-import RectangleStack from 'astro-heroicons/solid/RectangleStack.astro'
+import { Link } from '@components/Link/Link'
 import { campaignCategorySelect } from 'cms/utils/campaignCategorySelect'
+import CampaignActionIcon from './CampaignActionIcon.astro'
 import type { Campaign } from './types'
 
 type Props = {
@@ -52,15 +52,17 @@ campaignCategorySelect.forEach(({ value: key }) => {
                 <StackedCard
                   href={`/kampagnen/${campaign.id.replace('/index', '')}`}
                   title={campaign.data.name}
-                  variant="iconGrid"
                 >
-                  <RectangleStack class="size-14" />
+                  <CampaignActionIcon
+                    action={campaign.data.recommendedAction}
+                    className="size-12"
+                  />
                 </StackedCard>
               )
             })}
         </StackedCardWrapper>
 
-        <ul>
+        <ul class="pl-0">
           {categoryCampaigns
             .filter(
               (campaign) =>
@@ -69,10 +71,16 @@ campaignCategorySelect.forEach(({ value: key }) => {
             )
             .map((campaign) => {
               return (
-                <li>
-                  <LinkExternal href={`/kampagnen/${campaign.id.replace('/index', '')}`}>
+                <li class="list-none">
+                  <Link
+                    to={`/kampagnen/${campaign.id.replace('/index', '')}`}
+                    className="justify-left flex items-start gap-2"
+                  >
+                    <span class="mt-1.5">
+                      <CampaignActionIcon action={campaign.data.recommendedAction} />
+                    </span>
                     {campaign.data.name}
-                  </LinkExternal>
+                  </Link>
                 </li>
               )
             })}
@@ -84,14 +92,16 @@ campaignCategorySelect.forEach(({ value: key }) => {
             )
             .map((campaign) => {
               return (
-                <li class="text-gray-400">
-                  <LinkExternal
-                    href={`/kampagnen/${campaign.id.replace('/index', '')}`}
-                    className="text-gray-400"
+                <li class="list-none text-gray-400">
+                  <Link
+                    to={`/kampagnen/${campaign.id.replace('/index', '')}`}
+                    className="justify-left flex items-start gap-2 text-gray-400"
                   >
+                    <span class="mt-1.5">
+                      <CampaignActionIcon action={campaign.data.recommendedAction} />
+                    </span>
                     {campaign.data.name}
-                  </LinkExternal>{' '}
-                  (reine Karten-Darstellung)
+                  </Link>
                 </li>
               )
             })}
