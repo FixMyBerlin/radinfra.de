@@ -6,6 +6,7 @@ import ProseSection from '@components/text/ProseSection.astro'
 import { EyeIcon } from '@heroicons/react/24/solid'
 import LayoutArticlePageAstro from '@layouts/LayoutArticlePageAstro.astro'
 import { getCollection } from 'astro:content'
+import { ASTRO_ENV } from 'astro:env/client'
 
 const allCampaigns = await getCollection('campaigns')
 const sortedCampaigns = allCampaigns
@@ -51,6 +52,34 @@ const sortedCampaigns = allCampaigns
     campaigns={sortedCampaigns}
     showEmptyCategories={true}
   />
+
+  {
+    ASTRO_ENV === 'development' && (
+      <div class="mt-12 bg-red-300 p-2">
+        <h2>Kampagnen die oben nicht aufgelistet werden</h2>
+        <ul>
+          {allCampaigns
+            .filter(({ data }) => {
+              if (data.visibility === 'hidden') return true
+              if (
+                data.maprouletteChallenge.discriminant === true &&
+                (!data.maprouletteChallenge.value.id ||
+                  data.maprouletteChallenge.value.enabled === false)
+              )
+                return true
+              return false
+            })
+            .map((campaign) => {
+              return (
+                <li>
+                  <a href={`/kampagnen/${campaign.id}`}>{campaign.data.name}</a>
+                </li>
+              )
+            })}
+        </ul>
+      </div>
+    )
+  }
 
   <ProseSection classes="mt-18">
     <hr />
