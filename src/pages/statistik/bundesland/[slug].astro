@@ -3,7 +3,6 @@ export const prerender = true
 import { bundeslandLandkreis } from '@components/page_statistik/bundeslandLandkreis.const'
 //
 import Debug from '@components/page_statistik/Debug.astro'
-import { RadialBars } from '@components/page_statistik/graphs/RadialBars'
 import Intro from '@components/page_statistik/Intro.astro'
 import PageHeadline from '@components/text/PageHeadline.astro'
 import ProseSection from '@components/text/ProseSection.astro'
@@ -50,7 +49,7 @@ const landkreise = await getCollection('statistics', ({ data }) => {
       landkreise.map((landkreis) => {
         const data = Object.entries(landkreis.data.properties.bikelane_sum || {}).map(
           ([key, value]) => ({
-            label: String(key[0]).toUpperCase(),
+            // label: String(key[0]).toUpperCase(),
             value: value ?? 0,
             title: key,
           }),
@@ -58,7 +57,14 @@ const landkreise = await getCollection('statistics', ({ data }) => {
         return (
           <div>
             <h2 class="mb-2 font-bold text-emerald-700">{landkreis.data.properties.name}</h2>
-            <RadialBars client:visible data={data} width={300} height={300} />
+            {data.map(({ value, title }) => {
+              return (
+                <code class="block text-xs tracking-tight">
+                  {title}: {value.toLocaleString()} km
+                </code>
+              )
+            })}
+            {/* <RadialBars client:visible data={data} width={300} height={300} /> */}
           </div>
         )
       })
