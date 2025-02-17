@@ -1,0 +1,25 @@
+{
+  "name": "Überschneidende Tags für `cycleway*` (Beta-Version)",
+  "menuTitle": "Überschneidende Tags",
+  "pubDate": "2025-02-17T10:00",
+  "category": "radinfra",
+  "recommendedAction": "maproulette",
+  "author": "Tobias Jordans @tordans",
+  "visibility": "secondary",
+  "language": "de",
+  "description": "Dieser Weg hat Tags die sich überschneiden: `cycleway` (Angabe für beide Seiten) in Kombination mit `cycleway:left|right` (Angabe für eine bestimmte Seite).",
+  "task": "**Bitte kontrolliere die Angaben und ändere sie, so dass sie eindeutig sind.** Weitere Hinweise findet Du in der Aufgabenbeschreibung.",
+  "mapUrl": "https://radverkehrsatlas.de/regionen/radinfra?config=#todo",
+  "maprouletteChallenge": {
+    "discriminant": true,
+    "value": {
+      "id": null,
+      "name": "Überschneidende Tags für `cycleway*`",
+      "enabled": true,
+      "remoteGeoJson": "https://radverkehrsatlas.de/api/maproulette/mixed_cycleway_both",
+      "checkinComment": "Überschneidende Tags präzisiert. #mixed_cycleway_both #traffic_signs #radinfra_de #maproulette",
+      "checkinSource": "radinfra_de",
+      "resultsLimited": false
+    }
+  }
+}

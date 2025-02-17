@@ -1,0 +1,25 @@
+{
+  "name": "Fehler im Verkehrszeichen-Tag (Beta-Version)",
+  "menuTitle": "Fehlerhaftes Verkehrszeichen-Tag",
+  "pubDate": "2025-02-17T10:00",
+  "category": "traffic_signs",
+  "recommendedAction": "maproulette",
+  "author": "Tobias Jordans @tordans",
+  "visibility": "secondary",
+  "language": "de",
+  "description": "Diese Kampagne enthält Wege mit einem Fehler im Wert des `traffic_sign*`-Tags",
+  "task": "**Bitte prüfe und korrigiere den Wert der Tags `traffic_sign`, `traffic_sign:forward`, `traffic_sign:backward`.** Weitere Hinweise findet Du in der Aufgabenbeschreibung.",
+  "mapUrl": "https://radverkehrsatlas.de/regionen/radinfra?config=#todo",
+  "maprouletteChallenge": {
+    "discriminant": true,
+    "value": {
+      "id": null,
+      "name": "Fehler im Verkehrszeichen-Tag",
+      "enabled": true,
+      "remoteGeoJson": "https://radverkehrsatlas.de/api/maproulette/malformed_traffic_sign",
+      "checkinComment": "`traffic_sign:*` korrigiert. #malformed_traffic_sign #traffic_signs #radinfra_de #maproulette",
+      "checkinSource": "radinfra_de",
+      "resultsLimited": false
+    }
+  }
+}
