@@ -9,33 +9,32 @@ intro: Der Radverkehrsatlas prozessiert die Daten aus OpenStreetMap und kategori
 
 | `category` | Titel | Kurzbeschreibung | Link |
 |---|---|---|---|
+| `bicycleRoad` | Fahrradstrcaße |  |  |
 | `bicycleRoad_vehicleDestination` | Fahrradstraße mit Anlieger frei |  |  |
-| `bicycleRoad` | Fahrradstraße |  |  |
 | `crossing` | Straßenquerung | (Keine weitere Unterteilung, bisher) |  |
 | `cycleway_adjoining` | Radweg (baulich von der Fahrbahn abgesetzt aber straßenbegleitend) |  |  |
 | `cycleway_isolated` | Radweg, selbstständig geführt | Beispielweise Wege durch Wald und Feld. |  |
-| `cycleway_isolatedOrIdjoining` | Radweg (Straßenbegleitend oder selbstständig geführt; Kategorisierung unklar) | Fallback-Kategorie wenn Angabe `is_sidepath=yes\|no` fehlt. |  |
-| `cyclewayLink` | Radweg-Verbindungsstück. Häufig in OpenStreetMap verwendet um Routenfähiges Netz zu erzeugen; repräsentiert nur selten physische Infrastruktur. | In Sonderfällen nötig um das Routing in OSM sicherzustellen. |  |
+| `cycleway_adjoiningOrIsolated` | Radweg (Straßenbegleitend oder selbstständig geführt) | Kategorisierung unklar; Fallback-Kategorie wenn Angabe `is_sidepath=yes\|no` fehlt. |  |
+| `cyclewayLink` | Radweg-Routing-Verbindungsstück. | Häufig in OpenStreetMap verwendet um routenfähiges Netz zu erzeugen; repräsentiert nur selten physische Infrastruktur. |  |
 | `cyclewayOnHighway_advisory` | Schutzstreifen |  |  |
 | `cyclewayOnHighway_exclusive` | Radfahrstreifen |  |  |
-| `cyclewayOnHighway_advisoryOrExclusive` | Radfahrstreifen oder Schutzstreifen (Kategorisierung unklar) | Fallback-Kategorie wenn Angabe `cycleway:SIDE:lane=advisory\|exclusive` fehlt. |  |
+| `cyclewayOnHighway_advisoryOrExclusive` | Radfahrstreifen oder Schutzstreifen | Kategorisierung unklar; Fallback-Kategorie wenn Angabe `cycleway:SIDE:lane=advisory\|exclusive` fehlt. |  |
 | `cyclewayOnHighwayBetweenLanes` | Radfahrstreifen in Mittellage (Fahrradweiche) | Umgangssprachlich "Angstweiche". Kategorisiert anhand `cycleway:lanes` oder `bicycle:lanes` |  |
-| `footAndCyclewaySegregated_adjoining` | Getrennter Rad- und Gehweg, straßenbegleitend |  |  |
+| `footAndCyclewaySegregated_adjoining` | Getrennter Rad- und Gehweg, straßenbegleitend | Enthält auch `cyclway*=track` wenn Zusatztags vorhanden. Unterstützt das Tagging-Muster von separaten Rad- und Gehweg-Geometrien mit Zusatztags. |  |
 | `footAndCyclewaySegregated_isolated` | Getrennter Rad- und Gehweg, selbstständig geführt | Beispielweise Wege durch Wald und Feld. |  |
-| `footAndCyclewaySegregated_adjoiningOrIsolated` | Getrennter Rad- und Gehweg (Straßenbegleitend oder selbstständig geführt; Kategorisierung unklar) | Fallback-Kategorie wenn Angabe `is_sidepath=yes\|no` fehlt. |  |
-| `footAndCyclewayShared_adjoining` | Gemeinsamer Geh- und Radweg, straßenbegleitend |  |  |
+| `footAndCyclewaySegregated_adjoiningOrIsolated` | Getrennter Rad- und Gehweg (Straßenbegleitend oder selbstständig geführt | Kategorisierung unklar; Fallback-Kategorie wenn Angabe `is_sidepath=yes\|no` fehlt. |  |
+| `footAndCyclewayShared_adjoining` | Gemeinsamer Geh- und Radweg, straßenbegleitend | Enthält auch `cyclway*=track` wenn Zusatztags vorhanden. |  |
 | `footAndCyclewayShared_isolated` | Gemeinsamer Geh- und Radweg, selbstständig geführt | Beispielweise Wege durch Wald und Feld. |  |
-| `footAndCyclewayShared_adjoiningOrIsolated` | Gemeinsamer Geh- und Radweg (Straßenbegleitend oder selbstständig geführt; Kategorisierung unklar) | Fallback-Kategorie wenn Angabe `is_sidepath=yes\|no` fehlt. |  |
+| `footAndCyclewayShared_adjoiningOrIsolated` | Gemeinsamer Geh- und Radweg (Straßenbegleitend oder selbstständig geführt) | Kategorisierung unklar; Fallback-Kategorie wenn Angabe `is_sidepath=yes\|no` fehlt. |  |
 | `footwayBicycleYes_adjoining` | Gehweg mit Radwegfreigabe, straßenbegleitend |  |  |
 | `footwayBicycleYes_isolated` | Gehweg mit Radwegfreigabe, selbstständig geführt |  |  |
-| `footwayBicycleYes_adjoiningOrIsolated` | Gehweg mit Radwegfreigabe (Straßenbegleitend oder selbstständig geführt; Kategorisierung unklar) | Fallback-Kategorie wenn Angabe `is_sidepath=yes\|no` fehlt. |  |
-| `livingStreet` | Verkehrsberuhigter Bereich (Spielstraße) |  |  |
+| `footwayBicycleYes_adjoiningOrIsolated` | Gehweg mit Radwegfreigabe (Straßenbegleitend oder selbstständig geführt) | Kategorisierung unklar; Fallback-Kategorie wenn Angabe `is_sidepath=yes\|no` fehlt. |  |
 | `pedestrianAreaBicycleYes` | Fußgängerzone, Fahrrad frei | Fußgängerzonen ohne Fahrradfreigabe werden nicht berücksichtigt |  |
 | `protectedCyclewayOnHighway` | Geschützter Radfahrstreifen (Protected Bike Lane / PBL) | Erfordert detailliertes Tagging mit dem [`separation`-Schema](https://wiki.openstreetmap.org/wiki/Proposal:Separation). |  |
 | `sharedBusLaneBikeWithBus` | Radfahrstreifen mit Freigabe Busverkehr | Erlaubt wohl höhere Busgelder bei Falschparkern. |  |
 | `sharedBusLaneBusWithBike` | Bussonderfahrstreifen mit Fahrrad frei |  |  |
 | `sharedMotorVehicleLane` | Gemeinsamer Fahrstreifen | Durch Piktogramme auf der Fahrbahn ausgezeichnet | [Wiki](https://wiki.openstreetmap.org/wiki/Tag:cycleway%3Dshared_lane) |
-| `needsClarification` | Führungsform unklar. Die Attribute in OpenStreetMap sind nicht ausreichend, um die Führungsform zu kategorisieren. Das deutet darauf hin, dass zusätzlich Attribute in OSM ergänzt werden müssen. |  |  |
+| `needsClarification` | Führungsform unklar. | Die Attribute in OpenStreetMap sind nicht ausreichend, um die Führungsform zu kategorisieren. Das deutet darauf hin, dass zusätzlich Attribute in OSM ergänzt werden müssen.  |  |
 
 ## Open Source
 
