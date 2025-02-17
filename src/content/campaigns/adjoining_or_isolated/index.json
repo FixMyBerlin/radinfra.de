@@ -7,7 +7,7 @@
   "author": "Tobias Jordans @tordans",
   "visibility": "secondary",
   "language": "de",
-  "description": "Diese Kampagne enthält Wege, deren Führungsform [im Radverkehrsatlas](https://radverkehrsatlas.de/) nicht präzise angegeben werden kann. (Aktuell werden nur Wege der Kategorie \"Radweg\" aufgenommen.)",
+  "description": "Diese Kampagne enthält Wege, deren Führungsform [im Radverkehrsatlas](https://radverkehrsatlas.de/regionen/radinfra?config=ife2uk.3yo4.f6&v=2) nicht präzise angegeben werden kann. (Aktuell werden nur Wege der Kategorie \"Radweg\" aufgenommen.)",
   "task": "**Bitte prüfe ob die Radinfrastruktur straßenbegleitend ist und ergänze den fehlenden Zugangs-Tag `is_sidepath=yes` oder `no`.** Weitere Hinweise findet Du in der Aufgabenbeschreibung.\n",
   "mapUrl": "https://radverkehrsatlas.de/regionen/radinfra?config=ife2uk.3yo4.f6&v=2",
   "maprouletteChallenge": {

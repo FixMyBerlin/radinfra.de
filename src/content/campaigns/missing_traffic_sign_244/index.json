@@ -7,8 +7,8 @@
   "author": "Tobias Jordans @tordans",
   "visibility": "promote",
   "language": "de",
-  "description": "Diese Kampagne enthält Wege, die [im Radverkehrsatlas](https://radverkehrsatlas.de/) als Fahrradstraße kategorisiert wurden, jedoch fehlt das zugehörige Verkehrszeichen.",
-  "task": "**Bitte ergänze fehlende Verkehrszeichen oder ein explizites `traffic_sign=none`.** Weitere Hinweise findet Du in der Aufgabenbeschreibung.",
+  "description": "Diese Kampagne enthält Fahrradstraße ohne zugehörigen Verkehrszeichen-Tag.",
+  "task": "**Bitte ergänze fehlende Verkehrszeichen.** Weitere Hinweise findet Du in der Aufgabenbeschreibung.",
   "mapUrl": "https://radverkehrsatlas.de/regionen/radinfra?config=ife2uk.nmmc.f6&v=2",
   "maprouletteChallenge": {
     "discriminant": true,
@@ -17,7 +17,7 @@
       "name": "Fahrradstraßen ohne Verkehrszeichen",
       "enabled": true,
       "remoteGeoJson": "https://radverkehrsatlas.de/api/maproulette/missing_traffic_sign_244",
-      "checkinComment": "Fahrradstraßen ohne Verkehrszeichen #missing_traffic_sign_244 #traffic_signs #radinfra_de #maproulette",
+      "checkinComment": "Verkehrszeichen an Fahrradstraße ergänzt. #missing_traffic_sign_244 #traffic_signs #radinfra_de #maproulette",
       "checkinSource": "radinfra_de",
       "resultsLimited": false,
       "rebuildAt": "2025-02-14T13:03"
