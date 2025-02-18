@@ -14,7 +14,11 @@ export async function GET() {
     })
 
   const data = sortedCampaigns.map(({ id, data }) => {
-    return { id, ...data, hashtags: buildHashtags(id, data.category) }
+    return {
+      id,
+      ...data,
+      hashtags: buildHashtags(id, data.category, data.maprouletteChallenge.discriminant === true),
+    }
   })
 
   return new Response(JSON.stringify(data))

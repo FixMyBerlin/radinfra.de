@@ -27,7 +27,7 @@ const { values } = parseArgs({
 type ActionData = { slug: string } & z.infer<typeof MaprouletteCampaignCreationSchema>
 
 function dataCreateChallenge({ slug, ...astroCampaignData }: ActionData) {
-  const hashtags = buildHashtags(slug, astroCampaignData.category, '#maproulette')
+  const hashtags = buildHashtags(slug, astroCampaignData.category, true)
   const challengeData: CreateMapRouletteChallengeType = {
     ...defaultChallenge,
     name: astroCampaignData.name,
