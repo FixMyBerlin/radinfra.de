@@ -1,6 +1,6 @@
 {
-  "name": "Fahrradstraßen mit fehlendem `bicycle=designated` (Beta-Version)",
-  "menuTitle": "Zugangs-Tagging fehlt (Fahrradstraße)",
+  "name": "Fahrradstraßen mit fehlendem `bicycle=designated`",
+  "menuTitle": "Fahrradstraßen mit fehlendem Zugangs-Tag",
   "pubDate": "2024-10-01T15:00",
   "category": "traffic_signs",
   "recommendedAction": "maproulette",

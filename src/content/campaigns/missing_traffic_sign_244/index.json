@@ -1,6 +1,6 @@
 {
-  "name": "Fahrradstraßen ohne Verkehrszeichen (Beta-Version)",
-  "menuTitle": "Fehlendes Verkehrszeichen (Fahrradstraße)",
+  "name": "Fahrradstraßen ohne Verkehrszeichen",
+  "menuTitle": "Fahrradstraßen ohne Verkehrszeichen",
   "pubDate": "2024-09-20T15:00",
   "category": "traffic_signs",
   "recommendedAction": "maproulette",
@@ -9,7 +9,7 @@
   "language": "de",
   "description": "Diese Kampagne enthält Fahrradstraße ohne zugehörigen Verkehrszeichen-Tag.",
   "task": "**Bitte ergänze fehlende Verkehrszeichen.** Weitere Hinweise findet Du in der Aufgabenbeschreibung.",
-  "mapUrl": "https://radverkehrsatlas.de/regionen/radinfra?config=ife2uk.nmmc.f6&v=2",
+  "mapUrl": "https://radverkehrsatlas.de/regionen/radinfra?config=v92cax.hrb610.3dc&v=2",
   "maprouletteChallenge": {
     "discriminant": true,
     "value": {
