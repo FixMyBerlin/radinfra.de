@@ -9,7 +9,7 @@
   "language": "de",
   "description": "Dieser Weg ist als `cycleway=track` eingetragen. Das sind nicht genug Daten, um eine eindeutige Radinfrastruktur-Kategorie zu vergeben.",
   "task": "**Bitte ergänze weitere Tags, um eine präzise Kategorisierung sicherzustellen.** Weitere Hinweise findet Du in der Aufgabenbeschreibung.",
-  "mapUrl": "https://radverkehrsatlas.de/regionen/radinfra?config=#todo",
+  "mapUrl": "https://radverkehrsatlas.de/regionen/radinfra?config=v92cax.a0qx0.3dc&v=2",
   "maprouletteChallenge": {
     "discriminant": false,
     "value": {
