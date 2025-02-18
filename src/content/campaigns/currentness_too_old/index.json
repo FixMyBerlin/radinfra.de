@@ -17,7 +17,7 @@
       "name": "Sehr lange nicht geprüfte Wege",
       "enabled": true,
       "remoteGeoJson": "https://radverkehrsatlas.de/api/maproulette/currentness_too_old",
-      "checkinComment": "Radinfrastruktur überprüft. #currentness_too_old #traffic_signs #radinfra_de #maproulette",
+      "checkinComment": "Radinfrastruktur überprüft.",
       "checkinSource": "radinfra_de",
       "resultsLimited": false,
       "rebuildAt": "2025-02-14T13:03"

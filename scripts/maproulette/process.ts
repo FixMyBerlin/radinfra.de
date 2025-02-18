@@ -5,6 +5,7 @@ import { AstroCampaignSchema, MaprouletteCampaignCreationSchema } from 'cms/camp
 import { startOfDay } from 'date-fns'
 import invariant from 'tiny-invariant'
 import { parseArgs } from 'util'
+import { buildHashtags } from './buildHashtags'
 import { defaultChallenge } from './default.const'
 import {
   CreateMapRouletteChallengeSchema,
@@ -26,6 +27,7 @@ const { values } = parseArgs({
 type ActionData = { slug: string } & z.infer<typeof MaprouletteCampaignCreationSchema>
 
 function dataCreateChallenge({ slug, ...astroCampaignData }: ActionData) {
+  const hashtags = buildHashtags(slug, astroCampaignData.category, '#maproulette')
   const challengeData: CreateMapRouletteChallengeType = {
     ...defaultChallenge,
     name: astroCampaignData.name,
@@ -33,9 +35,9 @@ function dataCreateChallenge({ slug, ...astroCampaignData }: ActionData) {
     remoteGeoJson: astroCampaignData.maprouletteChallenge.value.remoteGeoJson,
     enabled: astroCampaignData.maprouletteChallenge.value.enabled,
     description: astroCampaignData.description,
-    checkinComment: astroCampaignData.maprouletteChallenge.value.checkinComment,
+    checkinComment: `${astroCampaignData.maprouletteChallenge.value.checkinComment}  ${hashtags.join(' ')}`,
     checkinSource: astroCampaignData.maprouletteChallenge.value.checkinSource,
-    dataOriginDate: startOfDay(new Date()).toISOString(), // Atlas data is always fresh
+    dataOriginDate: startOfDay(new Date()).toISOString(), // We skip this; the tasks have their own updatedAt at the bottom of the task description
   }
   return CreateMapRouletteChallengeSchema.parse(challengeData)
 }

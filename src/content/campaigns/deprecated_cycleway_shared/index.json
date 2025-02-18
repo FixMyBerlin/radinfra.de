@@ -17,7 +17,7 @@
       "name": "Veraltetes Tagging (`cycleway=shared`)",
       "enabled": true,
       "remoteGeoJson": "https://radverkehrsatlas.de/api/maproulette/deprecated_cycleway_shared",
-      "checkinComment": "Deprecated cycleway=shared. #deprecated_cycleway_shared #radinfra_de #maproulette",
+      "checkinComment": "Deprecated cycleway=shared.",
       "checkinSource": "radinfra_de",
       "resultsLimited": false,
       "rebuildAt": "2025-02-14T13:01"

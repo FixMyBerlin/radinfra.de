@@ -1,4 +1,5 @@
 import { getCollection } from 'astro:content'
+import { buildHashtags } from 'scripts/maproulette/buildHashtags'
 export const prerender = true
 
 // Docs https://docs.astro.build/en/guides/endpoints/
@@ -13,7 +14,7 @@ export async function GET() {
     })
 
   const data = sortedCampaigns.map(({ id, data }) => {
-    return { id, ...data }
+    return { id, ...data, hashtags: buildHashtags(id, data.category) }
   })
 
   return new Response(JSON.stringify(data))

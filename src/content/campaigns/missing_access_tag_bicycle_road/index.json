@@ -17,7 +17,7 @@
       "name": "Fahrradstraßen mit fehlendem `bicycle=designated`",
       "enabled": true,
       "remoteGeoJson": "https://radverkehrsatlas.de/api/maproulette/missing_access_tag_bicycle_road",
-      "checkinComment": "bicycle=designated an Fahrradstraßen ergänzt. #missing_access_tag_bicycle_road #traffic_signs #radinfra_de #maproulette",
+      "checkinComment": "bicycle=designated an Fahrradstraßen ergänzt.",
       "checkinSource": "radinfra_de",
       "resultsLimited": false,
       "rebuildAt": "2025-02-14T13:04"

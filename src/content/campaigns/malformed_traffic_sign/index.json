@@ -17,7 +17,7 @@
       "name": "Fehler im Verkehrszeichen-Tag",
       "enabled": true,
       "remoteGeoJson": "https://radverkehrsatlas.de/api/maproulette/malformed_traffic_sign",
-      "checkinComment": "`traffic_sign:*` korrigiert. #malformed_traffic_sign #traffic_signs #radinfra_de #maproulette",
+      "checkinComment": "`traffic_sign:*` korrigiert.",
       "checkinSource": "radinfra_de",
       "resultsLimited": false
     }
