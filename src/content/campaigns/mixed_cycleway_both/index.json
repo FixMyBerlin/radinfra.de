@@ -19,7 +19,8 @@
       "remoteGeoJson": "https://radverkehrsatlas.de/api/maproulette/mixed_cycleway_both",
       "checkinComment": "Überschneidende Tags präzisiert.",
       "checkinSource": "radinfra_de",
-      "resultsLimited": false
+      "resultsLimited": false,
+      "rebuildAt": "2025-02-18T10:54"
     }
   }
 }
