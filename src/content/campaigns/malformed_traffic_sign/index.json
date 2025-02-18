@@ -13,7 +13,7 @@
   "maprouletteChallenge": {
     "discriminant": true,
     "value": {
-      "id": null,
+      "id": 51092,
       "name": "Fehler im Verkehrszeichen-Tag",
       "enabled": true,
       "remoteGeoJson": "https://radverkehrsatlas.de/api/maproulette/malformed_traffic_sign",

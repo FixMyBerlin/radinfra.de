@@ -13,7 +13,7 @@
   "maprouletteChallenge": {
     "discriminant": true,
     "value": {
-      "id": null,
+      "id": 51093,
       "name": "Überschneidende Tags für `cycleway*`",
       "enabled": true,
       "remoteGeoJson": "https://radverkehrsatlas.de/api/maproulette/mixed_cycleway_both",
