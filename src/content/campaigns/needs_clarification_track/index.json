@@ -3,7 +3,7 @@
   "menuTitle": "`cycleway=track` präzisieren",
   "pubDate": "2025-02-17T10:00",
   "category": "radinfra",
-  "recommendedAction": "maproulette",
+  "recommendedAction": "map",
   "author": "Tobias Jordans @tordans",
   "visibility": "secondary",
   "language": "de",
@@ -11,7 +11,7 @@
   "task": "**Bitte ergänze weitere Tags, um eine präzise Kategorisierung sicherzustellen.** Weitere Hinweise findet Du in der Aufgabenbeschreibung.",
   "mapUrl": "https://radverkehrsatlas.de/regionen/radinfra?config=#todo",
   "maprouletteChallenge": {
-    "discriminant": true,
+    "discriminant": false,
     "value": {
       "id": null,
       "name": "`cycleway=track` präzisieren",
@@ -19,7 +19,7 @@
       "remoteGeoJson": "https://radverkehrsatlas.de/api/maproulette/needs_clarification_track",
       "checkinComment": "#needs_clarification_track #traffic_signs #radinfra_de #maproulette",
       "checkinSource": "radinfra_de",
-      "resultsLimited": false
+      "resultsLimited": true
     }
   }
 }
