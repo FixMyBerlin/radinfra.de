@@ -43,7 +43,7 @@ export const defaultChallenge = {
   // I then uploaded it to a test challenge to get this object below.
   taskWidgetLayout: {
     meta: {
-      exportName: 'OSM-Verkehrswende',
+      exportName: 'Radinfra.de',
       exportTimestamp: '2025-02-15T16:15:54.537Z',
       targetWorkspace: 'taskCompletion',
       exportFormatVersion: 1,
@@ -52,7 +52,7 @@ export const defaultChallenge = {
       cols: 12,
       name: 'taskCompletion',
       layout: [
-        { h: 10, w: 5, x: 0, y: 0 },
+        { h: 30, w: 5, x: 0, y: 0 },
         { h: 0, w: 7, x: 5, y: 0 },
         { h: 10, w: 7, x: 5, y: 0 },
         { h: 20, w: 7, x: 5, y: 10 },
