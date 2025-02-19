@@ -1,20 +1,18 @@
 {
-  "name": "Ergänze, ob es sich um einen Schutzstreifen oder Angebotsstreifen handelt (Beta-Version)",
-  "menuTitle": "Schutzstreifen oder Angebotsstreifen?",
+  "title": "Schutzstreifen oder Angebotsstreifen?",
   "pubDate": "2025-01-01T15:00",
   "category": "radinfra",
   "recommendedAction": "maproulette",
   "author": "Tobias Jordans @tordans",
   "visibility": "secondary",
   "language": "de",
-  "description": "Diese Kampagne enthält Radinfrastruktur auf der Fahrbahn bei denen die Angabe fehlt, ob es sich um einen Schutzstreifen oder Angebotsstreifen handelt.",
+  "description": "Diese Kampagne enthält Radinfrastruktur auf der Fahrbahn bei der die Angabe fehlt, ob es sich um einen Schutzstreifen oder Angebotsstreifen handelt.",
   "task": "**Bitte prüfe die Radinfrastruktur und ergänze die nötigen Attribute.** Weitere Hinweise findet Du in der Aufgabenbeschreibung.",
   "mapUrl": "https://radverkehrsatlas.de/regionen/radinfra?config=ife2uk.6rt0.f6&v=2",
   "maprouletteChallenge": {
     "discriminant": true,
     "value": {
       "id": 50888,
-      "name": "Schutzstreifen oder Angebotsstreifen?",
       "enabled": true,
       "remoteGeoJson": "https://radverkehrsatlas.de/api/maproulette/advisory_or_exclusive",
       "checkinComment": "Angabe zur Führungsform ergänzt (Schutzstreifen oder Angebotsstreifen).",

@@ -1,6 +1,5 @@
 {
-  "name": "Die Angabe `cycleway=shared` soll nicht mehr verwendet werden (Beta-Version)",
-  "menuTitle": "Veraltetes Tagging (`shared`)",
+  "title": "Veraltetes Tagging `shared`",
   "pubDate": "2025-01-01T15:00",
   "category": "radinfra",
   "recommendedAction": "maproulette",
@@ -14,7 +13,6 @@
     "discriminant": true,
     "value": {
       "id": 50889,
-      "name": "Veraltetes Tagging (`cycleway=shared`)",
       "enabled": true,
       "remoteGeoJson": "https://radverkehrsatlas.de/api/maproulette/deprecated_cycleway_shared",
       "checkinComment": "Deprecated cycleway=shared.",

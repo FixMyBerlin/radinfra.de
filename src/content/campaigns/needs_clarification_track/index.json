@@ -1,20 +1,18 @@
 {
-  "name": "Zusätzliche attribute für `cycleway=track` ergänzen (Beta-Version)",
-  "menuTitle": "`cycleway=track` präzisieren",
+  "title": "Führungsform `track` unklar",
   "pubDate": "2025-02-17T10:00",
   "category": "radinfra",
   "recommendedAction": "map",
   "author": "Tobias Jordans @tordans",
   "visibility": "secondary",
   "language": "de",
-  "description": "Dieser Weg ist als `cycleway=track` eingetragen. Das sind nicht genug Daten, um eine eindeutige Radinfrastruktur-Kategorie zu vergeben.",
+  "description": "Diesee Wege sind als `cycleway=track` eingetragen. Es fehlen ihnen aber Attribute, um eine eindeutige Radinfrastruktur-Kategorie zu vergeben.",
   "task": "**Bitte ergänze weitere Tags, um eine präzise Kategorisierung sicherzustellen.** Weitere Hinweise findet Du in der Aufgabenbeschreibung.",
   "mapUrl": "https://radverkehrsatlas.de/regionen/radinfra?config=v92cax.a0qx0.3dc&v=2",
   "maprouletteChallenge": {
     "discriminant": false,
     "value": {
       "id": null,
-      "name": "`cycleway=track` präzisieren",
       "enabled": true,
       "remoteGeoJson": "https://radverkehrsatlas.de/api/maproulette/needs_clarification_track",
       "checkinComment": "#needs_clarification_track #traffic_signs #radinfra_de #maproulette",

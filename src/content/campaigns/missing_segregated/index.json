@@ -1,6 +1,5 @@
 {
-  "name": "Ergänze Angaben zur Trennung von Fahrrad- und Fußverkehr auf Geh-/Radwegen (Beta-Version)",
-  "menuTitle": "Gemeinsame oder getrennte Führung?",
+  "title": "Gemeinsame oder getrennte Führung?",
   "pubDate": "2024-09-20T15:00",
   "category": "radinfra",
   "recommendedAction": "maproulette",
@@ -14,7 +13,6 @@
     "discriminant": true,
     "value": {
       "id": 50887,
-      "name": "Geh-/Radweg: Gemeinsame oder getrennte Führung?",
       "enabled": true,
       "remoteGeoJson": "https://radverkehrsatlas.de/api/maproulette/missing_segregated",
       "checkinComment": "Angabe zu `segregated` ergänzt.",

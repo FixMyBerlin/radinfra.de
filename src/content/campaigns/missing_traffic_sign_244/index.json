@@ -1,6 +1,5 @@
 {
-  "name": "Fahrradstraßen ohne Verkehrszeichen",
-  "menuTitle": "Fahrradstraßen ohne Verkehrszeichen",
+  "title": "Ergänze das Verkehrszeichen bei Fahrradstraßen",
   "pubDate": "2024-09-20T15:00",
   "category": "traffic_signs",
   "recommendedAction": "maproulette",
@@ -14,7 +13,6 @@
     "discriminant": true,
     "value": {
       "id": 49357,
-      "name": "Fahrradstraßen ohne Verkehrszeichen",
       "enabled": true,
       "remoteGeoJson": "https://radverkehrsatlas.de/api/maproulette/missing_traffic_sign_244",
       "checkinComment": "Verkehrszeichen an Fahrradstraße ergänzt.",

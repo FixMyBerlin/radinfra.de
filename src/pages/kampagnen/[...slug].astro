@@ -53,8 +53,8 @@ const noindex =
     data.maprouletteChallenge?.value?.enabled === false)
 ---
 
-<LayoutArticlePageAstro title={data.name} {...data} noindex={noindex}>
-  <PageHeadline category="Kampagnen" headline={data.name} intro={data.description} />
+<LayoutArticlePageAstro title={data.title} noindex={noindex} language={data.language}>
+  <PageHeadline category="Kampagnen" headline={data.title} intro={data.description} />
 
   <ProseSection classes="mb-0">
     <h2>Aufgabe</h2>

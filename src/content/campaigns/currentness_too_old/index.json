@@ -1,6 +1,5 @@
 {
-  "name": "Radinfrastruktur die seit langer Zeit nicht editiert wurde",
-  "menuTitle": "Sehr lange nicht geprüfte Wege",
+  "title": "Sehr lange nicht geprüfte Radinfra",
   "pubDate": "2025-01-01T15:00",
   "category": "currentness",
   "recommendedAction": "maproulette",
@@ -14,7 +13,6 @@
     "discriminant": true,
     "value": {
       "id": 51041,
-      "name": "Sehr lange nicht geprüfte Wege",
       "enabled": true,
       "remoteGeoJson": "https://radverkehrsatlas.de/api/maproulette/currentness_too_old",
       "checkinComment": "Radinfrastruktur überprüft.",

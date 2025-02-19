@@ -1,6 +1,5 @@
 {
-  "name": "Die Straßenklasse \"Fußweg\" ist unerwartet wenn Radinfrastruktur vorhanden ist (Beta-Version)",
-  "menuTitle": "Straßenklasse unklar (Fußweg)",
+  "title": "Straßenklasse Fußweg unerwartet",
   "pubDate": "2025-01-01T15:00",
   "category": "radinfra",
   "recommendedAction": "maproulette",
@@ -14,7 +13,6 @@
     "discriminant": true,
     "value": {
       "id": 50883,
-      "name": "Straßenklasse 'Fußweg' unklar",
       "enabled": true,
       "remoteGeoJson": "https://radverkehrsatlas.de/api/maproulette/unexpected_bicycle_access_on_footway",
       "checkinComment": "Straßenklasse Fußweg in Kombination mit Radinfrastruktur verbessert.",

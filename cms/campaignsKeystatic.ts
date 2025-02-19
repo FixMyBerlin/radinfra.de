@@ -8,14 +8,13 @@ import { visibilitySelect } from './utils/visibilitySelect'
 export const contentBase = 'src/content/campaigns'
 export const keystaticCampaignsConfig = collection({
   label: 'Kampagne',
-  slugField: 'menuTitle',
+  slugField: 'title',
   path: `${contentBase}/*/`,
   format: { data: 'json' },
   entryLayout: 'form',
-  columns: ['name', 'category', 'visibility'],
+  columns: ['title', 'category', 'visibility'],
   schema: {
-    name: fields.text({ label: 'Title', validation: { isRequired: true } }),
-    menuTitle: fields.slug({ name: { label: 'Menu title', validation: { isRequired: true } } }),
+    title: fields.slug({ name: { label: 'Menu title', validation: { isRequired: true } } }),
     pubDate: fields.datetime({ label: 'Publish Date/Time', validation: { isRequired: true } }),
     category: fields.select({
       label: 'Category',
@@ -68,10 +67,6 @@ export const keystaticCampaignsConfig = collection({
             enabled: fields.checkbox({
               label: 'Challenge enabled in MapRoulette (and noindex if disabled)',
               defaultValue: true,
-            }),
-            name: fields.text({
-              label: 'Titel/Name',
-              validation: { isRequired: true },
             }),
             remoteGeoJson: fields.url({
               label: 'Remote GeoJSON URL',

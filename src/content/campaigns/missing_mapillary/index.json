@@ -1,6 +1,5 @@
 {
-  "name": "Ergänze Straßenlevel Fotos (Mapillary)",
-  "menuTitle": "Ergänze Fotos",
+  "title": "Ergänze straßenlevel Fotos (Mapillary)",
   "pubDate": "2025-01-01T15:00",
   "category": "pictures",
   "recommendedAction": "mapillary",

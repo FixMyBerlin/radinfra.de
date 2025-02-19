@@ -1,6 +1,5 @@
 {
-  "name": "Ergänze ob die Fahrradinfrastruktur straßenbegleitend oder selbstständig geführt ist (Beta-Version)",
-  "menuTitle": "Straßenbegleitend oder selbstständig geführt?",
+  "title": "Straßenbegleitend oder selbstständig geführt?",
   "pubDate": "2025-01-01T15:00",
   "category": "radinfra",
   "recommendedAction": "maproulette",
@@ -15,7 +14,6 @@
     "value": {
       "id": 50885,
       "enabled": true,
-      "name": "Fahrradinfrastruktur straßenbegleitend oder selbstständig geführt?",
       "remoteGeoJson": "https://radverkehrsatlas.de/api/maproulette/adjoining_or_isolated",
       "checkinComment": "Angabe zur Führung der Fahrradinfrastruktur (straßenbegleitend bzw. selbstständig geführt) ergänzt.",
       "checkinSource": "radinfra_de",

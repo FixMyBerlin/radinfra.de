@@ -1,6 +1,5 @@
 {
-  "name": "Ergänze Angaben Oberfläche",
-  "menuTitle": "Ergänze die Oberfläche",
+  "title": "Ergänze Angaben zur Oberfläche",
   "pubDate": "2025-01-01T15:00",
   "category": "surface",
   "recommendedAction": "streetcomplete",

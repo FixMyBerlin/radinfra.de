@@ -11,8 +11,7 @@ const InputDateTimeSchema = z
 
 // REMINDER: Keep in sync with https://github.com/FixMyBerlin/atlas-app/blob/develop/app/src/app/regionen/(index)/_data/radinfraDeCampaignSchema.ts
 const AstroCampaignBaseSchema = z.object({
-  name: z.string(),
-  menuTitle: z.string(),
+  title: z.string(),
   pubDate: InputDateTimeSchema,
   visibility: z.enum(visibilityOptions),
   category: z.enum(campaignCategories),
@@ -28,7 +27,6 @@ const AstroCampaignMaprouletteSchema = z.object({
   value: z.object({
     id: z.number().nullable().optional(),
     enabled: z.boolean(),
-    name: z.string(),
     remoteGeoJson: z.string().url(),
     checkinComment: z.string(),
     checkinSource: z.string(),

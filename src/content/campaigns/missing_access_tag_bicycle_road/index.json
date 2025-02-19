@@ -1,6 +1,5 @@
 {
-  "name": "Fahrradstraßen mit fehlendem `bicycle=designated`",
-  "menuTitle": "Fahrradstraßen mit fehlendem Zugangs-Tag",
+  "title": "Fehlender Zugangs-Tag bei Fahrradstraßen",
   "pubDate": "2024-10-01T15:00",
   "category": "traffic_signs",
   "recommendedAction": "maproulette",
@@ -14,7 +13,6 @@
     "discriminant": true,
     "value": {
       "id": 49368,
-      "name": "Fahrradstraßen mit fehlendem `bicycle=designated`",
       "enabled": true,
       "remoteGeoJson": "https://radverkehrsatlas.de/api/maproulette/missing_access_tag_bicycle_road",
       "checkinComment": "bicycle=designated an Fahrradstraßen ergänzt.",

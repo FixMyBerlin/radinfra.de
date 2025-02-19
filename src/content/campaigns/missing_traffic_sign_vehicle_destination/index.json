@@ -1,13 +1,12 @@
 {
-  "name": "Fahrradstraßen ohne Zusatzzeichen »Anlieger frei«",
-  "menuTitle": "Fahrradstraßen ohne Zusatzzeichen",
+  "title": "Ergänze das Verkehrszeichen »Anlieger frei«",
   "pubDate": "2024-10-01T15:00",
   "category": "traffic_signs",
   "recommendedAction": "maproulette",
   "author": "Tobias Jordans @tordans",
   "visibility": "secondary",
   "language": "de",
-  "description": "Diese Kampagne enthält Fahrradstraßen mit der Freigabe 'Anlieger frei' für Kfz. Es fehlt jedoch das zugehörige Zusatzzeichen.",
+  "description": "Diese Kampagne enthält Fahrradstraßen mit der Freigabe »Anlieger frei« für Kfz. Es fehlt jedoch das zugehörige Zusatzzeichen.",
   "task": "**Bitte ergänze fehlende Verkehrszeichen oder korrigiere den Zugangs-Tag`.** Weitere Hinweise findet Du in der Aufgabenbeschreibung.",
   "mapUrl": "https://radverkehrsatlas.de/regionen/radinfra?config=ife2uk.4funno.f6&v=2",
   "maprouletteChallenge": {
@@ -15,7 +14,6 @@
     "value": {
       "id": 49363,
       "enabled": true,
-      "name": "Fahrradstraßen ohne Zusatzzeichen »Anlieger frei«",
       "remoteGeoJson": "https://radverkehrsatlas.de/api/maproulette/missing_traffic_sign_vehicle_destination",
       "checkinComment": "Verkehrszeichen und access-Tagging vereinheitlicht.",
       "checkinSource": "radinfra_de",

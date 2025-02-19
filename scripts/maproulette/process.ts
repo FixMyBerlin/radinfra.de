@@ -30,7 +30,7 @@ function dataCreateChallenge({ slug, ...astroCampaignData }: ActionData) {
   const hashtags = buildHashtags(slug, astroCampaignData.category, true)
   const challengeData: CreateMapRouletteChallengeType = {
     ...defaultChallenge,
-    name: astroCampaignData.name,
+    name: astroCampaignData.title,
     infoLink: `https://radinfra.de/kampagnen/${slug}/`,
     remoteGeoJson: astroCampaignData.maprouletteChallenge.value.remoteGeoJson,
     enabled: astroCampaignData.maprouletteChallenge.value.enabled,

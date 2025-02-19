@@ -1,6 +1,5 @@
 {
-  "name": "Ergänze Angaben zur Breite der Radinfrastruktur",
-  "menuTitle": "Ergänze die Breite",
+  "title": "Ergänze Angaben zur Breite",
   "pubDate": "2025-01-01T15:00",
   "category": "width",
   "recommendedAction": "streetcomplete",

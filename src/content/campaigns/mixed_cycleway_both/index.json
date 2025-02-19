@@ -1,6 +1,5 @@
 {
-  "name": "Überschneidende Tags für `cycleway*` (Beta-Version)",
-  "menuTitle": "Überschneidende Tags",
+  "title": "Überschneidende Tags (`cycleway*`)",
   "pubDate": "2025-02-17T10:00",
   "category": "radinfra",
   "recommendedAction": "maproulette",
@@ -14,7 +13,6 @@
     "discriminant": true,
     "value": {
       "id": 51093,
-      "name": "Überschneidende Tags für `cycleway*`",
       "enabled": true,
       "remoteGeoJson": "https://radverkehrsatlas.de/api/maproulette/mixed_cycleway_both",
       "checkinComment": "Überschneidende Tags präzisiert.",

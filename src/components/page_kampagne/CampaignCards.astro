@@ -51,7 +51,7 @@ campaignCategorySelect.forEach(({ value: key }) => {
               return (
                 <StackedCard
                   href={`/kampagnen/${campaign.id.replace('/index', '')}`}
-                  title={campaign.data.name}
+                  title={campaign.data.title}
                 >
                   <CampaignActionIcon
                     action={campaign.data.recommendedAction}
@@ -79,7 +79,7 @@ campaignCategorySelect.forEach(({ value: key }) => {
                     <span class="mt-1.5">
                       <CampaignActionIcon action={campaign.data.recommendedAction} />
                     </span>
-                    {campaign.data.name}
+                    {campaign.data.title}
                   </Link>
                 </li>
               )
@@ -100,7 +100,7 @@ campaignCategorySelect.forEach(({ value: key }) => {
                     <span class="mt-1.5">
                       <CampaignActionIcon action={campaign.data.recommendedAction} />
                     </span>
-                    {campaign.data.name}
+                    {campaign.data.title}
                   </Link>
                 </li>
               )

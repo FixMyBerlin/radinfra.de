@@ -1,6 +1,5 @@
 {
-  "name": "Fehler im Verkehrszeichen-Tag (Beta-Version)",
-  "menuTitle": "Fehlerhaftes Verkehrszeichen-Tag",
+  "title": "Fehler im Verkehrszeichen-Tag",
   "pubDate": "2025-02-17T10:00",
   "category": "traffic_signs",
   "recommendedAction": "maproulette",
@@ -14,7 +13,6 @@
     "discriminant": true,
     "value": {
       "id": 51092,
-      "name": "Fehler im Verkehrszeichen-Tag",
       "enabled": true,
       "remoteGeoJson": "https://radverkehrsatlas.de/api/maproulette/malformed_traffic_sign",
       "checkinComment": "`traffic_sign:*` korrigiert.",
