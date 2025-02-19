@@ -1,6 +1,6 @@
 import { config } from '@keystatic/core'
 import { KEYSTATIC_STORAGE_KIND } from 'astro:env/client'
-import { keystaticCampaignsConfig } from 'cms/campaignsKeystatic'
+import { keystaticlocalCampaignsConfig } from 'cms/localCampaignsKeystatic'
 import { keystaticPartnersConfig } from 'cms/partnersKeystatic'
 import { keystaticPostsConfig } from 'cms/postsKeystatic'
 
@@ -26,7 +26,7 @@ export default config({
   },
   collections: {
     posts: keystaticPostsConfig,
-    campaigns: keystaticCampaignsConfig,
+    campaigns: keystaticlocalCampaignsConfig,
     partners: keystaticPartnersConfig,
   },
   singletons: {},

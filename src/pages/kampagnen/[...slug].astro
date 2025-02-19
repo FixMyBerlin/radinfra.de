@@ -13,16 +13,28 @@ import ProseSection from '@components/text/ProseSection.astro'
 import LayoutArticlePageAstro from '@layouts/LayoutArticlePageAstro.astro'
 import { type CollectionEntry, getCollection } from 'astro:content'
 import { ASTRO_ENV } from 'astro:env/client'
-import { buildHashtags } from 'scripts/maproulette/buildHashtags'
 
+type Props = CollectionEntry<'localCampaigns'> | CollectionEntry<'remoteCampaigns'>
 export async function getStaticPaths() {
-  const campaigns = await getCollection('campaigns')
-  return campaigns.map((campaign) => ({
-    params: { slug: campaign.id.replace('/index', '') },
-    props: campaign,
-  }))
+  const localCampaigns = await getCollection('localCampaigns')
+  const remoteCampaigns = await getCollection('remoteCampaigns')
+  type Merged = { params: { slug: string }; props: Props }[]
+  const mergedCampaigns: Merged = []
+
+  localCampaigns.forEach((campaign) => {
+    mergedCampaigns.push({
+      params: { slug: campaign.data.id },
+      props: campaign,
+    })
+  })
+  remoteCampaigns.forEach((campaign) => {
+    mergedCampaigns.push({
+      params: { slug: campaign.data.id },
+      props: campaign,
+    })
+  })
+  return mergedCampaigns
 }
-type Props = CollectionEntry<'campaigns'>
 
 const page = Astro.props
 const { data } = page
@@ -36,24 +48,16 @@ const { data } = page
 // })
 
 const maprouletteUrl =
-  data.maprouletteChallenge.discriminant === true
-    ? maprouletteChallengeUrl(data.maprouletteChallenge.value.id)
+  data.maprouletteChallenge.enabled === true
+    ? maprouletteChallengeUrl(data.maprouletteChallenge.id)
     : undefined
 
-const hashtags = buildHashtags(
-  page.id,
-  data.category,
-  data.maprouletteChallenge.discriminant === true,
-)
+const noindex = maprouletteUrl === undefined || data.visibility == 'hidden'
 
-const noindex =
-  maprouletteUrl === undefined ||
-  data.visibility == 'hidden' ||
-  (data.maprouletteChallenge.discriminant === true &&
-    data.maprouletteChallenge?.value?.enabled === false)
+console.log('xxx', data)
 ---
 
-<LayoutArticlePageAstro title={data.title} noindex={noindex} language={data.language}>
+<LayoutArticlePageAstro title={data.title} noindex={noindex} language="de">
   <PageHeadline category="Kampagnen" headline={data.title} intro={data.description} />
 
   <ProseSection classes="mb-0">
@@ -63,8 +67,8 @@ const noindex =
     <h2>Mitmachen</h2>
 
     {
-      data.maprouletteChallenge.discriminant === true && data.maprouletteChallenge.value.id && (
-        <CampaignProgress challengeId={data.maprouletteChallenge.value.id} client:load />
+      data.maprouletteChallenge.enabled === true && data.maprouletteChallenge.id && (
+        <CampaignProgress challengeId={data.maprouletteChallenge.id} client:load />
       )
     }
 
@@ -161,78 +165,73 @@ const noindex =
     }
 
     {
-      data.recommendedAction === 'maproulette' &&
-        data.maprouletteChallenge.discriminant === true && (
-          <div>
-            {data.mapUrl && (
-              <MegaButton
-                href={data.mapUrl}
-                iconKey="maproulette"
-                label="Zur Karte"
-                subline="Finde Aufgaben in deiner Region."
-                className="mt-3"
-              />
-            )}
+      data.recommendedAction === 'maproulette' && data.maprouletteChallenge.enabled === true && (
+        <div>
+          {data.mapUrl && (
+            <MegaButton
+              href={data.mapUrl}
+              iconKey="maproulette"
+              label="Zur Karte"
+              subline="Finde Aufgaben in deiner Region."
+              className="mt-3"
+            />
+          )}
 
-            <Details title="Kurzanleitung" classes="prose-sm mt-2" defaultOpen={true}>
-              <ol>
-                <li>
-                  In der Karte einen <strong>Weg auswählen</strong>
-                </li>
-                <li>
-                  Rechts den Button zum <strong>Bearbeiten</strong> verwenden
-                </li>
-                <li>
-                  Tipp: Die Aufgabenbeschreibung enthält hilfreiche Links zu{' '}
-                  <strong>Straßenfotos</strong> bei Mapillary
-                </li>
-                <li>
-                  Die Aufgabe <strong>im iD Editor bearbeiten</strong> und Änderungen in OSM
-                  speichern
-                </li>
-                <li>
-                  In <strong>MapRoulette</strong>: Zum Abschluss die Aufgabe als erledigt (oder eine
-                  andere Option) markieren
-                </li>
-              </ol>
-              <p>Deine Änderungen sind am nächsten Tag in der Karte zu sehen.</p>
-            </Details>
+          <Details title="Kurzanleitung" classes="prose-sm mt-2" defaultOpen={true}>
+            <ol>
+              <li>
+                In der Karte einen <strong>Weg auswählen</strong>
+              </li>
+              <li>
+                Rechts den Button zum <strong>Bearbeiten</strong> verwenden
+              </li>
+              <li>
+                Tipp: Die Aufgabenbeschreibung enthält hilfreiche Links zu{' '}
+                <strong>Straßenfotos</strong> bei Mapillary
+              </li>
+              <li>
+                Die Aufgabe <strong>im iD Editor bearbeiten</strong> und Änderungen in OSM speichern
+              </li>
+              <li>
+                In <strong>MapRoulette</strong>: Zum Abschluss die Aufgabe als erledigt (oder eine
+                andere Option) markieren
+              </li>
+            </ol>
+            <p>Deine Änderungen sind am nächsten Tag in der Karte zu sehen.</p>
+          </Details>
 
-            {maprouletteUrl && (
-              <div class="mt-12 mb-0">
-                Alternativ kannst du
-                <LinkExternal href={maprouletteUrl}>
-                  die Kampagne über MapRoulette.com
-                </LinkExternal>{' '}
-                bearbeiten.
-                <Details title="Kurzanleitung">
-                  <ol>
-                    <li>Bei MapRoulette mit OSM anmelden</li>
-                    <li>Eine konkrete Aufgabe auswählen oder "Start" klicken</li>
-                    <li>
-                      Tipp: Die Aufgabenbeschreibung enthält hilfreiche Links zu Mapillary und Co
-                    </li>
-                    <li>
-                      Die Aufgabe im iD Editor oder JOSM bearbeiten und Änderungen in OSM speichern
-                    </li>
-                    <li>
-                      Zum Abschluss die Aufgabe als erledigt (oder eine andere Option) speichern
-                    </li>
-                  </ol>
-                </Details>
-              </div>
-            )}
+          {maprouletteUrl && (
+            <div class="mt-12 mb-0">
+              Alternativ kannst du
+              <LinkExternal href={maprouletteUrl}>
+                die Kampagne über MapRoulette.com
+              </LinkExternal>{' '}
+              bearbeiten.
+              <Details title="Kurzanleitung">
+                <ol>
+                  <li>Bei MapRoulette mit OSM anmelden</li>
+                  <li>Eine konkrete Aufgabe auswählen oder "Start" klicken</li>
+                  <li>
+                    Tipp: Die Aufgabenbeschreibung enthält hilfreiche Links zu Mapillary und Co
+                  </li>
+                  <li>
+                    Die Aufgabe im iD Editor oder JOSM bearbeiten und Änderungen in OSM speichern
+                  </li>
+                  <li>
+                    Zum Abschluss die Aufgabe als erledigt (oder eine andere Option) speichern
+                  </li>
+                </ol>
+              </Details>
+            </div>
+          )}
 
-            {data.maprouletteChallenge.value.id && (
-              <div class="mt-12 mb-0">
-                <CampaignLeaderboard
-                  challengeId={data.maprouletteChallenge.value.id}
-                  client:only="react"
-                />
-              </div>
-            )}
-          </div>
-        )
+          {data.maprouletteChallenge.id && (
+            <div class="mt-12 mb-0">
+              <CampaignLeaderboard challengeId={data.maprouletteChallenge.id} client:only="react" />
+            </div>
+          )}
+        </div>
+      )
     }
   </ProseSection>
 
@@ -265,79 +264,77 @@ const noindex =
         .
       </li>
       {
-        data.maprouletteChallenge.discriminant === true &&
-          data.maprouletteChallenge.value.resultsLimited && (
-            <li>
-              <strong>Diese Kampagne ist künstlich limitiert auf 40.000 Aufgaben</strong>, da
-              MapRoulette sonst nicht funktioniert. Das bedeutet, wenn Aufgaben erledigt wurden und
-              die Kampage aktualisiert wird, werden neue Aufgaben nachkommen. Zumindest solange, bis
-              wir uns unter die 40k gearbeitet haben.
-            </li>
-          )
+        data.maprouletteChallenge.enabled === true && data.maprouletteChallenge.resultsLimited && (
+          <li>
+            <strong>Diese Kampagne ist künstlich limitiert auf 40.000 Aufgaben</strong>, da
+            MapRoulette sonst nicht funktioniert. Das bedeutet, wenn Aufgaben erledigt wurden und
+            die Kampage aktualisiert wird, werden neue Aufgaben nachkommen. Zumindest solange, bis
+            wir uns unter die 40k gearbeitet haben.
+          </li>
+        )
       }
       {
-        data.maprouletteChallenge.discriminant === true &&
-          data.maprouletteChallenge.value.remoteGeoJson && (
-            <li>
-              MapRoulette Daten:{' '}
-              <a
-                href={`${data.maprouletteChallenge.value.remoteGeoJson}?download=true`}
-                download
-                target="_blank"
-              >
-                GeoJSON-Datei
-              </a>{' '}
-              (Newline-delimited GeoJSON)
-            </li>
-          )
+        data.maprouletteChallenge.enabled === true && data.remoteGeoJson && (
+          <li>
+            MapRoulette Daten:{' '}
+            <a href={`${data.remoteGeoJson}?download=true`} download target="_blank">
+              GeoJSON-Datei
+            </a>{' '}
+            (Newline-delimited GeoJSON)
+          </li>
+        )
       }
       {
-        data.maprouletteChallenge.discriminant === true &&
-          data.maprouletteChallenge.value.rebuildAt && (
-            <li>
-              Die Aufgaben in MapRoulette wurden zuletzt am{' '}
-              {data.maprouletteChallenge.value.rebuildAt.toLocaleString('de-DE')} aktualisiert.
-            </li>
-          )
+        data.maprouletteChallenge.enabled === true && data.maprouletteChallenge.rebuildAt && (
+          <li>
+            Die Aufgaben in MapRoulette wurden zuletzt am{' '}
+            {new Date(data.maprouletteChallenge.rebuildAt).toLocaleString('de-DE')} aktualisiert.
+          </li>
+        )
       }
-      <li>
-        OSMCha: Changesets mit <a
-          href={`https://osmcha.org/?filters={"date__gte":[{"label":"2024-09-01","value":"2024-09-01"}],"source":[{"label":"radinfra_de","value":"radinfra_de"}]}`}
-          target="_blank"
-        >
-          <code>source=radinfra_de</code>
-        </a>
-      </li><li>
-        OSMCha: Changesets mit Hashtag
-        {
-          hashtags.map((tag) => {
-            return (
+      {
+        data.hashtags.length > 0 && (
+          <>
+            <li>
+              OSMCha: Changesets mit{' '}
               <a
-                href={`https://osmcha.org/?filters={"date__gte":[{"label":"2024-09-01","value":"2024-09-01"}],"metadata":[{"label":"hashtags=${tag}","value":"hashtags=${tag}"}]}`}
+                href={`https://osmcha.org/?filters={"date__gte":[{"label":"2024-09-01","value":"2024-09-01"}],"source":[{"label":"radinfra_de","value":"radinfra_de"}]}`}
                 target="_blank"
               >
-                <code>{tag}</code>
+                <code>source=radinfra_de</code>
               </a>
-            )
-          })
-        }
-      </li><li>
-        OSMCha: Changesets Comments die
-        {
-          hashtags.map((tag) => {
-            return (
-              <a
-                href={`https://osmcha.org/?filters={"date__gte":[{"label":"2024-09-01","value":"2024-09-01"}],"comment":[{"label":"${tag}","value":"${tag}"}]}`}
-                target="_blank"
-              >
-                <code>{tag}</code>
-              </a>
-            )
-          })
-        }
-        enthalten.
-      </li>
-      <li>Veröffentlicht am {data.pubDate.toLocaleString()}</li>
+            </li>
+            <li>
+              OSMCha: Changesets mit Hashtag
+              {data.hashtags.map((tag) => {
+                return (
+                  <a
+                    href={`https://osmcha.org/?filters={"date__gte":[{"label":"2024-09-01","value":"2024-09-01"}],"metadata":[{"label":"hashtags=${tag}","value":"hashtags=${tag}"}]}`}
+                    target="_blank"
+                  >
+                    <code>{tag}</code>
+                  </a>
+                )
+              })}
+            </li>
+            <li>
+              OSMCha: Changesets Comments die
+              {data.hashtags.map((tag) => {
+                return (
+                  <a
+                    href={`https://osmcha.org/?filters={"date__gte":[{"label":"2024-09-01","value":"2024-09-01"}],"comment":[{"label":"${tag}","value":"${tag}"}]}`}
+                    target="_blank"
+                  >
+                    <code>{tag}</code>
+                  </a>
+                )
+              })}
+              enthalten.
+            </li>
+          </>
+        )
+      }
+      <li>Veröffentlicht am {new Date(data.pubDate).toLocaleString()}</li>
     </ul>
   </ProseSection>
 

@@ -2,8 +2,8 @@ import { queryClient } from '@components/store/tanstackQuery'
 import { useQuery } from '@tanstack/react-query'
 import { z } from 'astro/zod'
 import { useState } from 'react'
-import { maprouletteProjectId } from 'scripts/maproulette/maprouletteProjectId.const'
 import { twJoin } from 'tailwind-merge'
+import { maprouletteProjectId } from '../../../../atlas-app/app/scripts/MaprouletteCreate/maprouletteProjectId.const'
 
 const progressSchema = z.object({
   total: z.number(),

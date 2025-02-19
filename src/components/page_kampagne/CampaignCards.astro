@@ -67,7 +67,7 @@ campaignCategorySelect.forEach(({ value: key }) => {
             .filter(
               (campaign) =>
                 campaign.data.visibility !== 'promote' &&
-                campaign.data.maprouletteChallenge.discriminant === true,
+                campaign.data.maprouletteChallenge.enabled === true,
             )
             .map((campaign) => {
               return (
@@ -88,7 +88,7 @@ campaignCategorySelect.forEach(({ value: key }) => {
             .filter(
               (campaign) =>
                 campaign.data.visibility !== 'promote' &&
-                campaign.data.maprouletteChallenge.discriminant === false,
+                campaign.data.maprouletteChallenge.enabled === false,
             )
             .map((campaign) => {
               return (

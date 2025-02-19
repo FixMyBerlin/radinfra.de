@@ -1,4 +1,5 @@
 import { getCollection } from 'astro:content'
 
-const allCampaigns = await getCollection('campaigns')
-export type Campaign = (typeof allCampaigns)[number]
+const localCampaigns = await getCollection('localCampaigns')
+const remoteCampaigns = await getCollection('remoteCampaigns')
+export type Campaign = (typeof localCampaigns)[number] | (typeof remoteCampaigns)[number]

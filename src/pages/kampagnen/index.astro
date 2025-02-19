@@ -8,20 +8,18 @@ import LayoutArticlePageAstro from '@layouts/LayoutArticlePageAstro.astro'
 import { getCollection } from 'astro:content'
 import { ASTRO_ENV } from 'astro:env/client'
 
-const allCampaigns = await getCollection('campaigns')
+const localCampaigns = await getCollection('localCampaigns')
+const remoteCampaigns = await getCollection('remoteCampaigns')
+const allCampaigns = [...localCampaigns, ...remoteCampaigns]
+
 const sortedCampaigns = allCampaigns
-  .filter((c) => {
-    if (c.data.visibility === 'hidden') return false
-    if (c.data.maprouletteChallenge.discriminant === false) return true
-    return (
-      c.data.maprouletteChallenge.discriminant === true &&
-      c.data.maprouletteChallenge.value.id &&
-      c.data.maprouletteChallenge.value.enabled === true
-    )
+  .filter(({ data }) => {
+    return data.visibility !== 'hidden'
   })
   .sort((postA, postB) => {
     return new Date(postB.data.pubDate).valueOf() - new Date(postA.data.pubDate).valueOf()
   })
+const hiddenCampaigns = allCampaigns.filter((c) => !sortedCampaigns.map((c) => c.id).includes(c.id))
 ---
 
 <LayoutArticlePageAstro title="Kampagnen zur Verbesserung der Radinfrastrukturdaten">
@@ -58,24 +56,13 @@ const sortedCampaigns = allCampaigns
       <div class="mt-12 bg-red-300 p-2">
         <h2>Kampagnen die oben nicht aufgelistet werden</h2>
         <ul>
-          {allCampaigns
-            .filter(({ data }) => {
-              if (data.visibility === 'hidden') return true
-              if (
-                data.maprouletteChallenge.discriminant === true &&
-                (!data.maprouletteChallenge.value.id ||
-                  data.maprouletteChallenge.value.enabled === false)
-              )
-                return true
-              return false
-            })
-            .map((campaign) => {
-              return (
-                <li>
-                  <a href={`/kampagnen/${campaign.id}`}>{campaign.data.title}</a>
-                </li>
-              )
-            })}
+          {hiddenCampaigns.map((campaign) => {
+            return (
+              <li>
+                <a href={`/kampagnen/${campaign.id}`}>{campaign.data.title}</a>
+              </li>
+            )
+          })}
         </ul>
       </div>
     )
