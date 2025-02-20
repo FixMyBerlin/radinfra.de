@@ -43,18 +43,12 @@ const { data } = page
 //   https://github.com/Thinkmill/keystatic/discussions/1318
 //   ~`const { Content } = await render(page)`~
 
-// const relatedCampaigns = await getCollection('campaigns', ({ data }) => {
-//   return data.category === data.category
-// })
-
 const maprouletteUrl =
   data.maprouletteChallenge.enabled === true
     ? maprouletteChallengeUrl(data.maprouletteChallenge.id)
     : undefined
 
 const noindex = maprouletteUrl === undefined || data.visibility == 'hidden'
-
-console.log('xxx', data)
 ---
 
 <LayoutArticlePageAstro title={data.title} noindex={noindex} language="de">
@@ -234,17 +228,6 @@ console.log('xxx', data)
       )
     }
   </ProseSection>
-
-  <!-- Disabled for not, this needs a different design first -->
-  <!-- {
-    relatedCampaigns.length > 0 && (
-      <CampaignCards
-        headlineTemplate="Weitere Kampagnen zu »CATEGORY«"
-        campaigns={relatedCampaigns}
-        showEmptyCategories={false}
-      />
-    )
-  } -->
 
   <ProseSection classes="prose-sm mt-12">
     <h2>Metadaten</h2>
