@@ -7,12 +7,8 @@ const isMitmachen = currentPathname.startsWith('/mitmachen')
 ---
 
 <MenuItemWrapper>
-  <MenuItem href="/" highlightExactMatch>Übersicht</MenuItem>
-</MenuItemWrapper>
-
-<MenuItemWrapper>
-  <MenuItem href="/karte">Karte</MenuItem>
-  <MenuItem href="/statistik">Statistik</MenuItem>
+  <MenuItem href="/" highlightExactMatch>Einleitung</MenuItem>
+  <MenuItem href="/statistik">Vergleich Bundesländer</MenuItem>
 </MenuItemWrapper>
 
 <MenuItemWrapper>
@@ -20,9 +16,6 @@ const isMitmachen = currentPathname.startsWith('/mitmachen')
   {
     isMitmachen && (
       <>
-        <MenuItem href="/mitmachen/hinweise" highlightExactMatch indentation={2}>
-          Hinweise
-        </MenuItem>
         <MenuItem href="/mitmachen/fotos" highlightExactMatch indentation={2}>
           Fotos
         </MenuItem>
@@ -32,15 +25,17 @@ const isMitmachen = currentPathname.startsWith('/mitmachen')
         <MenuItem href="/mitmachen/mappen" highlightExactMatch indentation={2}>
           Mappen
         </MenuItem>
+        <MenuItem href="/mitmachen/hinweise" highlightExactMatch indentation={2}>
+          Hinweise
+        </MenuItem>
       </>
     )
   }
   <MenuItem href="/kampagnen">Kampagnen</MenuItem>
+  <MenuItem href="/kontakt">Community-Kontakt</MenuItem>
 </MenuItemWrapper>
 
-<!-- <MenuItemHeadline>Kontakt</MenuItemHeadline> -->
 <MenuItemWrapper>
-  <MenuItem href="/kontakt">Termine / Kontakt</MenuItem>
-  <MenuItem href="/partner">Partner</MenuItem>
+  <MenuItem href="/partner">Über/Partner</MenuItem>
   <MenuItem href="/angebote">Angebote Kommunen</MenuItem>
 </MenuItemWrapper>

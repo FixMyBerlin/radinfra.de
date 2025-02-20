@@ -13,14 +13,6 @@ const { headline } = Astro.props
 
 <StackedCardWrapper sectionClasses="mt-16" headline={headline}>
   <StackedCard
-    href="/mitmachen/hinweise"
-    title="Hinweise liefern"
-    text="Du kennst dich vor Ort aus? Dann trage Hinweise ein, wenn Daten fehlen…"
-    label="Für alle"
-  >
-    <ChatBubbleBottomCenterIcon className="size-10" />
-  </StackedCard>
-  <StackedCard
     href="/mitmachen/fotos"
     title="Fotos machen"
     text="Du fährst vor Ort Fahrrad? Dann mach Fotos, mit denen die Daten verbessert werden können…"
@@ -43,5 +35,13 @@ const { headline } = Astro.props
     label="Für geübte Mapper:innen"
   >
     <PencilSquareIcon className="size-10" />
+  </StackedCard>
+  <StackedCard
+    href="/mitmachen/hinweise"
+    title="Hinweise liefern"
+    text="Du kennst dich vor Ort aus? Dann trage Hinweise ein, wenn Daten fehlen…"
+    label="Für alle"
+  >
+    <ChatBubbleBottomCenterIcon className="size-10" />
   </StackedCard>
 </StackedCardWrapper>
