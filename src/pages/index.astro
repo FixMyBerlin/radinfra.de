@@ -7,6 +7,7 @@ import { CalendarDaysIcon, RectangleStackIcon } from '@heroicons/react/24/solid'
 import LayoutArticlePageAstro from '@layouts/LayoutArticlePageAstro.astro'
 import { Picture } from 'astro:assets'
 import pngKarte from '../assets/homepage/karte-deutschland.png'
+import { ArrowTopRightOnSquareIcon } from '@heroicons/react/20/solid'
 ---
 
 <LayoutArticlePageAstro title="Radinfrastruktur für Deutschland">
@@ -29,16 +30,27 @@ import pngKarte from '../assets/homepage/karte-deutschland.png'
   </Notice>
 
   <section>
-    <a href="/karte" class="group">
-      <Picture
-        src={pngKarte}
-        width={655}
-        densities={[1.5, 2]}
-        formats={['png', 'avif']}
-        class="my-5 w-full overflow-clip rounded-sm border border-gray-100 object-cover group-hover:border-cyan-300"
-        pictureAttributes={{ class: 'not-prose w-full' }}
-        alt=""
-      />
+    <a
+      href="https://radverkehrsatlas.de/regionen/radinfra?map=6.1/51.312/10.529&config=v92cax.1utl.3dc&v=2"
+      target="_blank"
+      class="group my-5 block"
+    >
+      <figure
+        class="overflow-clip rounded-sm border border-gray-100 bg-gray-100 hover:border-cyan-300"
+      >
+        <Picture
+          src={pngKarte}
+          width={655}
+          densities={[1.5, 2]}
+          formats={['png', 'avif']}
+          class="w-full border-b border-gray-100 object-cover"
+          pictureAttributes={{ class: 'not-prose w-full' }}
+          alt=""
+        />
+        <p class="flex items-center justify-end gap-1 pr-2 pb-0.5">
+          Direkt zur Karte im Radverkehrsatlas <ArrowTopRightOnSquareIcon className="size-4" />
+        </p>
+      </figure>
     </a>
 
     <h2 class="sr-only">Einleitung</h2>
