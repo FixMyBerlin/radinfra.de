@@ -3,7 +3,7 @@ import { queryClient } from '@components/store/tanstackQuery'
 import { useQuery } from '@tanstack/react-query'
 import { z } from 'astro/zod'
 import { twJoin } from 'tailwind-merge'
-import { maprouletteProjectId } from '../../../../atlas-app/app/scripts/MaprouletteCreate/maprouletteProjectId.const'
+import { maprouletteProjectId } from './maprouletteProjectId.const'
 
 const leaderboardSchema = z.array(
   z.object({
