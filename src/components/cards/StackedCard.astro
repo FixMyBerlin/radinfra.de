@@ -16,7 +16,7 @@ const external = href.startsWith('http')
 
 <a
   href={href}
-  class="group/card justify-left flex items-center gap-4 rounded-sm bg-gray-100 p-4 no-underline ring-sky-100 hover:bg-cyan-50 hover:ring-1"
+  class="group/card justify-left not-prose flex items-center gap-4 rounded-sm bg-teal-900 p-4 text-teal-100 no-underline ring-1 ring-teal-100 hover:bg-teal-100/70 hover:text-teal-800 hover:ring-1"
   title={alt}
   target={external ? '_blank' : undefined}
 >
@@ -28,19 +28,25 @@ const external = href.startsWith('http')
     <div class="flex items-center justify-between">
       <h2
         data-noanchor
-        class="justify-left not-prose mt-1 flex items-center gap-1 py-0 text-left underline decoration-cyan-300 decoration-1 underline-offset-4"
+        class="justify-left not-prose flex items-center gap-1 py-0 text-left text-teal-200 group-hover/card:text-black"
       >
         {title ? title : 'Mehr erfahren…'}
         {external ? <ArrowTopRightOnSquare class="size-5" /> : ''}
       </h2>
       {
         label && (
-          <span class="inline-flex items-center rounded-full bg-sky-100 px-1.5 py-0.5 text-xs font-medium text-cyan-700 group-hover/card:bg-white/80">
+          <span class="inline-flex items-center rounded-full bg-teal-100 px-2 py-0.5 text-xs font-medium tracking-wide text-teal-800 group-hover/card:bg-teal-800 group-hover/card:text-teal-100">
             {label}
           </span>
         )
       }
     </div>
-    {text && <p class="!mt-1 text-sm leading-tight text-gray-600">{text}</p>}
+    {
+      text && (
+        <p class="!mt-1 text-sm leading-tight text-teal-100 group-hover/card:text-teal-900">
+          {text}
+        </p>
+      )
+    }
   </div>
 </a>

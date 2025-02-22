@@ -7,12 +7,12 @@ import MegaButton from '@components/Link/MegaButton.astro'
 import { CampaignLeaderboard } from '@components/page_kampagne/CampaignLeaderboard'
 import { CampaignProgress } from '@components/page_kampagne/CampaignProgress'
 import Details from '@components/text/Details.astro'
+import DevDetails from '@components/text/DevDetails.astro'
 import Markdown from '@components/text/Markdown.astro'
 import PageHeadline from '@components/text/PageHeadline.astro'
 import ProseSection from '@components/text/ProseSection.astro'
 import LayoutArticlePageAstro from '@layouts/LayoutArticlePageAstro.astro'
 import { type CollectionEntry, getCollection } from 'astro:content'
-import { ASTRO_ENV } from 'astro:env/client'
 
 type Props = CollectionEntry<'localCampaigns'> | CollectionEntry<'remoteCampaigns'>
 export async function getStaticPaths() {
@@ -321,11 +321,7 @@ const noindex = maprouletteUrl === undefined || data.visibility == 'hidden'
     </ul>
   </ProseSection>
 
-  {
-    ASTRO_ENV === 'development' && (
-      <Details title="DEV: Debugging" secondary>
-        <pre>{JSON.stringify({ page }, undefined, 2)}</pre>
-      </Details>
-    )
-  }
+  <DevDetails title="Debugging">
+    <pre>{JSON.stringify({ page }, undefined, 2)}</pre>
+  </DevDetails>
 </LayoutArticlePageAstro>

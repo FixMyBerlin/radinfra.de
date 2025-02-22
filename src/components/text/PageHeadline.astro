@@ -18,8 +18,8 @@ const introHtml = intro
 ---
 
 <header>
-  <Notice className="prose-code:bg-white/70 prose-code:text-sky-800 !mb-12">
-    <h1 class="!m-0 text-sky-700">
+  <Notice className="!mb-12 shadow">
+    <h1 class="!m-0">
       {category && <span class="block text-base font-normal uppercase">{category}</span>}
       <Fragment set:html={headlineHtml} />
     </h1>
@@ -27,8 +27,8 @@ const introHtml = intro
     {
       intro && (
         <p>
-          <hr class="!my-6 !border-white" />
-          <p class="lead prose-strong:text-sky-800" set:html={introHtml} />
+          <hr class="!my-6 !border-teal-900" />
+          <p class="lead prose-strong:text-teal-100" set:html={introHtml} />
         </p>
       )
     }

@@ -14,7 +14,11 @@ const { title, classes, secondary, defaultOpen } = Astro.props
 
 <details class={classes} open={defaultOpen}>
   <summary
-    class={twMerge('cursor-pointer font-bold', linkStyles, secondary ? 'text-gray-400' : '')}
+    class={twMerge(
+      'cursor-pointer font-bold underline',
+      linkStyles,
+      secondary ? 'text-teal-400' : '',
+    )}
   >
     {title}
   </summary>

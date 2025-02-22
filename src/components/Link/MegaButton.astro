@@ -22,35 +22,45 @@ const newWindow = href.startsWith('http')
     href={href}
     target={newWindow ? '_blank' : undefined}
     rel={newWindow ? 'noopener noreferrer' : undefined}
-    class="group/button flex flex-row items-center gap-4 rounded-sm bg-gradient-to-br from-cyan-300 to-cyan-200 p-4 text-gray-950 shadow-md transition-all hover:from-sky-400 hover:to-sky-300 hover:shadow-xl @lg:px-10 @lg:py-8"
+    class="group/button flex flex-row items-center gap-4 rounded-sm border border-teal-100 p-4 no-underline shadow-md hover:bg-teal-100/70 hover:shadow-xl @lg:px-10 @lg:py-8"
   >
     {
       (() => {
         switch (iconKey) {
           case 'map':
-            return <MapIcon className="size-14 @lg:size-20" />
+            return (
+              <MapIcon className="size-14 text-teal-200 group-hover/button:text-teal-900 @lg:size-20" />
+            )
           case 'stack':
-            return <RectangleStackIcon className="size-16 @lg:size-20" />
+            return (
+              <RectangleStackIcon className="size-16 text-teal-200 group-hover/button:text-teal-900 @lg:size-20" />
+            )
           case 'maproulette':
-            return <img src={MapRouletteLogo.src} class="size-14 @lg:size-16" alt="" />
+            return (
+              <MapRouletteLogo class="size-14 text-teal-200 group-hover/button:text-teal-900 @lg:size-16" />
+            )
           case 'document':
-            return <DocumentTextIcon className="size-16 @lg:size-20" />
+            return (
+              <DocumentTextIcon className="size-16 text-teal-200 group-hover/button:text-teal-900 @lg:size-20" />
+            )
           case 'download':
-            return <ArrowDownTrayIcon className="size-16 @lg:size-20" />
+            return (
+              <ArrowDownTrayIcon className="size-16 text-teal-200 group-hover/button:text-teal-900 @lg:size-16" />
+            )
         }
       })()
     }
     <div>
       <h2
         data-noanchor
-        class="mb-0 flex items-center gap-1 text-2xl font-bold decoration-sky-600 decoration-1 underline-offset-4 group-hover/button:underline @lg:text-3xl"
+        class="mb-0 flex items-center gap-1 text-2xl font-bold text-teal-200 group-hover/button:text-teal-950 @lg:text-3xl"
       >
         {label}
         <ArrowRightIcon className="size-8" />
       </h2>
       {
         subline && (
-          <p class="mt-1 mb-1 text-sm leading-tight text-gray-800 no-underline @lg:text-base">
+          <p class="mt-1 mb-1 text-sm leading-tight text-teal-100 group-hover/button:text-teal-800 @lg:text-base">
             {subline}
           </p>
         )

@@ -63,22 +63,22 @@ export const CampaignProgress = ({ challengeId }: Props) => {
       {
         label: 'Erledigt',
         value: done ?? 0,
-        bgColorClass: 'bg-green-500',
-        textColorClass: 'text-green-50',
+        bgColorClass: 'bg-teal-600',
+        textColorClass: 'text-teal-50',
       },
       {
         label: 'Offen',
         value: progress?.available ?? 0,
-        bgColorClass: 'bg-gray-200',
-        textColorClass: 'text-gray-950',
+        bgColorClass: 'bg-teal-950',
+        textColorClass: 'text-teal-50',
       },
     ],
     detailed: [
       {
         label: 'Behoben',
         value: progress?.fixed ?? 0,
-        bgColorClass: 'bg-green-500',
-        textColorClass: 'text-green-50',
+        bgColorClass: 'bg-teal-600',
+        textColorClass: 'text-teal-50',
       },
       {
         label: 'Bereits behoben',
@@ -107,8 +107,8 @@ export const CampaignProgress = ({ challengeId }: Props) => {
       {
         label: 'Offen',
         value: progress?.available ?? 0,
-        bgColorClass: 'bg-gray-200',
-        textColorClass: 'text-gray-950',
+        bgColorClass: 'bg-teal-950',
+        textColorClass: 'text-teal-50',
       },
     ],
   }
@@ -155,7 +155,7 @@ export const CampaignProgress = ({ challengeId }: Props) => {
             )
           })}
         </div>
-        <div className="w-full rounded-sm bg-gray-200">
+        <div className="w-full rounded-sm bg-teal-700">
           <div className="flex h-5 w-full shrink justify-start overflow-clip rounded-sm">
             {progressData[view].map(({ label, value, bgColorClass }) => {
               if (!total) return null

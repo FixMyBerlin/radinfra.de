@@ -2,28 +2,34 @@
 import { twJoin } from 'tailwind-merge'
 
 const { pathname: currentPathname } = Astro.url
+
+const links = [
+  { name: 'OpenSource, OpenData', link: '/dokumentation/open-source' },
+  { name: 'Dokumentation', link: '/dokumentation' },
+  { name: 'Datenschutz & Impressum', link: '/legal' },
+]
 ---
 
-<ul class="prose prose-sm mb-4 ml-3 flex flex-col gap-3 leading-snug">
-  <li>
-    <a class="underline hover:text-gray-500" href="/dokumentation/open-source">
-      OpenSource, OpenData
-    </a>
-  </li>
-  <li>
-    <a class="underline hover:text-gray-500" href="/dokumentation/"> Dokumentation </a>
-  </li>
-  <li>
-    <a
-      class={twJoin(
-        currentPathname === '/legal'
-          ? 'font-bold text-black no-underline'
-          : 'underline hover:text-gray-500',
-      )}
-      href="/legal"
-      lang="de"
-    >
-      Datenschutz & Impressum
-    </a>
-  </li>
+<ul
+  class="prose prose-teal prose-a:font-medium prose-a:text-teal-100 prose-a: prose-invert prose-sm mb-4 ml-3 flex flex-col gap-3 leading-snug"
+>
+  {
+    links.map(({ name, link }) => {
+      return (
+        <li>
+          <a
+            class={twJoin(
+              currentPathname === link
+                ? 'font-bold text-white no-underline'
+                : 'underline hover:decoration-teal-50 hover:decoration-2',
+            )}
+            href={link}
+            lang="de"
+          >
+            {name}
+          </a>
+        </li>
+      )
+    })
+  }
 </ul>

@@ -1,11 +1,15 @@
 import { twJoin, twMerge } from 'tailwind-merge'
 
-const baseStyles = twJoin('text-cyan-600')
+const baseStyles = twJoin('')
 export const linkStyles = twJoin(
   baseStyles,
-  'underline-cyan-700 underline decoration-cyan-300 decoration-1 underline-offset-4',
+  'text-teal-200 decoration-teal-300 decoration-1 underline-offset-4 hover:text-teal-100 hover:decoration-teal-50',
 )
-export const buttonStyles = twJoin(baseStyles, 'rounded-full border border-cyan-600 px-6 pt-4 pb-3')
+
+export const buttonStyles = twJoin(
+  baseStyles,
+  'not-prose my-2 inline-block rounded-sm border border-teal-100 px-2.5 py-1.5 text-teal-200 hover:bg-teal-100/70 hover:text-black hover:no-underline',
+)
 
 type Props = {
   to: string

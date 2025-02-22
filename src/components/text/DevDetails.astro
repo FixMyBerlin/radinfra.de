@@ -1,0 +1,24 @@
+---
+import { ASTRO_ENV } from 'astro:env/client'
+import { twMerge } from 'tailwind-merge'
+import Details from './Details.astro'
+
+type Props = {
+  title: string
+  classes?: string
+  defaultOpen?: boolean
+}
+
+const { classes } = Astro.props
+---
+
+{
+  ASTRO_ENV === 'development' && (
+    <Details
+      {...Astro.props}
+      classes={twMerge(classes, 'prose-purple prose-xs rounded bg-purple-900 p-3')}
+    >
+      <slot />
+    </Details>
+  )
+}

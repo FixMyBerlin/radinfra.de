@@ -64,7 +64,7 @@ export const CampaignLeaderboard = ({ challengeId }: Props) => {
 
         {leaderboard?.map((entry) => (
           <p key={entry.userId}>
-            <span className="font-base mr-2 inline-flex size-6 items-center justify-center rounded-full bg-pink-100 font-medium tracking-tighter text-pink-800">
+            <span className="font-base mr-2 inline-flex size-6 items-center justify-center rounded-full bg-amber-300 font-medium tracking-tighter text-teal-900">
               {entry.rank}
             </span>{' '}
             <a href={`https://www.openstreetmap.org/user/${entry.name}/history`} target="_blank">

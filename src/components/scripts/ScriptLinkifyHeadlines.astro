@@ -22,7 +22,7 @@
     for (const header of headers) {
       // We can disable auto linking with data-noanchor
       if ('noanchor' in header.dataset) continue
-      if (typeof header.id !== 'string') continue
+      if (header.id === '') continue
 
       header.classList.add('group')
       header.appendChild(anchorForId(header.id))

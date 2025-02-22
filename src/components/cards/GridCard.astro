@@ -18,7 +18,7 @@ const external = href.startsWith('http')
 
 <a
   href={href}
-  class="flex grow flex-col items-center justify-center rounded-sm bg-gray-100 no-underline decoration-2 ring-sky-100 hover:bg-cyan-50 hover:underline hover:ring-1"
+  class="group/card not-prose flex grow flex-col items-center justify-center rounded-sm border border-teal-100 bg-teal-900 text-teal-100 no-underline ring-teal-100 hover:bg-teal-100/70 hover:text-teal-950 hover:ring-1"
   title={alt}
   target={external ? '_blank' : undefined}
 >
@@ -47,7 +47,7 @@ const external = href.startsWith('http')
   </div>
   <h2
     data-noanchor
-    class="justify-left not-prose mt-1 mb-3 flex items-center gap-1 py-0 text-center"
+    class="justify-left not-prose mt-1 mb-3 flex items-center gap-1 py-0 text-center tracking-wide text-teal-200 group-hover/card:text-black"
   >
     {text ? text : 'Mehr erfahren…'}
     {external ? <ArrowTopRightOnSquareIcon className="size-5" /> : ''}

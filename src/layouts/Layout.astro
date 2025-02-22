@@ -54,30 +54,12 @@ const { title, noindex, canonicalUrl, language, description, image, imageAlt } =
     <meta name="twitter:site" content="@osmberlin" />
     <meta name="fediverse:creator" content="@osmberlin@en.osm.town" />
 
-    <meta name="theme-color" content="#7D5197" />
+    <meta name="theme-color" content="#0b4f4a" />
     <meta name="generator" content={Astro.generator} data-generated-at={new Date().toISOString()} />
 
     <link rel="alternate" type="application/rss+xml" href="feed.xml" />
-
-    <!-- TODO: Check out https://npm.io/package/tailwindcss-safe-area as a possible alternative -->
-    <script is:inline is:raw>
-      /*
-      Fix .h-screen, see .computed-h-screen
-      https://css-tricks.com/the-trick-to-viewport-units-on-mobile/
-      */
-      // First we get the viewport height and we multiple it by 1% to get a value for a vh unit
-      let vh = window.innerHeight * 0.01
-      // Then we set the value in the --vh custom property to the root of the document
-      document.documentElement.style.setProperty('--vh', `${vh}px`)
-
-      // We listen to the resize event
-      window.addEventListener('resize', () => {
-        let vh = window.innerHeight * 0.01
-        document.documentElement.style.setProperty('--vh', `${vh}px`)
-      })
-    </script>
   </head>
-  <body class="h-full text-base">
+  <body class="h-full bg-teal-900 text-base text-teal-50">
     <slot />
   </body>
   <TailwindResponsiveHelper />

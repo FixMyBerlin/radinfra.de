@@ -22,11 +22,16 @@ const active = highlightExactMatch === true ? exactMatch : currentPathname.start
   href={href}
   class={twMerge(
     active
-      ? twJoin('bg-sky-50 font-semibold hover:bg-sky-50', exactMatch ? 'cursor-text' : '')
-      : 'hover:bg-cyan-50',
-    'group/item flex items-center justify-between border-b border-gray-200 py-2.5 pr-2 pl-4 leading-tight',
+      ? twJoin(
+          'bg-teal-100 font-semibold',
+          exactMatch
+            ? 'cursor-text text-teal-950'
+            : 'bg-teal-100/70 text-teal-950 hover:text-black',
+        )
+      : 'hover:bg-teal-100/70 hover:text-black',
+    'group/item flex items-center justify-between border-t border-teal-100 py-2.5 pr-2 pl-4 leading-tight',
   )}
-  data-item-active-debugger={active}
+  aria-current={active}
   {...{ rel: external ? 'noopener noreferrer' : undefined }}
   {...{ target: external ? '_blank' : undefined }}
   style={indentation ? { paddingLeft: `${indentation * 0.65}rem` } : {}}
@@ -34,7 +39,12 @@ const active = highlightExactMatch === true ? exactMatch : currentPathname.start
   {
     indentation ? (
       <div class="flex items-center justify-center gap-2">
-        <div class="size-1 rounded-full bg-gray-800" />
+        <div
+          class={twMerge(
+            'size-1 rounded-full',
+            active ? 'bg-teal-950' : 'bg-teal-100 group-hover/item:bg-teal-950',
+          )}
+        />
         <slot />
       </div>
     ) : (
@@ -44,7 +54,7 @@ const active = highlightExactMatch === true ? exactMatch : currentPathname.start
 
   {
     external && (
-      <ArrowTopRightOnSquareIcon className="size-5 text-gray-400 group-hover/item:text-gray-800" />
+      <ArrowTopRightOnSquareIcon className="size-5 text-teal-100 group-hover/item:text-teal-950" />
     )
   }
 </a>
