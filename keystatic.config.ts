@@ -20,13 +20,13 @@ export default config({
     },
     navigation: {
       Blog: ['posts'],
-      Kampagnen: ['campaigns'],
+      "'Lokale' Kampagnen": ['localCampaigns'],
       Partner: ['partners'],
     },
   },
   collections: {
     posts: keystaticPostsConfig,
-    campaigns: keystaticlocalCampaignsConfig,
+    localCampaigns: keystaticlocalCampaignsConfig,
     partners: keystaticPartnersConfig,
   },
   singletons: {},

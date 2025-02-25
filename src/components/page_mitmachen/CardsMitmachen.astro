@@ -1,47 +1,42 @@
 ---
 import StackedCard from '@components/cards/StackedCard.astro'
-import StackedCardWrapper from '@components/cards/StackedCardWrapper.astro'
 import {
   ChatBubbleBottomCenterIcon,
   CameraIcon,
   PencilSquareIcon,
   DevicePhoneMobileIcon,
 } from '@heroicons/react/24/solid'
-
-const { headline } = Astro.props
 ---
 
-<StackedCardWrapper sectionClasses="mt-16" headline={headline}>
-  <StackedCard
-    href="/mitmachen/fotos"
-    title="Fotos machen"
-    text="Du fährst vor Ort Fahrrad? Dann mach Fotos, mit denen die Daten verbessert werden können…"
-    label="Für Radfahrer:innen"
-  >
-    <CameraIcon className="size-10" />
-  </StackedCard>
-  <StackedCard
-    href="/mitmachen/streetcomplete"
-    title="StreetComplete nutzen"
-    text="StreetComplete stellt dir Fragen und deine Antworten verbessern OSM…"
-    label="Für neue Mapper:innen"
-  >
-    <DevicePhoneMobileIcon className="size-10" />
-  </StackedCard>
-  <StackedCard
-    href="/mitmachen/mappen"
-    title="Kampagnen bearbeiten"
-    text="Auch in deiner Region gibt es bestimmt etwas zu tun…"
-    label="Für geübte Mapper:innen"
-  >
-    <PencilSquareIcon className="size-10" />
-  </StackedCard>
-  <StackedCard
-    href="/mitmachen/hinweise"
-    title="Hinweise liefern"
-    text="Du kennst dich vor Ort aus? Dann trage Hinweise ein, wenn Daten fehlen…"
-    label="Für alle"
-  >
-    <ChatBubbleBottomCenterIcon className="size-10" />
-  </StackedCard>
-</StackedCardWrapper>
+<StackedCard
+  href="/mitmachen/fotos"
+  title="Fotos machen"
+  text="Du fährst vor Ort Fahrrad? Dann mach Fotos, mit denen die Daten verbessert werden können…"
+  label="Für Radfahrer:innen"
+>
+  <CameraIcon className="size-10" />
+</StackedCard>
+<StackedCard
+  href="/mitmachen/streetcomplete"
+  title="StreetComplete nutzen"
+  text="StreetComplete stellt dir Fragen und deine Antworten verbessern OSM…"
+  label="Für neue Mapper:innen"
+>
+  <DevicePhoneMobileIcon className="size-10" />
+</StackedCard>
+<StackedCard
+  href="/mitmachen/mappen"
+  title="Kampagnen bearbeiten"
+  text="Auch in deiner Region gibt es bestimmt etwas zu tun…"
+  label="Für geübte Mapper:innen"
+>
+  <PencilSquareIcon className="size-10" />
+</StackedCard>
+<StackedCard
+  href="/mitmachen/hinweise"
+  title="Hinweise liefern"
+  text="Du kennst dich vor Ort aus? Dann trage Hinweise ein, wenn Daten fehlen…"
+  label="Für alle"
+>
+  <ChatBubbleBottomCenterIcon className="size-10" />
+</StackedCard>

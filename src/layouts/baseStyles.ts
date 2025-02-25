@@ -13,6 +13,8 @@ export const proseBase = twJoin(
   'prose-lead:text-teal-50',
   // <a>
   'prose-a:text-teal-200 prose-a:decoration-teal-300 prose-a:hover:decoration-teal-50 prose-a:hover:text-teal-100 prose-a:decoration-1 prose-a:underline-offset-4',
+  // <hr>
+  'prose-hr:border-teal-100',
 )
 
 export const proseHeadings = twJoin(

@@ -1,4 +1,5 @@
 ---
+import { Link } from '@components/Link/Link'
 import CampaignCards from '@components/page_kampagne/CampaignCards.astro'
 import { CampaignLeaderboard } from '@components/page_kampagne/CampaignLeaderboard'
 import DevDetails from '@components/text/DevDetails.astro'
@@ -26,7 +27,29 @@ const hiddenCampaigns = allCampaigns.filter((c) => !sortedCampaigns.map((c) => c
   <PageHeadline
     category={undefined}
     headline="Kampagnen"
-    intro="Überall in Deutschland können wir die Daten noch besser machen. Diese Kampagnen helfen euch Verbesserungspotential zu finden."
+    intro="Überall in Deutschland können wir die Daten noch besser machen. Diese Kampagnen helfen dir in deiner Region Verbesserungspotentiale und passende Aufgaben zu finden."
+  />
+
+  <ProseSection highlight classes="prose-green my-12 flex gap-3">
+    <EyeIcon className="size-8 flex-none text-green-50" />
+    <div>
+      Zur Bearbeitung der Kampagnen solltest du schon mit OpenStreetMap gearbeitet haben. Falls
+      nicht
+      <Link to="/kontakt">komme am besten zu einem der MeetUps</Link> oder nutze die <Link
+        to="/mitmachen">anderen Möglichkeiten</Link
+      >
+      zu besseren Daten beizutragen
+    </div>
+  </ProseSection>
+
+  <ProseSection classes="prose-base mt-12">
+    <CampaignLeaderboard client:only="react" />
+  </ProseSection>
+
+  <CampaignCards
+    headlineTemplate="Kampagnen zu »CATEGORY«"
+    campaigns={sortedCampaigns}
+    showEmptyCategories={true}
   />
 
   <ProseSection classes="mb-12">
@@ -36,20 +59,6 @@ const hiddenCampaigns = allCampaigns.filter((c) => !sortedCampaigns.map((c) => c
       </a> von FixMyCity.
     </p>
   </ProseSection>
-
-  <ProseSection highlight classes="prose-green my-12 flex gap-3">
-    <EyeIcon className="prose-green size-8 text-green-800" />
-    <div>
-      <p>Alle Kampagnen setzen voraus, dass du dich mit OpenStreetMap auskennst.</p>
-      <p><a href="/mitmachen">Es gibt viele Wege, mitzuhelfen…</a></p>
-    </div>
-  </ProseSection>
-
-  <CampaignCards
-    headlineTemplate="Kampagnen zu »CATEGORY«"
-    campaigns={sortedCampaigns}
-    showEmptyCategories={true}
-  />
 
   <DevDetails title="Kampagnen die oben nicht aufgelistet werden">
     <ul>
@@ -64,9 +73,4 @@ const hiddenCampaigns = allCampaigns.filter((c) => !sortedCampaigns.map((c) => c
       }
     </ul>
   </DevDetails>
-
-  <ProseSection classes="mt-18">
-    <hr />
-    <CampaignLeaderboard client:only="react" />
-  </ProseSection>
 </LayoutArticlePageAstro>

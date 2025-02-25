@@ -2,15 +2,36 @@
 layout: '@layouts/LayoutArticlePageMdx.astro'
 title: Partner
 headline: Partner
-intro: Diese Seite wurde von FixMyCity in Zusammenarbeit mit OSM Community entwickelt und wird durch ein breites Netzwerk von Partnern unterstützt.
+intro: Diese Seite wurde von FixMyCity in Zusammenarbeit mit der OSM Community entwickelt und wird durch ein breites Netzwerk von Partnern unterstützt.
 ---
 
 import GridCard from '../components/cards/GridCard.astro'
 import GridCardWrapper from '../components/cards/GridCardWrapper.astro'
-import CardsUnterstuetzer from '../components/page_partner/CardsUnterstuetzer.astro'
+import StackedCardWrapper from '../components/cards/StackedCardWrapper.astro'
+import PartnerStackedCards from '../components/page_partner/PartnerStackedCards.astro'
+import PartnerGridCards from '../components/page_partner/PartnerGridCards.astro'
 import Notice from '../components/Notice.astro'
 
-<Notice colorClass="bg-pink-100 text-pink-800 prose-pink" className="mb-8 mt-8">
+<StackedCardWrapper>
+  <PartnerStackedCards filter='core' />
+</StackedCardWrapper>
+
+<GridCardWrapper headline="Supporter" sectionClasses='my-18'>
+  <p class="col-span-2">Vielen Dank an unsere Supporter, die es durch ihre finanzielle Unterstützung ermöglichen, diese Seite dauerhaft zu betreiben.</p>
+  <PartnerGridCards filter='finance' />
+</GridCardWrapper>
+
+<GridCardWrapper headline='Netzwerk und Communitypartner' sectionClasses='my-18'>
+  <p class="col-span-2">Hinter radinfra.de steht ein breites Bündnis von Akteuren, die sich für die Förderung des Radverkehrs einsetzen. Wir freuen uns über weitere Unterstützung.</p>
+  <PartnerGridCards filter='media_community' />
+</GridCardWrapper>
+
+## Das Projekt unterstützen
+
+[Bitte melden Sie sich](https://www.fixmycity.de/kontakt), wenn Sie das Projekt mit Ihrer Institution unterstützen möchten.
+
+
+<Notice colorClass="bg-pink-100 text-pink-800 prose-pink" className="mb-8 mt-18">
   <div class="flex items-center gap-2">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" class="size-9">
       <path
@@ -24,24 +45,3 @@ import Notice from '../components/Notice.astro'
     Das Unterstützernetzwerk auf dieser Seite ist zur Zeit nur ein Beispiel um das Layout und die Funktionalität der Seite zu testen.
   </p>
 </Notice>
-
-<CardsUnterstuetzer />
-
-<GridCardWrapper headline="Partner" sectionClasses='mt-16'>
-  <GridCard
-    href="/kontakt"
-    text="OSM Verkehrswende Community"
-  >
-    <div class='size-16 not-prose object-contain'>![](../assets/logos/osm-verkehrswende-logo.png)</div>
-  </GridCard>
-  <GridCard
-    href="https://www.fixmycity.de/kontakt"
-    text="FixMyCity GmbH"
-  >
-    <div class='size-16 not-prose object-contain'>![](../assets/logos/fixmycity-logo.png)</div>
-  </GridCard>
-</GridCardWrapper>
-
-## Das Projekt unterstützen
-
-[Bitte melden Sie sich](https://www.fixmycity.de/kontakt), wenn Sie das Projekt mit Ihrer Institution unterstützen möchten.

@@ -1,9 +1,9 @@
 ---
 export const prerender = true
-import { bundeslandLandkreis } from '@components/page_statistik/bundeslandLandkreis.const'
 //
+import { bundeslandLandkreis } from '@components/page_statistik/bundeslandLandkreis.const'
 import Debug from '@components/page_statistik/Debug.astro'
-import Intro from '@components/page_statistik/Intro.astro'
+import About from '@components/page_statistik/About.astro'
 import PageHeadline from '@components/text/PageHeadline.astro'
 import ProseSection from '@components/text/ProseSection.astro'
 import { slugify } from '@components/utils/slugify'
@@ -31,14 +31,10 @@ const landkreise = await getCollection('statistics', ({ data }) => {
 
 <LayoutArticle title="Karte der Radinfrastruktur in Deutschland">
   <PageHeadline
-    category="Statistik"
+    category="Statistische Auswertung"
     headline={`Statistik für die Landkreise in ${bundesland.data.properties.name}`}
-    intro="Statistiken pro Landkreis. Basierend auf den aufbereiteten Radinfrastrukturdaten aus OpenStreetMap."
+    intro="Statistiken zur vorhandenen Radinfrastruktur pro Landkreis. Basierend auf den aufbereiteten Radinfrastrukturdaten aus OpenStreetMap."
   />
-
-  <ProseSection>
-    <Intro />
-  </ProseSection>
 
   <!-- <div class="my-10 mr-6">
     <TreemapGraph client:idle rawData={bund.map((d) => d.data)} height={200} width={800} />
@@ -70,6 +66,10 @@ const landkreise = await getCollection('statistics', ({ data }) => {
       })
     }
   </div>
+
+  <ProseSection>
+    <About />
+  </ProseSection>
 
   <Debug data={{ bundesland, landkreise }} />
 </LayoutArticle>

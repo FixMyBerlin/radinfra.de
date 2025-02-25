@@ -1,6 +1,6 @@
 ---
 import Debug from '@components/page_statistik/Debug.astro'
-import Intro from '@components/page_statistik/Intro.astro'
+import About from '@components/page_statistik/About.astro'
 import PageHeadline from '@components/text/PageHeadline.astro'
 import ProseSection from '@components/text/ProseSection.astro'
 import { slugify } from '@components/utils/slugify'
@@ -16,13 +16,9 @@ const bund = statistics
 <LayoutArticle title="Statistik zu Radinfrastrukturdaten in Deutschland">
   <PageHeadline
     category={undefined}
-    headline="Statistik"
-    intro="Statistiken pro Bundesland und Landkreis. Basierend auf den aufbereiteten Radinfrastrukturdaten aus OpenStreetMap."
+    headline="Statistische Auswertung"
+    intro="Statistiken zur vorhandenen Radinfrastruktur pro Bundesland und Landkreis. Basierend auf den aufbereiteten Radinfrastrukturdaten aus OpenStreetMap."
   />
-
-  <ProseSection>
-    <Intro />
-  </ProseSection>
 
   <!-- <div class="my-10 mr-6">
     <TreemapGraph client:idle rawData={bund.map((d) => d.data)} height={200} width={800} />
@@ -63,6 +59,10 @@ const bund = statistics
       })
     }
   </div>
+
+  <ProseSection>
+    <About />
+  </ProseSection>
 
   <Debug data={bund} />
 </LayoutArticle>

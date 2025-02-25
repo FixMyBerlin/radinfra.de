@@ -1,0 +1,20 @@
+---
+import GridCard from '@components/cards/GridCard.astro'
+import { getCollection } from 'astro:content'
+import type { partnerCategories } from 'cms/utils/partnerCategorySelect'
+
+type Props = { filter: (typeof partnerCategories)[number] }
+const { filter } = Astro.props
+const partners = await getCollection('partners', ({ data }) => data.category === filter)
+const sortedPartners = partners.sort(
+  (a, b) => a.data.startDate.getTime() - b.data.startDate.getTime(),
+)
+---
+
+{
+  sortedPartners.map(({ id, data }) => {
+    return (
+      <GridCard key={id} href={data.url} title={data.title} image={data.logo} text={data.title} />
+    )
+  })
+}

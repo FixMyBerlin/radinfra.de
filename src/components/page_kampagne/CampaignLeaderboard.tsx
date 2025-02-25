@@ -1,5 +1,6 @@
 import { linkStyles } from '@components/Link/Link'
 import { queryClient } from '@components/store/tanstackQuery'
+import { BugAntIcon } from '@heroicons/react/20/solid'
 import { useQuery } from '@tanstack/react-query'
 import { z } from 'astro/zod'
 import { twJoin } from 'tailwind-merge'
@@ -57,14 +58,14 @@ export const CampaignLeaderboard = ({ challengeId }: Props) => {
         MapRoulette werden leider nicht gezählt.
       </p>
 
-      <div className="my-5 flex flex-col gap-2">
+      <div className="mt-5">
         {isLoading && <p>Lade Daten …</p>}
         {error && <p>Fehler beim Laden des Leaderboards.</p>}
         {leaderboard?.length === 0 && <p>Das Leaderboard ist noch leer.</p>}
 
         {leaderboard?.map((entry) => (
-          <p key={entry.userId}>
-            <span className="font-base mr-2 inline-flex size-6 items-center justify-center rounded-full bg-amber-300 font-medium tracking-tighter text-teal-900">
+          <p key={entry.userId} className="inline-block pt-2 pr-4">
+            <span className="font-base mr-1.5 inline-flex size-6 items-center justify-center rounded-full bg-amber-300 font-medium tracking-tighter text-teal-900">
               {entry.rank}
             </span>{' '}
             <a href={`https://www.openstreetmap.org/user/${entry.name}/history`} target="_blank">
@@ -74,9 +75,15 @@ export const CampaignLeaderboard = ({ challengeId }: Props) => {
         ))}
       </div>
 
-      <details className="text-xs text-gray-400">
-        <summary className={twJoin('cursor-pointer font-bold', linkStyles, 'text-gray-400')}>
-          Source
+      <details className="-mt-4 text-xs text-gray-400 open:mt-0">
+        <summary
+          className={twJoin(
+            'cursor-pointer list-none text-right font-bold',
+            linkStyles,
+            'text-gray-400',
+          )}
+        >
+          <BugAntIcon className="inline-block size-4 text-gray-400" />
         </summary>
         MapRoulette API:{' '}
         <a href={url} target="_blank">

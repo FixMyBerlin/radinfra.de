@@ -1,0 +1,63 @@
+---
+import ArrowTopRightOnSquare from 'astro-heroicons/outline/ArrowTopRightOnSquare.astro'
+import { Picture } from 'astro:assets'
+import { getCollection, render } from 'astro:content'
+import type { partnerCategories } from 'cms/utils/partnerCategorySelect'
+
+type Props = { filter: (typeof partnerCategories)[number] }
+const { filter } = Astro.props
+const partners = await getCollection('partners', ({ data }) => data.category === filter)
+const sortedPartners = partners.sort(
+  (a, b) => a.data.startDate.getTime() - b.data.startDate.getTime(),
+)
+---
+
+{
+  sortedPartners.map(async (partner) => {
+    const { data } = partner
+    const { Content } = await render(partner)
+    return (
+      <a
+        href={data.url}
+        class="group/card justify-left not-prose flex items-center gap-4 rounded-sm bg-teal-900 p-4 text-teal-100 no-underline ring-1 ring-teal-100 hover:bg-teal-100/70 hover:text-teal-800 hover:ring-1"
+        target="_blank"
+      >
+        <div class="flex w-24 flex-none items-center justify-center">
+          {data.logo && (
+            <Picture
+              src={data.logo}
+              height={96}
+              densities={[1.5, 2]}
+              formats={['png', 'avif']}
+              class="m-0 max-h-24 w-full max-w-24 object-contain"
+              pictureAttributes={{
+                class: 'not-prose w-full flex items-center justify-center m-0 min-h-20',
+              }}
+              alt=""
+            />
+          )}
+        </div>
+
+        <div class="grow">
+          <div class="flex items-center justify-between">
+            <h2
+              data-noanchor
+              class="justify-left not-prose flex items-center gap-1 py-0 text-left text-teal-200 group-hover/card:text-black"
+            >
+              {data.title}
+              <ArrowTopRightOnSquare class="size-5" />
+            </h2>
+            {/* {label && (
+              <span class="inline-flex items-center rounded-full bg-teal-100 px-2 py-0.5 text-xs font-medium tracking-wide text-teal-800 group-hover/card:bg-teal-800 group-hover/card:text-teal-100">
+                {label}
+              </span>
+            )} */}
+          </div>
+          <p class="!mt-1 text-sm leading-tight text-teal-100 group-hover/card:text-teal-900">
+            <Content />
+          </p>
+        </div>
+      </a>
+    )
+  })
+}
