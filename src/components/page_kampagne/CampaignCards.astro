@@ -38,7 +38,7 @@ campaignCategorySelect.forEach(({ value: key }) => {
 
     return (
       <>
-        <StackedCardWrapper headline={headline} sectionClasses="mt-16">
+        <StackedCardWrapper headline={headline} sectionClasses="mt-12">
           {categoryCampaigns.length === 0 && (
             <p class="col-span-2">
               <code>TODO</code> Kampagnen für diese Kategorie sind geplant.
@@ -62,7 +62,7 @@ campaignCategorySelect.forEach(({ value: key }) => {
             })}
         </StackedCardWrapper>
 
-        <ul class="pl-0">
+        <ul class="mb-0 pl-0">
           {categoryCampaigns
             .filter(
               (campaign) =>

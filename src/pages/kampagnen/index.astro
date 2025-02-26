@@ -30,7 +30,7 @@ const hiddenCampaigns = allCampaigns.filter((c) => !sortedCampaigns.map((c) => c
     intro="Überall in Deutschland können wir die Daten noch besser machen. Diese Kampagnen helfen dir in deiner Region Verbesserungspotentiale und passende Aufgaben zu finden."
   />
 
-  <ProseSection highlight classes="prose-green my-12 flex gap-3">
+  <ProseSection highlight classes="prose-green mt-12 mb-0 flex gap-3">
     <EyeIcon className="size-8 flex-none text-green-50" />
     <div>
       Zur Bearbeitung der Kampagnen solltest du schon mit OpenStreetMap gearbeitet haben. Falls
@@ -42,7 +42,7 @@ const hiddenCampaigns = allCampaigns.filter((c) => !sortedCampaigns.map((c) => c
     </div>
   </ProseSection>
 
-  <ProseSection classes="prose-base mt-12">
+  <ProseSection classes="prose-base mt-12 mb-0">
     <CampaignLeaderboard client:only="react" />
   </ProseSection>
 
@@ -52,7 +52,8 @@ const hiddenCampaigns = allCampaigns.filter((c) => !sortedCampaigns.map((c) => c
     showEmptyCategories={true}
   />
 
-  <ProseSection classes="mb-12">
+  <ProseSection classes="my-12">
+    <hr />
     <p>
       Diese Daten stammen aus dem <a href="https://radverkehrsatlas.de/" target="_blank">
         Projekt Radverkehrsatlas

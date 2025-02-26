@@ -1,15 +1,12 @@
 ---
-import GridCard from '@components/cards/GridCard.astro'
-import GridCardWrapper from '@components/cards/GridCardWrapper.astro'
+import StackedCardWrapper from '@components/cards/StackedCardWrapper.astro'
+import { Link } from '@components/Link/Link'
 import CardsMitmachen from '@components/page_mitmachen/CardsMitmachen.astro'
 import PageHeadline from '@components/text/PageHeadline.astro'
 import { ArrowTopRightOnSquareIcon } from '@heroicons/react/20/solid'
-import { CalendarDaysIcon, RectangleStackIcon } from '@heroicons/react/24/solid'
 import LayoutArticlePageAstro from '@layouts/LayoutArticlePageAstro.astro'
 import { Picture } from 'astro:assets'
 import pngKarte from '../assets/homepage/karte-deutschland.png'
-import StackedCardWrapper from '@components/cards/StackedCardWrapper.astro'
-import { Link } from '@components/Link/Link'
 ---
 
 <LayoutArticlePageAstro title="Radinfrastruktur Deutschland">
@@ -127,6 +124,16 @@ import { Link } from '@components/Link/Link'
     </div>
   </section> -->
 
+  <article>
+    <h2 id="betreiber">Wer steckt hinter dieser Seite?</h2>
+    <p>
+      Hinter radinfra.de steckt ein breites Bündnis von Verbänden, Institutionen und Unternehmen,
+      die sich für die Radverkehrsförderung in Deutschland einsetzen. <Link to="/partner"
+        >Partner anzeigen…</Link
+      >
+    </p>
+  </article>
+
   <StackedCardWrapper
     headline="Wie kann ich helfen die Daten zu verbessern?"
     sectionClasses="mt-16"
@@ -138,28 +145,4 @@ import { Link } from '@components/Link/Link'
     </p>
     <CardsMitmachen />
   </StackedCardWrapper>
-
-  <article>
-    <h2 id="betreiber">Wer steckt hinter dieser Seite?</h2>
-    <p>
-      Hinter radinfra.de steckt ein breites Bündnis von Verbänden, Institutionen und Unternehmen,
-      die sich für die Radverkehrsförderung in Deutschland einsetzen. <Link to="/partner"
-        >Partner anzeigen…</Link
-      >
-    </p>
-  </article>
-
-  <GridCardWrapper headline="Kontakt" sectionClasses="mt-16">
-    <GridCard
-      href="/kontakt"
-      text="Monatliche Meetups"
-      alt="Kontakt zur Community…"
-      variant="iconGrid"
-    >
-      <CalendarDaysIcon className="size-10" />
-    </GridCard>
-    <GridCard href="/beratung" text="Beratung" alt="Angebote für Verwaltungen…" variant="iconGrid">
-      <RectangleStackIcon className="size-10" />
-    </GridCard>
-  </GridCardWrapper>
 </LayoutArticlePageAstro>
