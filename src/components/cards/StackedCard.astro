@@ -1,5 +1,6 @@
 ---
 import ArrowTopRightOnSquare from 'astro-heroicons/outline/ArrowTopRightOnSquare.astro'
+import { twJoin } from 'tailwind-merge'
 
 export type CardProps = {
   href: string
@@ -9,6 +10,7 @@ export type CardProps = {
   alt?: string | undefined | null
 }
 
+type Props = CardProps
 const { href, title, text, label, alt } = Astro.props
 
 const external = href.startsWith('http')
@@ -16,19 +18,24 @@ const external = href.startsWith('http')
 
 <a
   href={href}
-  class="group/card not-prose flex items-center gap-4 rounded-sm bg-teal-900 p-4 text-teal-100 no-underline ring-1 ring-teal-100 hover:bg-teal-100/70 hover:text-teal-800 hover:ring-1"
+  class={twJoin(
+    text ? 'items-start lg:items-center' : 'items-center',
+    'group/card not-prose flex gap-4 rounded-sm bg-teal-900 p-4 text-teal-100 no-underline ring-1 ring-teal-100 hover:bg-teal-100/70 hover:text-teal-800 hover:ring-1',
+  )}
   title={alt}
   target={external ? '_blank' : undefined}
 >
-  <div class="flex w-14 flex-none items-center justify-center">
+  <div
+    class={twJoin(text ? 'mb-3 lg:mb-0' : '', 'flex w-14 flex-none items-center justify-center')}
+  >
     <slot />
   </div>
 
   <div class="grow">
-    <div class="flex items-center justify-between">
+    <div class={twJoin(text ? 'mb-3 lg:mb-0' : '', 'items-center justify-between lg:flex')}>
       <h2
         data-noanchor
-        class="not-prose flex items-center gap-1 py-0 text-left font-sans text-lg font-medium text-teal-200 group-hover/card:text-black"
+        class="not-prose flex items-center gap-1 py-0 text-left font-sans text-lg leading-tight font-medium text-teal-200 group-hover/card:text-black"
       >
         {title ? title : 'Mehr erfahren…'}
         {external ? <ArrowTopRightOnSquare class="size-5" /> : ''}

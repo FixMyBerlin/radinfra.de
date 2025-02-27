@@ -122,7 +122,7 @@ export const CampaignProgress = ({ challengeId }: Props) => {
     >
       <figcaption className="sr-only">Kampagnenfortschritt</figcaption>
       <div className="space-y-3 text-sm">
-        <div className="flex items-center gap-3 text-xs">
+        <div className="flex flex-wrap items-center gap-3 text-xs">
           {(isLoading || error) && (
             <div className="min-h-5">
               {isLoading && <p>Kampagnenfortschritt: Lade Daten …</p>}
@@ -134,7 +134,7 @@ export const CampaignProgress = ({ challengeId }: Props) => {
             return (
               <p
                 key={label}
-                className="flex items-center justify-center gap-1"
+                className="flex items-center justify-center gap-1 font-sans"
                 aria-hidden={true}
                 aria-label={`${label}: ${value.toLocaleString('de-DE')} Aufgaben`}
               >
@@ -143,7 +143,7 @@ export const CampaignProgress = ({ challengeId }: Props) => {
                 /> */}
                 <span
                   className={twJoin(
-                    'flex min-h-5 min-w-5 items-center justify-center rounded-full px-1.5 text-xs font-semibold tracking-tighter',
+                    'flex min-h-5 min-w-5 items-center justify-center rounded-full px-1.5 font-serif text-xs font-semibold',
                     textColorClass,
                     bgColorClass,
                   )}
