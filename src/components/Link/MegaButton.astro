@@ -22,7 +22,7 @@ const newWindow = href.startsWith('http')
     href={href}
     target={newWindow ? '_blank' : undefined}
     rel={newWindow ? 'noopener noreferrer' : undefined}
-    class="group/button flex flex-row items-center gap-4 rounded-sm border border-teal-100 p-4 no-underline shadow-md hover:bg-teal-100/70 hover:shadow-xl @lg:px-10 @lg:py-8"
+    class="group/button flex flex-row items-center gap-4 rounded-sm border border-teal-100 p-4 no-underline shadow-md hover:bg-teal-100/70 hover:shadow-xl @lg:py-6 @lg:pr-6 @lg:pl-8"
   >
     {
       (() => {
@@ -53,7 +53,7 @@ const newWindow = href.startsWith('http')
     <div>
       <h2
         data-noanchor
-        class="mb-0 flex items-center gap-1 text-2xl font-bold text-teal-200 group-hover/button:text-teal-950 @lg:text-3xl"
+        class="mb-0 flex items-center gap-1 font-sans text-xl font-semibold tracking-wide text-teal-200 group-hover/button:text-teal-950 @lg:text-3xl"
       >
         {label}
         <ArrowRightIcon className="size-8" />

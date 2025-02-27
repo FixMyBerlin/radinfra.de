@@ -2,7 +2,7 @@ import { twJoin } from 'tailwind-merge'
 
 export const proseBase = twJoin(
   // REMIDNER: Also check tailwind.config.cjs for overwrites
-  'prose prose-teal prose-invert',
+  'prose prose-teal prose-invert font-serif',
   // <ul>
   // '[--tw-prose-bullets:_white]', // does not work, using tailwind.config.cjs overwrites instead
   // <code>
@@ -10,14 +10,17 @@ export const proseBase = twJoin(
   // <blockquote>
   'prose-blockquote:bg-teal-100 prose-blockquote:p-4 prose-blockquote:pb-2',
   // .lead
-  'prose-lead:text-teal-50',
+  'prose-lead:text-teal-50 prose-lead:font-serif',
   // <a>
   'prose-a:text-teal-200 prose-a:decoration-teal-300 prose-a:hover:decoration-teal-50 prose-a:hover:text-teal-100 prose-a:decoration-1 prose-a:underline-offset-4',
   // <hr>
   'prose-hr:border-teal-100',
+  // Headings
+  'prose-headings:font-sans',
 )
 
 export const proseHeadings = twJoin(
+  'prose-headings:font-sans',
   // <h#> anchor position
   'prose-headings:scroll-mt-10',
   // <h1>

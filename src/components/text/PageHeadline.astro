@@ -26,10 +26,10 @@ const introHtml = intro
 
     {
       intro && (
-        <p>
-          <hr class="!my-6 !border-teal-900" />
-          <p class="lead prose-strong:text-teal-100" set:html={introHtml} />
-        </p>
+        <>
+          {/* <hr class="!my-4 !border-teal-900" /> */}
+          <p class="lead" set:html={introHtml} />
+        </>
       )
     }
   </Notice>
