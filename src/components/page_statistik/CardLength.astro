@@ -1,0 +1,52 @@
+---
+import Card from './Card.astro'
+import CardLengthBarcharts from './CardLengthBarcharts.astro'
+import { getStatistics, type CardProps } from './utils/getStatistics'
+import { getStatisticLandkreisPath } from './utils/statistikLandkreisPath'
+
+type Props = CardProps
+const { level, bundeslandId } = Astro.props
+const statistics = await getStatistics({ level, bundeslandId })
+
+const bike_length = statistics.reduce(
+  (total, { data: { properties } }) => total + properties.bikelane_sum.sum,
+  0,
+)
+const road_length = statistics.reduce(
+  (total, { data: { properties } }) => total + properties.road_sum.sum,
+  0,
+)
+const dataParent = {
+  path: null,
+  name: level === 'bund' ? 'Deutschland' : 'Landkreis',
+  bike_length: bike_length,
+  road_length: road_length,
+  max_length: road_length, // German road length is 100 % for this graph
+}
+
+// const max_length = Math.max(
+//   ...statistics.map(({ data: { properties } }) => properties.road_sum.sum),
+//   ...statistics.map(({ data: { properties } }) => properties.bikelane_sum.sum),
+// )
+
+const dataChildren = statistics.map(({ data: { properties } }) => {
+  return {
+    path: level === 'bund' ? getStatisticLandkreisPath(properties.id, properties.name) : null,
+    name: properties.name,
+    bike_length: properties.bikelane_sum.sum,
+    road_length: properties.road_sum.sum,
+    max_length: road_length, // German road length is 100 % for this graph
+  }
+})
+
+export type DataLength = (typeof dataChildren)[number]
+---
+
+<Card title="Gesamtlänge" intro="Zeigt die Gesamtlänge von Radinfrastruktur und Straßennetz.">
+  <CardLengthBarcharts childData={dataParent} />
+  {
+    dataChildren.map((data) => {
+      return <CardLengthBarcharts childData={data} />
+    })
+  }
+</Card>

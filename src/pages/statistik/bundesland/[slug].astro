@@ -1,15 +1,15 @@
 ---
 export const prerender = true
 //
-import { bundeslandLandkreis } from '@components/page_statistik/bundeslandLandkreis.const'
-import Debug from '@components/page_statistik/Debug.astro'
 import About from '@components/page_statistik/About.astro'
+import CardLength from '@components/page_statistik/CardLength.astro'
+import CardPercentageBikelanes from '@components/page_statistik/CardPercentageBikelanes.astro'
+import CardPercentageCategories from '@components/page_statistik/CardPercentageCategories.astro'
 import PageHeadline from '@components/text/PageHeadline.astro'
 import ProseSection from '@components/text/ProseSection.astro'
 import { slugify } from '@components/utils/slugify'
 import LayoutArticle from '@layouts/LayoutArticle.astro'
 import { getCollection, type CollectionEntry } from 'astro:content'
-import Barchart from '@components/page_statistik/Barchart.astro'
 
 export async function getStaticPaths() {
   const bundeslaender = await getCollection('statistics', ({ data }) => {
@@ -22,85 +22,27 @@ export async function getStaticPaths() {
 }
 type Props = CollectionEntry<'statistics'>
 
-const bundesland = Astro.props
-
-const landkreisOsmIds = bundeslandLandkreis.get(bundesland.id)
-const landkreise = await getCollection('statistics', ({ data }) => {
-  return landkreisOsmIds?.includes(data.id)
-})
-
-const max_bikelane_sum = Math.max(...landkreise.map((lk) => lk.data.properties.bikelane_sum.sum))
-const max_raod_sum = Math.max(...landkreise.map((lk) => lk.data.properties.road_sum.sum))
-const max_both_sum = Math.max(
-  ...landkreise.map((lk) => lk.data.properties.bikelane_sum.sum + lk.data.properties.road_sum.sum),
-)
-
-export type Data = (typeof datas)[number]
-const datas = landkreise.map((lk) => {
-  const { name, bikelane_length, bikelane_sum, road_length, road_sum } = lk.data.properties
-  return {
-    slug: slugify(lk.data.properties.name),
-    name,
-    bikelane_sum,
-    road_sum,
-    bikelane_length,
-    road_length,
-    max_bikelane_sum,
-    max_raod_sum,
-    max_both_sum,
-  }
-})
+const { data, id: bundeslandId } = Astro.props
 ---
 
 <LayoutArticle title="Karte der Radinfrastruktur in Deutschland">
   <PageHeadline
     category="Statistische Auswertung"
-    headline={`Statistik für die Landkreise in ${bundesland.data.properties.name}`}
+    headline={`Statistik für die Landkreise in ${data.properties.name}`}
     intro="Statistiken zur vorhandenen Radinfrastruktur pro Landkreis. Basierend auf den aufbereiteten Radinfrastrukturdaten aus OpenStreetMap."
   />
 
-  <!-- <div class="my-10 mr-6">
-    <TreemapGraph client:idle rawData={bund.map((d) => d.data)} height={200} width={800} />
-  </div> -->
+  <ProseSection id="bund" classes="mr-12 max-w-none">
+    <!-- <h2>Vergleich auf Bundesebene</h2> -->
 
-  <p>Bikelane Max: {max_bikelane_sum.toLocaleString()} km</p>
-  <p>Road Max: {max_raod_sum.toLocaleString()} km</p>
-  <p>Both Max: {max_both_sum.toLocaleString()} km</p>
-
-  <div class="mt-12 mr-12 grid grid-cols-2 gap-4">
-    <div class="flex flex-col gap-4">
-      {
-        datas.map((data) => {
-          return (
-            <div>
-              <h2 class="mb-2 font-bold text-teal-50">
-                <a href={`/statistik/bundesland/${data.slug}`}>{data.name}</a>
-              </h2>
-              <Barchart format="totals" data={data} />
-            </div>
-          )
-        })
-      }
+    <div class="grid gap-6 lg:grid-cols-3">
+      <CardPercentageBikelanes level="landkreis" bundeslandId={bundeslandId} />
+      <CardLength level="landkreis" bundeslandId={bundeslandId} />
+      <CardPercentageCategories level="landkreis" bundeslandId={bundeslandId} />
     </div>
-    <div class="flex flex-col gap-4">
-      {
-        datas.map((data) => {
-          return (
-            <div>
-              <h2 class="mb-2 font-bold text-teal-50">
-                <a href={`/statistik/bundesland/${data.slug}`}>{data.name}</a>
-              </h2>
-              <Barchart format="bikeinfra" data={data} />
-            </div>
-          )
-        })
-      }
-    </div>
-  </div>
+  </ProseSection>
 
   <ProseSection>
     <About />
   </ProseSection>
-
-  <Debug data={{ bundesland, landkreise }} />
 </LayoutArticle>

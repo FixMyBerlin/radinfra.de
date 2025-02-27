@@ -159,7 +159,7 @@ export const CampaignProgress = ({ challengeId }: Props) => {
           <div className="flex h-5 w-full shrink justify-start overflow-clip rounded-sm">
             {progressData[view].map(({ label, value, bgColorClass }) => {
               if (!total) return null
-              const relativeWidth = (value / total) * 100
+              const relativeWidth = ((value / total) * 100).toFixed(2)
               return (
                 <div
                   key={label}

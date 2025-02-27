@@ -1,0 +1,56 @@
+---
+import { Link } from '@components/Link/Link'
+import { twJoin } from 'tailwind-merge'
+import type { DataPercentageCategories } from './CardPercentageCategories.astro'
+import Tooltip from './Tooltip.astro'
+
+type Props = { childData: DataPercentageCategories }
+const { childData } = Astro.props
+
+const categoriesColors: Record<
+  keyof DataPercentageCategories['bikelane_sum'],
+  { title: string; colorClass: string }
+> = {
+  bike_with_foot_traffic: { title: 'Gemeinsamer Fuß- und Radverkehr', colorClass: 'bg-amber-400' },
+  bike_next_to_foot_traffic: {
+    title: 'Getrennter Fuß- und Radverkehr',
+    colorClass: 'bg-yellow-300',
+  },
+  bike_with_car_traffic: { title: 'Gemeinsamer Auto- und Radverkehr', colorClass: 'bg-pink-500' },
+  bike_next_to_car_traffic: {
+    title: 'Getrennter Auto- und Radverkehr',
+    colorClass: 'bg-purple-500',
+  },
+  separate_bike_traffic: { title: 'Separate Radinfrastruktur', colorClass: 'bg-sky-500' },
+  needsClarification: { title: 'Führungsform unklar', colorClass: 'bg-teal-500' },
+}
+---
+
+<figure class="not-prose leading-snug">
+  <figcaption class="flex items-center justify-between">
+    <div>
+      {childData.path ? <Link to={childData.path}>{childData.name}</Link> : childData.name}
+    </div>
+  </figcaption>
+  <div class="mt-1 flex w-full rounded-sm">
+    {
+      Object.keys(categoriesColors).map((_key) => {
+        const key = _key as keyof DataPercentageCategories['bikelane_sum']
+        const value = childData.bikelane_sum[key]
+        const relativeWidth = ((value / childData.total) * 100).toFixed(2)
+        return (
+          <Tooltip
+            text={`Führungsform: \n\n${categoriesColors[key].title}\n\n${value.toLocaleString('de-DE')} km — ${(Number(relativeWidth) / 100).toLocaleString('de-DE', { style: 'percent' })}`}
+            style={{ width: `max(0px, ${relativeWidth}%)` }}
+            className={twJoin(
+              'h-3.5 w-full first:rounded-l-sm last:rounded-r-sm',
+              categoriesColors[key].colorClass,
+            )}
+          >
+            {/* The tooltip div is also the bar chart element */}
+          </Tooltip>
+        )
+      })
+    }
+  </div>
+</figure>

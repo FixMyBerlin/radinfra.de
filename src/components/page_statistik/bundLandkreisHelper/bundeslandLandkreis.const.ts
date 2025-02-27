@@ -208,10 +208,10 @@ export const bundeslandLandkreis = new Map([
       'relation/62373',
     ],
   ],
-  [
-    'relation/62782', // Hamburg
-    ['relation/62782'], // TODO Hamburg
-  ],
+  // [
+  //   'relation/62782', // Hamburg
+  //   ['relation/62782'], // TODO Hamburg
+  // ],
   [
     'relation/62372',
     [
@@ -405,10 +405,10 @@ export const bundeslandLandkreis = new Map([
       'relation/62523',
     ],
   ],
-  [
-    'relation/62422', // Berlin
-    ['relation/62422'], // TODO => Berlin
-  ],
+  // [
+  //   'relation/62422', // Berlin
+  //   ['relation/62422'], // TODO => Berlin
+  // ],
   [
     'relation/62366',
     [

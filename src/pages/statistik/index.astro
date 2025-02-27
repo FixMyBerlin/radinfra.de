@@ -1,44 +1,43 @@
 ---
 import About from '@components/page_statistik/About.astro'
-import Barchart from '@components/page_statistik/Barchart.astro'
-import Debug from '@components/page_statistik/Debug.astro'
+import CardLength from '@components/page_statistik/CardLength.astro'
+import CardPercentageBikelanes from '@components/page_statistik/CardPercentageBikelanes.astro'
+import CardPercentageCategories from '@components/page_statistik/CardPercentageCategories.astro'
 import PageHeadline from '@components/text/PageHeadline.astro'
 import ProseSection from '@components/text/ProseSection.astro'
-import { slugify } from '@components/utils/slugify'
 import LayoutArticle from '@layouts/LayoutArticle.astro'
-import { getCollection } from 'astro:content'
 
-const statistics = await getCollection('statistics')
-const bund = statistics
-  .filter((stat) => stat.data.properties.level === '4')
-  .sort((a, b) => a.data.properties.name.localeCompare(b.data.properties.name))
+// const statistics = await getCollection('statistics')
+// const bund = statistics
+//   .filter((stat) => stat.data.properties.level === '4')
+//   .sort((a, b) => a.data.properties.name.localeCompare(b.data.properties.name))
 
-const max_bikelane_sum = Math.max(
-  ...bund.map((bundesland) => bundesland.data.properties.bikelane_sum.sum),
-)
-const max_raod_sum = Math.max(...bund.map((bundesland) => bundesland.data.properties.road_sum.sum))
-const max_both_sum = Math.max(
-  ...bund.map(
-    (bundesland) =>
-      bundesland.data.properties.bikelane_sum.sum + bundesland.data.properties.road_sum.sum,
-  ),
-)
+// const max_bikelane_sum = Math.max(
+//   ...bund.map((bundesland) => bundesland.data.properties.bikelane_sum.sum),
+// )
+// const max_raod_sum = Math.max(...bund.map((bundesland) => bundesland.data.properties.road_sum.sum))
+// const max_both_sum = Math.max(
+//   ...bund.map(
+//     (bundesland) =>
+//       bundesland.data.properties.bikelane_sum.sum + bundesland.data.properties.road_sum.sum,
+//   ),
+// )
 
-export type Data = (typeof datas)[number]
-const datas = bund.map((bundesland) => {
-  const { name, bikelane_length, bikelane_sum, road_length, road_sum } = bundesland.data.properties
-  return {
-    slug: slugify(bundesland.data.properties.name),
-    name,
-    bikelane_sum,
-    road_sum,
-    bikelane_length,
-    road_length,
-    max_bikelane_sum,
-    max_raod_sum,
-    max_both_sum,
-  }
-})
+// export type Data = (typeof datas)[number]
+// const datas = bund.map((bundesland) => {
+//   const { name, bikelane_length, bikelane_sum, road_length, road_sum } = bundesland.data.properties
+//   return {
+//     slug: slugify(bundesland.data.properties.name),
+//     name,
+//     bikelane_sum,
+//     road_sum,
+//     bikelane_length,
+//     road_length,
+//     max_bikelane_sum,
+//     max_raod_sum,
+//     max_both_sum,
+//   }
+// })
 ---
 
 <LayoutArticle title="Statistik zu Radinfrastrukturdaten in Deutschland">
@@ -48,9 +47,25 @@ const datas = bund.map((bundesland) => {
     intro="Statistiken zur vorhandenen Radinfrastruktur pro Bundesland und Landkreis. Basierend auf den aufbereiteten Radinfrastrukturdaten aus OpenStreetMap."
   />
 
-  <!-- <div class="my-10 mr-6">
-    <TreemapGraph client:idle rawData={bund.map((d) => d.data)} height={200} width={800} />
-  </div> -->
+  <ProseSection id="bund" classes="mr-12 max-w-none">
+    <h2>Vergleich auf Bundesebene</h2>
+
+    <div class="grid gap-6 lg:grid-cols-3">
+      <CardPercentageBikelanes level="bund" />
+      <CardLength level="bund" />
+      <CardPercentageCategories level="bund" />
+    </div>
+  </ProseSection>
+  <!--
+  <h2>Auswertung der Bundesländer</h2>
+
+  <Details title="Was die Statistiken zeigen">
+    <p>
+      Das erste (Kuchen-) Diagram zeigt die Anteile der einzelnen Führungsformen an der Gesamtlänge
+      der Radinfrastruktur. Die Auswertungen unten zeigen die absoluten Längen der Führungsformen
+      und des Straßennetzes.
+    </p>
+  </Details>
 
   <p>Bikelane Max: {max_bikelane_sum.toLocaleString()} km</p>
   <p>Road Max: {max_raod_sum.toLocaleString()} km</p>
@@ -85,12 +100,12 @@ const datas = bund.map((bundesland) => {
         })
       }
     </div>
-  </div>
+  </div> -->
 
   <ProseSection>
     <About />
   </ProseSection>
 
-  <Debug data={{ datas }} />
-  <Debug data={{ bund }} />
+  <!-- <Debug data={{ datas }} />
+  <Debug data={{ bund }} /> -->
 </LayoutArticle>

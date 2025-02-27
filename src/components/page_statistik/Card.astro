@@ -1,0 +1,12 @@
+---
+type Props = { title?: string; intro?: string }
+const { title, intro } = Astro.props
+---
+
+<section class="prose-sm rounded bg-teal-800 p-6">
+  {title && <h3 class="-mr-2 text-xl leading-tight">{title}</h3>}
+  {intro && <p class="font-serif text-xs leading-normal">{intro}</p>}
+  <div class="mt-6 space-y-2.5">
+    <slot />
+  </div>
+</section>

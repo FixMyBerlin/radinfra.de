@@ -1,0 +1,43 @@
+---
+import { Link } from '@components/Link/Link'
+import type { DataLength } from './CardLength.astro'
+import Tooltip from './Tooltip.astro'
+
+type Props = { childData: DataLength }
+const { childData } = Astro.props
+---
+
+<figure class="not-prose group/chart leading-snug">
+  <figcaption class="flex items-center justify-between">
+    <div>
+      {childData.path ? <Link to={childData.path}>{childData.name}</Link> : childData.name}
+    </div>
+    <div>
+      <span class="group-hover/chart:text-amber-500">
+        {childData.bike_length.toLocaleString('de-DE')} km
+      </span> /
+      <span class="group-hover/chart:text-amber-100">
+        {childData.road_length.toLocaleString('de-DE')} km
+      </span>
+    </div>
+  </figcaption>
+  <Tooltip
+    text={`Radinfrastruktur ${childData.bike_length.toLocaleString('de-DE')} km \n\nStraßennetz ${childData.road_length.toLocaleString('de-DE')} km`}
+    className="mt-1 space-y-0.5"
+  >
+    <div class="flex w-full">
+      <div
+        style={{ width: `max(0px, ${(childData.bike_length / childData.max_length) * 100}%)` }}
+        class="h-1.5 rounded-xs bg-amber-500"
+      >
+      </div>
+    </div>
+    <div class="flex w-full">
+      <div
+        style={{ width: `max(0px, ${(childData.road_length / childData.max_length) * 100}%)` }}
+        class="h-1.5 rounded-xs bg-amber-100"
+      >
+      </div>
+    </div>
+  </Tooltip>
+</figure>

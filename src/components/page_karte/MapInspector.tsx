@@ -60,7 +60,7 @@ export const MapInspector = () => {
                         </th>
                         <td className="w-full py-1 pl-2 leading-tight break-all">
                           {typeof value === 'number' ? (
-                            <span>{value.toLocaleString()}</span>
+                            <span>{value.toLocaleString('de-DE')}</span>
                           ) : multipleValues ? (
                             <MapInspectorValueAsList
                               tagKey={key}

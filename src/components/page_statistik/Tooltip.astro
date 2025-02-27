@@ -1,0 +1,24 @@
+---
+import Markdown from '@components/text/Markdown.astro'
+import type { HTMLAttributes } from 'astro/types'
+import { twJoin } from 'tailwind-merge'
+
+type Props = { text: string; style?: HTMLAttributes<'div'>['style']; className?: string }
+const { text, style, className } = Astro.props
+---
+
+<div class={twJoin(className, 'group/item relative isolate cursor-help')} style={style}>
+  <slot data-foo />
+
+  <div
+    class="absolute bottom-full left-1/2 mb-2 hidden w-max -translate-x-1/2 rounded bg-black px-2 py-1 text-xs text-white group-hover/item:block"
+  >
+    <Markdown markdown={text} unstyled />
+
+    <div
+      class="absolute top-full left-1/2 h-0 w-0 -translate-x-1/2 border-t-4 border-r-4 border-l-4 border-t-black border-r-transparent border-l-transparent"
+    >
+      {/* Arrow pointing down */}
+    </div>
+  </div>
+</div>

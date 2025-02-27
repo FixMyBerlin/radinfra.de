@@ -1,0 +1,50 @@
+---
+import Card from './Card.astro'
+import CardPercentageBikelanesBarchart from './CardPercentageBikelanesBarchart.astro'
+import { getStatistics, type CardProps } from './utils/getStatistics'
+import { getStatisticLandkreisPath } from './utils/statistikLandkreisPath'
+
+type Props = CardProps
+const { level, bundeslandId } = Astro.props
+const statistics = await getStatistics({ level, bundeslandId })
+
+const dataChildren = statistics.map(({ data: { properties } }) => {
+  return {
+    path: level === 'bund' ? getStatisticLandkreisPath(properties.id, properties.name) : null,
+    name: properties.name,
+    bike_length: properties.bikelane_sum.sum,
+    road_length: properties.road_sum.sum,
+    percentage: properties.bikelane_sum.sum / properties.road_sum.sum,
+  }
+})
+
+export type DataPercentageBikelanes = (typeof dataChildren)[number]
+
+const bike_length = statistics.reduce(
+  (total, { data: { properties } }) => total + properties.bikelane_sum.sum,
+  0,
+)
+const road_length = statistics.reduce(
+  (total, { data: { properties } }) => total + properties.road_sum.sum,
+  0,
+)
+const dataParent = {
+  path: null,
+  name: level === 'bund' ? 'Deutschland' : 'Landkreis',
+  bike_length: bike_length,
+  road_length: road_length,
+  percentage: bike_length / road_length,
+}
+---
+
+<Card
+  title="Anteil Radinfrastruktur"
+  intro="Stellt den Anteil der Radinfrastruktur im Verhältnis zum Straßennetz dar."
+>
+  <CardPercentageBikelanesBarchart childData={dataParent} />
+  {
+    dataChildren.map((data) => {
+      return <CardPercentageBikelanesBarchart childData={data} />
+    })
+  }
+</Card>

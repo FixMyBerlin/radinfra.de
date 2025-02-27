@@ -1,0 +1,61 @@
+---
+import Card from './Card.astro'
+import CardPercentageCategoriesBarchart from './CardPercentageCategoriesBarchart.astro'
+import { getStatistics, type CardProps } from './utils/getStatistics'
+import { getStatisticLandkreisPath } from './utils/statistikLandkreisPath'
+import { sum } from './utils/sum'
+
+type Props = CardProps
+const { level, bundeslandId } = Astro.props
+const statistics = await getStatistics({ level, bundeslandId })
+
+const dataChildren = statistics.map(({ data: { properties } }) => {
+  const { sum: total, ...rest } = properties.bikelane_sum
+  return {
+    path: level === 'bund' ? getStatisticLandkreisPath(properties.id, properties.name) : null,
+    name: properties.name,
+    total,
+    bikelane_sum: rest,
+  }
+})
+
+export type DataPercentageCategories = (typeof dataChildren)[number]
+
+const dataParent = {
+  path: null,
+  name: level === 'bund' ? 'Deutschland' : 'Landkreis',
+  total: sum(statistics.map((s) => s.data.properties.bikelane_sum.sum)),
+  bikelane_sum: {
+    needsClarification: sum(
+      statistics.map((s) => s.data.properties.bikelane_sum.needsClarification),
+    ),
+    bike_with_foot_traffic: sum(
+      statistics.map((s) => s.data.properties.bikelane_sum.bike_with_foot_traffic),
+    ),
+    bike_with_car_traffic: sum(
+      statistics.map((s) => s.data.properties.bikelane_sum.bike_with_car_traffic),
+    ),
+    bike_next_to_foot_traffic: sum(
+      statistics.map((s) => s.data.properties.bikelane_sum.bike_next_to_foot_traffic),
+    ),
+    bike_next_to_car_traffic: sum(
+      statistics.map((s) => s.data.properties.bikelane_sum.bike_next_to_car_traffic),
+    ),
+    separate_bike_traffic: sum(
+      statistics.map((s) => s.data.properties.bikelane_sum.separate_bike_traffic),
+    ),
+  },
+}
+---
+
+<Card
+  title="Anteile nach Führungen"
+  intro="Zeigt für Radinfrastruktur die Anteile der Führungsform."
+>
+  <CardPercentageCategoriesBarchart childData={dataParent} />
+  {
+    dataChildren.map((data) => {
+      return <CardPercentageCategoriesBarchart childData={data} />
+    })
+  }
+</Card>

@@ -1,5 +1,6 @@
 ---
-import type { Data } from 'src/pages/statistik/index.astro'
+// import type { Data } from 'src/pages/statistik/index.astro'
+type Data = any
 import { twJoin } from 'tailwind-merge'
 
 type Props = { format: 'totals' | 'bikeinfra'; data: Data }
@@ -94,7 +95,7 @@ const progressData = {
       <div class="flex h-5 w-full shrink justify-start overflow-clip rounded-sm">
         {
           progressData[format].map(({ label, value, bgColorClass }) => {
-            const relativeWidth = (value / totals[format]) * 100
+            const relativeWidth = ((value / totals[format]) * 100).toFixed(2)
             return (
               <div
                 style={{ width: `max(0px, ${relativeWidth}%)` }}
