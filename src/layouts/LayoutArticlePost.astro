@@ -22,7 +22,7 @@ const { title, noindex, language, pubDate, updatedDate, author } = Astro.props
       <h1 itemprop="name headline">{title}</h1>
       <p class="text-teal-400">
         <time datetime={pubDate.toISOString()} itemprop="datePublished">
-          {pubDate.toLocaleDateString()}
+          {pubDate.toLocaleDateString('de-DE')}
         </time>
         {
           updatedDate && (
@@ -30,7 +30,7 @@ const { title, noindex, language, pubDate, updatedDate, author } = Astro.props
               {' '}
               &bull;{' '}
               <time datetime={updatedDate.toISOString()} itemprop="dateModified">
-                {updatedDate.toLocaleDateString()}
+                {updatedDate.toLocaleDateString('de-DE')}
               </time>
             </>
           )
