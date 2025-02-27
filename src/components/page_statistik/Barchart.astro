@@ -1,0 +1,110 @@
+---
+import type { Data } from 'src/pages/statistik/index.astro'
+import { twJoin } from 'tailwind-merge'
+
+type Props = { format: 'totals' | 'bikeinfra'; data: Data }
+const { format, data } = Astro.props
+
+const bikeinfraColorClasses: Record<string, any> = {
+  needsClarification: {
+    bgColorClass: 'bg-teal-400',
+    textColorClass: 'bg-teal-50',
+  },
+  bike_with_foot_traffic: {
+    bgColorClass: 'bg-teal-50',
+    textColorClass: 'bg-teal-40050',
+  },
+  bike_with_car_traffic: {
+    bgColorClass: 'bg-teal-300',
+    textColorClass: 'bg-teal-50',
+  },
+  bike_next_to_foot_traffic: {
+    bgColorClass: 'bg-teal-700',
+    textColorClass: 'bg-teal-50',
+  },
+  bike_next_to_car_traffic: {
+    bgColorClass: 'bg-teal-950',
+    textColorClass: 'bg-teal-50',
+  },
+  separate_bike_traffic: {
+    bgColorClass: 'bg-teal-300',
+    textColorClass: 'bg-teal-50',
+  },
+}
+
+const totals = { totals: data.max_both_sum, bikeinfra: data.max_bikelane_sum }
+
+const progressData = {
+  totals: [
+    {
+      label: 'Fahrrad',
+      value: data.bikelane_sum.sum,
+      bgColorClass: 'bg-teal-600',
+      textColorClass: 'text-teal-50',
+    },
+    {
+      label: 'Straßen',
+      value: data.road_sum.sum,
+      bgColorClass: 'bg-teal-950',
+      textColorClass: 'text-teal-50',
+    },
+  ],
+  bikeinfra: Object.entries(data.bikelane_sum)
+    .filter(([key]) => !key.endsWith('sum'))
+    .map(([key, value]) => {
+      return {
+        label: key,
+        value: value,
+        ...bikeinfraColorClasses[key],
+      }
+    }),
+}
+---
+
+<figure class="not-prose leading-snug">
+  <figcaption class="sr-only">Kampagnenfortschritt</figcaption>
+  <div class="space-y-3 text-sm">
+    <div class="flex flex-wrap items-center gap-3 text-xs">
+      {
+        progressData[format].map(({ label, value, bgColorClass, textColorClass }) => {
+          return (
+            <p
+              class="flex items-center justify-center gap-1"
+              aria-hidden={true}
+              aria-label={`${label}: ${value.toLocaleString('de-DE')} Aufgaben`}
+            >
+              <span
+                class={twJoin(
+                  'flex min-h-5 min-w-5 items-center justify-center rounded-full px-1.5 text-xs tracking-tighter',
+                  textColorClass,
+                  bgColorClass,
+                )}
+              >
+                <span>
+                  <span class="font-semibold">{value.toLocaleString('de-DE')}</span> km
+                </span>
+              </span>
+              {label}
+            </p>
+          )
+        })
+      }
+    </div>
+    <div class="0 w-full rounded-sm border border-white/20">
+      <div class="flex h-5 w-full shrink justify-start overflow-clip rounded-sm">
+        {
+          progressData[format].map(({ label, value, bgColorClass }) => {
+            const relativeWidth = (value / totals[format]) * 100
+            return (
+              <div
+                style={{ width: `max(0px, ${relativeWidth}%)` }}
+                class={twJoin('h-5 first:min-w-0.5', bgColorClass)}
+                aria-label={`${label}: ${value} %`}
+              />
+            )
+          })
+        }
+      </div>
+    </div>
+  </div>
+</figure>

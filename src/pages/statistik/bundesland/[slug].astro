@@ -9,6 +9,7 @@ import ProseSection from '@components/text/ProseSection.astro'
 import { slugify } from '@components/utils/slugify'
 import LayoutArticle from '@layouts/LayoutArticle.astro'
 import { getCollection, type CollectionEntry } from 'astro:content'
+import Barchart from '@components/page_statistik/Barchart.astro'
 
 export async function getStaticPaths() {
   const bundeslaender = await getCollection('statistics', ({ data }) => {
@@ -27,6 +28,28 @@ const landkreisOsmIds = bundeslandLandkreis.get(bundesland.id)
 const landkreise = await getCollection('statistics', ({ data }) => {
   return landkreisOsmIds?.includes(data.id)
 })
+
+const max_bikelane_sum = Math.max(...landkreise.map((lk) => lk.data.properties.bikelane_sum.sum))
+const max_raod_sum = Math.max(...landkreise.map((lk) => lk.data.properties.road_sum.sum))
+const max_both_sum = Math.max(
+  ...landkreise.map((lk) => lk.data.properties.bikelane_sum.sum + lk.data.properties.road_sum.sum),
+)
+
+export type Data = (typeof datas)[number]
+const datas = landkreise.map((lk) => {
+  const { name, bikelane_length, bikelane_sum, road_length, road_sum } = lk.data.properties
+  return {
+    slug: slugify(lk.data.properties.name),
+    name,
+    bikelane_sum,
+    road_sum,
+    bikelane_length,
+    road_length,
+    max_bikelane_sum,
+    max_raod_sum,
+    max_both_sum,
+  }
+})
 ---
 
 <LayoutArticle title="Karte der Radinfrastruktur in Deutschland">
@@ -40,31 +63,39 @@ const landkreise = await getCollection('statistics', ({ data }) => {
     <TreemapGraph client:idle rawData={bund.map((d) => d.data)} height={200} width={800} />
   </div> -->
 
-  <div class="mr-6 grid grid-cols-4 gap-4">
-    {
-      landkreise.map((landkreis) => {
-        const data = Object.entries(landkreis.data.properties.bikelane_sum || {}).map(
-          ([key, value]) => ({
-            // label: String(key[0]).toUpperCase(),
-            value: value ?? 0,
-            title: key,
-          }),
-        )
-        return (
-          <div>
-            <h2 class="mb-2 font-bold text-teal-50">{landkreis.data.properties.name}</h2>
-            {data.map(({ value, title }) => {
-              return (
-                <code class="block text-xs tracking-tight">
-                  {title}: {value.toLocaleString()} km
-                </code>
-              )
-            })}
-            {/* <RadialBars client:visible data={data} width={300} height={300} /> */}
-          </div>
-        )
-      })
-    }
+  <p>Bikelane Max: {max_bikelane_sum.toLocaleString()} km</p>
+  <p>Road Max: {max_raod_sum.toLocaleString()} km</p>
+  <p>Both Max: {max_both_sum.toLocaleString()} km</p>
+
+  <div class="mt-12 mr-12 grid grid-cols-2 gap-4">
+    <div class="flex flex-col gap-4">
+      {
+        datas.map((data) => {
+          return (
+            <div>
+              <h2 class="mb-2 font-bold text-teal-50">
+                <a href={`/statistik/bundesland/${data.slug}`}>{data.name}</a>
+              </h2>
+              <Barchart format="totals" data={data} />
+            </div>
+          )
+        })
+      }
+    </div>
+    <div class="flex flex-col gap-4">
+      {
+        datas.map((data) => {
+          return (
+            <div>
+              <h2 class="mb-2 font-bold text-teal-50">
+                <a href={`/statistik/bundesland/${data.slug}`}>{data.name}</a>
+              </h2>
+              <Barchart format="bikeinfra" data={data} />
+            </div>
+          )
+        })
+      }
+    </div>
   </div>
 
   <ProseSection>

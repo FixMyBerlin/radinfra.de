@@ -40,7 +40,7 @@ const values = (
 
 export const roadSums = (road_length: ApiStatisticFeatureType['properties']['road_length']) => {
   return {
-    all: sum(Object.values(road_length).filter(Boolean)),
+    sum: sum(Object.values(road_length).filter(Boolean)),
     motorway: sum(values(road_length, 'motorway')), // AB Autobahn
     primary: sum(values(road_length, 'primary')), // HSV Hauptverkehrsstraßen
     secondary: sum(values(road_length, 'secondary')), // NVS Nebenstraßen

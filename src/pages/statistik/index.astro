@@ -1,6 +1,7 @@
 ---
-import Debug from '@components/page_statistik/Debug.astro'
 import About from '@components/page_statistik/About.astro'
+import Barchart from '@components/page_statistik/Barchart.astro'
+import Debug from '@components/page_statistik/Debug.astro'
 import PageHeadline from '@components/text/PageHeadline.astro'
 import ProseSection from '@components/text/ProseSection.astro'
 import { slugify } from '@components/utils/slugify'
@@ -11,6 +12,33 @@ const statistics = await getCollection('statistics')
 const bund = statistics
   .filter((stat) => stat.data.properties.level === '4')
   .sort((a, b) => a.data.properties.name.localeCompare(b.data.properties.name))
+
+const max_bikelane_sum = Math.max(
+  ...bund.map((bundesland) => bundesland.data.properties.bikelane_sum.sum),
+)
+const max_raod_sum = Math.max(...bund.map((bundesland) => bundesland.data.properties.road_sum.sum))
+const max_both_sum = Math.max(
+  ...bund.map(
+    (bundesland) =>
+      bundesland.data.properties.bikelane_sum.sum + bundesland.data.properties.road_sum.sum,
+  ),
+)
+
+export type Data = (typeof datas)[number]
+const datas = bund.map((bundesland) => {
+  const { name, bikelane_length, bikelane_sum, road_length, road_sum } = bundesland.data.properties
+  return {
+    slug: slugify(bundesland.data.properties.name),
+    name,
+    bikelane_sum,
+    road_sum,
+    bikelane_length,
+    road_length,
+    max_bikelane_sum,
+    max_raod_sum,
+    max_both_sum,
+  }
+})
 ---
 
 <LayoutArticle title="Statistik zu Radinfrastrukturdaten in Deutschland">
@@ -24,45 +52,45 @@ const bund = statistics
     <TreemapGraph client:idle rawData={bund.map((d) => d.data)} height={200} width={800} />
   </div> -->
 
-  <div class="mr-6 grid grid-cols-3 gap-4">
-    {
-      bund.map((bundesland) => {
-        const data = Object.entries(bundesland.data.properties.bikelane_sum || {}).map(
-          ([key, value]) => ({
-            // label: String(key[0]).toUpperCase(),
-            value: value ?? 0,
-            title: key,
-          }),
-        )
-        // data.push({
-        //   label: 'road',
-        //   value: bundesland.data.properties.road_sum.all,
-        //   title: 'road sum all',
-        // })
-        return (
-          <div>
-            <h2 class="mb-2 font-bold text-teal-50">
-              <a href={`/statistik/bundesland/${slugify(bundesland.data.properties.name)}`}>
-                {bundesland.data.properties.name}
-              </a>
-            </h2>
-            {data.map(({ value, title }) => {
-              return (
-                <code class="block text-xs tracking-tight">
-                  {title}: {value.toLocaleString()} km
-                </code>
-              )
-            })}
-            {/* <RadialBars client:visible data={data} width={300} height={300} /> */}
-          </div>
-        )
-      })
-    }
+  <p>Bikelane Max: {max_bikelane_sum.toLocaleString()} km</p>
+  <p>Road Max: {max_raod_sum.toLocaleString()} km</p>
+  <p>Both Max: {max_both_sum.toLocaleString()} km</p>
+
+  <div class="mt-12 mr-12 grid grid-cols-2 gap-4">
+    <div class="flex flex-col gap-4">
+      {
+        datas.map((data) => {
+          return (
+            <div>
+              <h2 class="mb-2 font-bold text-teal-50">
+                <a href={`/statistik/bundesland/${data.slug}`}>{data.name}</a>
+              </h2>
+              <Barchart format="totals" data={data} />
+            </div>
+          )
+        })
+      }
+    </div>
+    <div class="flex flex-col gap-4">
+      {
+        datas.map((data) => {
+          return (
+            <div>
+              <h2 class="mb-2 font-bold text-teal-50">
+                <a href={`/statistik/bundesland/${data.slug}`}>{data.name}</a>
+              </h2>
+              <Barchart format="bikeinfra" data={data} />
+            </div>
+          )
+        })
+      }
+    </div>
   </div>
 
   <ProseSection>
     <About />
   </ProseSection>
 
-  <Debug data={bund} />
+  <Debug data={{ datas }} />
+  <Debug data={{ bund }} />
 </LayoutArticle>

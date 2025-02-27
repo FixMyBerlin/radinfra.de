@@ -93,14 +93,14 @@ export const ApiStatisticsSchema = z.object({
 })
 const addedProperties = z.object({
   road_sum: z.object({
-    all: z.number(),
+    sum: z.number(),
     motorway: z.number(),
     primary: z.number(),
     secondary: z.number(),
     residential: z.number(),
   }),
   bikelane_sum: z.object({
-    all: z.number(),
+    sum: z.number(),
     needsClarification: z.number(),
     bike_with_foot_traffic: z.number(),
     bike_with_car_traffic: z.number(),
