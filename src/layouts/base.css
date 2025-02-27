@@ -7,6 +7,9 @@
   --color-zinc-*: initial;
   --color-neutral-*: initial;
   --color-stone-*: initial;
+
+  --font-sans: 'Source Sans 3 Variable', 'sans-serif';
+  --font-serif: 'Source Serif 4 Variable', 'serif';
 }
 
 @layer components {

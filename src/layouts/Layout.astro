@@ -5,6 +5,11 @@ import type { LayoutLanguage } from './languages'
 import pngSocialSharingFallback from '../../public/social-sharing.png'
 import ScriptLinkifyHeadlines from '@components/scripts/ScriptLinkifyHeadlines.astro'
 
+// https://fontsource.org/fonts/source-sans-3/install
+import '@fontsource-variable/source-sans-3' // Supports weights 200-900
+// https://fontsource.org/fonts/source-serif-4/install
+import '@fontsource-variable/source-serif-4' // Supports weights 200-900
+
 type Props = {
   title: string
   noindex?: boolean | undefined
