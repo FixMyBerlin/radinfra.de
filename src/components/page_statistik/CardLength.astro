@@ -8,6 +8,11 @@ type Props = CardProps
 const { level, bundeslandId } = Astro.props
 const statistics = await getStatistics({ level, bundeslandId })
 
+const max_length = Math.max(
+  ...statistics.map(({ data: { properties } }) => properties.road_sum.sum),
+  ...statistics.map(({ data: { properties } }) => properties.bikelane_sum.sum),
+)
+
 const bike_length = statistics.reduce(
   (total, { data: { properties } }) => total + properties.bikelane_sum.sum,
   0,
@@ -21,13 +26,8 @@ const dataParent = {
   name: level === 'bund' ? 'Deutschland' : 'Landkreis',
   bike_length: bike_length,
   road_length: road_length,
-  max_length: road_length, // German road length is 100 % for this graph
+  max_length: max_length, // We hide the graph for Germany and take the longed road of children as max
 }
-
-// const max_length = Math.max(
-//   ...statistics.map(({ data: { properties } }) => properties.road_sum.sum),
-//   ...statistics.map(({ data: { properties } }) => properties.bikelane_sum.sum),
-// )
 
 const dataChildren = statistics.map(({ data: { properties } }) => {
   return {
@@ -35,7 +35,7 @@ const dataChildren = statistics.map(({ data: { properties } }) => {
     name: properties.name,
     bike_length: properties.bikelane_sum.sum,
     road_length: properties.road_sum.sum,
-    max_length: road_length, // German road length is 100 % for this graph
+    max_length: max_length, // We hide the graph for Germany and take the longed road of children as max
   }
 })
 
@@ -43,7 +43,7 @@ export type DataLength = (typeof dataChildren)[number]
 ---
 
 <Card title="Gesamtlänge" intro="Zeigt die Gesamtlänge von Radinfrastruktur und Straßennetz.">
-  <CardLengthBarcharts childData={dataParent} />
+  <CardLengthBarcharts childData={dataParent} hideGraph={true} />
   {
     dataChildren.map((data) => {
       return <CardLengthBarcharts childData={data} />
