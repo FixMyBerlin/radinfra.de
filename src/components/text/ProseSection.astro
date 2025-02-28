@@ -1,6 +1,7 @@
 ---
 import { twMerge } from 'tailwind-merge'
 import AnchorSection from './AnchorSection.astro'
+import { proseBase, proseHeadings } from '@layouts/baseStyles'
 
 type Props = {
   id?: string | undefined
@@ -14,11 +15,12 @@ const { id, highlight, classes } = Astro.props
 <AnchorSection
   id={id}
   classes={twMerge(
-    'mb-20 rounded-sm leading-normal',
-    'prose prose-teal prose-invert max-w-prose',
+    proseBase,
+    proseHeadings,
+    'max-w-prose',
     classes?.includes('prose-') ? '' : 'prose-lg',
+    'mb-20 rounded-sm leading-normal',
     'prose-headings:mb-5 prose-headings:text-prose-200 prose-headings:first:mt-0',
-    'prose-a:text-teal-200 prose-a:decoration-teal-300 prose-a:hover:text-teal-100 prose-a:decoration-1 prose-a:underline-offset-4',
     'prose-p:m-0',
     highlight ? 'bg-teal-950 p-4' : '',
     classes,
