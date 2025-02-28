@@ -1,0 +1,43 @@
+---
+import { LinkExternal } from '@components/Link/LinkExternal'
+import ProseSection from '@components/text/ProseSection.astro'
+import svgBmbf from './_images/prototype-fund/logo-bmbf.svg'
+import svgPrototypeFund from './_images/prototype-fund/logo-prototype-fund.svg'
+import type { CollectionEntry } from 'astro:content'
+
+type Props = {
+  pubDate: string | Date
+} & Pick<CollectionEntry<'remoteCampaigns'>['data'], 'category'>
+const { category, pubDate } = Astro.props
+
+const visible = category === 'traffic_signs' && new Date(pubDate) <= new Date('2025-12-31')
+---
+
+{
+  visible && (
+    <ProseSection id="prototype-fund" classes="prose-sm my-12">
+      <h2 class="mb-3">Förderung Prototype Fund</h2>
+
+      <p>
+        Dieses Kampagne ist im Rahmen des Projektes "Verkehrszeichen in OSM" entstanden, das im
+        Zeitraum September 2024 bis Februar 2025 durch den Prototype Fund (Runde 16) des
+        Bundesministeriums für Bildung und Forschung (BMBF) gefördert wurde.
+        <LinkExternal href="https://prototypefund.de/project/verkehrszeichen-in-osm/">
+          Mehr erfahren…
+        </LinkExternal>
+      </p>
+      <div class="mt-6 grid grid-cols-2 items-start justify-start gap-3">
+        <div class="max-size-52 flex items-center justify-center rounded-sm bg-teal-50 p-3">
+          <img src={svgPrototypeFund.src} class="m-0" alt="Logo Prototype Fund" />
+        </div>
+        <div class="max-size-52 flex items-center justify-center rounded-sm bg-teal-50 p-3">
+          <img
+            src={svgBmbf.src}
+            class="m-0"
+            alt="Logo Bundesministerium für Bildung und Forschung"
+          />
+        </div>
+      </div>
+    </ProseSection>
+  )
+}

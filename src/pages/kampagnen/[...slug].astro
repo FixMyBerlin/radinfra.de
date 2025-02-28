@@ -6,6 +6,7 @@ import { maprouletteChallengeUrl } from '@components/Link/maprouletteChallengeUr
 import MegaButton from '@components/Link/MegaButton.astro'
 import { CampaignLeaderboard } from '@components/page_kampagne/CampaignLeaderboard'
 import { CampaignProgress } from '@components/page_kampagne/CampaignProgress'
+import TrafficSignFunding from '@components/page_kampagne/TrafficSignFunding.astro'
 import Details from '@components/text/Details.astro'
 import DevDetails from '@components/text/DevDetails.astro'
 import Markdown from '@components/text/Markdown.astro'
@@ -229,7 +230,7 @@ const noindex = maprouletteUrl === undefined || data.visibility == 'hidden'
     }
   </ProseSection>
 
-  <ProseSection classes="prose-sm mt-12">
+  <ProseSection classes="prose-sm my-12">
     <h2>Metadaten</h2>
     <ul>
       <li>
@@ -320,6 +321,8 @@ const noindex = maprouletteUrl === undefined || data.visibility == 'hidden'
       <li>Veröffentlicht am {new Date(data.pubDate).toLocaleString('de-DE')}</li>
     </ul>
   </ProseSection>
+
+  <TrafficSignFunding category={data.category} pubDate={data.pubDate} />
 
   <DevDetails title="Debugging">
     <pre>{JSON.stringify({ page }, undefined, 2)}</pre>
