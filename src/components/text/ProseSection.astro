@@ -1,7 +1,7 @@
 ---
+import { proseBase, proseHeadings } from '@layouts/baseStyles'
 import { twMerge } from 'tailwind-merge'
 import AnchorSection from './AnchorSection.astro'
-import { proseBase, proseHeadings } from '@layouts/baseStyles'
 
 type Props = {
   id?: string | undefined
@@ -18,10 +18,11 @@ const { id, highlight, classes } = Astro.props
     proseBase,
     proseHeadings,
     'max-w-prose',
+    // WARNING: This check is no ideal, it gets triggered by `prose-p:m*`. We should make both propper props.
     classes?.includes('prose-') ? '' : 'prose-lg',
     'mb-20 rounded-sm leading-normal',
     'prose-headings:mb-5 prose-headings:text-prose-200 prose-headings:first:mt-0',
-    'prose-p:m-0',
+    classes?.includes('prose-p:m') ? '' : 'prose-p:m-0',
     highlight ? 'bg-teal-950 p-4' : '',
     classes,
   )}
