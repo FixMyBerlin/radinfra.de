@@ -1,12 +1,25 @@
 ---
-import { processingDates } from '@components/fetch/processingDates'
+import { getStatistics } from './utils/getStatistics'
 
-const { osm_data_from } = await processingDates()
+// We don't use this endpoint because the latest data update date is not the date of the statistics.
+// import { processingDates } from '@components/fetch/processingDates'
+// const { osm_data_from } = await processingDates()
+
+const statistics = await getStatistics({ levelKey: 'bund', bundeslandId: undefined })
+const updatedAt = statistics.at(0)?.data.properties.updated_at
 ---
 
 <p>
   Diese Daten stammen aus dem <a href="https://radverkehrsatlas.de/" target="_blank">
     Projekt Radverkehrsatlas
-  </a> von FixMyCity.
+  </a> von FixMyCity. <a href="/dokumentation/statistik"
+    >Mehr über die Daten in der Dokumentation…</a
+  >
 </p>
-<p>Letzte Aktualisierung: {osm_data_from.toLocaleDateString('de-DE')}</p>
+<p>
+  Letzte Aktualisierung: {
+    updatedAt
+      ? new Date(updatedAt).toLocaleDateString('de-DE')
+      : '(Fehler: Datum konnte nicht geladen werden)'
+  }
+</p>
