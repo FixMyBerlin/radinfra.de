@@ -7,16 +7,16 @@ import CardPercentageBikelanes from '@components/page_statistik/CardPercentageBi
 import CardPercentageCategories from '@components/page_statistik/CardPercentageCategories.astro'
 import PageHeadline from '@components/text/PageHeadline.astro'
 import ProseSection from '@components/text/ProseSection.astro'
-import { slugify } from '@components/utils/slugify'
 import LayoutArticle from '@layouts/LayoutArticle.astro'
 import { getCollection, type CollectionEntry } from 'astro:content'
 
 export async function getStaticPaths() {
   const bundeslaender = await getCollection('statistics', ({ data }) => {
-    return data.properties.level === '4'
+    // We could check for data.properties.hasChildren here but we do the same in `addProperties` so slug is undefined when no children
+    return !!data.properties.slug
   })
   return bundeslaender.map((bundesland) => ({
-    params: { slug: slugify(bundesland.data.properties.name) },
+    params: { slug: bundesland.data.properties.slug },
     props: bundesland,
   }))
 }
@@ -36,9 +36,9 @@ const { data, id: bundeslandId } = Astro.props
     <!-- <h2>Vergleich auf Bundesebene</h2> -->
 
     <div class="grid gap-6 lg:grid-cols-3">
-      <CardPercentageBikelanes level="landkreis" bundeslandId={bundeslandId} />
-      <CardLength level="landkreis" bundeslandId={bundeslandId} />
-      <CardPercentageCategories level="landkreis" bundeslandId={bundeslandId} />
+      <CardPercentageBikelanes levelKey="landkreis" bundeslandId={bundeslandId} />
+      <CardLength levelKey="landkreis" bundeslandId={bundeslandId} />
+      <CardPercentageCategories levelKey="landkreis" bundeslandId={bundeslandId} />
     </div>
   </ProseSection>
 

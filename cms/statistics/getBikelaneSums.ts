@@ -96,7 +96,7 @@ const values = (
     .filter(Boolean)
 }
 
-export const bikelaneSums = (
+export const getBikelaneSums = (
   bikelane_length: ApiStatisticFeatureType['properties']['bikelane_length'],
 ) => {
   return {

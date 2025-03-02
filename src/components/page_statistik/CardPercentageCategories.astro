@@ -2,17 +2,17 @@
 import Card from './Card.astro'
 import CardPercentageCategoriesBarchart from './CardPercentageCategoriesBarchart.astro'
 import { getStatistics, type CardProps } from './utils/getStatistics'
-import { getStatisticLandkreisPath } from './utils/statistikLandkreisPath'
+import { statisticLandkreisPath } from './utils/statistikLandkreisPath'
 import { sum } from './utils/sum'
 
 type Props = CardProps
-const { level, bundeslandId } = Astro.props
-const statistics = await getStatistics({ level, bundeslandId })
+const { levelKey, bundeslandId } = Astro.props
+const statistics = await getStatistics({ levelKey, bundeslandId })
 
 const dataChildren = statistics.map(({ data: { properties } }) => {
   const { sum: total, ...rest } = properties.bikelane_sum
   return {
-    path: level === 'bund' ? getStatisticLandkreisPath(properties.id, properties.name) : null,
+    path: statisticLandkreisPath(properties.slug),
     name: properties.name,
     total,
     bikelane_sum: rest,
@@ -23,7 +23,7 @@ export type DataPercentageCategories = (typeof dataChildren)[number]
 
 const dataParent = {
   path: null,
-  name: level === 'bund' ? 'Deutschland' : 'Landkreis',
+  name: levelKey === 'bund' ? 'Deutschland' : 'Landkreis',
   total: sum(statistics.map((s) => s.data.properties.bikelane_sum.sum)),
   bikelane_sum: {
     needsClarification: sum(

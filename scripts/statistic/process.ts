@@ -1,30 +1,20 @@
-import { radverkehrsatlasApiUrl } from '@components/fetch/radverkehrsatlasApiUrl.const'
+import { radverkehrsatlasStatisticsApiUrl } from '@components/fetch/radverkehrsatlasApiUrl.const'
+import { addProperties } from 'cms/statistics/addProperties'
 import { ApiStatisticsSchema } from 'cms/statisticsSchema'
-import { bikelaneSums } from './utils/bikelane_sum'
-import { roadSums } from './utils/road_sum'
 
 async function main() {
-  const url = `${radverkehrsatlasApiUrl}/stats`
-  console.log('  FETCHING', url)
-  const raw = await fetch(url)
+  const apiUrl = radverkehrsatlasStatisticsApiUrl
+  console.log('  FETCHING', apiUrl)
+  const raw = await fetch(apiUrl)
 
   console.log('  TRANSFORMING')
   const json = await raw.json()
   const parsed = ApiStatisticsSchema.parse(json)
 
-  parsed.features.forEach((f) => {
-    // @ts-expect-error we expand the type here
-    f.properties.road_sum =
-      // (but this method should not be ts-ignored)
-      roadSums(f.properties.road_length)
-    // @ts-expect-error we expand the type here
-    f.properties.bikelane_sum =
-      // (but this method should not be ts-ignored)
-      bikelaneSums(f.properties.bikelane_length)
-  })
+  const features = addProperties(parsed.features)
 
   const resultLines: string[] = []
-  parsed.features
+  features
     .sort((f1, f2) => f1.id.localeCompare(f2.id))
     .forEach((f) => resultLines.push(`  ${JSON.stringify(f, undefined, 0)}`))
   const result = `[\n${resultLines.join(',\n')}\n]`

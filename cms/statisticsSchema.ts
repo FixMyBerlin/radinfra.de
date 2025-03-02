@@ -71,14 +71,6 @@ const properties = z.object({
     })
     .partial()
     .nullable(),
-  // children: z
-  //   .array(
-  //     z.object({
-  //       id: z.string(),
-  //       name: z.string(),
-  //     }),
-  //   )
-  //   .optional(),
 })
 export const ApiStatisticFeaturesSchema = z.strictObject({
   type: z.literal('Feature'),
@@ -87,17 +79,25 @@ export const ApiStatisticFeaturesSchema = z.strictObject({
   geometry: geometryMultiPolygon.or(geometryPolygon),
 })
 export type ApiStatisticFeatureType = z.infer<typeof ApiStatisticFeaturesSchema>
+
 export const ApiStatisticsSchema = z.object({
   type: z.literal('FeatureCollection'),
   features: z.array(ApiStatisticFeaturesSchema),
 })
+
 const addedProperties = z.object({
+  slug: z.string().optional(), // Only set when a page should be rendered
+  levelKey: z.enum(['bund', 'landkreis']),
+  hasChildren: z.boolean(),
+  parentId: z.string().optional(),
+  // parentName: z.string(),
+  updated_at: z.string().datetime(),
   road_sum: z.object({
     sum: z.number(),
-    motorway: z.number(),
-    primary: z.number(),
-    secondary: z.number(),
-    residential: z.number(),
+    motorway_like: z.number(),
+    primary_like: z.number(),
+    secondary_like: z.number(),
+    residential_like: z.number(),
   }),
   bikelane_sum: z.object({
     sum: z.number(),
@@ -109,12 +109,15 @@ const addedProperties = z.object({
     separate_bike_traffic: z.number(),
   }),
 })
-export const AstroStatisticFeaturesSchema = z.strictObject({
-  type: z.literal('Feature'),
-  id: z.string(),
-  properties: properties.merge(addedProperties),
-  geometry: geometryMultiPolygon.or(geometryPolygon),
-})
+export const AstroStatisticFeaturesSchema = ApiStatisticFeaturesSchema.omit({
+  properties: true,
+}).merge(
+  z.strictObject({
+    properties: addedProperties.merge(properties),
+  }),
+)
+
+export type AstroStatisticFeaturesType = z.infer<typeof AstroStatisticFeaturesSchema>
 
 export type RoadCategory = keyof ApiStatisticFeatureType['properties']['road_length']
 export type RoadClass = Exclude<keyof z.infer<typeof addedProperties>['road_sum'], 'all'>

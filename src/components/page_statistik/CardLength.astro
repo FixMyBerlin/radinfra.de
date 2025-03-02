@@ -2,11 +2,11 @@
 import Card from './Card.astro'
 import CardLengthBarcharts from './CardLengthBarcharts.astro'
 import { getStatistics, type CardProps } from './utils/getStatistics'
-import { getStatisticLandkreisPath } from './utils/statistikLandkreisPath'
+import { statisticLandkreisPath } from './utils/statistikLandkreisPath'
 
 type Props = CardProps
-const { level, bundeslandId } = Astro.props
-const statistics = await getStatistics({ level, bundeslandId })
+const { levelKey, bundeslandId } = Astro.props
+const statistics = await getStatistics({ levelKey, bundeslandId })
 
 const max_length = Math.max(
   ...statistics.map(({ data: { properties } }) => properties.road_sum.sum),
@@ -23,7 +23,7 @@ const road_length = statistics.reduce(
 )
 const dataParent = {
   path: null,
-  name: level === 'bund' ? 'Deutschland' : 'Landkreis',
+  name: levelKey === 'bund' ? 'Deutschland' : 'Landkreis',
   bike_length: bike_length,
   road_length: road_length,
   max_length: max_length, // We hide the graph for Germany and take the longed road of children as max
@@ -31,7 +31,7 @@ const dataParent = {
 
 const dataChildren = statistics.map(({ data: { properties } }) => {
   return {
-    path: level === 'bund' ? getStatisticLandkreisPath(properties.id, properties.name) : null,
+    path: statisticLandkreisPath(properties.slug),
     name: properties.name,
     bike_length: properties.bikelane_sum.sum,
     road_length: properties.road_sum.sum,
