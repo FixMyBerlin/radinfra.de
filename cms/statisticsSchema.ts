@@ -88,8 +88,8 @@ export const ApiStatisticsSchema = z.object({
 const addedProperties = z.object({
   slug: z.string().optional(), // Only set when a page should be rendered
   levelKey: z.enum(['bund', 'landkreis']),
-  hasChildren: z.boolean(),
   parentId: z.string().optional(),
+  // hasChildren: z.boolean(),
   // parentName: z.string(),
   updated_at: z.string().datetime(),
   road_sum: z.object({

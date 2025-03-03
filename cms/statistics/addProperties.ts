@@ -17,8 +17,8 @@ export const addProperties = (features: ApiStatisticFeatureType[]) => {
         ...feature.properties,
         slug: hasChildren ? slugify(feature.properties.name) : undefined,
         levelKey: feature.properties.level === '4' ? 'bund' : 'landkreis',
-        hasChildren,
         parentId,
+        // hasChildren,
         // parentName:
         //   feature.properties.level === '4'
         //     ? 'Deutschland'
