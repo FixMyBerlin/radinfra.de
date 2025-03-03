@@ -11,7 +11,7 @@ async function main() {
   const json = await raw.json()
   const parsed = ApiStatisticsSchema.parse(json)
 
-  const features = addProperties(parsed.features)
+  const features = await addProperties(parsed.features)
 
   const resultLines: string[] = []
   features

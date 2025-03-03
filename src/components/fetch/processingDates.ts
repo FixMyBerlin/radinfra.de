@@ -1,4 +1,4 @@
-import { z } from 'astro:content'
+import { z } from 'astro/zod'
 import { radverkehrsatlasApiUrl } from './radverkehrsatlasApiUrl.const'
 
 const DatesSchema = z.object({

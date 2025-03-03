@@ -1,3 +1,4 @@
+import { processingDates } from '@components/fetch/processingDates'
 import { slugify } from '@components/utils/slugify'
 import type { ApiStatisticFeatureType, AstroStatisticFeaturesType } from 'cms/statisticsSchema'
 import { bundeslandLandkreis } from './bundeslandLandkreis.const'
@@ -5,7 +6,9 @@ import { getBikelaneSums } from './getBikelaneSums'
 import { getBundeslandByLandkreis } from './getBundeslandByLandkreis'
 import { getRoadSums } from './getRoadSums'
 
-export const addProperties = (features: ApiStatisticFeatureType[]) => {
+export const addProperties = async (features: ApiStatisticFeatureType[]) => {
+  const { osm_data_from } = await processingDates()
+
   return features.map((feature) => {
     const parentId = getBundeslandByLandkreis(feature.id)
     const hasChildren = !!bundeslandLandkreis.get(feature.id)?.length
@@ -23,7 +26,7 @@ export const addProperties = (features: ApiStatisticFeatureType[]) => {
         //   feature.properties.level === '4'
         //     ? 'Deutschland'
         //     : `Landkreis ${landkreis?.properties.name}`,
-        updated_at: new Date().toISOString(),
+        updated_at: osm_data_from.toISOString(),
         road_sum: getRoadSums(feature.properties.road_length),
         bikelane_sum: getBikelaneSums(feature.properties.bikelane_length),
       },

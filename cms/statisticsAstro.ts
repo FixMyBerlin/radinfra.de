@@ -23,7 +23,7 @@ export const astroStatisticsDefinition = defineCollection({
 
     const json = await raw.json()
     const parsed = ApiStatisticsSchema.parse(json)
-    const features = addProperties(parsed.features)
+    const features = await addProperties(parsed.features)
 
     if (features.length === 0) {
       console.log('ERROR fetching – using fallback', apiUrl, raw.status, raw.statusText)
