@@ -28,7 +28,7 @@ const categoriesColors: Record<
 
 <figure class="not-prose leading-snug">
   <figcaption class="flex items-center justify-between">
-    <div>
+    <div class="truncate">
       {childData.path ? <Link to={childData.path}>{childData.name}</Link> : childData.name}
     </div>
   </figcaption>

@@ -47,10 +47,11 @@ import LayoutArticle from '@layouts/LayoutArticle.astro'
     intro="Statistiken zur vorhandenen Radinfrastruktur pro Bundesland und Landkreis. Basierend auf den aufbereiteten Radinfrastrukturdaten aus OpenStreetMap."
   />
 
-  <ProseSection id="bund" classes="max-w-[90rem] lg:mr-12">
+  <ProseSection id="bund" classes="@container max-w-[90rem] lg:mr-12">
     <h2>Vergleich auf Bundesebene</h2>
 
-    <div class="grid gap-6 lg:grid-cols-3">
+    <!-- We use container queries to change the columns -->
+    <div class="grid gap-6 @3xl:grid-cols-2 @4xl:grid-cols-3">
       <CardPercentageBikelanes levelKey="bund" />
       <CardLength levelKey="bund" />
       <CardPercentageCategories levelKey="bund" />

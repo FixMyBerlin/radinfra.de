@@ -10,16 +10,14 @@ const { childData, hideGraph } = Astro.props
 
 <figure class="not-prose group/chart leading-snug">
   <figcaption class="flex items-center justify-between">
-    <div>
+    <div class="truncate">
       {childData.path ? <Link to={childData.path}>{childData.name}</Link> : childData.name}
     </div>
-    <div>
-      <span class="group-hover/chart:text-amber-500">
-        {childData.bike_length.toLocaleString('de-DE')} km
-      </span> /
-      <span class="group-hover/chart:text-amber-100">
-        {childData.road_length.toLocaleString('de-DE')} km
-      </span>
+    <div class="ml-2 whitespace-nowrap">
+      {childData.bike_length.toLocaleString('de-DE')}
+      <span class="hidden xl:inline">km</span>
+      /
+      {childData.road_length.toLocaleString('de-DE')} km
     </div>
   </figcaption>
   <Tooltip
