@@ -5,35 +5,51 @@ import PageHeadline from '@components/text/PageHeadline.astro'
 import ProseSection from '@components/text/ProseSection.astro'
 import { DocumentTextIcon, TableCellsIcon } from '@heroicons/react/24/solid'
 import LayoutArticlePageAstro from '@layouts/LayoutArticlePageAstro.astro'
+
+const pages = [
+  {
+    href: '/dokumentation/fuehrungsform',
+    text: 'Dokumentation Führungsform Radverkehrsanlagen',
+    icon: 'table',
+  },
+  {
+    href: '/dokumentation/statistik',
+    text: 'Dokumentation Statistik',
+    icon: 'document',
+  },
+  {
+    href: '/dokumentation/open-source',
+    text: 'OpenSource & OpenData',
+    icon: 'document',
+  },
+] as const
 ---
 
 <LayoutArticlePageAstro title="Dokumentation" noindex={true}>
   <PageHeadline
     category={undefined}
     headline="Dokumentation"
-    intro="Der Radverkehrsatlas ist ein OpenSource Projekt das Daten aus OpenStreetMap aufbereitet."
+    intro="Radinfra.de und Radverkehrsatlas sind OpenSource Projekte die Daten aus OpenStreetMap aufbereitet."
   />
 
   <GridCardWrapper headline="Dokumentation" sectionClasses="mt-16">
-    <GridCard
-      href="/dokumentation/fuehrungsform"
-      text="Dokumentation Führungsform Radverkehrsanlagen"
-      variant="iconGrid"
-    >
-      <TableCellsIcon className="size-14" />
-    </GridCard>
-
-    <GridCard href="/dokumentation/open-source" text="OpenSource & OpenData" variant="iconGrid">
-      <DocumentTextIcon className="size-14" />
-    </GridCard>
+    {
+      pages.map(({ icon, ...card }) => {
+        return (
+          <GridCard {...card} variant="iconGrid">
+            {icon === 'table' && <TableCellsIcon className="size-14" />}
+            {icon === 'document' && <DocumentTextIcon className="size-14" />}
+          </GridCard>
+        )
+      })
+    }
   </GridCardWrapper>
-  <p><code>TODO: Weitere Doku ergänzen</code></p>
 
   <ProseSection classes="mt-18">
     <p>
-      <a href="https://radverkehrsatlas.de/regionen/radinfra" target="_blank">
-        Der Radverkehrsatlas
-      </a> ist ein Angebot von FixMyCity.
+      Der <a href="https://radverkehrsatlas.de/regionen/radinfra" target="_blank">
+        Radverkehrsatlas
+      </a> ist ein OpenSource Projekt das von FixMyCity entwickelt wird.
     </p>
   </ProseSection>
 </LayoutArticlePageAstro>

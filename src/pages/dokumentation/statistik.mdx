@@ -1,0 +1,81 @@
+---
+layout: '@layouts/LayoutArticlePageMdx.astro'
+title: Dokumentation Statistik
+headline: Dokumentation der Statistiken
+intro: Die Statistiken basieren auf prozessierten Daten aus OpenStreetMap.
+noindex: true
+---
+
+import ProseSection from '@components/text/ProseSection.astro'
+
+Die Daten unter dem [Menüpunkt Statistik](/statistik) basieren auf prozessierten Daten aus OpenStreetMap. Diese Seite beschreibt wie die Prozessierung funktioniert.
+
+## Grundsätzlich
+
+- Die Statistik zählt Daten pro Fahrspur.
+- Sie basiert auf der Transformation und Klassifizierung im Radverkehrsatlas.
+- Die Ergebnisse der Radinfrastruktur sind keine Teilmenge der Straßen. Selbstständig geführte Radwege über Land werden bspw. in den Radinfrastruktur-Daten aufgenommen, nicht aber in denen der Straßen.
+
+## Schritt 1: Rad- und Straßeninfrastruktur prozessierten
+
+Der Radverkehrsatlas aktualisiert täglich seine Daten.
+
+**1.1. Geometrien filtern**
+
+Nur relevante Wege werden in den Daten aufgenommen. Beispielsweise werden Wege mit `accesss=private` gefiltert.
+
+**1.2. Transformieren**
+
+Ein zentraler Teil der Prozessierung im Atlas ist, dass **Radwege** in separate Geometrien aufgeteilt werden. Wenn beispielweise an einer Straße eine Angabe zu Schutzstreifen links und recht gefunden wird, transformieren wir dies in zwei Geometrien mit den jeweils für die Seite relevanten Angaben.
+
+Das vereinfacht die folgende Klassifizierung und erlaubt für die Statistik
+
+**1.3. Klassifizierung**
+
+- **Straßen:** Das Attribut `road` entspricht weitgehen dem OSM `highway` tag mit kleinen Anpassungen um bspw. unterschiedliche `highway=service` leichter zu unterscheiden.
+- **Radwege:** Das Attribut `category` beschreibt die erkannte Führungsform. [Über die möglichen Werten für `category`…](/dokumentation/fuehrungsform)
+
+<ProseSection highlight>
+
+* [Quellcode der Prozessierung…](https://github.com/FixMyBerlin/atlas-app/blob/develop/processing/topics/roads_bikelanes/roads_bikelanes.lua)
+* [Das Ergebnis für Straßen kann in der Radverkehrsatlas Region Brandenburg angeschaut werden…](https://radverkehrsatlas.de/regionen/bb-kampagne?map=10.8/52.391/13.007&config=bv3m8i.5me1ac.36q&v=2)
+* [Das Ergebnis für Radwege ist auf der radinfra.de Karte sichtbar…](https://radverkehrsatlas.de/regionen/radinfra?map=10.8/52.391/13.007&config=v92cax.1utl.3dc&v=2)
+
+</ProseSection>
+
+## Schritt 2: Summierung der Daten
+
+Nachdem die Prozessierung durchgelaufen ist, summieren wir im Radverkehrsatlas die Daten pro Kategorie.
+- **Straßen:** Attribut `raod`; Wege mit `road_oneway=yes|yes_dual_carriageway` werden einfach gezählt, der Rest doppelt.
+- **Radwege:** Attribut `category`; Wege mit `oneway=yes|implicit_yes` werden einfach gezählt, der Rest doppelt.
+
+Damit diese Prozessierung in Grenzbereichen, wo Wege auf einer Grenze verlaufen, möglichst präzise ist, werden dafür die Wege zuerst in Punkte umgewandelt die eine Längenangabe von ca. 10 Metern haben.
+Diese Punkt werden dann pro Gebiet summiert.
+
+Als Gebiete werden die OSM Grenzen `level=4` (Bundesländer inkl. Stadtstaaten) und `level=6` (Landkreise) verwendet.
+
+Für die API werden die Geometrien stark generalisiert; sie dienen nur der Orientierung. Die Längenangaben sind in `km`.
+
+<ProseSection highlight>
+
+* [Quellcode der Segmentierung und Aggregierung…](https://github.com/FixMyBerlin/atlas-app/blob/develop/app/src/server/statistics/analysis/aggregateLengths.ts)
+* [Ergebnis als GeoJSON Daten…](https://radverkehrsatlas.de/api/stats)
+
+</ProseSection>
+
+
+## Schritt 3: Generalisierung der Kategorien
+
+Für die Visualisierung der Statistik werden die Kategorien, die der Radverkehrsatlas liefert, zusammengefasst. Für Radwege verwenden wir die gleiche Gruppierung die wir auch im Radverkehrsatlas in der [Darstellung "Führungsform details"](https://radverkehrsatlas.de/regionen/radinfra?map=10.8/52.391/13.007&config=v92cax.1utl.3dc&v=2) verwenden.
+
+<ProseSection highlight>
+
+* [Statistik-Daten als CSV runterladen…](/api/statistics.csv)
+* [Quellcode der Aggregierung für Straßen](https://github.com/FixMyBerlin/radinfra.de/blob/main/cms/statistics/getRoadSums.ts)
+* [Quellcode der Aggregierung für Radwege](https://github.com/FixMyBerlin/radinfra.de/blob/main/cms/statistics/getBikelaneSums.ts)
+
+</ProseSection>
+
+## Schritt 4: Visualisierung
+
+[Auf der Statistik-Seite gibt](/statistik) es verschiedene Visualisierungen der Daten.
