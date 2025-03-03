@@ -40,6 +40,9 @@ const dataChildren = statistics.map(({ data: { properties } }) => {
 })
 
 export type DataLength = (typeof dataChildren)[number]
+
+// @ts-expect-error https://github.com/withastro/language-tools/issues/475
+const _fix_syntax_highlighting = true
 ---
 
 <Card title="Gesamtlänge" intro="Zeigt die Gesamtlänge von Radinfrastruktur und Straßennetz.">
