@@ -23,7 +23,7 @@ export const NavigationMobile = ({ children }: Props) => {
           leaveFrom="transform opacity-100 scale-100"
           leaveTo="transform opacity-0 scale-95"
         >
-          <PopoverPanel className="absolute right-2 mt-2 w-64 origin-top-right divide-y divide-teal-100 rounded-md bg-teal-950 p-3 ring-1 shadow-lg ring-teal-900 focus:outline-hidden">
+          <PopoverPanel className="absolute right-2 mt-2 w-64 origin-top-right divide-y divide-teal-100 rounded-md bg-teal-950 p-3 shadow-lg ring-1 ring-teal-900 focus:outline-hidden">
             {children}
           </PopoverPanel>
         </Transition>
