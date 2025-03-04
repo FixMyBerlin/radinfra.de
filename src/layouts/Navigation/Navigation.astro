@@ -2,10 +2,9 @@
 import Notice from '@components/Notice.astro'
 import { twJoin } from 'tailwind-merge'
 import NavigationFooter from './NavigationFooter.astro'
-import { NavigationMobile } from './NavigationMobile.tsx'
-import NavigationPosts from './NavigationPosts.astro'
 import NavigationHeader from './NavigationHeader.astro'
 import NavigationtMenu from './NavigationMenu.astro'
+import { NavigationMobile } from './NavigationMobile.tsx'
 
 export interface Props {
   /** @desc switches the navigation to scroll in itself ("app") vs. with the "article" */
@@ -27,15 +26,11 @@ const { layoutType } = Astro.props
 
   <NavigationMobile client:load>
     <NavigationtMenu />
-    <NavigationPosts />
     <NavigationFooter />
   </NavigationMobile>
 
   <div class="z-[2000] hidden transition-all duration-150 lg:block">
-    <Notice
-      colorClass="bg-amber-100 text-amber-800 prose-amber"
-      className="mt-8 mb-8 py-3 pr-1 pl-3"
-    >
+    <Notice colorClass="bg-pink-100 text-pink-800 prose-pink" className="mt-8 mb-8 py-3 pr-1 pl-3">
       <div class="flex items-start gap-2">
         <!-- https://fontawesome.com/icons/person-digging?f=classic&s=solid -->
         <!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.-->
@@ -50,7 +45,7 @@ const { layoutType } = Astro.props
           ></path></svg
         >
         <div>
-          <h2 class="!my-0 text-base leading-tight text-amber-900">Beta-Version</h2>
+          <h2 class="!my-0 text-base leading-tight text-pink-900">Beta-Version</h2>
           <p class="!mt-0.5 !mb-0 text-xs">
             Diese Seite ist im Aufbau. Sie wird <a
               href="https://pretalx.com/fossgis2025/talk/review/98VFKNSGRX8DWKHBH8KUDD8ZZST7WCX9"
@@ -62,7 +57,6 @@ const { layoutType } = Astro.props
     </Notice>
 
     <NavigationtMenu />
-    <NavigationPosts />
     <NavigationFooter />
   </div>
 </nav>

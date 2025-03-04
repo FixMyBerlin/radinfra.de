@@ -10,23 +10,17 @@ const links = [
 ]
 ---
 
-<ul
-  class={twJoin(
-    'prose prose-teal prose-invert prose-sm leading-snug',
-    'prose-a:text-teal-100',
-    'ml-3',
-  )}
->
+<ul class="-mt-1 text-sm leading-snug">
   {
     links.map(({ name, link }) => {
       return (
-        <li>
+        <li class="p-0">
           <a
             class={twJoin(
-              'my-1 inline-block',
+              'inline-block py-2 decoration-teal-50',
               currentPathname === link
-                ? 'font-bold no-underline'
-                : 'font-medium text-teal-100 underline hover:decoration-teal-50 hover:decoration-2',
+                ? 'font-semibold no-underline'
+                : 'underline underline-offset-4 hover:text-teal-100',
             )}
             href={link}
             lang="de"

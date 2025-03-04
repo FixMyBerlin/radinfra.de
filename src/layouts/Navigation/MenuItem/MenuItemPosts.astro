@@ -1,0 +1,14 @@
+---
+import { getCollection } from 'astro:content'
+import MenuItem from './MenuItem.astro'
+
+const posts = await getCollection('posts', (post) => post.data.inMenu === true)
+---
+
+{
+  posts.length > 0 && (
+    <MenuItem href="/posts">
+      Neuigkeiten <span class="text-teal-950">({posts.length})</span>
+    </MenuItem>
+  )
+}

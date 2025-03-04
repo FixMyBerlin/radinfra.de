@@ -20,11 +20,9 @@ import pngKarte from '../assets/homepage/karte-deutschland.png'
     <a
       href="https://radverkehrsatlas.de/regionen/radinfra?map=6.1/51.312/10.529&config=v92cax.1utl.3dc&v=2"
       target="_blank"
-      class="group my-5 block hover:no-underline"
+      class="group not-prose my-5 block font-sans text-white hover:text-black hover:no-underline"
     >
-      <figure
-        class="no-unde overflow-clip rounded-sm border border-teal-100 hover:bg-teal-100/70 hover:text-black"
-      >
+      <figure class="overflow-clip rounded-sm border border-teal-100 hover:bg-teal-100/70">
         <Picture
           src={pngKarte}
           width={655}
@@ -34,7 +32,7 @@ import pngKarte from '../assets/homepage/karte-deutschland.png'
           pictureAttributes={{ class: 'not-prose w-full' }}
           alt=""
         />
-        <p class="flex items-center justify-end gap-1 px-2 py-2 leading-snug lg:py-1.5">
+        <p class="flex items-center gap-1 px-2 py-2 leading-snug lg:py-1.5">
           Direkt zur Radinfrastrukturkarte im Radverkehrsatlas <ArrowTopRightOnSquareIcon
             className="size-6 lg:size-4"
           />

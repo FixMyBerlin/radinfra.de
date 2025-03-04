@@ -1,5 +1,6 @@
 ---
 import MenuItem from './MenuItem/MenuItem.astro'
+import MenuItemPosts from './MenuItem/MenuItemPosts.astro'
 import MenuItemWrapper from './MenuItem/MenuItemWrapper.astro'
 
 const { pathname: currentPathname } = Astro.url
@@ -9,6 +10,7 @@ const isMitmachen = currentPathname.startsWith('/mitmachen')
 <MenuItemWrapper>
   <MenuItem href="/" highlightExactMatch>Einleitung</MenuItem>
   <MenuItem href="/statistik">Statistische Auswertung</MenuItem>
+  <MenuItemPosts />
 </MenuItemWrapper>
 
 <MenuItemWrapper>
