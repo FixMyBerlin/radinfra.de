@@ -1,16 +1,15 @@
 ---
 import StackedCardWrapper from '@components/cards/StackedCardWrapper.astro'
 import { Link } from '@components/Link/Link'
+import MegaButton from '@components/Link/MegaButton.astro'
 import CardsMitmachen from '@components/page_mitmachen/CardsMitmachen.astro'
 import PageHeadline from '@components/text/PageHeadline.astro'
-import { ArrowTopRightOnSquareIcon } from '@heroicons/react/20/solid'
 import LayoutArticlePageAstro from '@layouts/LayoutArticlePageAstro.astro'
 import { Picture } from 'astro:assets'
 import pngKarte from '../assets/homepage/karte-deutschland.png'
 ---
 
 <LayoutArticlePageAstro title="Radinfrastruktur Deutschland">
-  <!-- Flächendeckend&hairsp;・&hairsp;Standardisiert&hairsp;・&hairsp;Aktuell -->
   <PageHeadline
     headline="Radinfrastruktur Deutschland"
     intro="radinfra.de liefert detaillierte und standardisierte Daten zur Radinfrastruktur für ganz Deutschland – täglich aktualisiert und fortlaufend aktualisierbar in OpenStreetMap (OSM)."
@@ -20,25 +19,25 @@ import pngKarte from '../assets/homepage/karte-deutschland.png'
     <a
       href="https://radverkehrsatlas.de/regionen/radinfra?map=6.1/51.312/10.529&config=v92cax.1utl.3dc&v=2"
       target="_blank"
-      class="group not-prose my-5 block font-sans text-white hover:text-black hover:no-underline"
+      class="not-prose block overflow-clip rounded-sm border border-teal-100 hover:bg-teal-100/70"
     >
-      <figure class="overflow-clip rounded-sm border border-teal-100 hover:bg-teal-100/70">
-        <Picture
-          src={pngKarte}
-          width={655}
-          densities={[1.5, 2]}
-          formats={['png', 'avif']}
-          class="w-full border-b border-teal-100 object-cover"
-          pictureAttributes={{ class: 'not-prose w-full' }}
-          alt=""
-        />
-        <p class="flex items-center gap-1 px-2 py-2 leading-snug lg:py-1.5">
-          Direkt zur Radinfrastrukturkarte im Radverkehrsatlas <ArrowTopRightOnSquareIcon
-            className="size-6 lg:size-4"
-          />
-        </p>
-      </figure>
+      <Picture
+        src={pngKarte}
+        width={655}
+        densities={[1.5, 2]}
+        formats={['png', 'avif']}
+        class="w-full border-b border-teal-100 object-cover"
+        pictureAttributes={{ class: 'not-prose w-full' }}
+        alt="Deutschlandkarte, die Radinfrastruktur zeigt."
+      />
     </a>
+    <MegaButton
+      href="https://radverkehrsatlas.de/regionen/radinfra?map=6.1/51.312/10.529&config=v92cax.1utl.3dc&v=2"
+      iconKey="map"
+      label="Radinfrastrukturkarte"
+      subline="Deutschland-Karte im Radverkehrsatlas öffnen…"
+      className="mt-3"
+    />
 
     <h2 id="einleitung">Einheitliche Daten auf dem Weg zum Fahrradland Deutschland</h2>
     <p>
