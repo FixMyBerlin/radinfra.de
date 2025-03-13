@@ -30,7 +30,6 @@ export const astroStatisticsDefinition = defineCollection({
       return fallback()
     }
 
-    console.log('')
     return features
   },
 
