@@ -1,5 +1,5 @@
 ---
-import GridCard from '@components/cards/GridCard.astro'
+import GridCardWhite from '@components/cards/GridCardWhite.astro'
 import { getCollection } from 'astro:content'
 import type { partnerCategories } from 'cms/utils/partnerCategorySelect'
 
@@ -14,7 +14,13 @@ const sortedPartners = partners.sort(
 {
   sortedPartners.map(({ id, data }) => {
     return (
-      <GridCard key={id} href={data.url} title={data.title} image={data.logo} text={data.title} />
+      <GridCardWhite
+        key={id}
+        href={data.url}
+        title={data.title}
+        image={data.logo}
+        text={data.title}
+      />
     )
   })
 }
