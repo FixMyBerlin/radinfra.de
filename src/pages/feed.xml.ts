@@ -3,10 +3,10 @@ import type { APIContext } from 'astro'
 import { getCollection } from 'astro:content'
 
 export async function GET(context: APIContext) {
-  const posts = await getCollection('posts')
+  const posts = await getCollection('posts', (post) => new Date(post.data.pubDate) <= new Date())
 
   return rss({
-    title: 'Radinfrastruktur Deutschland',
+    title: 'radinfra.de – Radinfrastruktur Deutschland',
     description: 'Radinfrastrukturdaten aus OpenStreetMap für Deutschland',
     site: context.site!,
     items: posts.map((post) => ({

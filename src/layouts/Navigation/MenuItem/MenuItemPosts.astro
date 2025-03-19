@@ -2,7 +2,10 @@
 import { getCollection } from 'astro:content'
 import MenuItem from './MenuItem.astro'
 
-const posts = await getCollection('posts', (post) => post.data.inMenu === true)
+const posts = await getCollection(
+  'posts',
+  (post) => new Date(post.data.pubDate) <= new Date() && post.data.inMenu === true,
+)
 ---
 
 {
