@@ -37,6 +37,7 @@ const newWindow = href.startsWith('http')
             )
           case 'maproulette':
             return (
+              // @ts-expect-error https://github.com/withastro/astro/issues/13467
               <MapRouletteLogo class="size-14 text-teal-200 group-hover/button:text-teal-900 @lg:size-16" />
             )
           case 'document':

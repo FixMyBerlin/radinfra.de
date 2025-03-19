@@ -3,6 +3,7 @@ import RadinfraLogo from '../../assets/logos/radinfra-logo.svg'
 ---
 
 <a href="/" class="flex items-center gap-5">
+  <!-- @ts-expect-error https://github.com/withastro/astro/issues/13467 -->
   <RadinfraLogo class="w-10 flex-none lg:w-20" />
   <div>
     <h1 class="text-sm leading-none font-semibold text-teal-50 lg:text-xl">
