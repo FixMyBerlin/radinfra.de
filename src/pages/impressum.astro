@@ -1,0 +1,48 @@
+---
+import LinkExternal from '@components/links/LinkExternal.astro'
+import LinkMail from '@components/links/LinkMail.astro'
+import LinkTel from '@components/links/LinkTel.astro'
+import PageHeadline from '@components/text/PageHeadline.astro'
+import LayoutArticlePageAstro from '@layouts/LayoutArticlePageAstro.astro'
+---
+
+<LayoutArticlePageAstro noindex title="Impressum">
+  <PageHeadline
+    headline="Impressum"
+    intro="Rechtlich wird diese Seite von FixMyCity betrieben. Inhaltlich ist es eine Kooperation der OSM Verkehrswende Community und FixMyCity mit ihrem Produkt TILDA Radverkehr."
+  />
+
+  <p>
+    <strong>FixMyCity GmbH</strong><br />
+    Oberlandstraße 26-35 <br />
+    12099 Berlin <br />
+    E-Mail: <LinkMail mailto="radinfra@fixmycity.de" /><br />
+    Telefon: <LinkTel tel="+49 30 54908665" />
+  </p>
+  <p>Gesellschafter: Boris Hekele und Heiko Rintelen</p>
+  <p>
+    Registergericht: Amtsgericht Berlin-Charlottenburg
+    <br />
+    Registernummer: HRB 205031 B
+  </p>
+  <p>Umsatzsteuer-Identifikationsnummer gem. § 27a UStG: DE323489466</p>
+  <p>Verantwortlicher i.S.v. § 55 Rundfunkstaatsvertrag (RStV): Boris Hekele</p>
+
+  <h2>Urheberrechte Fotos</h2>
+  <p>
+    Wenn nicht anders angegeben stehen die auf dieser Website verwendeten Fotos unter{' '}
+    <LinkExternal blank href="https://creativecommons.org/licenses/by-nc/4.0/">
+      Creative Commons-Lizenz BY-NC 4.0
+    </LinkExternal>
+    .
+  </p>
+
+  <h2>Credits</h2>
+
+  <ul>
+    <li>OpenStreetMap Mitwirkende https://www.openstreetmap.org/copyright</li>
+    <li>Bootstrap Icons https://github.com/twbs/icons/blob/main/LICENSE.md</li>
+    <li>FontAwesome https://fontawesome.com/license</li>
+    <li>Heroicon https://heroicons.com/</li>
+  </ul>
+</LayoutArticlePageAstro>

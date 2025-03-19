@@ -4,29 +4,34 @@ import { twJoin } from 'tailwind-merge'
 const { pathname: currentPathname } = Astro.url
 
 const links = [
-  { name: 'OpenSource, OpenData', link: '/dokumentation/open-source' },
-  { name: 'Dokumentation', link: '/dokumentation' },
-  { name: 'Datenschutz & Impressum', link: '/legal' },
+  [{ name: 'OpenSource, OpenData', link: '/dokumentation/open-source' }],
+  [{ name: 'Dokumentation', link: '/dokumentation' }],
+  [{ name: 'Datenschutz', link: '/datenschutz' },{ name: 'Impressum', link: '/impressum' }],
 ]
 ---
 
 <ul class="-mt-1 text-sm leading-snug">
   {
-    links.map(({ name, link }) => {
+    links.map((group) => {
       return (
         <li class="p-0">
-          <a
-            class={twJoin(
-              'inline-block py-2 decoration-teal-50',
-              currentPathname === link
-                ? 'font-semibold no-underline'
-                : 'underline underline-offset-4 hover:text-teal-100',
-            )}
-            href={link}
-            lang="de"
-          >
-            {name}
-          </a>
+          {group.map(({ name, link }) => {
+            return (
+              <a
+                class={twJoin(
+                  'inline-block py-2 decoration-teal-50',
+                  currentPathname === link
+                    ? 'font-semibold no-underline'
+                    : 'underline underline-offset-4 hover:text-teal-100',
+                )}
+                href={link}
+                lang="de"
+              >
+                {name}
+              </a>
+              <span class="last:hidden">, </span>
+            )
+          })}
         </li>
       )
     })
