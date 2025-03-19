@@ -1,0 +1,25 @@
+---
+import { twMerge } from 'tailwind-merge'
+import { buttonStyles, linkStyles } from './Link'
+import type { HTMLAttributes } from 'astro/types'
+
+type Props = {
+  to: string
+  className?: string
+  /** @default `false` */
+  blank?: boolean
+  /** @desc Style Link as Button */
+  button?: boolean
+} & HTMLAttributes<'a'>
+
+const { to, className, blank = false, button, ...props } = Astro.props
+---
+
+<a
+  href={to}
+  class={twMerge(button ? buttonStyles : linkStyles, className)}
+  {...{ target: blank ? '_blank' : undefined }}
+  {...props}
+>
+  <slot />
+</a>

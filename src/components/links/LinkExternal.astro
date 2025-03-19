@@ -1,0 +1,24 @@
+---
+import { twMerge } from 'tailwind-merge'
+import { buttonStyles, linkStyles } from './Link'
+import type { HTMLAttributes } from 'astro/types'
+
+type Props = {
+  className?: string
+  /** @desc Default: `true` */
+  blank?: boolean
+  /** @desc Style Link as Button */
+  button?: boolean
+} & HTMLAttributes<'a'>
+
+const { className, children, button, blank = true, ...props } = Astro.props
+---
+
+<a
+  class={twMerge(button ? buttonStyles : linkStyles, className)}
+  rel="noopener noreferrer"
+  {...{ target: blank ? '_blank' : undefined }}
+  {...props}
+>
+  {children}
+</a>

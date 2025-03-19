@@ -10,7 +10,7 @@ type Props = {
   children: React.ReactNode
 } & React.AnchorHTMLAttributes<HTMLAnchorElement>
 
-export const LinkMail: React.FC<Props> = ({ className, mailto, button, children, ...props }) => {
+export const LinkMail = ({ className, mailto, button, children, ...props }: Props) => {
   return (
     <a
       href={`mailto:${mailto || children}`}
