@@ -6,9 +6,12 @@ import type { partnerCategories } from 'cms/utils/partnerCategorySelect'
 type Props = { filter: (typeof partnerCategories)[number] }
 const { filter } = Astro.props
 const partners = await getCollection('partners', ({ data }) => data.category === filter)
-const sortedPartners = partners.sort(
-  (a, b) => a.data.startDate.getTime() - b.data.startDate.getTime(),
-)
+const sortedPartners = partners.sort((a, b) => {
+  // Sort by startDate with A-Z as fallback (when the same start date is used)
+  const dateComparison = a.data.startDate.getTime() - b.data.startDate.getTime()
+  if (dateComparison !== 0) return dateComparison
+  return a.data.title.localeCompare(b.data.title)
+})
 ---
 
 {
