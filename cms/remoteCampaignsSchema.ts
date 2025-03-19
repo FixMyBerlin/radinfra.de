@@ -38,7 +38,7 @@ const CampaignAddedPropertiesSchmea = z.object({
   id: z.string(),
 })
 
-export const AstroAtlasCampaignSchema = CampaignBaseSchema.merge(
+export const AstroTildaCampaignSchema = CampaignBaseSchema.merge(
   CampaignAddedPropertiesSchmea,
 ).merge(
   z.object({

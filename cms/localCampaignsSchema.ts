@@ -1,5 +1,5 @@
 import { z } from 'astro/zod'
-import { AstroAtlasCampaignSchema } from './remoteCampaignsSchema'
+import { AstroTildaCampaignSchema } from './remoteCampaignsSchema'
 
 const InputDateTimeTransformSchema = z
   .string()
@@ -10,7 +10,7 @@ const HashtagsTransformSchema = z
   .string()
   .transform((val) => (Boolean(val) ? val.split(',').map((s) => s.trim()) : []))
 
-export const AstroLocalCampaignSchema = AstroAtlasCampaignSchema.omit({
+export const AstroLocalCampaignSchema = AstroTildaCampaignSchema.omit({
   pubDate: true,
   hashtags: true,
   remoteGeoJson: true,

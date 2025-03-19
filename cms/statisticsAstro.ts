@@ -1,4 +1,4 @@
-import { radverkehrsatlasStatisticsApiUrl } from '@components/fetch/radverkehrsatlasApiUrl.const'
+import { tildaStatisticsApiUrl } from '@components/fetch/tildaApiUrl.const'
 import { file } from 'astro/loaders'
 import { defineCollection } from 'astro:content'
 import { addProperties } from './statistics/addProperties'
@@ -14,7 +14,7 @@ export const astroStatisticsDefinition = defineCollection({
       return parsed.features
     }
 
-    const apiUrl = radverkehrsatlasStatisticsApiUrl
+    const apiUrl = tildaStatisticsApiUrl
     const raw = await fetch(apiUrl)
     if (!raw.ok) {
       console.log('ERROR fetching – using fallback', apiUrl, raw.status, raw.statusText)

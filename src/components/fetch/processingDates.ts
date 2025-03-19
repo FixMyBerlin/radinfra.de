@@ -1,5 +1,5 @@
 import { z } from 'astro/zod'
-import { radverkehrsatlasApiUrl } from './radverkehrsatlasApiUrl.const'
+import { tildaApiUrl } from './tildaApiUrl.const'
 
 const DatesSchema = z.object({
   processed_at: z.coerce.date(),
@@ -8,7 +8,7 @@ const DatesSchema = z.object({
 
 export const processingDates = async () => {
   // Fetch data from the API
-  const response = await fetch(`${radverkehrsatlasApiUrl}/processing-dates`)
+  const response = await fetch(`${tildaApiUrl}/processing-dates`)
   const data = await response.json()
 
   return DatesSchema.parse(data)

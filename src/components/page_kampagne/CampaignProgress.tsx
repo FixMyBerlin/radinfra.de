@@ -37,7 +37,7 @@ type Props = { challengeId: number }
 export const CampaignProgress = ({ challengeId }: Props) => {
   const [view, setView] = useState<'simple' | 'detailed'>('simple')
 
-  const url = `https://radverkehrsatlas.de/api/maproulette/statistic-proxy/${challengeId}`
+  const url = `https://tilda-geo.de/api/maproulette/statistic-proxy/${challengeId}`
   const {
     data: progress,
     error,

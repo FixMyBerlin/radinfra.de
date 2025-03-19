@@ -1,5 +1,5 @@
 ---
-import { radverkehrsatlasStatisticsApiUrl } from '@components/fetch/radverkehrsatlasApiUrl.const'
+import { tildaStatisticsApiUrl } from '@components/fetch/tildaApiUrl.const'
 
 const { data } = Astro.props
 ---
@@ -10,7 +10,7 @@ const { data } = Astro.props
     <summary class="cursor-pointer hover:underline"
       >Rohdaten {Array.isArray(data) ? <>({data.length})</> : ''}</summary
     >
-    <a href={radverkehrsatlasStatisticsApiUrl}><pre>{radverkehrsatlasStatisticsApiUrl}</pre></a>
+    <a href={tildaStatisticsApiUrl}><pre>{tildaStatisticsApiUrl}</pre></a>
     <pre>{JSON.stringify(data, undefined,2)}</pre>
   </details>
 </div>

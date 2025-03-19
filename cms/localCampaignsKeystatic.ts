@@ -40,7 +40,7 @@ export const keystaticlocalCampaignsConfig = collection({
       components: {}, // disallow Image components due to custom, simplistic markdown pipeline
       options: { image: false },
     }),
-    mapUrl: fields.url({ label: 'Radverkehrsatlas URL', validation: { isRequired: false } }),
+    mapUrl: fields.url({ label: 'TILDA URL', validation: { isRequired: false } }),
     maprouletteChallenge: fields.object(
       {
         enabled: fields.checkbox({ label: 'Always off' }),

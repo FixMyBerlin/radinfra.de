@@ -1,9 +1,9 @@
-import { radverkehrsatlasStatisticsApiUrl } from '@components/fetch/radverkehrsatlasApiUrl.const'
+import { tildaStatisticsApiUrl } from '@components/fetch/tildaApiUrl.const'
 import { addProperties } from 'cms/statistics/addProperties'
 import { ApiStatisticsSchema } from 'cms/statisticsSchema'
 
 async function main() {
-  const apiUrl = radverkehrsatlasStatisticsApiUrl
+  const apiUrl = tildaStatisticsApiUrl
   console.log('  FETCHING', apiUrl)
   const raw = await fetch(apiUrl)
 
