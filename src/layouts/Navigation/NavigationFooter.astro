@@ -6,7 +6,10 @@ const { pathname: currentPathname } = Astro.url
 const links = [
   [{ name: 'OpenSource, OpenData', link: '/dokumentation/open-source' }],
   [{ name: 'Dokumentation', link: '/dokumentation' }],
-  [{ name: 'Datenschutz', link: '/datenschutz' },{ name: 'Impressum', link: '/impressum' }],
+  [
+    { name: 'Datenschutz', link: '/datenschutz' },
+    { name: 'Impressum', link: '/impressum' },
+  ],
 ]
 ---
 
@@ -17,19 +20,21 @@ const links = [
         <li class="p-0">
           {group.map(({ name, link }) => {
             return (
-              <a
-                class={twJoin(
-                  'inline-block py-2 decoration-teal-50',
-                  currentPathname === link
-                    ? 'font-semibold no-underline'
-                    : 'underline underline-offset-4 hover:text-teal-100',
-                )}
-                href={link}
-                lang="de"
-              >
-                {name}
-              </a>
-              <span class="last:hidden">, </span>
+              <>
+                <a
+                  class={twJoin(
+                    'inline-block py-2 decoration-teal-50',
+                    currentPathname === link
+                      ? 'font-semibold no-underline'
+                      : 'underline underline-offset-4 hover:text-teal-100',
+                  )}
+                  href={link}
+                  lang="de"
+                >
+                  {name}
+                </a>
+                <span class="last:hidden">, </span>
+              </>
             )
           })}
         </li>
