@@ -1,6 +1,6 @@
 ---
-import Notice from '@components/Notice.astro'
 import { micromark } from 'micromark'
+import { twJoin } from 'tailwind-merge'
 
 export type PageHeadlineProps = {
   headline: string
@@ -18,19 +18,24 @@ const introHtml = intro
 ---
 
 <header>
-  <Notice className="!mb-12 shadow">
+  <div
+    class={twJoin(
+      'prose prose-white prose-invert',
+      'prose-lead:text-xl prose-lead:leading-snug',
+      'prose-p:first-child:my-0 prose-p:font-serif',
+      'prose-h1:mt-0 prose-h2:mt-0',
+      'prose-h1:text-white prose-headings:font-bold',
+      'prose-lead:text-teal-50',
+      'prose-strong:text-teal-100',
+      'rounded-sm p-4 [--tw-prose-bullets:_white]',
+      'mb-12 bg-teal-800 shadow',
+    )}
+  >
     <h1 class="!m-0">
       {category && <span class="block text-base font-normal uppercase">{category}</span>}
       <Fragment set:html={headlineHtml} />
     </h1>
 
-    {
-      intro && (
-        <>
-          {/* <hr class="!my-4 !border-teal-900" /> */}
-          <p class="lead" set:html={introHtml} />
-        </>
-      )
-    }
-  </Notice>
+    {intro && <p class="lead" set:html={introHtml} />}
+  </div>
 </header>
