@@ -20,5 +20,5 @@ const { className, children, button, blank = true, ...props } = Astro.props
   {...{ target: blank ? '_blank' : undefined }}
   {...props}
 >
-  {children}
+  <slot>{props.href?.toString().replace('https://', '').replace('www.', '')}</slot>
 </a>
