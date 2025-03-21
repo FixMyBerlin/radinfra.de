@@ -1,0 +1,44 @@
+---
+import Link from '@components/links/Link.astro'
+import LinkExternal from '@components/links/LinkExternal.astro'
+import { linkStyles } from '@components/links/styles'
+import Notice from '@components/text/Notice.astro'
+import { twMerge } from 'tailwind-merge'
+---
+
+<Notice>
+  Das Ziel der Statistiken ist, die Datenqualität zu prüfen und zu verbessern. Ihre Aussagekraft ist
+  somit direkt mit der Qualität der OSM Daten in der Region verbunden.
+  <details>
+    <summary
+      class={twMerge(
+        linkStyles,
+        'cursor-pointer text-white no-underline hover:text-white hover:underline',
+      )}>Mehr erfahren…</summary
+    >
+    <p class="!mt-4">
+      Die zwei wichtigsten Faktoren, um die Datenqualität zu prüfen und zu steigern sind:
+    </p>
+    <ol class="!mt-4">
+      <li>
+        <strong>Führungsform</strong>: Nutzt <LinkExternal
+          href="https://tilda-geo.de/regionen/radinfra?map=6.1/51.312/10.529&config=v92cax.1utl.3dc&v=2"
+          blank>die Karte zur Führungsform</LinkExternal
+        > zur Prüfung in eurer Region. <Link to="/kampagnen">Unsere Kampagnen</Link> geben ebenfalls
+        Hinweise.
+      </li>
+      <li>
+        <strong>Richtungsfreigabe</strong>: Die Statistik basiert auf "Fahrspuren". Ein Weg, der in
+        beide Richtungen befahren werden darf, zählt also zweimal. Wenn keine explizite Angabe
+        vorliegt, werden Annahmen getroffen. Diese Annahmen können besonders innerorts falsch sein.
+        Es wird bald eine spezielle Karte geben, damit ihr diese Annahmen einfacher kontrollieren
+        könnt.
+      </li>
+    </ol>
+    <p>
+      Mehr dazu, wie die Statistik zustande kommt steht in <Link to="/dokumentation/statistik"
+        >der Dokumentation</Link
+      >.
+    </p>
+  </details>
+</Notice>

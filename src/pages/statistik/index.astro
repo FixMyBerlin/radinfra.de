@@ -1,5 +1,6 @@
 ---
 import About from '@components/page_statistik/About.astro'
+import Beta from '@components/page_statistik/Beta.astro'
 import CardLength from '@components/page_statistik/CardLength.astro'
 import CardPercentageBikelanes from '@components/page_statistik/CardPercentageBikelanes.astro'
 import CardPercentageCategories from '@components/page_statistik/CardPercentageCategories.astro'
@@ -44,10 +45,12 @@ import LayoutArticle from '@layouts/LayoutArticle.astro'
   <PageHeadline
     category={undefined}
     headline="Statistische Auswertung"
-    intro="Statistiken zur vorhandenen Radinfrastruktur pro Bundesland und Landkreis. Basierend auf den aufbereiteten Radinfrastrukturdaten aus OpenStreetMap."
+    intro="Statistiken zur Radinfrastruktur pro Bundesland und Landkreis. Basierend auf den aufbereiteten Infrastrukturdaten aus OpenStreetMap."
   />
 
-  <ProseSection id="bund" classes="@container max-w-[90rem] lg:mr-12">
+  <Beta />
+
+  <ProseSection classes="@container mt-12 max-w-[90rem] lg:mr-12">
     <h2>Vergleich auf Bundesebene</h2>
 
     <!-- We use container queries to change the columns -->
