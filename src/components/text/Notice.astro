@@ -1,0 +1,18 @@
+---
+import EyeIcon from '@heroicons/react/24/solid/EyeIcon'
+import { twMerge } from 'tailwind-merge'
+import ProseSection from './ProseSection.astro'
+
+export type Props = {
+  className?: string | undefined
+}
+
+const { className } = Astro.props
+---
+
+<ProseSection highlight classes={twMerge('prose-green mb-0 flex gap-3 shadow-inner', className)}>
+  <EyeIcon className="size-8 flex-none text-green-50" />
+  <div>
+    <slot />
+  </div>
+</ProseSection>
