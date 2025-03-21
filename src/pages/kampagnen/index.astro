@@ -3,9 +3,9 @@ import Link from '@components/links/Link.astro'
 import CampaignCards from '@components/page_kampagne/CampaignCards.astro'
 import { CampaignLeaderboard } from '@components/page_kampagne/CampaignLeaderboard'
 import DevDetails from '@components/text/DevDetails.astro'
+import Notice from '@components/text/Notice.astro'
 import PageHeadline from '@components/text/PageHeadline.astro'
 import ProseSection from '@components/text/ProseSection.astro'
-import { EyeIcon } from '@heroicons/react/24/solid'
 import LayoutArticlePageAstro from '@layouts/LayoutArticlePageAstro.astro'
 import { getCollection } from 'astro:content'
 
@@ -30,17 +30,13 @@ const hiddenCampaigns = allCampaigns.filter((c) => !sortedCampaigns.map((c) => c
     intro="Überall in Deutschland können wir die Daten noch besser machen. Diese Kampagnen helfen dir in deiner Region Verbesserungspotentiale und passende Aufgaben zu finden."
   />
 
-  <ProseSection highlight classes="prose-green mt-12 mb-0 flex gap-3">
-    <EyeIcon className="size-8 flex-none text-green-50" />
-    <div>
-      Zur Bearbeitung der Kampagnen solltest du schon mit OpenStreetMap gearbeitet haben. Falls
-      nicht
-      <Link to="/kontakt">komme am besten zu einem der MeetUps</Link> oder nutze die <Link
-        to="/mitmachen">anderen Möglichkeiten</Link
-      >
-      zu besseren Daten beizutragen
-    </div>
-  </ProseSection>
+  <Notice>
+    Zur Bearbeitung der Kampagnen solltest du schon mit OpenStreetMap gearbeitet haben. Falls nicht
+    <Link to="/kontakt">komme am besten zu einem der MeetUps</Link> oder nutze die <Link
+      to="/mitmachen">anderen Möglichkeiten</Link
+    >
+    zu besseren Daten beizutragen
+  </Notice>
 
   <ProseSection classes="prose-base mt-12 mb-0">
     <CampaignLeaderboard client:only="react" />
