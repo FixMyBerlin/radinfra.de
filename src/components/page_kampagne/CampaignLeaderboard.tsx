@@ -1,4 +1,4 @@
-import { linkStyles } from '@components/links/Link'
+import { linkStyles } from '@components/links/styles'
 import { queryClient } from '@components/store/tanstackQuery'
 import { BugAntIcon } from '@heroicons/react/20/solid'
 import { useQuery } from '@tanstack/react-query'

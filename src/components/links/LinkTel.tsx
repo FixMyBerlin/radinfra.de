@@ -1,5 +1,5 @@
 import { twMerge } from 'tailwind-merge'
-import { buttonStyles, linkStyles } from './Link'
+import { buttonStyles, linkStyles } from './styles'
 
 type Props = {
   tel: string
