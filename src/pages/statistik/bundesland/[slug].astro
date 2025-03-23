@@ -38,11 +38,12 @@ const { data, id: bundeslandId } = Astro.props
   <ProseSection classes="@container mt-12 max-w-[90rem] lg:mr-12">
     <!-- <h2>Vergleich auf Bundesebene</h2> -->
 
+    <CardPercentageCategoriesDetails levelKey="landkreis" bundeslandId={bundeslandId} />
+
     <!-- We use container queries to change the columns -->
-    <div class="grid gap-6 @3xl:grid-cols-2 @4xl:grid-cols-3">
+    <div class="mt-12 grid gap-6 @3xl:grid-cols-2 @4xl:grid-cols-2">
       <CardPercentageBikelanes levelKey="landkreis" bundeslandId={bundeslandId} />
       <CardLength levelKey="landkreis" bundeslandId={bundeslandId} />
-      <CardPercentageCategoriesDetails levelKey="landkreis" bundeslandId={bundeslandId} />
     </div>
   </ProseSection>
 
