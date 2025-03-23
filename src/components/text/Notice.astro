@@ -2,16 +2,20 @@
 import EyeIcon from '@heroicons/react/24/solid/EyeIcon'
 import { twMerge } from 'tailwind-merge'
 import ProseSection from './ProseSection.astro'
+import ExclamationCircleIcon from '@heroicons/react/24/solid/ExclamationTriangleIcon'
 
 export type Props = {
+  icon?: 'exclampation' | 'eye' | undefined
   className?: string | undefined
 }
 
-const { className } = Astro.props
+const { icon, className } = Astro.props
 ---
 
 <ProseSection highlight classes={twMerge('prose-green mb-0 flex gap-3 shadow-inner', className)}>
-  <EyeIcon className="size-8 flex-none text-green-50" />
+  {icon === 'exclampation' && <ExclamationCircleIcon className="size-8 flex-none text-green-50" />}
+  {icon === 'eye' && <EyeIcon className="size-8 flex-none text-green-50" />}
+  {icon === undefined && <EyeIcon className="size-8 flex-none text-green-50" />}
   <div>
     <slot />
   </div>

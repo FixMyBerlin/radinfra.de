@@ -6,9 +6,15 @@ import Notice from '@components/text/Notice.astro'
 import { twMerge } from 'tailwind-merge'
 ---
 
-<Notice>
+<Notice icon="exclampation">
+  <!-- <span
+    class="inline-flex items-center rounded-full bg-red-100 px-2 py-1 font-sans text-xs font-medium text-red-700"
+    >Beta</span
+  > -->
+
   Das Ziel der Statistiken ist, die Datenqualität zu prüfen und zu verbessern. Ihre Aussagekraft ist
-  somit direkt mit der Qualität der OSM Daten in der Region verbunden.
+  direkt mit der Qualität der OSM Daten in der Region verbunden. Gerade fehlende Angaben zur
+  Verkehrsrichtung verfälschen die Daten.
   <details>
     <summary
       class={twMerge(
@@ -21,18 +27,19 @@ import { twMerge } from 'tailwind-merge'
     </p>
     <ol class="!mt-4">
       <li>
+        <strong>Verkehrsrichtung</strong>: Die Statistik basiert auf "Fahrspuren". Ein Weg, der in
+        beide Richtungen befahren werden darf, zählt also zweimal. Wenn keine explizite Angabe
+        vorliegt, werden Annahmen getroffen. Wenn diese Annahmen falsch sind, verfälscht das die
+        Statistik.
+        <!-- TODO: -->
+        Es wird bald eine spezielle Karte geben, damit ihr diese Annahmen einfacher kontrollieren könnt.
+      </li>
+      <li>
         <strong>Führungsform</strong>: Nutzt <LinkExternal
           href="https://tilda-geo.de/regionen/radinfra?map=6.1/51.312/10.529&config=v92cax.1utl.3dc&v=2"
           blank>die Karte zur Führungsform</LinkExternal
         > zur Prüfung in eurer Region. <Link to="/kampagnen">Unsere Kampagnen</Link> geben ebenfalls
         Hinweise.
-      </li>
-      <li>
-        <strong>Richtungsfreigabe</strong>: Die Statistik basiert auf "Fahrspuren". Ein Weg, der in
-        beide Richtungen befahren werden darf, zählt also zweimal. Wenn keine explizite Angabe
-        vorliegt, werden Annahmen getroffen. Diese Annahmen können besonders innerorts falsch sein.
-        Es wird bald eine spezielle Karte geben, damit ihr diese Annahmen einfacher kontrollieren
-        könnt.
       </li>
     </ol>
     <p>
