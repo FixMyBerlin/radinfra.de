@@ -1,0 +1,54 @@
+---
+import Card from './Card.astro'
+import CardPercentageCategoriesDetailsBarchart from './CardPercentageCategoriesDetailsBarchart.astro'
+import { getStatistics, type CardProps } from './utils/getStatistics'
+import { statisticLandkreisPath } from './utils/statistikLandkreisPath'
+import { sum } from './utils/sum'
+
+type Props = CardProps
+const { levelKey, bundeslandId } = Astro.props
+const statistics = await getStatistics({ levelKey, bundeslandId })
+
+const dataChildren = statistics
+  .map(({ data: { properties } }) => {
+    if (!properties.bikelane_length) return undefined
+    // Remove some categories that are not relevant for the statistics
+    delete properties.bikelane_length.cyclewayLink
+    delete properties.bikelane_length.livingStreet
+    return {
+      path: statisticLandkreisPath(properties.slug),
+      name: properties.name,
+      total: properties.bikelane_sum.sum,
+      bikelane_length: properties.bikelane_length,
+    }
+  })
+  .filter(Boolean)
+
+export type DataPercentageCategories = (typeof dataChildren)[number]
+export type BikeLengthKey = keyof NonNullable<DataPercentageCategories['bikelane_length']>
+
+const dataParent: DataPercentageCategories = {
+  path: null,
+  name: levelKey === 'bund' ? 'Deutschland' : 'Landkreis',
+  total: sum(dataChildren.map((s) => s.total)),
+  bikelane_length: {},
+}
+dataChildren.forEach((line) => {
+  Object.keys(line.bikelane_length).map((_key) => {
+    const key = _key as BikeLengthKey
+    dataParent.bikelane_length[key] = sum(dataChildren.map((s) => s.bikelane_length[key] || 0))
+  })
+})
+---
+
+<Card
+  title="Anteile nach Führungen"
+  intro="Zeigt für Radinfrastruktur die Anteile der Führungsform."
+>
+  <CardPercentageCategoriesDetailsBarchart childData={dataParent} />
+  {
+    dataChildren.map((data) => {
+      return <CardPercentageCategoriesDetailsBarchart childData={data} />
+    })
+  }
+</Card>

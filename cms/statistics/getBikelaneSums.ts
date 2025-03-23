@@ -68,22 +68,6 @@ const bikelaneClasses = new Map<BikelaneClass, BikelaneCategories[]>([
   ],
 ])
 
-// const bikelaneStyles = [
-//   { id: 'footAndCyclewaySegregated', name: 'Getrennter Rad- und Gehweg', color: '#818cf8' },
-//   { id: 'cycleway', name: 'Getrennter Radweg', color: '#174ed9' },
-//   { id: 'protectedCyclewayOnHighway', name: 'Geschuetzter Radfahrstreifen', color: '#2dd4bf' },
-//   { id: 'cyclewayOnHighway_exclusive', name: 'Radfahrstreifen', color: '#2dd4bf' },
-//   { id: 'cyclewayOnHighway', name: 'Schutzstreifen', color: '#2dd4bf' },
-//   { id: 'crossing', name: 'Markierung Kreuzungsbereich', color: '#748b82' },
-//   { id: 'footAndCyclewayShared', name: 'Gemeinsamer Geh- & Radweg', color: '#e949ac' },
-//   { id: 'footwayBicycleYes', name: 'Gehweg mit Rad frei', color: '#f08ed5' },
-//   { id: 'bicycleRoad', name: 'Fahrradstraße (keine Kfz)', color: '#fb923c' },
-//   { id: 'bicycleRoad_vehicleDestination', name: 'Fahrradstraße (Mischverkehr)', color: '#fb923c' },
-//   { id: 'sharedBusLane', name: 'Gem. Fahrstreifen mit Bus', color: '#059669' },
-//   { id: 'sharedMotorVehicleLane', name: 'Gem. Fahrstreifen mit Kfz (Markiert)', color: '#059669' },
-//   { id: 'needsClarification', name: 'Führungsform unklar', color: '#b50382' },
-// ]
-
 const values = (
   input: ApiStatisticFeatureType['properties']['bikelane_length'],
   bikelaneClass: BikelaneClass,

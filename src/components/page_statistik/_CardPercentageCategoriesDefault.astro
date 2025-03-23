@@ -1,6 +1,6 @@
 ---
 import Card from './Card.astro'
-import CardPercentageCategoriesBarchart from './CardPercentageCategoriesBarchart.astro'
+import CardPercentageCategoriesDefaultBarchart from './_CardPercentageCategoriesDefaultBarchart.astro'
 import { getStatistics, type CardProps } from './utils/getStatistics'
 import { statisticLandkreisPath } from './utils/statistikLandkreisPath'
 import { sum } from './utils/sum'
@@ -52,10 +52,10 @@ const dataParent = {
   title="Anteile nach Führungen"
   intro="Zeigt für Radinfrastruktur die Anteile der Führungsform."
 >
-  <CardPercentageCategoriesBarchart childData={dataParent} />
+  <CardPercentageCategoriesDefaultBarchart childData={dataParent} />
   {
     dataChildren.map((data) => {
-      return <CardPercentageCategoriesBarchart childData={data} />
+      return <CardPercentageCategoriesDefaultBarchart childData={data} />
     })
   }
 </Card>

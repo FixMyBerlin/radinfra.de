@@ -4,10 +4,10 @@ import type { HTMLAttributes } from 'astro/types'
 import { twJoin } from 'tailwind-merge'
 
 type Props = { text: string; style?: HTMLAttributes<'div'>['style']; className?: string }
-const { text, style, className } = Astro.props
+const { text, style, className, ...props } = Astro.props
 ---
 
-<div class={twJoin(className, 'group/item relative isolate cursor-help')} style={style}>
+<div class={twJoin(className, 'group/item relative isolate cursor-help')} style={style} {...props}>
   <slot data-foo />
 
   <div

@@ -1,0 +1,40 @@
+---
+import Link from '@components/links/Link.astro'
+import Tooltip from './Tooltip.astro'
+import { bikelaneLegend } from './constants/bikelaneLegend.const'
+import type {
+  BikeLengthKey,
+  DataPercentageCategories,
+} from './CardPercentageCategoriesDetails.astro'
+
+type Props = { childData: DataPercentageCategories }
+const { childData } = Astro.props
+---
+
+<figure class="not-prose leading-snug">
+  <figcaption class="flex items-center justify-between">
+    <div class="truncate">
+      {childData.path ? <Link to={childData.path}>{childData.name}</Link> : childData.name}
+    </div>
+  </figcaption>
+  <div class="mt-1 flex w-full rounded-sm">
+    {
+      bikelaneLegend.map(({ id, name, color }) => {
+        const key = id as BikeLengthKey
+        const value = childData.bikelane_length?.[key] || 99
+
+        const relativeWidth = ((value / childData.total) * 100).toFixed(2)
+        return (
+          <Tooltip
+            data-key={key}
+            text={`Führungsform: \n\n${name}\n\n${value.toLocaleString('de-DE')} km — ${(Number(relativeWidth) / 100).toLocaleString('de-DE', { style: 'percent' })}`}
+            style={{ width: `max(0px, ${relativeWidth}%)`, backgroundColor: color }}
+            className="h-3.5 w-full ring-gray-800 first:rounded-l-sm last:rounded-r-sm hover:z-10 hover:ring-2"
+          >
+            {/* The tooltip div is also the bar chart element */}
+          </Tooltip>
+        )
+      })
+    }
+  </div>
+</figure>
