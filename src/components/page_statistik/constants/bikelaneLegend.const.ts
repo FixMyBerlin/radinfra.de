@@ -1,11 +1,11 @@
-import type { BikeLengthKey } from '../CardPercentageCategoriesDetails.astro'
+import type { InferEntrySchema } from 'astro:content'
 
 // Gem. Fahrstreifen mit Bus
 // Gem. Fahrstreifen mit Kfz (Markiert)
 // Führungsform unklar
 
 export const bikelaneLegend: {
-  id: BikeLengthKey
+  id: keyof NonNullable<InferEntrySchema<'statistics'>['properties']['bikelane_length']>
   name: string
   color: string
 }[] = [
