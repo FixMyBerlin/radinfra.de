@@ -8,6 +8,9 @@ import PageHeadline from '@components/text/PageHeadline.astro'
 import LayoutArticlePageAstro from '@layouts/LayoutArticlePageAstro.astro'
 import { Picture } from 'astro:assets'
 import pngKarte from '../assets/homepage/karte-deutschland.png'
+
+const url =
+  'https://tilda-geo.de/regionen/radinfra?map=6.1/51.312/10.529&config=1ops5da.7h3d.3cw&v=2'
 ---
 
 <LayoutArticlePageAstro title="Radinfrastruktur Deutschland">
@@ -24,7 +27,7 @@ import pngKarte from '../assets/homepage/karte-deutschland.png'
 
   <article>
     <a
-      href="https://tilda-geo.de/regionen/radinfra?map=6.1/51.312/10.529&config=v92cax.1utl.3dc&v=2"
+      href={url}
       target="_blank"
       class="not-prose block overflow-clip rounded-sm border border-teal-100 hover:bg-teal-100/70"
     >
@@ -39,7 +42,7 @@ import pngKarte from '../assets/homepage/karte-deutschland.png'
       />
     </a>
     <MegaButton
-      href="https://tilda-geo.de/regionen/radinfra?map=6.1/51.312/10.529&config=v92cax.1utl.3dc&v=2"
+      href={url}
       iconKey="map"
       label="Radinfrastrukturkarte"
       subline="Deutschland-Karte in TILDA Radverkehr öffnen…"
