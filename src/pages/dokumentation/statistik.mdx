@@ -46,8 +46,10 @@ Das vereinfacht die folgende Klassifizierung und erlaubt für die Statistik
 ## Schritt 2: Summierung der Daten
 
 Nachdem die Prozessierung durchgelaufen ist, summieren wir die Daten pro Kategorie. Das passiert ebenfalls in TILDA.
-- **Straßen:** Attribut `raod`; Wege mit `road_oneway=yes|yes_dual_carriageway` werden einfach gezählt, der Rest doppelt.
-- **Radwege:** Attribut `category`; Wege mit `oneway=yes|implicit_yes` werden einfach gezählt, der Rest doppelt.
+- **Straßen:** Attribut `raod`; Die Statistik zählt Daten pro Fahrtrichtung.
+   Wege mit `road_oneway=yes|yes_dual_carriageway` werden einfach gezählt, der Rest doppelt.
+- **Radwege:** Attribut `category`; Die Statistik zählt Daten pro Fahrtrichtung.
+   Wege mit `oneway=yes|implicit_yes` werden einfach gezählt, der Rest doppelt.
 
 Damit diese Prozessierung in Grenzbereichen, wo Wege auf einer Grenze verlaufen, möglichst präzise ist, werden dafür die Wege zuerst in Punkte umgewandelt die eine Längenangabe von ca. 10 Metern haben.
 Diese Punkt werden dann pro Gebiet summiert.
