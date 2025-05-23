@@ -6,12 +6,42 @@ const posts = await getCollection(
   'posts',
   (post) => new Date(post.data.pubDate) <= new Date() && post.data.inMenu === true,
 )
+
+const { pathname: currentPathname } = Astro.url
+const isPosts = currentPathname.startsWith('/posts')
 ---
 
 {
   posts.length > 0 && (
-    <MenuItem href="/posts">
-      Neuigkeiten <span class="text-teal-950">({posts.length})</span>
-    </MenuItem>
+    <>
+      {/* Initial link to the latest post, with null check */}
+      <MenuItem
+        highlightExactMatch
+        href={!isPosts && posts[0] ? `/posts/${posts[0].id}` : '/posts'}
+      >
+        Neuigkeiten
+      </MenuItem>
+
+      {/* Show more links only when isPosts is true */}
+      {isPosts && (
+        <>
+          {posts.slice(0, 3).map((post) => (
+            <MenuItem highlightExactMatch indentation={2} href={`/posts/${post.id}`}>
+              {post.data.menuTitle}
+            </MenuItem>
+          ))}
+
+          {/* Show 'Alle Neuigkeiten (X)' only if there are more than 3 posts */}
+          {posts.length > 3 && (
+            <MenuItem highlightExactMatch indentation={2} href="/posts">
+              Alle Neuigkeiten{' '}
+              <span class="inline-flex size-6 items-center justify-center rounded-xl bg-teal-800 text-white group-hover/item:bg-transparent group-hover/item:text-black group-aria-[current=true]/item:bg-teal-900 group-aria-[current=true]/item:text-teal-100">
+                {posts.length}
+              </span>
+            </MenuItem>
+          )}
+        </>
+      )}
+    </>
   )
 }
