@@ -24,7 +24,6 @@ export const astroPostsDefinition = defineCollection({
       language: z.enum(languages).optional(),
       image: image().nullish(),
       imageAlt: z.string().optional(),
-      showToc: z.boolean().optional(), // TODO Do we need this?
       canonicalUrl: z.string().url().optional(),
     }),
 })

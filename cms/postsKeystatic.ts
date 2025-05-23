@@ -42,7 +42,6 @@ export const keystaticPostsConfig = collection({
       publicPath: `/src/content/posts`,
     }),
     imageAlt: fields.text({ label: 'Social Sharin Image Alt Text' }),
-    showToc: fields.checkbox({ label: 'Show TOC', defaultValue: false }),
     canonicalUrl: fields.url({ label: 'Canonical URL', validation: { isRequired: false } }),
   },
 })
