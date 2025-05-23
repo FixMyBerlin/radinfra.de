@@ -6,7 +6,9 @@ import CardPercentageBikelanes from '@components/page_statistik/CardPercentageBi
 import CardPercentageCategoriesDetails from '@components/page_statistik/CardPercentageCategoriesDetails.astro'
 import PageHeadline from '@components/text/PageHeadline.astro'
 import ProseSection from '@components/text/ProseSection.astro'
+import { proseBase, proseHeadings } from '@layouts/baseStyles'
 import LayoutArticle from '@layouts/LayoutArticle.astro'
+import { twJoin } from 'tailwind-merge'
 
 // const statistics = await getCollection('statistics')
 // const bund = statistics
@@ -42,11 +44,13 @@ import LayoutArticle from '@layouts/LayoutArticle.astro'
 ---
 
 <LayoutArticle title="Statistik zu Radinfrastrukturdaten in Deutschland">
-  <PageHeadline
-    category={undefined}
-    headline="Statistische Auswertung"
-    intro="Statistiken zur Radinfrastruktur pro Bundesland und Landkreis. Basierend auf den aufbereiteten Infrastrukturdaten aus OpenStreetMap."
-  />
+  <div class={twJoin(proseBase, proseHeadings)}>
+    <PageHeadline
+      category={undefined}
+      headline="Statistische Auswertung"
+      intro="Statistiken zur Radinfrastruktur pro Bundesland und Landkreis. Basierend auf den aufbereiteten Infrastrukturdaten aus OpenStreetMap."
+    />
+  </div>
 
   <Beta />
 
