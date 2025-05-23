@@ -1,4 +1,5 @@
 ---
+import PageHeadline from '@components/text/PageHeadline.astro'
 import LayoutArticlePageAstro from '@layouts/LayoutArticlePageAstro.astro'
 import { getCollection } from 'astro:content'
 
@@ -8,16 +9,18 @@ const sortedPosts = allPosts.sort(
 )
 ---
 
-<LayoutArticlePageAstro title="Alle Blogposts" noindex={true}>
-  <header class="mb-20">
-    <h1>Alle Blogposts ({sortedPosts.length})</h1>
-  </header>
+<LayoutArticlePageAstro title="Alle Neuigkeiten" noindex={true}>
+  <PageHeadline
+    category={undefined}
+    headline="Neuigkeiten"
+    intro="Übersicht der Neuigkeiten zu Änderungen und Ankündigungen auf radinfra.de"
+  />
 
   <table class="table">
     <thead>
       <tr>
         <th>Datum</th>
-        <th>Artikel</th>
+        <th>Artikel ({sortedPosts.length})</th>
         <th>Autor</th>
       </tr>
     </thead>
@@ -26,13 +29,13 @@ const sortedPosts = allPosts.sort(
         sortedPosts.map((post) => {
           return (
             <tr>
-              <td class="flex flex-none whitespace-nowrap text-gray-500">
+              <td class="flex flex-none whitespace-nowrap text-teal-100">
                 {new Date(post.data.pubDate).toLocaleDateString('en-CA')}
               </td>
               <td>
                 <a href={`/posts/${post.id}`}>{post.data.title}</a>
               </td>
-              <td>{post.data.author}</td>
+              <td class="leading-tight">{post.data.author}</td>
             </tr>
           )
         })

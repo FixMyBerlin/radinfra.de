@@ -36,5 +36,6 @@ const introHtml = intro
     </h1>
 
     {intro && <p class="lead" set:html={introHtml} />}
+    <slot />
   </div>
 </header>
