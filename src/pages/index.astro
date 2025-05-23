@@ -3,7 +3,6 @@ import StackedCardWrapper from '@components/cards/StackedCardWrapper.astro'
 import Link from '@components/links/Link.astro'
 import MegaButton from '@components/links/MegaButton.astro'
 import CardsMitmachen from '@components/page_mitmachen/CardsMitmachen.astro'
-import Notice from '@components/text/Notice.astro'
 import PageHeadline from '@components/text/PageHeadline.astro'
 import LayoutArticlePageAstro from '@layouts/LayoutArticlePageAstro.astro'
 import { Picture } from 'astro:assets'
@@ -18,12 +17,6 @@ const url =
     headline="Radinfrastruktur Deutschland"
     intro="radinfra.de liefert detaillierte und standardisierte Daten zur Radinfrastruktur für ganz Deutschland – täglich aktualisiert und fortlaufend aktualisierbar in OpenStreetMap (OSM)."
   />
-
-  <Notice className="mb-10">
-    Diese Seite wird <a href="https://pretalx.com/fossgis2025/talk/JZYBCA/" target="_blank"
-      >auf dem FOSSGIS Vortrag am 28.3.2025</a
-    > offiziell veröffentlicht und vorgestellt.
-  </Notice>
 
   <article>
     <a
