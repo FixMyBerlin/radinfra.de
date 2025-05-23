@@ -8,7 +8,7 @@ export const proseBase = twJoin(
   // <code>
   'prose-code:rounded-sm prose-code:bg-teal-800/90 prose-code:box-decoration-clone prose-code:px-1.5 prose-code:py-1 prose-code:text-teal-50 prose-code:before:content-none prose-code:after:content-none',
   // <blockquote>
-  'prose-blockquote:bg-teal-100 prose-blockquote:p-4 prose-blockquote:pb-2',
+  'prose-blockquote:bg-teal-800 prose-blockquote:p-4 prose-blockquote:pb-2 prose-blockquote:border-teal-950 prose-p:mt-0',
   // .lead
   'prose-lead:text-teal-50 prose-lead:font-serif',
   // <a>
