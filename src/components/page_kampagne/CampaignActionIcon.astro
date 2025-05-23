@@ -18,14 +18,12 @@ const { action, className } = Astro.props
 {
   action == 'maproulette' && (
     //
-    // @ts-expect-error https://github.com/withastro/astro/issues/13467
     <MapRouletteLogo class={twMerge('not-prose size-4 opacity-70', className)} />
   )
 }
 {
   action == 'streetcomplete' && (
     //
-    // @ts-expect-error https://github.com/withastro/astro/issues/13467
     <StreetCompleteLogo class={twMerge('not-prose size-4 opacity-90 grayscale', className)} />
   )
 }
