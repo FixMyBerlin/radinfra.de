@@ -1,0 +1,13 @@
+---
+import LinkExternal from '@components/links/LinkExternal.astro'
+import { ArrowDownTrayIcon } from '@heroicons/react/16/solid'
+
+const { label, file, filename } = Astro.props
+---
+
+<p>
+  <LinkExternal download={filename} button className="inline-flex items-center gap-1" href={file}>
+    <ArrowDownTrayIcon className="size-4" />
+    {label}
+  </LinkExternal>
+</p>

@@ -7,7 +7,7 @@ export const contentBase = 'src/content/posts'
 export const keystaticPostsConfig = collection({
   label: 'Blog',
   slugField: 'menuTitle',
-  path: `${contentBase}/*/`,
+  path: `${contentBase}/*`,
   format: { contentField: 'content' },
   entryLayout: 'content',
   columns: ['title', 'pubDate'],
@@ -30,11 +30,16 @@ export const keystaticPostsConfig = collection({
     }),
     content: fields.mdx({
       label: 'Content',
-      components: mdxComponentsKeystatic,
+      components: mdxComponentsKeystatic('posts'),
+      // Astro does not allow to configure max image sizes for Content components.
+      // Instead we rely on our custom image components.
+      options: { image: false },
     }),
     image: fields.image({
       label: 'Social Sharing Image Path',
       description: 'Bild bitte im Format 1200x630px hochladen.',
+      directory: `src/content/posts`,
+      publicPath: `/src/content/posts`,
     }),
     imageAlt: fields.text({ label: 'Social Sharin Image Alt Text' }),
     showToc: fields.checkbox({ label: 'Show TOC', defaultValue: false }),

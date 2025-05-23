@@ -24,7 +24,7 @@ export const keystaticPartnersConfig = collection({
     }),
     content: fields.mdx({
       label: 'Content',
-      components: mdxComponentsKeystatic,
+      components: mdxComponentsKeystatic('partners'),
     }),
     logo: fields.image({
       label: 'Logo',

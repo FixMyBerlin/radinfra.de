@@ -1,0 +1,11 @@
+---
+import Link from '@components/links/Link.astro'
+
+const { label, href } = Astro.props
+---
+
+<p>
+  <Link to={href} button>
+    {label}
+  </Link>
+</p>
