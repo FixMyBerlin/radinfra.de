@@ -14,7 +14,7 @@ const isPosts = currentPathname.startsWith('/posts')
 {
   posts.length > 0 && (
     <>
-      {/* Initial link to the latest post, with null check */}
+      {/* Initial link to the latest post */}
       <MenuItem
         highlightExactMatch
         href={!isPosts && posts[0] ? `/posts/${posts[0].id}` : '/posts'}
@@ -22,18 +22,18 @@ const isPosts = currentPathname.startsWith('/posts')
         Neuigkeiten
       </MenuItem>
 
-      {/* Show more links only when isPosts is true */}
+      {/* Show more links only when viewing posts */}
       {isPosts && (
         <>
           {posts.slice(0, 3).map((post) => (
-            <MenuItem highlightExactMatch indentation={2} href={`/posts/${post.id}`}>
+            <MenuItem highlightExactMatch indentation={2} href={`/posts/${post.id}/`}>
               {post.data.menuTitle}
             </MenuItem>
           ))}
 
           {/* Show 'Alle Neuigkeiten (X)' only if there are more than 3 posts */}
           {posts.length > 3 && (
-            <MenuItem highlightExactMatch indentation={2} href="/posts">
+            <MenuItem highlightExactMatch indentation={2} href="/posts/">
               Alle Neuigkeiten{' '}
               <span class="inline-flex size-6 items-center justify-center rounded-xl bg-teal-800 text-white group-hover/item:bg-transparent group-hover/item:text-black group-aria-[current=true]/item:bg-teal-900 group-aria-[current=true]/item:text-teal-100">
                 {posts.length}

@@ -63,7 +63,7 @@ const hiddenCampaigns = allCampaigns.filter((c) => !sortedCampaigns.map((c) => c
         hiddenCampaigns.map((campaign) => {
           return (
             <li>
-              <a href={`/kampagnen/${campaign.id}`}>{campaign.data.title}</a>
+              <a href={`/kampagnen/${campaign.id}/`}>{campaign.data.title}</a>
             </li>
           )
         })

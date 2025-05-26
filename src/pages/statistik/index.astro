@@ -87,7 +87,7 @@ import { twJoin } from 'tailwind-merge'
           return (
             <div>
               <h2 class="mb-2 font-bold text-teal-50">
-                <a href={`/statistik/bundesland/${data.slug}`}>{data.name}</a>
+                <a href={`/statistik/bundesland/${data.slug}/`}>{data.name}</a>
               </h2>
               <Barchart format="totals" data={data} />
             </div>
@@ -101,7 +101,7 @@ import { twJoin } from 'tailwind-merge'
           return (
             <div>
               <h2 class="mb-2 font-bold text-teal-50">
-                <a href={`/statistik/bundesland/${data.slug}`}>{data.name}</a>
+                <a href={`/statistik/bundesland/${data.slug}/`}>{data.name}</a>
               </h2>
               <Barchart format="bikeinfra" data={data} />
             </div>
