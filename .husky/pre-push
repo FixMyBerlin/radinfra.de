@@ -1,3 +1,7 @@
+# Debugging, see https://typicode.github.io/husky/how-to.html#solution
+# echo "PATH is: $PATH"
+# which npm
+
 npm run type-check
 npm run format
 npm run lint
