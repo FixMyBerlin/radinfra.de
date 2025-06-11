@@ -1,11 +1,11 @@
 {
   "id": "missing_mapillary",
-  "title": "Ergänze straßenlevel Fotos (Mapillary)",
+  "title": "Ergänze straßenlevel Fotos",
   "pubDate": "2025-01-01T15:00",
   "category": "pictures",
   "recommendedAction": "mapillary",
   "visibility": "promote",
-  "description": "Diese Karte zeigt Wege, von denen keine aktuellen Fotos vorliegen. Diese Fotos erlauben es, OpenStreetMap aus der Ferne zu aktualisieren und zu überprüfen.",
+  "description": "Diese Karte zeigt Wege, von denen keine aktuellen Fotos auf Mapillary vorliegen. Diese Fotos erlauben es, OpenStreetMap aus der Ferne zu aktualisieren und zu überprüfen.",
   "task": "**Bitte hilf mit, Straßenlevel Fotos in deiner Umgebung zu machen.** Besonders relevant sind dabei Wege mit Radinfrastruktur und Radrouten. Auch sonstige, fahrradgeeignete Wege lohnen sich zu erfassen sowie besonders schlechte Infrastruktur.",
   "mapUrl": "https://tilda-geo.de/regionen/radinfra?map=10.4/52.077/11.836&config=v92cax.g9h.3bm&v=2",
   "maprouletteChallenge": {

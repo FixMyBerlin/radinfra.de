@@ -1,0 +1,21 @@
+---
+import MapillaryLogo from '../../assets/logos/mapillary.svg'
+
+type Props = {
+  title: string
+}
+const { title } = Astro.props
+---
+
+{
+  title.endsWith('(Mapillary)') ? (
+    <span
+      class="flex items-center gap-2"
+      title="Kampagne ist gefiltert auf Wege die Mapillary Fotos haben."
+    >
+      {title.replace('(Mapillary)', '')} <MapillaryLogo class="size-3 rounded-full" />
+    </span>
+  ) : (
+    title
+  )
+}

@@ -1,4 +1,5 @@
 ---
+import CampaignTitle from '@components/page_kampagne/CampaignTitle.astro'
 import ArrowTopRightOnSquare from 'astro-heroicons/outline/ArrowTopRightOnSquare.astro'
 import { twJoin } from 'tailwind-merge'
 
@@ -37,7 +38,7 @@ const external = href.startsWith('http')
         data-noanchor
         class="not-prose flex items-center gap-1 py-0 text-left font-sans text-lg leading-tight font-medium text-teal-200 group-hover/card:text-black"
       >
-        {title ? title : 'Mehr erfahren…'}
+        {title ? <CampaignTitle title={title} /> : 'Mehr erfahren…'}
         {external ? <ArrowTopRightOnSquare class="size-5" /> : ''}
       </h2>
       {

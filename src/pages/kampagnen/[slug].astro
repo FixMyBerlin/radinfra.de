@@ -53,7 +53,11 @@ const noindex = maprouletteUrl === undefined || data.visibility == 'hidden'
 ---
 
 <LayoutArticlePageAstro title={data.title} noindex={noindex} language="de">
-  <PageHeadline category="Kampagnen" headline={data.title} intro={data.description} />
+  <PageHeadline
+    category="Kampagnen"
+    headline={data.title.replace(' (Mapillary)', '')}
+    intro={data.description}
+  />
 
   <ProseSection classes="mb-0">
     <h2>Aufgabe</h2>
@@ -233,6 +237,14 @@ const noindex = maprouletteUrl === undefined || data.visibility == 'hidden'
   <ProseSection classes="prose-sm my-12">
     <h2>Metadaten</h2>
     <ul>
+      {
+        data.title.endsWith(' (Mapillary)') && (
+          <li>
+            In dieser Kampagne sind nur Wege enthalten, für die wahrscheinlich Mapillary Fotos
+            vorliegen.
+          </li>
+        )
+      }
       <li>
         Diese Kampagne basiert auf Prozessierung im Projekt{' '}
         <a target="_blank" href="https://tilda-geo.de">TILDA Radverkehr</a>.

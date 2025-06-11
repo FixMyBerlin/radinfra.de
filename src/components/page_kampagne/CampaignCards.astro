@@ -5,6 +5,7 @@ import Link from '@components/links/Link.astro'
 import { campaignCategorySelect } from 'cms/utils/campaignCategorySelect'
 import CampaignActionIcon from './CampaignActionIcon.astro'
 import type { Campaign } from './types'
+import CampaignTitle from './CampaignTitle.astro'
 
 type Props = {
   /** @desc `Beispiel CATEGORY` where `CATEGORY` will be replaced */
@@ -79,7 +80,7 @@ campaignCategorySelect.forEach(({ value: key }) => {
                     <span class="mt-1.5">
                       <CampaignActionIcon action={campaign.data.recommendedAction} />
                     </span>
-                    {campaign.data.title}
+                    <CampaignTitle title={campaign.data.title} />
                   </Link>
                 </li>
               )
