@@ -2,7 +2,7 @@
 import Link from '@components/links/Link.astro'
 import CampaignCards from '@components/page_kampagne/CampaignCards.astro'
 import { CampaignLeaderboard } from '@components/page_kampagne/CampaignLeaderboard'
-import DevDetails from '@components/text/DevDetails.astro'
+import Details from '@components/text/Details.astro'
 import Notice from '@components/text/Notice.astro'
 import PageHeadline from '@components/text/PageHeadline.astro'
 import ProseSection from '@components/text/ProseSection.astro'
@@ -57,7 +57,13 @@ const hiddenCampaigns = allCampaigns.filter((c) => !sortedCampaigns.map((c) => c
     </p>
   </ProseSection>
 
-  <DevDetails title="Kampagnen die oben nicht aufgelistet werden">
+  <Details classes="my-12" title="Versteckte Kampagnen…" defaultOpen={false}>
+    <p>
+      Diese Kampagnen sind versteckt. Meistens sind es die "Vollversionen" der Kampagnen, die oben
+      bereits aufgelistet sind, aber dort gefiltert wurden. Denn um aus der Ferne heraus Daten
+      beizutragen, braucht es gute Fotos. Viele der Kampagnen oben sind daher gefiltert, so dass nur
+      Wege enthalten sind, für die wir Mapillary Fotos finden konnten.
+    </p>
     <ul>
       {
         hiddenCampaigns.map((campaign) => {
@@ -69,5 +75,5 @@ const hiddenCampaigns = allCampaigns.filter((c) => !sortedCampaigns.map((c) => c
         })
       }
     </ul>
-  </DevDetails>
+  </Details>
 </LayoutArticlePageAstro>
