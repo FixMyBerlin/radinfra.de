@@ -10,7 +10,7 @@ noindex: true
 
 | `category` | Titel | Kurzbeschreibung | Link |
 |---|---|---|---|
-| `bicycleRoad` | Fahrradstrcaße |  |  |
+| `bicycleRoad` | Fahrradstraße |  |  |
 | `bicycleRoad_vehicleDestination` | Fahrradstraße mit Anlieger frei |  |  |
 | `crossing` | Straßenquerung | (Keine weitere Unterteilung, bisher) |  |
 | `cycleway_adjoining` | Radweg (baulich von der Fahrbahn abgesetzt aber straßenbegleitend) |  |  |
@@ -47,4 +47,4 @@ Die Prozessierung und Website TILDA Radverkehr ist OpenSource. Die Kategorisieru
 
 ### Erkennen, ob ein Weg straßenbegleitend ist
 
-Aktuell basiert die Kategorisierung der Infrastruktur vollstänig auf Tags. Es werden keine geometrische analysen hinzugezogen. Es ist denkbar, dass zukünftige Versionen der Prozessierung die Erkennung von frei geführten Wegen (vs. straßenbegleitenden Wegen) erweitern, in dem nach parallelen Wegen in der Nähe gesucht wird. Diese Form der Prozessierung ist aber aufwändig und fehleranfällig (Edge Cases). Aus diesem Grund setzen wir bis auf weiteres auf eine explizite Angabe von `is_sidepath=yes|no`.
+Aktuell basiert die Kategorisierung der Infrastruktur vollstänig auf Tags. Es werden keine geometrische Analysen hinzugezogen. Es ist denkbar, dass zukünftige Versionen der Prozessierung die Erkennung von frei geführten Wegen (vs. straßenbegleitenden Wegen) erweitern, in dem nach parallelen Wegen in der Nähe gesucht wird. Diese Form der Prozessierung ist aber aufwändig und fehleranfällig (Edge Cases). Aus diesem Grund setzen wir bis auf weiteres auf eine explizite Angabe von `is_sidepath=yes|no`.
