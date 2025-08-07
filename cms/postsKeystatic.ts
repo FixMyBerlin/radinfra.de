@@ -14,7 +14,11 @@ export const keystaticPostsConfig = collection({
   schema: {
     title: fields.text({ label: 'Title', validation: { isRequired: true } }),
     menuTitle: fields.slug({ name: { label: 'Menu title', validation: { isRequired: true } } }),
-    pubDate: fields.datetime({ label: 'Publish Date/Time UTC', validation: { isRequired: true }, description: 'Reminder: Zeitzone zurückrechnen.' }),
+    pubDate: fields.datetime({
+      label: 'Publish Date/Time UTC',
+      validation: { isRequired: true },
+      description: 'Reminder: Zeitzone zurückrechnen.',
+    }),
     updatedDatae: fields.datetime({ label: 'Date/Time UTC of last relevant update' }),
     author: fields.select({
       label: 'Author',
