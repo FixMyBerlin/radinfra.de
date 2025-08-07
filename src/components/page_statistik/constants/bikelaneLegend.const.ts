@@ -27,7 +27,7 @@ export const bikelaneLegend: {
   { id: 'cycleway_adjoiningOrIsolated', name: 'Getrennter Radweg', color: '#174ed9' },
   { id: 'cycleway_adjoining', name: 'Getrennter Radweg (Straßenbegleitend)', color: '#174ed9' },
   { id: 'cycleway_isolated', name: 'Getrennter Radweg (separat geführt)', color: '#174ed9' },
-  { id: 'protectedCyclewayOnHighway', name: 'Geschuetzter Radfahrstreifen', color: '#2dd4bf' },
+  { id: 'cyclewayOnHighwayProtected', name: 'Geschuetzter Radfahrstreifen', color: '#2dd4bf' },
   { id: 'cyclewayOnHighway_advisory', name: 'Schutzstreifen', color: '#2dd4bf' },
   { id: 'cyclewayOnHighway_exclusive', name: 'Radfahrstreifen', color: '#2dd4bf' },
   {

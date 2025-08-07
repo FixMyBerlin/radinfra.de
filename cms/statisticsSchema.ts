@@ -52,7 +52,7 @@ const properties = z.object({
       sharedBusLaneBikeWithBus: z.number(),
       sharedBusLaneBusWithBike: z.number(),
       cyclewayOnHighway_advisory: z.number(),
-      protectedCyclewayOnHighway: z.number(),
+      cyclewayOnHighwayProtected: z.number(),
       cyclewayOnHighway_exclusive: z.number(),
       footwayBicycleYes_adjoining: z.number(),
       cyclewayOnHighwayBetweenLanes: z.number(),

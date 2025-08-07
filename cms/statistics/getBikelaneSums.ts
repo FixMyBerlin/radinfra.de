@@ -63,7 +63,7 @@ const bikelaneClasses = new Map<BikelaneClass, BikelaneCategories[]>([
       'bicycleRoad',
       'footAndCyclewaySegregated_isolated',
       'cycleway_adjoiningOrIsolated',
-      'protectedCyclewayOnHighway',
+      'cyclewayOnHighwayProtected',
     ],
   ],
 ])
