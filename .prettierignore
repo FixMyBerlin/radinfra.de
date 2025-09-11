@@ -1,2 +1,11 @@
-public/javascript/**/*
-public/css/*.css
+# Ignore MDX and MD files
+*.mdx
+*.md
+
+# Ignore build outputs
+dist/
+.astro/
+node_modules/
+
+# Ignore generated files
+.astro/content.d.ts
