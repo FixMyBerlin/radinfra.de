@@ -1,6 +1,6 @@
 ---
 import GridCardWhite from '@components/cards/GridCardWhite.astro'
-import { getCollection } from 'astro:content'
+import { getCollection, render } from 'astro:content'
 import type { partnerCategories } from 'cms/utils/partnerCategorySelect'
 
 type Props = { filter: (typeof partnerCategories)[number] }
@@ -15,7 +15,9 @@ const sortedPartners = partners.sort((a, b) => {
 ---
 
 {
-  sortedPartners.map(({ id, data }) => {
+  sortedPartners.map(async (partner) => {
+    const { id, data } = partner
+    const { Content } = await render(partner)
     return (
       <GridCardWhite
         key={id}
@@ -23,7 +25,9 @@ const sortedPartners = partners.sort((a, b) => {
         title={data.title}
         image={data.logo}
         text={data.title}
-      />
+      >
+        <Content />
+      </GridCardWhite>
     )
   })
 }

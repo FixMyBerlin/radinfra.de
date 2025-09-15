@@ -8,10 +8,9 @@ export type CardProps = {
   text?: string
   alt?: string | undefined | null
   image?: ImageMetadata | undefined
-  variant: 'iconGrid' | 'iconImageGrid'
 }
 
-const { href, text, alt, image, variant } = Astro.props
+const { href, text, alt, image } = Astro.props
 
 const external = href.startsWith('http')
 ---
@@ -20,7 +19,7 @@ const external = href.startsWith('http')
   href={href}
   class={twMerge(
     'group/card not-prose flex grow flex-col items-center justify-center rounded-sm border border-teal-100 bg-teal-900 no-underline ring-teal-100 hover:ring-1',
-    'bg-white text-teal-100 hover:bg-teal-100/70 hover:text-teal-950',
+    'bg-white hover:bg-teal-100/70',
   )}
   title={alt}
   target={external ? '_blank' : undefined}
@@ -32,7 +31,7 @@ const external = href.startsWith('http')
         height={160}
         densities={[1.5, 2]}
         formats={['png', 'avif']}
-        class={twJoin('m-0 max-h-20 w-full object-cover', 'max-w-40')}
+        class={twJoin('m-0 max-h-20 w-full object-contain', 'max-w-40')}
         pictureAttributes={{
           class: 'not-prose w-full flex items-center justify-center m-3 mb-0 min-h-20',
         }}
@@ -40,22 +39,17 @@ const external = href.startsWith('http')
       />
     )
   }
-  <div
-    class={twJoin(
-      variant === 'iconImageGrid' ? 'h-20 w-full border-b border-gray-50' : 'pt-2',
-      'm-0 flex items-center justify-center',
-    )}
-  >
-    <slot />
-  </div>
   <h2
     data-noanchor
     class={twJoin(
-      'not-prose mt-1 mb-3 flex items-center gap-1 px-2 py-0 text-center font-sans leading-tight font-medium tracking-wide',
+      'not-prose my-1 flex items-center gap-1 px-2 py-0 text-center font-sans leading-tight font-medium tracking-wide',
       'text-teal-800 group-hover/card:text-black',
     )}
   >
     {text ? text : 'Mehr erfahren…'}
     {external ? <ArrowTopRightOnSquareIcon className="size-4 flex-none" /> : ''}
   </h2>
+  <div class="m-0 p-2 pt-0 text-center text-xs text-gray-500">
+    <slot />
+  </div>
 </a>
