@@ -1,11 +1,11 @@
 ---
 import Link from '@components/links/Link.astro'
 
-const { label, href } = Astro.props
+const { label, href, newWindow = true } = Astro.props
 ---
 
 <p>
-  <Link to={href} button>
+  <Link to={href} button className="my-0" blank={newWindow}>
     {label}
   </Link>
 </p>
