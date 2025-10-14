@@ -17,6 +17,8 @@ export const proseBase = twJoin(
   'prose-hr:border-teal-100',
   // Headings
   'prose-headings:font-sans',
+  // Image spacing
+  'prose-figure:my-6',
 )
 
 export const proseHeadings = twJoin(
@@ -24,9 +26,9 @@ export const proseHeadings = twJoin(
   // <h#> anchor position
   'prose-headings:scroll-mt-10',
   // <h1>
-  'prose-h1:mb-3 prose-h1:mt-16 prose-h1:text-teal-50 first:prose-h1:mt-0',
+  'prose-h1:mb-3 prose-h1:mt-12 prose-h1:text-teal-50 first:prose-h1:mt-0',
   // <h2>
-  'prose-h2:mb-4 prose-h2:mt-16',
+  'prose-h2:mb-4 prose-h2:mt-12',
   // <h3>
   'prose-h3:mb-4 prose-h3:mt-8',
 )
