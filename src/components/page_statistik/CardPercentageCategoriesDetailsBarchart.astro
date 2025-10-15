@@ -21,7 +21,7 @@ const { childData } = Astro.props
     {
       bikelaneLegend.map(({ id, name, color }) => {
         const key = id as BikeLengthKey
-        const value = childData.bikelane_length?.[key] || 99
+        const value = childData.bikelane_length?.[key] || 0
 
         const relativeWidth = ((value / childData.total) * 100).toFixed(2)
         return (
