@@ -17,7 +17,7 @@ Damit kann man sehr gut und schnell die Radinfrastruktur-Daten verbessern.
 
 Mit dieser neuen Karte kann man gut sehen, an welchen Stellen Radwege fehlen. Denn dort, wo Mapillary aus einem Straßenfoto ein Verkehrszeichen ermittelt hat, aber in TILDA **keine** Linie zu sehen ist, fehlt etwas in OpenStreetMap.
 
-<Button label="Karte öffnen" href="https://tilda-geo.de/regionen/radinfra?map=16.7/51.7275/7.1237&config=pdqyyt.7nes.2hwcg&data=mapillary-cycleway-traffic-signs&v=2" />
+<Button label="Karte öffnen" href="https://tilda-geo.de/regionen/radinfra?map=16.7/51.7275/7.1237&config=pdqyyt.7nes.2hwcg&data=mapillary-cycleway-traffic-signs&v=2" newWindow />
 
 **So geht ihr vor:**
 
@@ -32,7 +32,7 @@ Bitte vertraut diesen Daten nicht blind. Es kann auch ein temporäres Verkehrsze
 
 <ImageSingleHorizontal src="/src/content/posts/2025-verkehrszeichen/fehlendes-verkehrszeichen.png" caption="Karte mit Radwegen (Grün, Pink). Für die Grüne Linie ist bereits das Verkehrszeichen in OSM hinterlegt, für die Pinke Linie fehlt es noch." alt="TILDA Karte von OpenStreetMap-Daten" imageConfig={{"discriminant":"4/3","value":{"discriminant":"full"}}} />
 
-<Button label="Karte öffnen" href="https://tilda-geo.de/regionen/radinfra?map=14.1/51.6849/7.0276&config=pdqyyt.7nes.2hwcg&v=2&data=mapillary-cycleway-traffic-signs" />
+<Button label="Karte öffnen" href="https://tilda-geo.de/regionen/radinfra?map=14.1/51.6849/7.0276&config=pdqyyt.7nes.2hwcg&v=2&data=mapillary-cycleway-traffic-signs" newWindow />
 
 Zusätzlich ist diese Karte super, um schnell Wege zu finden, die in TILDA als Radinfrastruktur erkannt wurden, aber bei denen kein Verkehrszeichen in OSM hinterlegt ist.
 
@@ -43,6 +43,12 @@ Dank der neuen Verkehrszeichen-Ansicht könnt ihr schnell Wege finden, für die 
 Die Daten für die Verkehrszeichen bekommen wir über die API von Mapillary. User *vizsim* hat dafür ein Jupyter Notebook gebaut, das die Daten von Mapillary für ganz Deutschland herunterlädt und dann filtert. Auf diese Weise können wir in der Karte nur bestimmte Zeichen anzeigen und zudem nur solche, die nach dem 1.1.2023 erkannt wurden. Damit ist die Wahrscheinlichkeit, dass wir veraltete Verkehrszeichen anzeigen, die inzwischen bereits abgebaut wurden, stark reduziert.
 
 [Die Daten und den Code findet ihr auf GitHub…](https://github.com/vizsim/mapillary_trafficsigns/tree/main/use_cases/cycleway_complete_campaign/ts_output)
+
+## Ein Beispiel
+
+Zum Abschluss noch [ein Beispiel aus NRW](https://tilda-geo.de/regionen/radinfra?map=15.2/51.5442/6.583\&config=pdqyyt.7h39.16g9vk\&data=\&v=2), das anschaulich zeigt, wie gut man fehlende Infrastruktur ergänzen kann.
+
+<ImageDouble src="/src/content/posts/2025-verkehrszeichen/vorher-fehlende-linien-verkehrszeichen.png" alt="Screenshot Radinfra und Mapillary Verkehrszeichen – Radinfrastruktur fehlt" caption="Vorher: Punkte signalisieren fehlende Daten in OSM" srcSecond="/src/content/posts/2025-verkehrszeichen/nachher-neue-radinfra.png" altSecond="Screenshot Radinfra und Mapillary Verkehrszeichen – Radinfrastruktur eingetragen" captionSecond="Nachher: Neue Radinfrastruktur" imageConfig={{"discriminant":"square"}} />
 
 ## Hackweekend
 
