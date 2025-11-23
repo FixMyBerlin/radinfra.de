@@ -34,31 +34,17 @@ const sortedStates = [...byState].sort((a, b) => a.name.localeCompare(b.name, 'd
             >
               <span
                 class={twJoin(
-                  'flex min-h-5 min-w-5 items-center justify-center rounded-full px-1.5 text-xs tracking-tighter',
+                  'flex min-h-5 min-w-5 items-center justify-center rounded-full px-1.5 text-xs font-semibold tracking-tighter',
                   colorClass,
                   'text-white',
                 )}
               >
-                <span>
-                  <span class="font-semibold">{state.count.toLocaleString('de-DE')}</span>
-                </span>
+                {state.count.toLocaleString('de-DE')}
               </span>
               <span>{state.name}</span>
             </p>
           )
         })
-      }
-      {
-        countedAt && (
-          <p class="flex items-center text-gray-400">
-            Stand:{' '}
-            {new Date(countedAt).toLocaleDateString('de-DE', {
-              day: 'numeric',
-              month: 'long',
-              year: 'numeric',
-            })}
-          </p>
-        )
       }
     </div>
     <div class="w-full rounded-sm border border-white/20">
@@ -94,5 +80,19 @@ const sortedStates = [...byState].sort((a, b) => a.name.localeCompare(b.name, 'd
         }
       </div>
     </div>
+    {
+      countedAt && (
+        <div>
+          <p class="text-gray-400">
+            Stand:{' '}
+            {new Date(countedAt).toLocaleDateString('de-DE', {
+              day: 'numeric',
+              month: 'long',
+              year: 'numeric',
+            })}
+          </p>
+        </div>
+      )
+    }
   </div>
 </figure>
