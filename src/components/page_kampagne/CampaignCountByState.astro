@@ -1,0 +1,98 @@
+---
+import Tooltip from '@components/page_statistik/Tooltip.astro'
+import { twJoin } from 'tailwind-merge'
+import { bundeslandColors, defaultBundeslandColor } from './constants/bundeslandColors.const'
+
+type Props = {
+  total: number
+  byState: Array<{
+    id: string
+    name: string
+    count: number
+  }>
+  countedAt?: string
+}
+
+const { total, byState, countedAt } = Astro.props
+
+// Sort states alphabetically by name (A-Z)
+const sortedStates = [...byState].sort((a, b) => a.name.localeCompare(b.name, 'de-DE'))
+---
+
+<figure class="not-prose leading-snug">
+  <div class="space-y-3 text-sm">
+    <div class="flex flex-wrap items-center gap-3 text-xs">
+      <!-- States -->
+      {
+        sortedStates.map((state) => {
+          const colorClass = bundeslandColors[state.id] || defaultBundeslandColor
+          return (
+            <p
+              class="flex items-center justify-center gap-1"
+              aria-hidden={true}
+              aria-label={`${state.name}: ${state.count.toLocaleString('de-DE')} Aufgaben`}
+            >
+              <span
+                class={twJoin(
+                  'flex min-h-5 min-w-5 items-center justify-center rounded-full px-1.5 text-xs tracking-tighter',
+                  colorClass,
+                  'text-white',
+                )}
+              >
+                <span>
+                  <span class="font-semibold">{state.count.toLocaleString('de-DE')}</span>
+                </span>
+              </span>
+              <span>{state.name}</span>
+            </p>
+          )
+        })
+      }
+      {
+        countedAt && (
+          <p class="flex items-center text-gray-400">
+            Stand:{' '}
+            {new Date(countedAt).toLocaleDateString('de-DE', {
+              day: 'numeric',
+              month: 'long',
+              year: 'numeric',
+            })}
+          </p>
+        )
+      }
+    </div>
+    <div class="w-full rounded-sm border border-white/20">
+      <div class="flex h-5 w-full justify-start rounded-sm">
+        {
+          sortedStates.map((state, index) => {
+            const colorClass = bundeslandColors[state.id] || defaultBundeslandColor
+            const relativeWidth = ((state.count / total) * 100).toFixed(2)
+            const percentage = (Number(relativeWidth) / 100).toLocaleString('de-DE', {
+              style: 'percent',
+            })
+            const isLast = index === sortedStates.length - 1
+            const calculatedWidth = isLast
+              ? `calc(100% - ${sortedStates
+                  .slice(0, -1)
+                  .reduce((sum, s) => sum + (s.count / total) * 100, 0)
+                  .toFixed(2)}%)`
+              : `max(0px, ${relativeWidth}%)`
+            return (
+              <Tooltip
+                data-state-id={state.id}
+                text={`${state.name}\n\n${state.count.toLocaleString('de-DE')} Aufgaben — ${percentage}`}
+                style={{ width: calculatedWidth }}
+                className={twJoin(
+                  'h-5 ring-gray-800 first:min-w-0.5 first:rounded-l-sm last:rounded-r-sm hover:z-10 hover:ring-2',
+                  colorClass,
+                )}
+              >
+                {/* The tooltip div is also the bar chart element */}
+              </Tooltip>
+            )
+          })
+        }
+      </div>
+    </div>
+  </div>
+</figure>

@@ -5,17 +5,18 @@ type Props = {
   title: string
 }
 const { title } = Astro.props
+
+const isMapillary = title.endsWith('(Mapillary)')
+const titleText = isMapillary ? title.replace('(Mapillary)', '') : title
 ---
 
-{
-  title.endsWith('(Mapillary)') ? (
-    <span
-      class="flex items-center gap-2"
-      title="Kampagne ist gefiltert auf Wege die Mapillary Fotos haben."
-    >
-      {title.replace('(Mapillary)', '')} <MapillaryLogo class="size-3 rounded-full" />
-    </span>
-  ) : (
-    title
-  )
-}
+<span class="flex items-center gap-2">
+  {titleText}
+  {
+    isMapillary && (
+      <span title="Kampagne ist gefiltert auf Wege die Mapillary Fotos haben.">
+        <MapillaryLogo class="size-4 rounded-full" />
+      </span>
+    )
+  }
+</span>

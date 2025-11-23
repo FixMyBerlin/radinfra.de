@@ -38,6 +38,18 @@ const CampaignAddedPropertiesSchmea = z.object({
   id: z.string(),
 })
 
+const CampaignCountSchema = z.object({
+  total: z.number(),
+  byState: z.array(
+    z.object({
+      id: z.string(),
+      name: z.string(),
+      count: z.number(),
+    }),
+  ),
+  countedAt: z.string().datetime(),
+})
+
 export const AstroTildaCampaignSchema = CampaignBaseSchema.merge(
   CampaignAddedPropertiesSchmea,
 ).merge(
@@ -46,5 +58,6 @@ export const AstroTildaCampaignSchema = CampaignBaseSchema.merge(
       MaprouletteEnabled,
       MaprouletteDisabled,
     ]),
+    count: CampaignCountSchema.optional(),
   }),
 )

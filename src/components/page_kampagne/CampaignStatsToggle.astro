@@ -1,0 +1,32 @@
+---
+import { ChartBarIcon } from '@heroicons/react/20/solid'
+import { twJoin } from 'tailwind-merge'
+
+type Props = {
+  total: number
+  campaignId: string
+  disabled?: boolean
+}
+
+const { total, disabled = false } = Astro.props
+---
+
+<span
+  class={twJoin(
+    'flex items-center justify-end gap-2',
+    !disabled && 'cursor-pointer',
+    disabled && 'pointer-events-none opacity-50',
+  )}
+>
+  <span
+    class="flex min-h-5 min-w-5 items-center justify-center rounded-full bg-teal-600 px-1.5 text-xs font-semibold tracking-tighter text-teal-50 no-underline"
+  >
+    {total.toLocaleString('de-DE')}
+  </span>
+  <ChartBarIcon
+    className={twJoin(
+      'size-4 flex-none text-teal-600 transition-transform',
+      !disabled && 'group-open:rotate-180',
+    )}
+  />
+</span>

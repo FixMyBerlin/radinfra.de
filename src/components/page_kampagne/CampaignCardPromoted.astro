@@ -1,0 +1,57 @@
+---
+import StackedCard from '@components/cards/StackedCard.astro'
+import { twJoin } from 'tailwind-merge'
+import CampaignActionIcon from './CampaignActionIcon.astro'
+import CampaignCountByState from './CampaignCountByState.astro'
+import CampaignStatsToggle from './CampaignStatsToggle.astro'
+import type { Campaign } from './types'
+
+type Props = {
+  campaign: Campaign
+}
+
+const { campaign } = Astro.props
+const count = campaign.data.count
+const hasCount = !!count && count.total > 0
+---
+
+<div class="col-span-2">
+  <details class="group">
+    <summary
+      class={twJoin(
+        'relative list-none',
+        hasCount && 'cursor-pointer',
+        !hasCount && 'pointer-events-none',
+      )}
+    >
+      <StackedCard
+        href={`/kampagnen/${campaign.id.replace('/index', '')}`}
+        title={campaign.data.title}
+      >
+        <CampaignActionIcon action={campaign.data.recommendedAction} className="size-12" />
+      </StackedCard>
+      {
+        count && (
+          <div class="pointer-events-auto absolute top-1/2 right-4 -translate-y-1/2">
+            <CampaignStatsToggle
+              total={count.total}
+              campaignId={campaign.id}
+              disabled={!hasCount}
+            />
+          </div>
+        )
+      }
+    </summary>
+    {
+      hasCount && count && (
+        <div class="mt-3">
+          <CampaignCountByState
+            total={count.total}
+            byState={count.byState}
+            countedAt={count.countedAt}
+          />
+        </div>
+      )
+    }
+  </details>
+</div>

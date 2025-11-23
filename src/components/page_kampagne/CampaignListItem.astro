@@ -1,0 +1,54 @@
+---
+import Link from '@components/links/Link.astro'
+import { twJoin } from 'tailwind-merge'
+import CampaignActionIcon from './CampaignActionIcon.astro'
+import CampaignCountByState from './CampaignCountByState.astro'
+import CampaignStatsToggle from './CampaignStatsToggle.astro'
+import CampaignTitle from './CampaignTitle.astro'
+import type { Campaign } from './types'
+
+type Props = {
+  campaign: Campaign
+  disabled?: boolean
+}
+
+const { campaign, disabled = false } = Astro.props
+const count = campaign.data.count
+const hasCount = !!count && count.total > 0
+---
+
+<details class="group">
+  <summary
+    class={twJoin(
+      'flex list-none items-center justify-between gap-2',
+      hasCount && 'cursor-pointer',
+      disabled && 'text-gray-400',
+    )}
+  >
+    <Link
+      to={`/kampagnen/${campaign.id.replace('/index', '')}`}
+      className={twJoin('flex flex-1 items-center gap-2', disabled && 'text-gray-400')}
+    >
+      <span>
+        <CampaignActionIcon action={campaign.data.recommendedAction} />
+      </span>
+      <CampaignTitle title={campaign.data.title} />
+    </Link>
+    {
+      count && (
+        <CampaignStatsToggle total={count.total} campaignId={campaign.id} disabled={!hasCount} />
+      )
+    }
+  </summary>
+  {
+    hasCount && count && (
+      <div class="mt-2 ml-7">
+        <CampaignCountByState
+          total={count.total}
+          byState={count.byState}
+          countedAt={count.countedAt}
+        />
+      </div>
+    )
+  }
+</details>

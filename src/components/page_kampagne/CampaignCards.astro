@@ -1,11 +1,9 @@
 ---
-import StackedCard from '@components/cards/StackedCard.astro'
 import StackedCardWrapper from '@components/cards/StackedCardWrapper.astro'
-import Link from '@components/links/Link.astro'
 import { campaignCategorySelect } from 'cms/utils/campaignCategorySelect'
-import CampaignActionIcon from './CampaignActionIcon.astro'
+import CampaignCardPromoted from './CampaignCardPromoted.astro'
+import CampaignListItem from './CampaignListItem.astro'
 import type { Campaign } from './types'
-import CampaignTitle from './CampaignTitle.astro'
 
 type Props = {
   /** @desc `Beispiel CATEGORY` where `CATEGORY` will be replaced */
@@ -48,19 +46,9 @@ campaignCategorySelect.forEach(({ value: key }) => {
 
           {categoryCampaigns
             .filter((campaign) => campaign.data.visibility === 'promote')
-            .map((campaign) => {
-              return (
-                <StackedCard
-                  href={`/kampagnen/${campaign.id.replace('/index', '')}`}
-                  title={campaign.data.title}
-                >
-                  <CampaignActionIcon
-                    action={campaign.data.recommendedAction}
-                    className="size-12"
-                  />
-                </StackedCard>
-              )
-            })}
+            .map((campaign) => (
+              <CampaignCardPromoted campaign={campaign} />
+            ))}
         </StackedCardWrapper>
 
         <ul class="mb-0 pl-0">
@@ -70,42 +58,22 @@ campaignCategorySelect.forEach(({ value: key }) => {
                 campaign.data.visibility !== 'promote' &&
                 campaign.data.maprouletteChallenge.enabled === true,
             )
-            .map((campaign) => {
-              return (
-                <li class="list-none">
-                  <Link
-                    to={`/kampagnen/${campaign.id.replace('/index', '')}`}
-                    className="flex items-start gap-2"
-                  >
-                    <span class="mt-1.5">
-                      <CampaignActionIcon action={campaign.data.recommendedAction} />
-                    </span>
-                    <CampaignTitle title={campaign.data.title} />
-                  </Link>
-                </li>
-              )
-            })}
+            .map((campaign) => (
+              <li class="list-none">
+                <CampaignListItem campaign={campaign} />
+              </li>
+            ))}
           {categoryCampaigns
             .filter(
               (campaign) =>
                 campaign.data.visibility !== 'promote' &&
                 campaign.data.maprouletteChallenge.enabled === false,
             )
-            .map((campaign) => {
-              return (
-                <li class="list-none text-gray-400">
-                  <Link
-                    to={`/kampagnen/${campaign.id.replace('/index', '')}`}
-                    className="flex items-start gap-2 text-gray-400"
-                  >
-                    <span class="mt-1.5">
-                      <CampaignActionIcon action={campaign.data.recommendedAction} />
-                    </span>
-                    {campaign.data.title}
-                  </Link>
-                </li>
-              )
-            })}
+            .map((campaign) => (
+              <li class="list-none text-gray-400">
+                <CampaignListItem campaign={campaign} disabled={true} />
+              </li>
+            ))}
         </ul>
       </>
     )
