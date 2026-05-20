@@ -2,7 +2,6 @@ import { z } from 'astro/zod'
 import { tildaApiUrl } from './tildaApiUrl.const'
 
 const DatesSchema = z.object({
-  processed_at: z.coerce.date(),
   osm_data_from: z.coerce.date(),
 })
 
