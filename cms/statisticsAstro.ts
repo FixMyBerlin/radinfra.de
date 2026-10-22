@@ -1,4 +1,4 @@
-import { tildaStatisticsApiUrl } from '@components/fetch/tildaApiUrl.const'
+import { tildaApiTimeoutMs, tildaStatisticsApiUrl } from '@components/fetch/tildaApiUrl.const'
 import { z } from 'astro/zod'
 import { defineCollection } from 'astro:content'
 import { readFile } from 'node:fs/promises'
@@ -15,28 +15,29 @@ export const astroStatisticsDefinition = defineCollection({
       return z.array(AstroStatisticFeaturesSchema).parse(json)
     }
 
+    // Only an unreachable, slow or failing API falls back. Invalid data from a reachable API fails the build
+    // below, so schema changes in TILDA get noticed instead of silently shipping the old snapshot.
     const apiUrl = tildaStatisticsApiUrl
+    let json: unknown
     try {
-      const raw = await fetch(apiUrl)
+      const raw = await fetch(apiUrl, { signal: AbortSignal.timeout(tildaApiTimeoutMs) })
       if (!raw.ok) {
         console.log('ERROR fetching – using fallback', apiUrl, raw.status, raw.statusText)
         return fallback()
       }
-
-      const json = await raw.json()
-      const parsed = ApiStatisticsSchema.parse(json)
-      const features = await addProperties(parsed.features)
-
-      if (features.length === 0) {
-        console.log('ERROR fetching – using fallback', apiUrl, 'empty result')
-        return fallback()
-      }
-
-      return features
+      json = await raw.json()
     } catch (error) {
       console.log('ERROR fetching – using fallback', apiUrl, error)
       return fallback()
     }
+
+    const parsed = ApiStatisticsSchema.parse(json)
+    if (parsed.features.length === 0) {
+      console.log('ERROR fetching – using fallback', apiUrl, 'empty result')
+      return fallback()
+    }
+
+    return addProperties(parsed.features)
   },
 
   schema: () => AstroStatisticFeaturesSchema,
