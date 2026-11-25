@@ -1,0 +1,95 @@
+---
+import Link from '@components/links/Link.astro'
+import MegaButton from '@components/links/MegaButton.astro'
+import PageHeadline from '@components/text/PageHeadline.astro'
+import LayoutArticlePageAstro from '@layouts/LayoutArticlePageAstro.astro'
+import { Picture } from 'astro:assets'
+import pngKarte from '../assets/homepage/karte-deutschland.png'
+import pngHistory from '../assets/karte/radinfra-history.png'
+
+const tildaUrl =
+  'https://tilda-geo.de/regionen/radinfra?map=6.1/51.312/10.529&config=1ops5da.7h3d.3cw&v=2'
+const historyUrl = 'https://vizsim-lab.github.io/radinfra-history/'
+const historyRepoUrl = 'https://github.com/vizsim-lab/radinfra-history'
+---
+
+<LayoutArticlePageAstro title="Karten">
+  <PageHeadline
+    headline="Karten"
+    intro="Die Daten von radinfra.de lassen sich auf zwei Karten erkunden: tagesaktuell in TILDA Radverkehr und im zeitlichen Verlauf in radinfra history."
+  />
+
+  <article>
+    <h2 id="tagesaktuell">Tagesaktuelle Daten und Kampagnen</h2>
+    <p>
+      Die Karte in TILDA Radverkehr zeigt die Radinfrastruktur in OpenStreetMap so, wie sie heute
+      eingetragen ist. Die Daten werden jede Nacht neu prozessiert, Änderungen in OSM sind also am
+      nächsten Tag sichtbar. Hier kannst du die Daten betrachten, prüfen und gezielt verbessern –
+      auch über die <Link to="/kampagnen">Kampagnen</Link>, die Hinweise auf fehlende oder unklare
+      Daten direkt auf der Karte zeigen. Wo dir etwas auffällt, das du nicht selbst korrigieren
+      kannst, hinterlässt du einen <Link to="/mitmachen/hinweise">Hinweis (OSM Note)</Link> für die Community.
+    </p>
+    <a
+      href={tildaUrl}
+      target="_blank"
+      class="not-prose block overflow-clip rounded-sm border border-teal-100 hover:bg-teal-100/70"
+    >
+      <Picture
+        src={pngKarte}
+        width={655}
+        densities={[1.5, 2]}
+        formats={['png', 'avif']}
+        class="w-full border-b border-teal-100 object-cover"
+        pictureAttributes={{ class: 'not-prose w-full' }}
+        alt="Deutschlandkarte in TILDA Radverkehr, die Radinfrastruktur nach Führungsform zeigt."
+      />
+    </a>
+    <MegaButton
+      href={tildaUrl}
+      iconKey="map"
+      label="Radinfrastrukturkarte"
+      subline="Deutschland-Karte in TILDA Radverkehr öffnen…"
+      className="mt-3"
+    />
+  </article>
+
+  <article>
+    <h2 id="historie">Historie der Radinfrastruktur</h2>
+    <p>
+      <strong>radinfra history</strong> ist ein Projekt aus der Community von <Link
+        to="https://github.com/vizsim"
+        blank>vizsim</Link
+      > (<Link to={historyRepoUrl} blank>GitHub</Link>). Es wertet die historischen OSM-Daten zur
+      Radinfrastruktur für ein Gebiet aus – klassifiziert so, wie die Prozessierung von TILDA und
+      radinfra.de sie heute interpretiert. Damit lässt sich nachvollziehen, wie sich die
+      Radinfrastruktur in einem Gebiet entwickelt hat, Änderungen lassen sich hervorheben und über
+      die Zeit beobachten.
+    </p>
+    <p>
+      <strong>Zur Erinnerung:</strong> Die Karte zeigt, wann etwas in OpenStreetMap eingetragen wurde.
+      Das ist nicht zwangsläufig das Datum, an dem ein Radweg gebaut oder freigegeben wurde.
+    </p>
+    <a
+      href={historyUrl}
+      target="_blank"
+      class="not-prose block overflow-clip rounded-sm border border-teal-100 hover:bg-teal-100/70"
+    >
+      <Picture
+        src={pngHistory}
+        width={655}
+        densities={[1.5, 2]}
+        formats={['png', 'avif']}
+        class="w-full border-b border-teal-100 object-cover"
+        pictureAttributes={{ class: 'not-prose w-full' }}
+        alt="Karte radinfra history mit Zeitleiste und Verlauf der Radinfrastruktur je Führungsform."
+      />
+    </a>
+    <MegaButton
+      href={historyUrl}
+      iconKey="map"
+      label="radinfra history"
+      subline="Historie seit 2016 für eine Region ansehen…"
+      className="mt-3"
+    />
+  </article>
+</LayoutArticlePageAstro>
